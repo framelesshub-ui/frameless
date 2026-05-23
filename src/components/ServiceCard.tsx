@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 interface ServiceCardProps {
@@ -31,8 +32,14 @@ export default function ServiceCard({ id, title, description, icon, gradient, in
           <div className={`absolute top-0 left-8 right-8 h-px bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />
 
           {/* Icon */}
-          <div className="relative z-10 w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300" role="img" aria-label={title}>
-            {icon}
+          <div className="relative z-10 w-14 h-14 rounded-xl overflow-hidden mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/10" role="img" aria-label={title}>
+            <Image
+              src={icon}
+              alt={title}
+              fill
+              className="object-cover"
+              sizes="56px"
+            />
           </div>
 
           {/* Content */}
@@ -43,13 +50,6 @@ export default function ServiceCard({ id, title, description, icon, gradient, in
             {description}
           </p>
 
-          {/* Arrow */}
-          <div className="relative z-10 mt-6 flex items-center gap-2 text-accent/0 group-hover:text-accent transition-all duration-300">
-            <span className="text-sm font-medium">Learn more</span>
-            <svg className="w-4 h-4 translate-x-0 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </div>
         </div>
       </Link>
     </motion.div>

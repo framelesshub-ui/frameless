@@ -48,7 +48,7 @@ export default function Footer() {
                 className="brightness-0 invert opacity-80"
               />
               <span className="text-lg font-bold tracking-tight text-white/80">
-                FRAMELESS
+                FRAMELESS HUB
               </span>
             </Link>
             <p className="text-white/50 max-w-md text-sm leading-relaxed mb-8">
@@ -126,12 +126,10 @@ export default function Footer() {
           <p className="text-xs text-white/20">
             Built by{' '}
             <a
-              href="https://parilabs.in"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#"
               className="text-white/30 hover:text-accent transition-colors duration-300"
             >
-              Pari Labs
+              Seyon Labs
             </a>
           </p>
         </div>

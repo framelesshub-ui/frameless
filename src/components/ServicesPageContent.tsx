@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import SectionWrapper from '@/components/SectionWrapper';
 import ServiceCard from '@/components/ServiceCard';
 import CTASection from '@/components/CTASection';
@@ -109,7 +110,14 @@ export default function ServicesPageContent() {
                 />
                 <div className="absolute inset-0 grid-pattern opacity-40" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-8xl" role="img" aria-label={service.title}>{service.icon}</span>
+                  <Image
+                    src={service.icon}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority={idx < 2}
+                  />
                 </div>
               </motion.div>
 
