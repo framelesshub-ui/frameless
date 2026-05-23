@@ -304,10 +304,10 @@ export default function ContactPageContent() {
                       className="w-full px-4 py-3.5 rounded-xl bg-surface border border-white/5 text-white focus:border-accent/30 focus:outline-none focus:ring-1 focus:ring-accent/20 transition-all appearance-none"
                     >
                       <option value="" className="bg-surface">Select budget range</option>
-                      <option value="<5k" className="bg-surface">Under $5,000</option>
-                      <option value="5k-15k" className="bg-surface">$5,000 — $15,000</option>
-                      <option value="15k-50k" className="bg-surface">$15,000 — $50,000</option>
-                      <option value="50k+" className="bg-surface">$50,000+</option>
+                      <option value="<50k" className="bg-surface">Under ₹50,000</option>
+                      <option value="50k-200k" className="bg-surface">₹50,000 — ₹2,00,000</option>
+                      <option value="200k-500k" className="bg-surface">₹2,00,000 — ₹5,00,000</option>
+                      <option value="500k+" className="bg-surface">₹5,00,000+</option>
                     </select>
                   </div>
 

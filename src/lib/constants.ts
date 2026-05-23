@@ -54,7 +54,7 @@ export const SERVICES = [
 ] as const;
 
 // ── Portfolio Data ────────────────────────────────
-export const PORTFOLIO_CATEGORIES = ['All', 'Video Editing', 'Content', 'Branding', 'Motion Graphics', 'Ad Creatives'] as const;
+export const PORTFOLIO_CATEGORIES = ['All', 'Video Editing', 'Content', 'Branding', 'Motion Graphics', 'Ad Creatives', 'AI Video'] as const;
 
 export const PORTFOLIO_ITEMS = [
   {
@@ -86,48 +86,21 @@ export const PORTFOLIO_ITEMS = [
   },
   {
     id: 4,
-    title: 'Dindigul Srinivasan ex MLA',
-    category: 'Motion Graphics',
-    description: 'Animated presentation and campaign video for Dindigul Srinivasan ex MLA.',
+    title: 'Dindigul Srinivasan',
+    category: 'AI Video',
+    description: 'AI video generation and motion design for Dindigul Srinivasan.',
     color: '#00FF88',
     year: '2025',
     videoUrl: '/videos/video-4.mov',
   },
   {
     id: 5,
-    title: 'Drift Coffee — Summer Campaign',
+    title: 'Sweepers',
     category: 'Ad Creatives',
-    description: 'Scroll-stopping ad creatives for Meta & YouTube that drove 4x ROAS.',
+    description: 'Engaging ad campaign creative and visual production for Sweepers.',
     color: '#FFD93D',
     year: '2024',
     videoUrl: '/videos/video-5.mov',
-  },
-  {
-    id: 6,
-    title: 'Vanta Music Visuals',
-    category: 'Video Editing',
-    description: 'Music video post-production with surreal visual effects and color grading.',
-    color: '#FF6B6B',
-    year: '2024',
-    videoUrl: '/videos/video-1.mov',
-  },
-  {
-    id: 7,
-    title: 'Orbis Tech Reel Series',
-    category: 'Content',
-    description: 'A viral Instagram Reels series for a tech company — 12M+ cumulative views.',
-    color: '#00E5FF',
-    year: '2025',
-    videoUrl: '/videos/video-2.mov',
-  },
-  {
-    id: 8,
-    title: 'Lumina AR Experience',
-    category: 'Motion Graphics',
-    description: 'Interactive motion graphics for an AR-powered retail experience.',
-    color: '#7B61FF',
-    year: '2025',
-    videoUrl: '/videos/video-4.mov',
   },
 ] as const;
 

@@ -11,7 +11,7 @@ import { SERVICES, PORTFOLIO_ITEMS, TESTIMONIALS } from '@/lib/constants';
 import { motion } from 'framer-motion';
 
 export default function Home() {
-  const featuredWorks = PORTFOLIO_ITEMS.slice(0, 4);
+  const featuredWorks = PORTFOLIO_ITEMS;
 
   return (
     <>
