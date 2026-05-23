@@ -3,7 +3,7 @@
 import Hero from '@/components/Hero';
 import SectionWrapper from '@/components/SectionWrapper';
 import ServiceCard from '@/components/ServiceCard';
-import PortfolioCard from '@/components/PortfolioCard';
+import VideoCarousel from '@/components/VideoCarousel';
 import TestimonialCard from '@/components/TestimonialCard';
 import CTASection from '@/components/CTASection';
 import AnimatedButton from '@/components/AnimatedButton';
@@ -79,11 +79,7 @@ export default function Home() {
             </AnimatedButton>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {featuredWorks.map((work, i) => (
-              <PortfolioCard key={work.id} {...work} index={i} />
-            ))}
-          </div>
+          <VideoCarousel items={featuredWorks} />
         </div>
       </SectionWrapper>
 
@@ -99,7 +95,7 @@ export default function Home() {
             Trusted by forward-thinking brands
           </motion.p>
           <div className="flex flex-wrap items-center justify-center gap-12 md:gap-16">
-            {['NeoVault', 'Aura', 'Cipher', 'Drift', 'Orbis', 'Lumina'].map((brand, i) => (
+            {["Birla's Parvai", "Supratha Wellness", "Arcot Nawabs Briyani", "Seyon Labs", "Dindigul Srinivasan Ex MLA"].map((brand, i) => (
               <motion.span
                 key={brand}
                 initial={{ opacity: 0 }}

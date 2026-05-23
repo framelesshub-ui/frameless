@@ -5,26 +5,36 @@ import Image from 'next/image';
 import SectionWrapper from '@/components/SectionWrapper';
 import CTASection from '@/components/CTASection';
 
-const VALUES = [
+const WHY_CHOOSE_US = [
   {
-    title: 'Precision',
-    description: 'Every pixel, every frame, every cut — crafted with surgical precision.',
-    icon: '◎',
+    title: 'Creative & trend-driven strategies',
+    description: 'We align marketing initiatives with the latest social trends and industry-leading creative concepts.',
+    icon: '✨',
   },
   {
-    title: 'Innovation',
-    description: 'We push creative boundaries and embrace emerging tools and techniques.',
-    icon: '◇',
+    title: 'High-quality content creation',
+    description: 'Stunning visual assets, high-end reels, short videos, and shoots that make you stand out.',
+    icon: '🎬',
   },
   {
-    title: 'Partnership',
-    description: 'We don\'t just deliver work. We become an extension of your team.',
-    icon: '⬡',
+    title: 'Brand-focused marketing',
+    description: 'Every campaign and asset is built to strengthen and reflect your core brand identity.',
+    icon: '🎯',
   },
   {
-    title: 'Impact',
-    description: 'Beautiful work that drives measurable results and real business growth.',
-    icon: '△',
+    title: 'Performance-based campaigns',
+    description: 'Data-guided campaigns designed to drive conversions, lead generation, and business growth.',
+    icon: '📈',
+  },
+  {
+    title: 'Young, creative & passionate team',
+    description: 'A dynamic, digital-first team of creators, marketers, and web designers pushing creative limits.',
+    icon: '⚡',
+  },
+  {
+    title: 'Customized solutions for every brand',
+    description: 'We build tailored strategies to fit the exact requirements, budget, and goals of your business.',
+    icon: '⚙️',
   },
 ];
 
@@ -110,20 +120,19 @@ export default function AboutPageContent() {
               <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-6">
                 Why &ldquo;Frameless&rdquo;?
               </h2>
-              <div className="space-y-4 text-white/50 leading-relaxed">
+              <div className="space-y-4 text-white/50 leading-relaxed font-normal">
                 <p>
-                  Frames limit. They crop. They constrain. In a world where creativity
-                  should be boundless, we chose to be <span className="text-white/70 font-medium">Frameless</span>.
+                  Frameless Hub is a creative digital marketing agency built for modern brands that
+                  want more than just likes and followers.
                 </p>
                 <p>
-                  Born from a belief that the best content transcends formats and platforms,
-                  Frameless Hub is a creative agency built for the digital-native era. We
-                  don&apos;t just create content — we craft experiences that resonate, convert,
-                  and leave lasting impressions.
+                  We help businesses build a strong online presence through strategic marketing,
+                  creative storytelling, and result-driven campaigns. Our goal is simple — create
+                  content and marketing strategies that make brands impossible to ignore.
                 </p>
                 <p>
-                  Our approach blends cinematic storytelling with data-driven strategy,
-                  delivering work that doesn&apos;t just look premium — it <span className="text-accent font-medium">performs</span>.
+                  Whether you are a startup, local business, influencer, or established company,
+                  we help you grow with creativity, consistency, and innovation.
                 </p>
               </div>
             </motion.div>
@@ -154,7 +163,7 @@ export default function AboutPageContent() {
         </div>
       </SectionWrapper>
 
-      {/* Vision & Values */}
+      {/* Why Choose Us */}
       <SectionWrapper>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -164,7 +173,7 @@ export default function AboutPageContent() {
               viewport={{ once: true }}
               className="text-xs font-semibold tracking-[0.3em] text-accent/60 uppercase mb-4"
             >
-              Our Values
+              Why Choose Us?
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -173,31 +182,31 @@ export default function AboutPageContent() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight"
             >
-              What drives{' '}
-              <span className="gradient-text">everything we do</span>
+              Reasons to partner with{' '}
+              <span className="gradient-text">Frameless Hub</span>
             </motion.h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {VALUES.map((value, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {WHY_CHOOSE_US.map((item, i) => (
               <motion.div
-                key={value.title}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
+                transition={{ delay: i * 0.08, duration: 0.6 }}
                 className="group p-8 rounded-2xl bg-surface border border-white/5 hover:border-accent/10 transition-all duration-500"
               >
-                <div className="flex items-start gap-6">
+                <div className="flex flex-col gap-6">
                   <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent text-xl flex-shrink-0">
-                    {value.icon}
+                    {item.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
-                      {value.title}
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-accent transition-colors leading-tight">
+                      {item.title}
                     </h3>
                     <p className="text-sm text-white/50 leading-relaxed">
-                      {value.description}
+                      {item.description}
                     </p>
                   </div>
                 </div>

@@ -6,11 +6,12 @@ import SectionWrapper from '@/components/SectionWrapper';
 import AnimatedButton from '@/components/AnimatedButton';
 
 const SERVICES_OPTIONS = [
-  'Video Editing',
+  'Social Media Marketing',
   'Content Creation',
-  'Social Media Branding',
-  'Ad Creatives',
-  'Motion Graphics',
+  'Branding & Design',
+  'Performance Marketing',
+  'Website Development',
+  'Influencer & Brand Promotions',
   'Other',
 ];
 

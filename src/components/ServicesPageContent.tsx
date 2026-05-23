@@ -10,28 +10,33 @@ import { SERVICES } from '@/lib/constants';
 const SERVICE_DETAILS = [
   {
     ...SERVICES[0],
-    features: ['Color Grading', 'Sound Design', 'Visual Effects', 'Multi-format Export'],
-    process: 'We take raw footage and transform it into cinematic gold. From rough cuts to final color grade, every frame is crafted with intention.',
+    features: ['Content Planning', 'Page Management', 'Trend-Based Reels', 'Audience Engagement', 'Monthly Strategy', 'Analytics & Insights'],
+    process: 'We help businesses build a strong online presence through strategic marketing, creative storytelling, and result-driven campaigns.',
   },
   {
     ...SERVICES[1],
-    features: ['Content Strategy', 'Scriptwriting', 'Production', 'Distribution Planning'],
-    process: 'Content that doesn\'t just fill feeds — it stops scrolls. We blend data-driven strategy with creative instinct.',
+    features: ['Reels and Short Videos', 'Product Shoots', 'Brand Videos', 'Promotional Content', 'Creative Editing', 'Storytelling Concepts'],
+    process: 'Our goal is simple — create content and marketing strategies that make brands impossible to ignore.',
   },
   {
     ...SERVICES[2],
-    features: ['Brand Identity', 'Template Systems', 'Content Calendars', 'Platform Optimization'],
-    process: 'Your brand should feel alive on social. We create visual systems that are beautiful, consistent, and instantly recognizable.',
+    features: ['Logo Design', 'Brand Identity', 'Social Media Designs', 'Posters & Creatives', 'Packaging Concepts', 'Brand Guidelines'],
+    process: 'Your brand identity defines who you are. We craft visually stunning brand identities, logos, packaging concepts, and design systems.',
   },
   {
     ...SERVICES[3],
-    features: ['Performance Creative', 'A/B Testing', 'Retargeting Assets', 'Platform-Native Formats'],
-    process: 'Ads that convert. We design creative assets engineered for performance across Meta, Google, TikTok, and beyond.',
+    features: ['Meta Ads', 'Google Ads', 'Lead Generation Campaigns', 'Retargeting Ads', 'Campaign Optimization'],
+    process: 'Maximize your ROI with performance campaigns. We develop data-driven strategies for Meta and Google ads to generate quality leads.',
   },
   {
     ...SERVICES[4],
-    features: ['2D/3D Animation', 'Explainer Videos', 'Logo Animation', 'Title Sequences'],
-    process: 'Motion brings ideas to life. From sleek logo reveals to full explainer videos, we craft animation that captivates.',
+    features: ['Business Websites', 'Landing Pages', 'Portfolio Websites', 'UI/UX Design', 'Mobile Responsive Design', 'SEO Optimization'],
+    process: 'Custom website development engineered for high performance. We create responsive business sites, landing pages, and portfolios.',
+  },
+  {
+    ...SERVICES[5],
+    features: ['Influencer Collaborations', 'Brand Promotions', 'Campaign Planning', 'Social Media Collaborations', 'Product Promotions'],
+    process: 'Build relationships and drive awareness. We execute strategic influencer collaborations and brand promotions to amplify your reach.',
   },
 ];
 

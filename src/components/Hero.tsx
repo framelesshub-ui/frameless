@@ -27,7 +27,7 @@ export default function Hero() {
     return () => window.removeEventListener('mousemove', handler);
   }, []);
 
-  const headlineWords = ['Create', 'Without', 'Limits'];
+  const headlineWords = ['Where', 'Brands', 'Become', 'unforgettable'];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -59,7 +59,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-8">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-8">
           {headlineWords.map((word, i) => (
             <motion.span
               key={word}
@@ -71,7 +71,7 @@ export default function Hero() {
                 ease: [0.16, 1, 0.3, 1],
               }}
               className={`inline-block mr-[0.3em] ${
-                i === 2 ? 'gradient-text' : 'text-white'
+                i === headlineWords.length - 1 ? 'gradient-text' : 'text-white'
               }`}
             >
               {word}
@@ -84,9 +84,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.0 }}
-          className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-lg md:text-xl text-white/40 max-w-3xl mx-auto mb-12 leading-relaxed"
         >
-          We craft cinematic visuals, viral content, and brand stories that break frames.
+          At Frameless Hub, we create powerful digital experiences that help brands grow,
+          connect, and stand out in the online world. From social media marketing to
+          content creation, branding, and performance campaigns — we turn ideas into impact.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -96,14 +98,14 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <AnimatedButton href="/work" variant="primary" size="lg">
-            View Work
+          <AnimatedButton href="/contact" variant="primary" size="lg">
+            Let&apos;s Build Your Brand
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </AnimatedButton>
           <AnimatedButton href="/contact" variant="secondary" size="lg">
-            Start a Project
+            Book a Free Consultation
           </AnimatedButton>
         </motion.div>
       </div>
