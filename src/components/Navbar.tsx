@@ -80,7 +80,7 @@ export default function Navbar() {
                 className="opacity-90 group-hover:opacity-100 transition-opacity"
               />
               <span className="text-lg font-bold tracking-tight text-white/90 group-hover:text-white transition-colors">
-                FRAMELESS HUB
+                FRAMELESS
               </span>
             </Link>
 
