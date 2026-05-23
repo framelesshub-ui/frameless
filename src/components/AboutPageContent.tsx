@@ -97,17 +97,16 @@ export default function AboutPageContent() {
               className="relative aspect-square rounded-3xl overflow-hidden"
             >
               <div className="absolute inset-0 bg-surface border border-white/5 rounded-3xl" />
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent-violet/10" />
-              <div className="absolute inset-0 grid-pattern opacity-40" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src="/logo.png"
-                  alt="Frameless Hub"
-                  width={200}
-                  height={200}
-                  className="opacity-20"
-                />
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Frameless Hub"
+                fill
+                className="object-cover opacity-20"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent-violet/10 pointer-events-none" />
+              <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
             </motion.div>
 
             {/* Content */}
