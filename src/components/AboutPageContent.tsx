@@ -183,7 +183,7 @@ export default function AboutPageContent() {
               className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight"
             >
               Reasons to partner with{' '}
-              <span className="gradient-text">Frameless</span>
+              <span className="gradient-text">Frameless Hub</span>
             </motion.h2>
           </div>
 

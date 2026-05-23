@@ -48,7 +48,7 @@ export default function Footer() {
                 className="opacity-80"
               />
               <span className="text-lg font-bold tracking-tight text-white/80">
-                FRAMELESS
+                FRAMELESS HUB
               </span>
             </Link>
             <p className="text-white/50 max-w-md text-sm leading-relaxed mb-8">
