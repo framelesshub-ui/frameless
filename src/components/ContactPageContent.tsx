@@ -27,7 +27,6 @@ export default function ContactPageContent() {
     email: '',
     company: '',
     service: '',
-    budget: '',
     message: '',
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -78,7 +77,6 @@ export default function ContactPageContent() {
           email: formData.email.trim(),
           company: formData.company.trim(),
           service: formData.service,
-          budget: formData.budget,
           message: formData.message.trim(),
         }),
       });
@@ -295,21 +293,7 @@ export default function ContactPageContent() {
                     </select>
                   </div>
 
-                  <div>
-                    <label htmlFor="contact-budget" className="block text-sm text-white/40 mb-2">Budget Range</label>
-                    <select
-                      id="contact-budget"
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-surface border border-white/5 text-white focus:border-accent/30 focus:outline-none focus:ring-1 focus:ring-accent/20 transition-all appearance-none"
-                    >
-                      <option value="" className="bg-surface">Select budget range</option>
-                      <option value="<50k" className="bg-surface">Under ₹50,000</option>
-                      <option value="50k-200k" className="bg-surface">₹50,000 — ₹2,00,000</option>
-                      <option value="200k-500k" className="bg-surface">₹2,00,000 — ₹5,00,000</option>
-                      <option value="500k+" className="bg-surface">₹5,00,000+</option>
-                    </select>
-                  </div>
+
 
                   <div>
                     <label htmlFor="contact-message" className="block text-sm text-white/40 mb-2">Project Details *</label>
