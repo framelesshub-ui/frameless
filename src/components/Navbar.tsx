@@ -77,7 +77,7 @@ export default function Navbar() {
                 alt="Frameless Hub"
                 width={40}
                 height={40}
-                className="brightness-0 invert opacity-90 group-hover:opacity-100 transition-opacity"
+                className="opacity-90 group-hover:opacity-100 transition-opacity"
               />
               <span className="text-lg font-bold tracking-tight text-white/90 group-hover:text-white transition-colors">
                 FRAMELESS HUB

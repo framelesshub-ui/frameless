@@ -45,7 +45,7 @@ export default function Footer() {
                 alt="Frameless Hub"
                 width={36}
                 height={36}
-                className="brightness-0 invert opacity-80"
+                className="opacity-80"
               />
               <span className="text-lg font-bold tracking-tight text-white/80">
                 FRAMELESS HUB

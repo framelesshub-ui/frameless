@@ -105,7 +105,7 @@ export default function AboutPageContent() {
                   alt="Frameless Hub"
                   width={200}
                   height={200}
-                  className="brightness-0 invert opacity-20"
+                  className="opacity-20"
                 />
               </div>
             </motion.div>
