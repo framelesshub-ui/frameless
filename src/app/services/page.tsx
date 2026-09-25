@@ -4,11 +4,11 @@ import ServicesPageContent from '@/components/ServicesPageContent';
 export const metadata: Metadata = {
   title: 'Services — Frameless Hub',
   description:
-    'End-to-end creative services: video editing, content creation, social media branding, ad creatives, and motion graphics.',
+    'Services built for the digital age. We combine strategy, creativity and technology to help brands grow, connect, and make a lasting impact.',
   openGraph: {
     title: 'Services — Frameless Hub',
     description:
-      'End-to-end creative services: video editing, content creation, social media branding, ad creatives, and motion graphics.',
+      'Services built for the digital age. We combine strategy, creativity and technology to help brands grow, connect, and make a lasting impact.',
   },
 };
 

@@ -109,9 +109,10 @@ export default function Navbar() {
               ))}
               <Link
                 href="/contact"
-                className="ml-4 px-5 py-2.5 text-sm font-medium bg-accent/10 text-accent border border-accent/20 rounded-full hover:bg-accent/20 hover:border-accent/40 transition-all duration-300"
+                className="ml-4 px-5 py-2.5 text-sm font-medium bg-accent/10 text-accent border border-accent/20 rounded-full hover:bg-accent/20 hover:border-accent/40 transition-all duration-300 group inline-flex items-center gap-1.5"
               >
-                Start a Project
+                <span>Start a Project</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
             </div>
 
