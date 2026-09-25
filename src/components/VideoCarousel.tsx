@@ -278,24 +278,26 @@ export default function VideoCarousel({ items }: VideoCarouselProps) {
                   onLoadedMetadata={handleActiveLoadedMetadata}
                   onEnded={handleNext} // Move to next video automatically when ended
                   onClick={handleOpenModal}
-                  className="w-full h-full object-cover cursor-pointer hover:scale-[1.01] transition-transform duration-500"
+                  className="w-full h-full object-cover cursor-pointer group-hover:scale-[1.04] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 />
               </motion.div>
             </AnimatePresence>
 
-            {/* Centered play chevron on hover */}
+            {/* Centered gently pulsing play button on hover */}
             <div
               onClick={handleOpenModal}
-              className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer z-10"
+              className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center cursor-pointer z-10"
             >
-              <div
+              <motion.div
+                animate={{ scale: [1, 1.08, 1], opacity: [0.9, 1, 0.9] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
                 className="w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md glow-accent"
                 style={{ backgroundColor: `${activeItem.color}33`, border: `1px solid ${activeItem.color}88` }}
               >
                 <svg className="w-6 h-6 text-white ml-1 fill-current" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
-              </div>
+              </motion.div>
             </div>
           </div>
 

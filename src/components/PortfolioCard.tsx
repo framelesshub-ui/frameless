@@ -162,10 +162,10 @@ export default function PortfolioCard({ title, category, description, color, yea
   return (
     <>
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0, clipPath: 'inset(10% 0% 10% 0% round 20px)' }}
+        whileInView={{ opacity: 1, clipPath: 'inset(0% 0% 0% 0% round 20px)' }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleCardClick}
@@ -180,7 +180,7 @@ export default function PortfolioCard({ title, category, description, color, yea
           }
         }}
       >
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-surface border border-white/5 group-hover:border-accent/35 transition-all duration-500 shadow-lg">
+        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-surface border border-white/5 group-hover:border-accent/40 transition-all duration-500 shadow-xl">
           
           {/* Default Background Canvas (Geometric Pattern & Color Glow) */}
           <div
@@ -209,7 +209,7 @@ export default function PortfolioCard({ title, category, description, color, yea
             )}
           </AnimatePresence>
 
-          {/* Muted Hover Video Preview */}
+          {/* Muted Hover Video Preview with 1.04 subtle scale */}
           <AnimatePresence>
             {isHovered && (
               <motion.div
@@ -217,31 +217,34 @@ export default function PortfolioCard({ title, category, description, color, yea
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="absolute inset-0 z-10 w-full h-full"
+                className="absolute inset-0 z-10 w-full h-full overflow-hidden"
               >
-                <div className="absolute inset-0 bg-black/20 z-10" />
+                <div className="absolute inset-0 bg-black/25 z-10" />
                 <video
                   src={videoUrl}
                   autoPlay
                   muted
                   loop
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                 />
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Play button overlay */}
+          {/* Play button overlay with gentle pulse */}
           <AnimatePresence>
             {isHovered && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
+                initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.5 }}
-                className="absolute inset-0 flex items-center justify-center z-20"
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
               >
-                <div
+                <motion.div
+                  animate={{ scale: [1, 1.08, 1], opacity: [0.92, 1, 0.92] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
                   className="w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md glow-accent"
                   style={{ backgroundColor: `${color}33`, border: `1px solid ${color}88` }}
                   aria-label={`Play video for ${title}`}
@@ -249,19 +252,37 @@ export default function PortfolioCard({ title, category, description, color, yea
                   <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8 5v14l11-7z" />
                   </svg>
-                </div>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Bottom info bar */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-20">
+          {/* Bottom info bar — title moves upward, metadata fades in */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/95 via-black/60 to-transparent z-20">
             <div className="flex items-end justify-between">
               <div>
-                <p className="text-xs font-semibold text-accent tracking-wider uppercase mb-1">{category}</p>
-                <h3 className="text-lg font-bold text-white group-hover:text-accent transition-colors duration-300">{title}</h3>
+                <motion.p
+                  animate={{ opacity: isHovered ? 1 : 0.7, y: isHovered ? -2 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-xs font-semibold text-accent tracking-wider uppercase mb-1"
+                >
+                  {category}
+                </motion.p>
+                <motion.h3
+                  animate={{ y: isHovered ? -4 : 0 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-lg font-bold text-white group-hover:text-accent transition-colors duration-300"
+                >
+                  {title}
+                </motion.h3>
               </div>
-              <span className="text-xs text-white/40 font-mono">{year}</span>
+              <motion.span
+                animate={{ opacity: isHovered ? 1 : 0.5, y: isHovered ? -2 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-xs text-white/40 font-mono"
+              >
+                {year}
+              </motion.span>
             </div>
           </div>
         </div>

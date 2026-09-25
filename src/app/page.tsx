@@ -7,6 +7,7 @@ import VideoCarousel from '@/components/VideoCarousel';
 import TestimonialCard from '@/components/TestimonialCard';
 import CTASection from '@/components/CTASection';
 import AnimatedButton from '@/components/AnimatedButton';
+import ClientMarquee from '@/components/ClientMarquee';
 import { SERVICES, PORTFOLIO_ITEMS, TESTIMONIALS } from '@/lib/constants';
 import { motion } from 'framer-motion';
 
@@ -83,33 +84,20 @@ export default function Home() {
         </div>
       </SectionWrapper>
 
-      {/* Clients / Trust Bar */}
-      <SectionWrapper>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Clients / Trust Bar with Continuous Slow Marquee */}
+      <section className="relative py-16 overflow-hidden border-y border-white/[0.04] bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center text-xs font-semibold tracking-[0.3em] text-white/30 uppercase mb-12"
+            className="text-center text-xs font-semibold tracking-[0.3em] text-white/30 uppercase"
           >
             Trusted by forward-thinking brands
           </motion.p>
-          <div className="flex flex-wrap items-center justify-center gap-12 md:gap-16">
-            {["Birla's Parvai", "Supratha Wellness", "Arcot Nawabs Briyani", "Seyon Labs", "Dindigul Srinivasan Ex MLA"].map((brand, i) => (
-              <motion.span
-                key={brand}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-xl md:text-2xl font-bold text-white/10 hover:text-white/30 transition-colors duration-500 cursor-default"
-              >
-                {brand}
-              </motion.span>
-            ))}
-          </div>
         </div>
-      </SectionWrapper>
+        <ClientMarquee />
+      </section>
 
       {/* Testimonials */}
       <SectionWrapper id="testimonials">

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import AmbientBackground from "@/components/AmbientBackground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,7 +48,8 @@ export default function RootLayout({
           Skip to content
         </a>
         <Navbar />
-        <main id="main-content" className="flex-1">
+        <AmbientBackground />
+        <main id="main-content" className="flex-1 relative z-10">
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer />

@@ -14,7 +14,8 @@ export default function Navbar() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handler = () => setIsScrolled(window.scrollY > 20);
+    const handler = () => setIsScrolled(window.scrollY > 60);
+    handler();
     window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
   }, []);
@@ -64,8 +65,8 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'glass-strong shadow-lg shadow-black/20'
-            : 'bg-transparent'
+            ? 'glass-nav-scrolled shadow-2xl shadow-black/50 py-0'
+            : 'bg-transparent py-1.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

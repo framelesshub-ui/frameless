@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import SectionWrapper from '@/components/SectionWrapper';
 import CTASection from '@/components/CTASection';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const WHY_CHOOSE_US = [
   {
@@ -139,7 +140,46 @@ export default function AboutPageContent() {
         </div>
       </SectionWrapper>
 
-      {/* Stats */}
+      {/* Manifesto Statement (Revealed Word-by-Word with Text Masks) */}
+      <SectionWrapper>
+        <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center py-10">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-xs font-semibold tracking-[0.3em] text-accent/60 uppercase mb-8"
+          >
+            Our Philosophy
+          </motion.p>
+          <div className="flex flex-wrap justify-center gap-x-2.5 sm:gap-x-3.5 gap-y-2 sm:gap-y-3">
+            {"Not another agency. We craft cinematic visual systems and high-converting content that shatter conventional frames.".split(' ').map((word, i) => (
+              <span key={i} className="inline-block overflow-hidden py-0.5">
+                <motion.span
+                  initial={{ y: '105%', opacity: 0 }}
+                  whileInView={{ y: '0%', opacity: 1 }}
+                  viewport={{ once: true, margin: '-30px' }}
+                  transition={{
+                    duration: 0.65,
+                    delay: i * 0.045,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className={`inline-block text-2xl sm:text-4xl md:text-5xl font-black tracking-tight ${
+                    word.toLowerCase().includes('not') || word.toLowerCase().includes('agency')
+                      ? 'text-white'
+                      : word.toLowerCase().includes('frames')
+                      ? 'gradient-remember'
+                      : 'text-white/80'
+                  }`}
+                >
+                  {word}
+                </motion.span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Stats with AnimatedCounter (0 -> target) */}
       <SectionWrapper>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -153,7 +193,7 @@ export default function AboutPageContent() {
                 className="text-center p-8 rounded-2xl bg-surface border border-white/5"
               >
                 <div className="text-4xl md:text-5xl font-black gradient-text mb-2">
-                  {stat.value}
+                  <AnimatedCounter value={stat.value} />
                 </div>
                 <div className="text-sm text-white/40">{stat.label}</div>
               </motion.div>

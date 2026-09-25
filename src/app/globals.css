@@ -115,10 +115,10 @@ body {
   background-size: 60px 60px;
 }
 
-/* ── Animations ────────────────────────── */
+/* ── Animations & Motion System ────────────────── */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-8px); }
 }
 
 @keyframes pulse-glow {
@@ -131,14 +131,63 @@ body {
   100% { transform: translateX(100%); }
 }
 
+@keyframes flow-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-subtle-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(0, 229, 255, 0.65));
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 7s ease-in-out infinite;
 }
 
 .animate-float-delayed {
-  animation: float 6s ease-in-out infinite 2s;
+  animation: float 8.5s ease-in-out infinite 1.5s;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
 }
+
+.gradient-remember {
+  background: linear-gradient(135deg, #00E5FF 0%, #0088FF 40%, #7B61FF 75%, #00E5FF 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: flow-gradient 10s ease infinite, pulse-subtle-glow 4.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.glass-nav-scrolled {
+  background: rgba(10, 10, 10, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
