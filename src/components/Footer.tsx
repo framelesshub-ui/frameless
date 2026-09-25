@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { NAV_LINKS, SOCIAL_LINKS } from '@/lib/constants';
+import { NAV_LINKS, SOCIAL_LINKS, SERVICES } from '@/lib/constants';
 
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
   Instagram: (
@@ -31,38 +31,44 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/5">
-      {/* Gradient line at top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+    <footer className="relative bg-[#030405] border-t border-white/[0.08] overflow-hidden">
+      {/* Top subtle highlight line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-6">
+      {/* Main Footer Container */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-white/[0.08]">
+          
+          {/* Brand Info (4 cols) */}
+          <div className="lg:col-span-4">
+            <Link href="/" className="flex items-center gap-3 mb-6 group">
               <Image
                 src="/logo.png"
                 alt="Frameless Hub"
                 width={36}
                 height={36}
-                className="opacity-80"
+                className="opacity-90 group-hover:scale-105 transition-transform"
               />
-              <span className="text-lg font-bold tracking-tight text-white/80">
+              <span className="text-base font-black tracking-tight text-white">
                 FRAMELESS HUB
               </span>
             </Link>
-            <p className="text-white/50 max-w-md text-sm leading-relaxed mb-8">
-              We craft cinematic visuals, viral content, and brand stories that
-              break frames. Premium creative agency for the digital-first generation.
+            <p className="text-white/50 text-sm leading-relaxed max-w-sm mb-6 font-normal">
+              An independent creative studio engineering high-impact commercials, viral social systems, brand identities, and performance marketing engines.
             </p>
-            <div className="flex gap-4">
+            <div className="text-xs font-mono text-white/40 space-y-1 mb-8">
+              <div>Chennai, Tamil Nadu, India</div>
+              <div>Available for Worldwide Projects</div>
+            </div>
+
+            <div className="flex gap-3">
               {SOCIAL_LINKS.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/30 transition-all duration-300 text-sm"
+                  className="w-9 h-9 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-white hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300"
                   aria-label={link.label}
                 >
                   {SOCIAL_ICONS[link.label] || link.label[0]}
@@ -71,17 +77,17 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h4 className="text-xs font-semibold tracking-widest text-white/40 uppercase mb-6">
+          {/* Navigation Links (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-white/40 mb-6">
               Navigation
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3.5">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 hover:text-accent transition-colors duration-300"
+                    className="text-sm text-white/60 hover:text-white transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -90,48 +96,88 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="text-xs font-semibold tracking-widest text-white/40 uppercase mb-6">
-              Get in Touch
+          {/* Core Capabilities (3 cols) */}
+          <div className="lg:col-span-3">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-white/40 mb-6">
+              Core Capabilities
             </h4>
-            <ul className="space-y-3">
-              <li>
+            <ul className="space-y-3.5">
+              {SERVICES.map((s) => (
+                <li key={s.id}>
+                  <Link
+                    href="/services"
+                    className="text-sm text-white/60 hover:text-white transition-colors duration-200 block"
+                  >
+                    {s.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Direct Line & Studio Contact (3 cols) */}
+          <div className="lg:col-span-3">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-white/40 mb-6">
+              Direct Contact
+            </h4>
+            <div className="space-y-4">
+              <div>
+                <span className="text-[10px] font-mono uppercase text-white/40 block mb-1">
+                  General Inquiries & Briefs
+                </span>
                 <a
                   href="mailto:hello@framelesshub.com"
-                  className="text-sm text-white/50 hover:text-accent transition-colors duration-300"
+                  className="text-sm font-semibold text-white hover:text-accent transition-colors block"
                 >
                   hello@framelesshub.com
                 </a>
-              </li>
-              <li>
+              </div>
+
+              <div>
+                <span className="text-[10px] font-mono uppercase text-white/40 block mb-1">
+                  WhatsApp Direct Line
+                </span>
                 <a
                   href="https://wa.me/918248628371"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-white/50 hover:text-accent transition-colors duration-300"
+                  className="text-sm font-semibold text-emerald-400 hover:underline block"
                 >
                   +91 82486 28371
                 </a>
-              </li>
-            </ul>
+              </div>
+
+              <div className="pt-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.1] hover:border-accent/40 text-xs font-mono uppercase tracking-wider text-white transition-all"
+                >
+                  <span>Start a Project</span>
+                  <span className="text-accent">→</span>
+                </Link>
+              </div>
+            </div>
           </div>
+
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/30">
+        {/* Oversized Brand Watermark Across Bottom */}
+        <div className="pt-12 pb-6 flex items-center justify-center select-none pointer-events-none">
+          <span className="text-[12vw] font-black leading-none tracking-tighter text-white/[0.03] uppercase whitespace-nowrap">
+            FRAMELESS HUB
+          </span>
+        </div>
+
+        {/* Bottom Sub-bar */}
+        <div className="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
+          <div>
             &copy; {currentYear} Frameless Hub. All rights reserved.
-          </p>
-          <p className="text-xs text-white/20">
-            Built by{' '}
-            <a
-              href="#"
-              className="text-white/30 hover:text-accent transition-colors duration-300"
-            >
-              Seyon Labs
-            </a>
-          </p>
+          </div>
+          <div className="flex items-center gap-6">
+            <span>Chennai, India</span>
+            <span>•</span>
+            <span className="text-white/60">Zero Templates. Pure Craft.</span>
+          </div>
         </div>
       </div>
     </footer>
