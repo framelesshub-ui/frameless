@@ -98,10 +98,10 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:framelesshub@gmail.com"
+                  href="mailto:hello@framelesshub.com"
                   className="text-sm text-white/50 hover:text-accent transition-colors duration-300"
                 >
-                  framelesshub@gmail.com
+                  hello@framelesshub.com
                 </a>
               </li>
               <li>

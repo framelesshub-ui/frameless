@@ -150,10 +150,10 @@ export default function ContactPageContent() {
                   <div>
                     <p className="text-sm text-white/40 mb-1">Email</p>
                     <a
-                      href="mailto:framelesshub@gmail.com"
+                      href="mailto:hello@framelesshub.com"
                       className="text-white/70 hover:text-accent transition-colors"
                     >
-                      framelesshub@gmail.com
+                      hello@framelesshub.com
                     </a>
                   </div>
                 </div>
@@ -180,11 +180,9 @@ export default function ContactPageContent() {
                     📍
                   </div>
                   <div>
-                    <p className="text-sm text-white/40 mb-1">Office</p>
+                    <p className="text-sm text-white/40 mb-1">Location</p>
                     <p className="text-white/70 leading-relaxed">
-                      No. 1, Lakshmi Nagar, 3rd Street,<br />
-                      Sivabootha Medu, Vanagaram,<br />
-                      Chennai – 600095
+                      Chennai, Tamil Nadu, India
                     </p>
                   </div>
                 </div>
