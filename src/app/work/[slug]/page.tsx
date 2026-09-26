@@ -10,9 +10,15 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return portfolioProjects.map((project) => ({
+  const current = portfolioProjects.map((project) => ({
     slug: project.slug,
   }));
+  const aliases = [
+    { slug: 'aura-home' },
+    { slug: 'krithi-makeover-artistry' },
+    { slug: 'seyon-lab' },
+  ];
+  return [...current, ...aliases];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

@@ -26,129 +26,120 @@ export type WorkFilter = (typeof WORK_FILTERS)[number];
 export type ProjectCategory = WorkFilter;
 
 /**
- * Centralized project database. Pure editorial information without external video/image dependencies.
+ * Verified client projects database with exact updated details.
  */
 export const projects: Project[] = [
   {
     slug: 'birlas-parvai',
     client: 'Birlas Parvai',
-    title: 'Automotive Content & Drive Documentaries',
+    title: 'Automotive Media & YouTube',
     category: 'Content',
-    displayCategory: 'Automotive Content / Production',
+    displayCategory: 'Automotive Media & YouTube',
     featured: true,
     year: '2026',
     overview:
-      'End-to-end channel production, cinematic road-testing direction, and editorial packaging for Birla’s Parvai, creating high-retention automotive journalism in South India.',
+      'Tamil Nadu’s leading automotive content platform covering cars, bikes, reviews and automotive stories.',
     deliverables: [
-      'Video Production',
-      'Automotive Cinematography',
-      'Editorial Direction',
-      'Thumbnail Architecture',
+      'YouTube Editing',
+      'Shorts & Reels',
+      'Social Media Management',
     ],
     verifiedResult: '4.8M+ Channel Views',
   },
   {
     slug: 'supratha-wellness',
     client: 'Supratha Wellness',
-    title: 'Clinical Healthcare & Wellness Series',
+    title: 'Medical & Wellness Media',
     category: 'Content',
-    displayCategory: 'Healthcare Series / Production',
+    displayCategory: 'Medical & Wellness Media',
     featured: true,
     year: '2026',
     overview:
-      'A physician-led wellness content system translating medical literature and holistic therapies into approachable, trustworthy video masterclasses.',
+      'A health-focused content platform covering Ayurveda, Allopathy, Homeopathy, Acupuncture and wellness.',
     deliverables: [
-      'Content Strategy',
-      'Physician Masterclasses',
-      'Medical Motion Graphics',
-      'Channel Growth',
+      'YouTube Video Editing',
     ],
     verifiedResult: '3.2M+ Channel Views',
   },
   {
-    slug: 'frameless-media',
-    client: 'Frameless Media',
-    title: 'Cinema Interviews & Public Talk Formats',
-    category: 'Media',
-    displayCategory: 'Original Digital Content / Media',
+    slug: 'ora-kitchen',
+    client: 'ORA Kitchen',
+    title: 'Catering & Food Brand',
+    category: 'Branding',
+    displayCategory: 'Catering & Food Brand',
     featured: true,
     year: '2026',
     overview:
-      'Studio-owned media flagship capturing high-velocity cinema public talk, actor reviews, and pop culture interviews broadcast directly across digital channels.',
+      'A professional catering brand serving corporate events, weddings, parties and special occasions.',
     deliverables: [
-      'Original IP Creation',
-      'Multi-Camera 4K Capture',
-      'Rapid Turnaround Editing',
-      'Audience Engagement',
+      'Branding',
+      'Social Media Marketing',
+      'Content Creation',
+      'Social Media Management',
+    ],
+  },
+  {
+    slug: 'frameless-media',
+    client: 'Frameless Media',
+    title: 'Cinema & Entertainment Media',
+    category: 'Media',
+    displayCategory: 'Cinema & Entertainment Media',
+    featured: true,
+    year: '2026',
+    overview:
+      'A cinema-focused content platform featuring interviews, public interactions and entertainment content.',
+    deliverables: [
+      'Content Production',
+      'Video Editing',
+      'Social Media Management',
     ],
     verifiedResult: '2.4M+ Channel Views',
   },
   {
-    slug: 'ora-kitchen',
-    client: 'Ora Kitchen',
-    title: 'Artisanal Culinary Brand Identity',
+    slug: 'aura-homes',
+    client: 'Aura Homes',
+    title: 'Home & Lifestyle Brand',
     category: 'Branding',
-    displayCategory: 'Brand Identity / Branding',
+    displayCategory: 'Home & Lifestyle Brand',
     featured: true,
     year: '2026',
     overview:
-      'A tactile brand identity celebrating contemporary gastronomy, bespoke takeaway packaging, spatial typography, and launch culinary imagery.',
+      'A home-focused brand offering essentials and products designed to elevate modern living spaces.',
     deliverables: [
-      'Brand Identity',
-      'Packaging Suite',
-      'Spatial Typography',
-      'Creative Direction',
+      'Social Media Marketing',
+      'Content Creation',
+      'Social Media Management',
     ],
   },
   {
-    slug: 'aura-home',
-    client: 'Aura Home',
-    title: 'Architectural Living & Spatial Branding',
-    category: 'Branding',
-    displayCategory: 'Brand Identity / Branding',
-    featured: true,
-    year: '2026',
-    overview:
-      'Visual identity and digital showroom for an architectural studio dedicated to clean geometric harmony, muted stone materiality, and understated elegance.',
-    deliverables: [
-      'Visual Identity',
-      'Digital Showroom',
-      'Print Collateral',
-      'Architectural Photography',
-    ],
-  },
-  {
-    slug: 'krithi-makeover-artistry',
-    client: 'Krithi Makeover Artistry',
-    title: 'Luxury Bridal Cinema & Portfolio',
+    slug: 'krithi-makeup-artist',
+    client: 'Krithi Makeup Artist',
+    title: 'Luxury Makeup & Personal Brand',
     category: 'Content',
-    displayCategory: 'Brand & Social Content',
+    displayCategory: 'Luxury Makeup & Personal Brand',
     featured: true,
     year: '2026',
     overview:
-      'Editorial bridal films and bespoke visual portfolio capturing traditional ceremonial beauty with contemporary fashion elegance.',
+      'A premium makeup artist brand focused on luxury beauty, professional portfolios and personal branding.',
     deliverables: [
-      'Bridal Cinema',
-      'Editorial Photography',
-      'Social Content Strategy',
-      'Visual Portfolio',
+      'Personal Branding',
+      'Content Creation',
+      'Social Media Management',
     ],
   },
   {
-    slug: 'seyon-lab',
-    client: 'Seyon Lab',
-    title: 'Digital Presence & Scientific Brand System',
+    slug: 'siyan-labs',
+    client: 'Siyan Labs',
+    title: 'CRM & Technology',
     category: 'Branding',
-    displayCategory: 'Digital Presence / Branding',
-    featured: false,
+    displayCategory: 'CRM & Technology',
+    featured: true,
     year: '2026',
     overview:
-      'A refined web presence and digital identity system for an innovative scientific research and analytical laboratory.',
+      'A CRM-focused technology company building solutions for modern business operations and customer management.',
     deliverables: [
-      'Brand System',
-      'UI/UX Design',
-      'Technical Guidelines',
-      'Digital Assets',
+      'Social Media Support',
+      'Creative Consultation',
     ],
   },
 ];
@@ -158,11 +149,23 @@ export const getFeaturedProjects = (): Project[] => {
 };
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
+  // Graceful aliases for backward compatibility
+  if (slug === 'aura-home') slug = 'aura-homes';
+  if (slug === 'krithi-makeover-artistry') slug = 'krithi-makeup-artist';
+  if (slug === 'seyon-lab') slug = 'siyan-labs';
   return projects.find((p) => p.slug === slug);
 };
 
 export const getNextProject = (currentSlug: string): Project => {
-  const currentIndex = projects.findIndex((p) => p.slug === currentSlug);
+  const normalized =
+    currentSlug === 'aura-home'
+      ? 'aura-homes'
+      : currentSlug === 'krithi-makeover-artistry'
+      ? 'krithi-makeup-artist'
+      : currentSlug === 'seyon-lab'
+      ? 'siyan-labs'
+      : currentSlug;
+  const currentIndex = projects.findIndex((p) => p.slug === normalized);
   const nextIndex = (currentIndex + 1) % projects.length;
   return projects[nextIndex];
 };
