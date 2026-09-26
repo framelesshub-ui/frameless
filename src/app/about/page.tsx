@@ -4,11 +4,11 @@ import AboutPageContent from '@/components/AboutPageContent';
 export const metadata: Metadata = {
   title: 'About — Frameless Hub',
   description:
-    'The story behind Frameless Hub — a creative media agency built for cinematic visuals, viral content, and brand stories. Founded in Chennai, India. EST. 2026.',
+    'We believe better creative starts with better thinking. Frameless Hub brings together ideas, craft, and execution to create work that is clear, purposeful, and memorable. Chennai, India • EST. 2026.',
   openGraph: {
     title: 'About — Frameless Hub',
     description:
-      'The story behind Frameless Hub — a creative media agency built for cinematic visuals, viral content, and brand stories. Founded in Chennai, India. EST. 2026.',
+      'We believe better creative starts with better thinking. Frameless Hub brings together ideas, craft, and execution to create work that is clear, purposeful, and memorable. Chennai, India • EST. 2026.',
   },
 };
 

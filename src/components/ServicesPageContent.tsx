@@ -3,97 +3,118 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import ServicesSection from './ServicesSection';
-import ProcessSection from './ProcessSection';
-import CTASection from './CTASection';
-import { SERVICES } from '@/data/services';
+import { CAPABILITIES } from '@/data/capabilities';
 
 export default function ServicesPageContent() {
   return (
-    <div className="bg-[#04060A] text-[#F5F7FA] min-h-screen pt-24 sm:pt-32">
-      {/* Page Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-[#00F0FF] uppercase tracking-widest mb-4">
-          <span>COMPREHENSIVE CAPABILITIES</span>
-        </div>
-        <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.08] mb-4">
-          Everything your brand needs
-          <br />
-          <span className="text-[#00F0FF]">to grow and stay relevant.</span>
-        </h1>
-        <p className="text-base sm:text-xl text-[#94A3B8] max-w-3xl leading-relaxed">
-          From foundational brand architecture and commercial filmmaking to algorithmic YouTube operations and performance paid media, we engineer cohesive creative ecosystems that capture attention and compound enterprise value.
-        </p>
-      </div>
-
-      {/* Services Grid (9 services cards) */}
-      <ServicesSection />
-
-      {/* Deep-Dive Capabilities List */}
-      <section className="py-16 sm:py-24 border-t border-white/[0.06] bg-[#04060A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <span className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest block mb-2">
-              Detailed Scope
+    <div className="bg-[#080808] text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-24">
+      <div className="editorial-container">
+        
+        {/* Page Hero */}
+        <div className="mb-20 sm:mb-28 max-w-3xl">
+          <div className="inline-flex items-center gap-2 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
+            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#A1A1AA]">
+              Capabilities
             </span>
-            <h2 className="text-3xl font-black text-white">Full Service Deliverables</h2>
           </div>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
+            What we do.
+          </h1>
+          <p className="text-lg sm:text-2xl text-[#A1A1AA] leading-relaxed font-normal">
+            Strategy, branding, production and digital growth — built around what your brand actually needs.
+          </p>
+        </div>
 
-          <div className="space-y-6">
-            {SERVICES.map((service) => (
+        {/* 4 Clean Capability Sections with Real Work Visuals */}
+        <div className="space-y-24 sm:space-y-36">
+          {CAPABILITIES.map((cap, index) => {
+            const isReversed = index % 2 === 1;
+
+            return (
               <div
-                key={service.id}
-                id={service.id}
-                className="p-6 sm:p-8 rounded-3xl glass-card border border-white/[0.08] hover:border-[#00F0FF]/30 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+                key={cap.id}
+                id={cap.id}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center pt-12 border-t border-white/[0.08]"
               >
-                <div className="max-w-xl">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-mono font-bold text-[#00F0FF]">
-                      {service.number}
-                    </span>
-                    <span className="text-[10px] font-mono text-[#94A3B8] uppercase">
-                      {service.tag}
-                    </span>
+                {/* Visual Side */}
+                <div
+                  className={`lg:col-span-6 ${
+                    isReversed ? 'lg:order-2' : 'lg:order-1'
+                  }`}
+                >
+                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#141416] border border-white/[0.08]">
+                    <img
+                      src={cap.image}
+                      alt={cap.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/10" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">
-                    {service.shortDescription}
+                </div>
+
+                {/* Content Side */}
+                <div
+                  className={`lg:col-span-6 flex flex-col justify-center ${
+                    isReversed ? 'lg:order-1' : 'lg:order-2'
+                  }`}
+                >
+                  <div className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest mb-3">
+                    {cap.number}
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+                    {cap.title}
+                  </h2>
+                  <p className="text-base text-[#A1A1AA] leading-relaxed mb-8">
+                    {cap.description}
                   </p>
-                </div>
 
-                <div className="flex flex-wrap gap-2 lg:max-w-md">
-                  {service.deliverables.map((deliv) => (
-                    <span
-                      key={deliv}
-                      className="text-xs font-mono text-white/90 bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.06]"
+                  <div className="space-y-3 pt-6 border-t border-white/[0.08] mb-8">
+                    {cap.services.map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center gap-3 text-sm text-white font-medium"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div>
+                    <Link
+                      href={`/contact?service=${encodeURIComponent(cap.title)}`}
+                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white hover:text-[#00F0FF] transition-colors"
                     >
-                      {deliv}
-                    </span>
-                  ))}
-                </div>
-
-                <div>
-                  <Link
-                    href={`/contact?service=${encodeURIComponent(service.title)}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-bold text-black bg-[#00F0FF] hover:bg-[#38BDF8] transition-colors shrink-0"
-                  >
-                    <span>Scope Service</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </Link>
+                      <span>Discuss {cap.title.toLowerCase()}</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#00F0FF]" />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </section>
 
-      {/* 5-Step Process */}
-      <ProcessSection />
+        {/* Bottom CTA */}
+        <div className="mt-28 pt-20 border-t border-white/[0.08] text-center max-w-2xl mx-auto">
+          <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#A1A1AA] mb-3">
+            Looking for something specific?
+          </div>
+          <h3 className="text-3xl sm:text-5xl font-bold text-white mb-6">
+            Let’s talk about your project.
+          </h3>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-semibold tracking-wider uppercase text-black bg-white hover:bg-[#00F0FF] transition-all duration-200"
+          >
+            <span>Start a Project</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
+        </div>
 
-      {/* CTA */}
-      <CTASection />
+      </div>
     </div>
   );
 }

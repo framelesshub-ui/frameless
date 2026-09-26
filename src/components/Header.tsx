@@ -3,42 +3,26 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface HeaderProps {
   currentRoute?: string;
   onNavigate?: (path: string) => void;
 }
 
-const NAV_LINKS = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'Work', href: '/work' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-];
-
 export default function Header({ currentRoute, onNavigate }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname() || currentRoute || '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
+      setIsScrolled(window.scrollY > 20);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleLinkClick = (href: string, e: React.MouseEvent) => {
-    setMobileMenuOpen(false);
-    if (onNavigate) {
-      e.preventDefault();
-      onNavigate(href);
-    }
-  };
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -49,126 +33,136 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'py-3' : 'py-5 sm:py-6'
+          isScrolled
+            ? 'bg-[#080808]/90 backdrop-blur-md border-b border-white/[0.08] py-4'
+            : 'bg-transparent border-b border-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav
-            aria-label="Main Navigation"
-            className={`flex items-center justify-between px-5 py-3 rounded-full transition-all duration-300 ${
-              isScrolled
-                ? 'bg-[#080C14]/80 backdrop-blur-xl border border-[#00F0FF]/20 shadow-[0_12px_36px_rgba(0,0,0,0.8),0_0_20px_rgba(0,240,255,0.06)]'
-                : 'bg-transparent border border-transparent'
-            }`}
+        <div className="editorial-container flex items-center justify-between">
+          {/* Left: Brand Logo + Name */}
+          <Link
+            href="/"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
           >
-            {/* Left: Brand Logo + FRAMELESS HUB */}
+            <img
+              src="/logo.png"
+              alt="Frameless Hub Logo"
+              className="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="font-mono text-xs sm:text-sm font-bold tracking-widest text-white uppercase">
+              FRAMELESS HUB
+            </span>
+          </Link>
+
+          {/* Center: Work, Services, About (Desktop) */}
+          <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-9">
             <Link
-              href="/"
-              onClick={(e) => handleLinkClick('/', e)}
-              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF] rounded-xl"
+              href="/work"
+              className={`text-xs font-medium tracking-wider uppercase transition-colors ${
+                isActive('/work') ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
+              }`}
             >
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#080C14]/90 border border-[#00F0FF]/30 flex items-center justify-center p-1.5 overflow-hidden transition-all duration-300 group-hover:border-[#00F0FF] group-hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] group-hover:scale-105">
-                <img
-                  src="/logo.png"
-                  alt="Frameless Hub"
-                  className="w-full h-full object-contain filter drop-shadow-[0_0_6px_rgba(0,240,255,0.45)]"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-sans text-sm sm:text-base font-bold tracking-widest text-white uppercase group-hover:text-[#00F0FF] transition-colors leading-none">
-                  FRAMELESS HUB
-                </span>
-                <span className="text-[9px] font-mono tracking-wider text-[#94A3B8] uppercase mt-1">
-                  A CREATIVE MEDIA AGENCY • CHENNAI
-                </span>
-              </div>
+              Work
             </Link>
-
-            {/* Navigation links (Desktop) */}
-            <div className="hidden md:flex items-center gap-1 lg:gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-md">
-              {NAV_LINKS.map((link) => {
-                const active = isActive(link.href);
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(link.href, e)}
-                    className={`relative px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF] ${
-                      active
-                        ? 'text-white bg-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]'
-                        : 'text-[#94A3B8] hover:text-white hover:bg-white/[0.04]'
-                    }`}
-                  >
-                    {link.name}
-                    {active && (
-                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF]" />
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Right CTA: Start a Project → */}
-            <div className="hidden sm:flex items-center gap-3">
-              <Link
-                href="/contact"
-                onClick={(e) => handleLinkClick('/contact', e)}
-                className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider text-black uppercase bg-[#00F0FF] hover:bg-[#38BDF8] transition-all duration-300 shadow-[0_0_20px_rgba(0,240,255,0.25)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                <span>Start a Project</span>
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </div>
-
-            {/* Mobile Hamburger Button */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full text-[#94A3B8] hover:text-white bg-white/[0.04] border border-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF]"
-              aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
-              aria-expanded={mobileMenuOpen}
+            <Link
+              href="/services"
+              className={`text-xs font-medium tracking-wider uppercase transition-colors ${
+                isActive('/services') ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
+              }`}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+              Services
+            </Link>
+            <Link
+              href="/about"
+              className={`text-xs font-medium tracking-wider uppercase transition-colors ${
+                isActive('/about') ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
+              }`}
+            >
+              About
+            </Link>
           </nav>
+
+          {/* Right: Contact & Start a Project CTA (Desktop) */}
+          <div className="hidden sm:flex items-center gap-6">
+            <Link
+              href="/contact"
+              className={`text-xs font-medium tracking-wider uppercase transition-colors ${
+                isActive('/contact') ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
+              }`}
+            >
+              Contact
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase text-black bg-white hover:bg-[#00F0FF] transition-colors duration-200"
+            >
+              <span>Start a Project</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden p-2 rounded-lg text-[#A1A1AA] hover:text-white focus:outline-none"
+            aria-label={mobileOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </header>
 
       {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden bg-[#04060A]/95 backdrop-blur-2xl flex flex-col pt-24 px-6 pb-8 border-b border-white/[0.08] animate-in fade-in duration-200">
-          <div className="flex flex-col gap-2 flex-1">
-            <span className="text-[10px] font-mono text-[#00F0FF] uppercase tracking-widest px-3 py-1 mb-2">
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 md:hidden bg-[#080808]/98 backdrop-blur-xl flex flex-col justify-between pt-28 px-7 pb-10 border-b border-white/[0.08] animate-in fade-in duration-200">
+          <nav className="flex flex-col gap-6">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A]">
               Navigation
             </span>
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleLinkClick(link.href, e)}
-                className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold transition-all ${
-                  isActive(link.href)
-                    ? 'text-white bg-[#00F0FF]/10 border border-[#00F0FF]/30'
-                    : 'text-[#94A3B8] hover:text-white hover:bg-white/[0.04]'
-                }`}
-              >
-                <span>{link.name}</span>
-                <span className="text-xs font-mono text-white/30">→</span>
-              </Link>
-            ))}
-          </div>
-
-          <div className="pt-6 border-t border-white/[0.08] flex flex-col gap-3">
+            <Link
+              href="/work"
+              onClick={() => setMobileOpen(false)}
+              className="text-2xl font-bold tracking-tight text-white hover:text-[#00F0FF] transition-colors"
+            >
+              Work
+            </Link>
+            <Link
+              href="/services"
+              onClick={() => setMobileOpen(false)}
+              className="text-2xl font-bold tracking-tight text-white hover:text-[#00F0FF] transition-colors"
+            >
+              Services
+            </Link>
+            <Link
+              href="/about"
+              onClick={() => setMobileOpen(false)}
+              className="text-2xl font-bold tracking-tight text-white hover:text-[#00F0FF] transition-colors"
+            >
+              About
+            </Link>
             <Link
               href="/contact"
-              onClick={(e) => handleLinkClick('/contact', e)}
-              className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-black bg-[#00F0FF] shadow-[0_0_25px_rgba(0,240,255,0.4)]"
+              onClick={() => setMobileOpen(false)}
+              className="text-2xl font-bold tracking-tight text-white hover:text-[#00F0FF] transition-colors"
+            >
+              Contact
+            </Link>
+          </nav>
+
+          <div className="pt-8 border-t border-white/[0.08] flex flex-col gap-4">
+            <Link
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex items-center justify-center gap-2 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-black bg-white hover:bg-[#00F0FF] transition-colors"
             >
               <span>Start a Project</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
-            <p className="text-center text-[11px] font-mono text-[#94A3B8]">
-              Frameless Hub • Chennai, India • EST. 2026
+            <p className="text-xs font-mono text-[#71717A] text-center">
+              Chennai, India • EST. 2026
             </p>
           </div>
         </div>

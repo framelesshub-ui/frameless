@@ -1,73 +1,50 @@
 export interface SiteStat {
   id: string;
-  value: number;
+  value: any;
+  numericValue?: number;
   suffix: string;
   displayValue: string;
   label: string;
-  description: string;
+  description?: string;
   isNumeric: boolean;
 }
 
 /**
- * Centralized, verified company-wide statistics for Frameless Hub.
- * Crawlers, search engines, and screen readers always read these exact verified figures.
+ * Approved, verified company statistics for Frameless Hub.
+ * Crawlers, screen readers, and no-JS visitors always see these exact figures.
  */
 export const siteStats: SiteStat[] = [
   {
-    id: "projects",
+    id: 'projects',
     value: 399,
-    suffix: "+",
-    displayValue: "399+",
-    label: "Projects Delivered",
-    description: "Across commercial cinema, brand identities, and digital channels",
+    numericValue: 399,
+    suffix: '+',
+    displayValue: '399+',
+    label: 'Projects Delivered',
+    description: 'Across commercial films, brand identities, and digital channels',
     isNumeric: true,
   },
   {
-    id: "views",
+    id: 'views',
     value: 10,
-    suffix: "M+",
-    displayValue: "10M+",
-    label: "Views Generated",
-    description: "Verified organic attention captured across studio channels",
+    numericValue: 10,
+    suffix: 'M+',
+    displayValue: '10M+',
+    label: 'Views Generated',
+    description: 'Verified organic attention captured across channels',
     isNumeric: true,
   },
   {
-    id: "headquarters",
-    value: 0,
-    suffix: "",
-    displayValue: "Chennai, India",
-    label: "Studio Headquarters",
-    description: "Independent creative studio serving global brand partners",
-    isNumeric: false,
-  },
-  {
-    id: "reach",
-    value: 0,
-    suffix: "",
-    displayValue: "Global Clientele",
-    label: "Audience Reach",
-    description: "Serving ambitious market leaders and growing founders",
-    isNumeric: false,
-  },
-  {
-    id: "inception",
-    value: 0,
-    suffix: "",
-    displayValue: "EST. 2026",
-    label: "Studio Inception",
-    description: "Built for modern high-retention storytelling and scale",
+    id: 'inception',
+    value: 'EST. 2026',
+    numericValue: 2026,
+    suffix: '',
+    displayValue: 'EST. 2026',
+    label: 'Chennai, India',
+    description: 'Independent creative studio built to endure',
     isNumeric: false,
   },
 ];
 
-// Compatibility exports
 export const HERO_STATS = siteStats;
-
-export const ABOUT_HIGHLIGHTS = siteStats.map((item) => ({
-  id: item.id,
-  label: item.label,
-  value: item.displayValue,
-  numericValue: item.value,
-  suffix: item.suffix,
-  isNumeric: item.isNumeric,
-}));
+export const ABOUT_HIGHLIGHTS = siteStats;

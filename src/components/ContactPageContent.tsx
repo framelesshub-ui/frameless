@@ -1,98 +1,99 @@
 'use client';
 
 import React from 'react';
-import { Mail, MapPin, Phone, Clock, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import ContactForm from './ContactForm';
 
 export default function ContactPageContent() {
   return (
-    <div className="bg-[#04060A] text-[#F5F7FA] min-h-screen pt-24 sm:pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-[#080808] text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-28">
+      <div className="editorial-container">
         
-        {/* Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-[#00F0FF] uppercase tracking-widest mb-4">
-            <span>GET IN TOUCH</span>
+        {/* Page Header */}
+        <div className="mb-14 sm:mb-20 max-w-3xl">
+          <div className="inline-flex items-center gap-2 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
+            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#A1A1AA]">
+              Contact
+            </span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.08] mb-4">
-            Start a Project
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-5 leading-[1.05]">
+            Let’s make something great.
           </h1>
-          <p className="text-base sm:text-xl text-[#94A3B8] leading-relaxed">
-            Have a project in mind or seeking a dedicated studio partner for video production, YouTube scaling, or complete brand architecture? Let’s talk.
+          <p className="text-base sm:text-xl text-[#A1A1AA] leading-relaxed">
+            Tell us what you're working on and what you need.
           </p>
         </div>
 
-        {/* 2-Column Layout: Form on Left/Right, Studio Info on Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* 2-Column Clean Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
-          {/* Main Form (8 Cols) */}
-          <div className="lg:col-span-8">
+          {/* Main Form (7 cols) */}
+          <div className="lg:col-span-7">
             <ContactForm />
           </div>
 
-          {/* Sidebar Info (4 Cols) */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
-            
-            {/* Studio Coordinates */}
-            <div className="p-6 sm:p-8 rounded-3xl glass-card border border-white/[0.08]">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#00F0FF] block mb-4">
-                Headquarters
-              </span>
+          {/* Alongside Studio Details (5 cols) */}
+          <div className="lg:col-span-5 lg:pl-8 lg:border-l lg:border-white/[0.08] space-y-8">
+            <div>
+              <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#A1A1AA] mb-6">
+                Direct Contact
+              </div>
 
-              <div className="space-y-5 text-sm">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-[#00F0FF] shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="block text-white font-semibold">Frameless Hub Studio</strong>
-                    <p className="text-[#94A3B8] text-xs mt-0.5 leading-relaxed">
-                      Chennai, Tamil Nadu, India • EST. 2026
-                      <br />
-                      Serving Global Partners
-                    </p>
-                  </div>
+              <div className="space-y-6">
+                <div>
+                  <span className="text-xs font-mono text-[#71717A] uppercase tracking-wider block mb-1">
+                    Email
+                  </span>
+                  <a
+                    href="mailto:framelesshub@gmail.com"
+                    className="text-lg sm:text-xl font-medium text-white hover:text-[#00F0FF] transition-colors"
+                  >
+                    framelesshub@gmail.com
+                  </a>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-[#00F0FF] shrink-0" />
-                  <div>
-                    <strong className="block text-white font-semibold">Direct Email</strong>
-                    <a
-                      href="mailto:hello@framelesshub.com"
-                      className="text-xs text-[#94A3B8] hover:text-[#00F0FF] transition-colors"
-                    >
-                      hello@framelesshub.com
-                    </a>
-                  </div>
+                <div>
+                  <span className="text-xs font-mono text-[#71717A] uppercase tracking-wider block mb-1">
+                    Phone &amp; WhatsApp
+                  </span>
+                  <a
+                    href="tel:+918248628371"
+                    className="text-lg sm:text-xl font-medium text-white hover:text-[#00F0FF] transition-colors"
+                  >
+                    +91 82486 28371
+                  </a>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-[#00F0FF] shrink-0" />
-                  <div>
-                    <strong className="block text-white font-semibold">Phone &amp; WhatsApp</strong>
-                    <span className="text-xs text-[#94A3B8]">+91 98400 00000</span>
-                  </div>
+                <div>
+                  <span className="text-xs font-mono text-[#71717A] uppercase tracking-wider block mb-1">
+                    Location
+                  </span>
+                  <p className="text-lg sm:text-xl font-medium text-white">
+                    Chennai, India
+                  </p>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-[#00F0FF] shrink-0" />
-                  <div>
-                    <strong className="block text-white font-semibold">Response Time</strong>
-                    <span className="text-xs text-[#94A3B8]">Within 24 business hours</span>
-                  </div>
+                <div>
+                  <span className="text-xs font-mono text-[#71717A] uppercase tracking-wider block mb-1">
+                    Instagram
+                  </span>
+                  <a
+                    href="https://instagram.com/framelesshub"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-lg sm:text-xl font-medium text-white hover:text-[#00F0FF] transition-colors"
+                  >
+                    <span>@framelesshub</span>
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Quality & NDA Assurance */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.02] border border-white/[0.06]">
-              <div className="flex items-center gap-2 text-[#00F0FF] mb-2">
-                <ShieldCheck className="w-5 h-5" />
-                <span className="text-xs font-mono font-bold uppercase tracking-wider">
-                  NDA &amp; IP Protection
-                </span>
-              </div>
-              <p className="text-xs text-[#94A3B8] leading-relaxed">
-                All scripts, proprietary brand assets, unpublished commercial concepts, and strategic discussions are strictly bound by studio non-disclosure protocols.
+            {/* Note */}
+            <div className="pt-8 border-t border-white/[0.08]">
+              <p className="text-xs text-[#A1A1AA] leading-relaxed">
+                We review every inquiry directly. You will hear back from our core team within 24 to 48 hours.
               </p>
             </div>
 

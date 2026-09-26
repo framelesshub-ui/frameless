@@ -4,11 +4,11 @@ import WorkPageContent from '@/components/WorkPageContent';
 export const metadata: Metadata = {
   title: 'Work — Frameless Hub',
   description:
-    'A curated portfolio of cinematic brand films, content campaigns, motion graphics, and ad creatives by Frameless Hub — A Creative Media Agency. Chennai, India • EST. 2026.',
+    'A collection of brands, films and digital work created by Frameless Hub. Premium Creative Agency in Chennai, India.',
   openGraph: {
     title: 'Work — Frameless Hub',
     description:
-      'A curated portfolio of cinematic brand films, content campaigns, motion graphics, and ad creatives by Frameless Hub — A Creative Media Agency. Chennai, India • EST. 2026.',
+      'A collection of brands, films and digital work created by Frameless Hub. Premium Creative Agency in Chennai, India.',
   },
 };
 

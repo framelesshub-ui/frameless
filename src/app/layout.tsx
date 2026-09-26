@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import type { Metadata } from 'next';
+import './globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://framelesshub.com'),
-  title: "Frameless Hub — A Creative Media Agency",
-
+  title: 'Frameless Hub | Creative Studio in Chennai',
   description:
-    "Strategy, content, design and performance marketing for ambitious brands that want to stand out, grow and stay relevant. Based in Chennai, India.",
-
-
+    'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, YouTube and digital marketing.',
+  alternates: {
+    canonical: 'https://framelesshub.com',
+  },
   icons: {
     icon: [
       { url: '/logo.png', type: 'image/png' },
@@ -20,20 +20,21 @@ export const metadata: Metadata = {
     apple: '/logo.png',
   },
   keywords: [
-    "video editing",
-    "content creation",
-    "creative media agency",
-    "youtube management",
-    "branding",
-    "motion graphics",
-    "ad creatives",
-    "frameless hub",
+    'creative studio chennai',
+    'branding agency chennai',
+    'video production chennai',
+    'youtube management',
+    'digital marketing',
+    'frameless hub',
   ],
   openGraph: {
-    title: "Frameless Hub — A Creative Media Agency",
+    title: 'Frameless Hub | Creative Studio in Chennai',
     description:
-      "Strategy, content, design and performance marketing for ambitious brands. Based in Chennai, India. EST. 2026.",
-    type: "website",
+      'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, YouTube and digital marketing.',
+    url: 'https://framelesshub.com',
+    siteName: 'Frameless Hub',
+    locale: 'en_IN',
+    type: 'website',
     images: [
       {
         url: '/logo.png',
@@ -44,57 +45,59 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Frameless Hub — A Creative Media Agency",
+    card: 'summary_large_image',
+    title: 'Frameless Hub | Creative Studio in Chennai',
     description:
-      "Strategy, content, design and performance marketing for ambitious brands. Chennai, India • EST. 2026.",
-    images: ["/logo.png"],
+      'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, YouTube and digital marketing.',
+    images: ['/logo.png'],
   },
 };
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
+  '@context': 'https://schema.org',
+  '@graph': [
     {
-      "@type": "Organization",
-      "@id": "https://framelesshub.com/#organization",
-      "name": "Frameless Hub",
-      "url": "https://framelesshub.com",
-      "logo": "https://framelesshub.com/logo.png",
-      "foundingDate": "2026",
-      "foundingLocation": {
-        "@type": "Place",
-        "name": "Chennai, Tamil Nadu, India"
+      '@type': 'Organization',
+      '@id': 'https://framelesshub.com/#organization',
+      name: 'Frameless Hub',
+      url: 'https://framelesshub.com',
+      logo: 'https://framelesshub.com/logo.png',
+      foundingDate: '2026',
+      foundingLocation: {
+        '@type': 'Place',
+        name: 'Chennai, Tamil Nadu, India',
       },
-      "description": "A Creative Media Agency specializing in brand strategy, cinematic video production, YouTube management, and performance marketing. 399+ projects delivered, 10M+ views generated. Established 2026 in Chennai, India.",
-      "sameAs": [
-        "https://www.youtube.com/@Framelessmediatamil",
-        "https://instagram.com/framelesshub",
-        "https://linkedin.com/company/framelesshub"
-      ]
+      description:
+        'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, YouTube and digital marketing. 399+ projects delivered, 10M+ views generated. EST. 2026.',
+      sameAs: [
+        'https://www.youtube.com/@Framelessmediatamil',
+        'https://www.youtube.com/@birlasparvai',
+        'https://www.youtube.com/@SuprathaWellness',
+        'https://instagram.com/framelesshub',
+      ],
     },
     {
-      "@type": "LocalBusiness",
-      "@id": "https://framelesshub.com/#localbusiness",
-      "name": "Frameless Hub",
-      "image": "https://framelesshub.com/logo.png",
-      "url": "https://framelesshub.com",
-      "telephone": "+919840000000",
-      "priceRange": "$$$",
-      "foundingDate": "2026",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Chennai",
-        "addressRegion": "Tamil Nadu",
-        "addressCountry": "IN"
+      '@type': 'LocalBusiness',
+      '@id': 'https://framelesshub.com/#localbusiness',
+      name: 'Frameless Hub',
+      image: 'https://framelesshub.com/logo.png',
+      url: 'https://framelesshub.com',
+      telephone: '+918248628371',
+      priceRange: '₹₹₹',
+      foundingDate: '2026',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Chennai',
+        addressRegion: 'Tamil Nadu',
+        addressCountry: 'IN',
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "13.0827",
-        "longitude": "80.2707"
-      }
-    }
-  ]
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '13.0827',
+        longitude: '80.2707',
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -103,17 +106,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scroll-smooth">
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="flex flex-col min-h-screen bg-[#04060A] text-[#F5F7FA] font-sans selection:bg-[#00F0FF]/25 selection:text-white">
+      <body className="flex flex-col min-h-screen bg-[#080808] text-[#F4F4F5] font-sans antialiased selection:bg-[#00F0FF]/25 selection:text-white">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#00F0FF] focus:text-black focus:rounded-lg focus:text-sm focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-lg focus:text-sm focus:font-semibold"
         >
           Skip to content
         </a>
@@ -126,4 +129,3 @@ export default function RootLayout({
     </html>
   );
 }
-

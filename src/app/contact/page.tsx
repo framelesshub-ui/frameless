@@ -4,11 +4,11 @@ import ContactPageContent from '@/components/ContactPageContent';
 export const metadata: Metadata = {
   title: 'Contact — Frameless Hub',
   description:
-    'Get in touch with Frameless Hub — A Creative Media Agency based in Chennai, India. EST. 2026. Start your next creative project.',
+    'Let’s make something great. Tell us what you’re working on and what you need. Frameless Hub, Chennai, India.',
   openGraph: {
     title: 'Contact — Frameless Hub',
     description:
-      'Get in touch with Frameless Hub — A Creative Media Agency based in Chennai, India. EST. 2026. Start your next creative project.',
+      'Let’s make something great. Tell us what you’re working on and what you need. Frameless Hub, Chennai, India.',
   },
 };
 

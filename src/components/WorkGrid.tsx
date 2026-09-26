@@ -85,7 +85,7 @@ export default function WorkGrid({
             }
 
             return (
-              <div key={project.id} className={`${colSpanClass} w-full`}>
+              <div key={project.id || project.slug} className={`${colSpanClass} w-full`}>
                 <ProjectCard project={project} priority={index < 2} />
               </div>
             );
