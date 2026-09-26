@@ -1,47 +1,73 @@
-export interface StudioStat {
+export interface SiteStat {
+  id: string;
   value: number;
   suffix: string;
+  displayValue: string;
   label: string;
   description: string;
+  isNumeric: boolean;
 }
 
-export const HERO_STATS: StudioStat[] = [
+/**
+ * Centralized, verified company-wide statistics for Frameless Hub.
+ * Crawlers, search engines, and screen readers always read these exact verified figures.
+ */
+export const siteStats: SiteStat[] = [
   {
+    id: "projects",
     value: 399,
     suffix: "+",
+    displayValue: "399+",
     label: "Projects Delivered",
-    description: "Across video, branding, campaigns & digital IP"
+    description: "Across commercial cinema, brand identities, and digital channels",
+    isNumeric: true,
   },
   {
+    id: "views",
     value: 10,
     suffix: "M+",
+    displayValue: "10M+",
     label: "Views Generated",
-    description: "Organic attention captured across channels"
+    description: "Verified organic attention captured across studio channels",
+    isNumeric: true,
   },
   {
-    value: 35,
-    suffix: "+",
-    label: "Clients",
-    description: "Ambitious brands and industry leaders"
+    id: "headquarters",
+    value: 0,
+    suffix: "",
+    displayValue: "Chennai, India",
+    label: "Studio Headquarters",
+    description: "Independent creative studio serving global brand partners",
+    isNumeric: false,
   },
   {
-    value: 3,
-    suffix: "x",
-    label: "Average Growth",
-    description: "Channel, engagement & conversion scaling"
+    id: "reach",
+    value: 0,
+    suffix: "",
+    displayValue: "Global Clientele",
+    label: "Audience Reach",
+    description: "Serving ambitious market leaders and growing founders",
+    isNumeric: false,
   },
   {
-    value: 98,
-    suffix: "%",
-    label: "Client Satisfaction",
-    description: "Consistent multi-year partnerships"
-  }
+    id: "inception",
+    value: 0,
+    suffix: "",
+    displayValue: "EST. 2026",
+    label: "Studio Inception",
+    description: "Built for modern high-retention storytelling and scale",
+    isNumeric: false,
+  },
 ];
 
-export const ABOUT_HIGHLIGHTS = [
-  { label: "Projects Delivered", value: "399+" },
-  { label: "Views Generated", value: "10M+" },
-  { label: "Studio Headquarters", value: "Chennai, India" },
-  { label: "Audience Reach", value: "Global Clientele" },
-  { label: "Studio Inception", value: "Established 2026" }
-];
+// Compatibility exports
+export const HERO_STATS = siteStats;
+
+export const ABOUT_HIGHLIGHTS = siteStats.map((item) => ({
+  id: item.id,
+  label: item.label,
+  value: item.displayValue,
+  numericValue: item.value,
+  suffix: item.suffix,
+  isNumeric: item.isNumeric,
+}));

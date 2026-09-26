@@ -5,6 +5,7 @@ import { Play, BarChart3 } from 'lucide-react';
 
 import { YouTubeIcon } from './icons/SocialIcons';
 import VideoModal from './VideoModal';
+import AnimatedCounter from './AnimatedCounter';
 import { YOUTUBE_CHANNELS, type YouTubeChannel } from '@/data/youtubeChannels';
 
 export default function YouTubePerformance() {
@@ -43,13 +44,24 @@ export default function YouTubePerformance() {
             
             {/* Massive 10M+ Total Views Highlight */}
             <div className="lg:col-span-6 flex flex-col justify-center">
+              {/* Screen reader & crawler accessible semantic text */}
+              <span className="sr-only">10M+ Total Views Generated</span>
+
               <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#00F0FF] uppercase mb-2">
                 VERIFIED LIFETIME AUDIENCE IMPACT
               </span>
-              <div className="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter">
-                10M<span className="text-[#00F0FF]">+</span>
+              <div
+                aria-hidden="true"
+                className="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter"
+              >
+                <AnimatedCounter
+                  value={10}
+                  suffix="M+"
+                  displayValue="10M+"
+                  aria-hidden="true"
+                />
               </div>
-              <div className="text-lg sm:text-xl font-bold text-white mt-1">
+              <div aria-hidden="true" className="text-lg sm:text-xl font-bold text-white mt-1">
                 Total Views Generated
               </div>
               <p className="text-xs sm:text-sm text-[#94A3B8] mt-3 leading-relaxed max-w-md">

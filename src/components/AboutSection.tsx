@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Compass, CheckCircle2 } from 'lucide-react';
+import AnimatedCounter from './AnimatedCounter';
 import { ABOUT_HIGHLIGHTS } from '@/data/stats';
 
 const PILLARS = [
@@ -101,10 +102,27 @@ export default function AboutSection() {
         <div className="p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/[0.07] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
           {ABOUT_HIGHLIGHTS.map((item) => (
             <div key={item.label} className="flex flex-col items-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-mono mb-1 text-[#00F0FF]">
-                {item.value}
+              {/* Screen reader & crawler accessible text */}
+              <span className="sr-only">
+                {item.value} {item.label}
+              </span>
+
+              <div
+                aria-hidden="true"
+                className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-mono mb-1 text-[#00F0FF]"
+              >
+                {item.isNumeric ? (
+                  <AnimatedCounter
+                    value={item.numericValue || 0}
+                    suffix={item.suffix || ''}
+                    displayValue={item.value}
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <span>{item.value}</span>
+                )}
               </div>
-              <div className="text-xs font-mono text-[#94A3B8] tracking-wider uppercase">
+              <div aria-hidden="true" className="text-xs font-mono text-[#94A3B8] tracking-wider uppercase">
                 {item.label}
               </div>
             </div>

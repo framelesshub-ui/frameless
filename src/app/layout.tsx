@@ -66,7 +66,7 @@ const jsonLd = {
         "@type": "Place",
         "name": "Chennai, Tamil Nadu, India"
       },
-      "description": "A Creative Media Agency specializing in brand strategy, cinematic video production, YouTube management, and performance marketing. Established 2026 in Chennai, India.",
+      "description": "A Creative Media Agency specializing in brand strategy, cinematic video production, YouTube management, and performance marketing. 399+ projects delivered, 10M+ views generated. Established 2026 in Chennai, India.",
       "sameAs": [
         "https://www.youtube.com/@Framelessmediatamil",
         "https://instagram.com/framelesshub",
