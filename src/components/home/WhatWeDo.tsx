@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
@@ -5,7 +7,7 @@ import { CAPABILITIES } from '@/data/capabilities';
 
 export default function WhatWeDo() {
   return (
-    <section className="py-24 sm:py-32 bg-[#080808] text-[#F4F4F5] border-t border-white/[0.08]">
+    <section className="py-24 sm:py-32 bg-[#080808] text-[#F4F4F5] border-b border-white/[0.08]">
       <div className="editorial-container">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-16 sm:mb-20">
@@ -22,21 +24,21 @@ export default function WhatWeDo() {
           </p>
         </div>
 
-        {/* 4 Capabilities List / Rows */}
+        {/* 4 Capabilities List */}
         <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
           {CAPABILITIES.map((cap) => (
             <div
               key={cap.id}
-              className="group py-10 sm:py-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start transition-colors duration-200"
+              className="py-10 sm:py-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start group"
             >
               {/* Number */}
               <div className="lg:col-span-2">
-                <span className="text-xs font-mono text-[#A1A1AA] tracking-widest uppercase">
-                  {cap.number} / {cap.id}
+                <span className="text-xs font-mono text-[#00F0FF] tracking-widest uppercase">
+                  {cap.number} / 04
                 </span>
               </div>
 
-              {/* Title & Description */}
+              {/* Title & Short Description */}
               <div className="lg:col-span-4">
                 <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2 group-hover:text-[#00F0FF] transition-colors">
                   {cap.title}
@@ -47,18 +49,18 @@ export default function WhatWeDo() {
               </div>
 
               {/* Services List */}
-              <div className="lg:col-span-4 flex flex-wrap gap-2 sm:gap-2.5">
+              <div className="lg:col-span-4 flex flex-wrap gap-2">
                 {cap.services.map((item) => (
                   <span
                     key={item}
-                    className="inline-block px-3.5 py-1.5 rounded-full text-xs font-mono text-[#E4E4E7] bg-white/[0.04] border border-white/[0.08]"
+                    className="inline-block px-3 py-1 rounded-full text-xs font-mono text-[#E4E4E7] bg-white/[0.04] border border-white/[0.08]"
                   >
                     {item}
                   </span>
                 ))}
               </div>
 
-              {/* Link Arrow */}
+              {/* Link */}
               <div className="lg:col-span-2 flex lg:justify-end items-center">
                 <Link
                   href="/services"
@@ -73,7 +75,7 @@ export default function WhatWeDo() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-14 flex items-center justify-between flex-wrap gap-4">
+        <div className="mt-12 flex items-center justify-between flex-wrap gap-4">
           <span className="text-sm text-[#A1A1AA]">
             Looking for something specific?
           </span>

@@ -3,9 +3,9 @@ export interface Project {
   slug: string;
   client: string;
   title: string;
-  category: 'Branding' | 'Content' | 'Campaigns' | 'Media';
+  category: 'Branding' | 'Content' | 'YouTube' | 'Campaigns';
   displayCategory: string;
-  thumbnail?: string;
+  thumbnail: string;
   video?: string;
   videoEmbedUrl?: string;
   channelUrl?: string;
@@ -15,26 +15,25 @@ export interface Project {
   deliverables: string[];
   gallery?: string[];
   verifiedResult?: string;
-  gridSpan?: 'full' | 'large' | 'tall' | 'medium' | string;
   services?: string[];
   tagline?: string;
   stats?: { label: string; value: string }[];
+  gridSpan?: string;
 }
 
-export const WORK_FILTERS = ['All', 'Content', 'Branding', 'Campaigns'] as const;
+export const WORK_FILTERS = ['All', 'Content', 'Branding', 'YouTube', 'Campaigns'] as const;
 export type WorkFilter = (typeof WORK_FILTERS)[number];
 export type ProjectCategory = WorkFilter;
 
-/**
- * Verified client projects database with exact updated details.
- */
 export const projects: Project[] = [
   {
     slug: 'birlas-parvai',
     client: 'Birlas Parvai',
-    title: 'Automotive Media & YouTube',
-    category: 'Content',
-    displayCategory: 'Automotive Media & YouTube',
+    title: 'Automotive Content',
+    category: 'YouTube',
+    displayCategory: 'YouTube / Production',
+    thumbnail: '/campaigns/automotive.jpg',
+    video: '/assets/frameless-hero.mp4',
     featured: true,
     year: '2026',
     overview:
@@ -47,26 +46,12 @@ export const projects: Project[] = [
     verifiedResult: '4.8M+ Channel Views',
   },
   {
-    slug: 'supratha-wellness',
-    client: 'Supratha Wellness',
-    title: 'Medical & Wellness Media',
-    category: 'Content',
-    displayCategory: 'Medical & Wellness Media',
-    featured: true,
-    year: '2026',
-    overview:
-      'A health-focused content platform covering Ayurveda, Allopathy, Homeopathy, Acupuncture and wellness.',
-    deliverables: [
-      'YouTube Video Editing',
-    ],
-    verifiedResult: '3.2M+ Channel Views',
-  },
-  {
     slug: 'ora-kitchen',
-    client: 'ORA Kitchen',
-    title: 'Catering & Food Brand',
+    client: 'Ora Kitchen',
+    title: 'Brand Identity',
     category: 'Branding',
-    displayCategory: 'Catering & Food Brand',
+    displayCategory: 'Branding',
+    thumbnail: '/media/generated/branding-identity-editorial.jpg',
     featured: true,
     year: '2026',
     overview:
@@ -79,28 +64,12 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'frameless-media',
-    client: 'Frameless Media',
-    title: 'Cinema & Entertainment Media',
-    category: 'Media',
-    displayCategory: 'Cinema & Entertainment Media',
-    featured: true,
-    year: '2026',
-    overview:
-      'A cinema-focused content platform featuring interviews, public interactions and entertainment content.',
-    deliverables: [
-      'Content Production',
-      'Video Editing',
-      'Social Media Management',
-    ],
-    verifiedResult: '2.4M+ Channel Views',
-  },
-  {
-    slug: 'aura-homes',
-    client: 'Aura Homes',
-    title: 'Home & Lifestyle Brand',
+    slug: 'aura-home',
+    client: 'Aura Home',
+    title: 'Brand Identity',
     category: 'Branding',
-    displayCategory: 'Home & Lifestyle Brand',
+    displayCategory: 'Branding',
+    thumbnail: '/services/branding-design.png',
     featured: true,
     year: '2026',
     overview:
@@ -112,11 +81,28 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'krithi-makeup-artist',
-    client: 'Krithi Makeup Artist',
-    title: 'Luxury Makeup & Personal Brand',
-    category: 'Content',
-    displayCategory: 'Luxury Makeup & Personal Brand',
+    slug: 'supratha-wellness',
+    client: 'Supratha Wellness',
+    title: 'Digital Content',
+    category: 'YouTube',
+    displayCategory: 'YouTube / Content',
+    thumbnail: '/media/generated/performance-analytics-studio.jpg',
+    featured: true,
+    year: '2026',
+    overview:
+      'A health-focused content platform covering Ayurveda, Allopathy, Homeopathy, Acupuncture and wellness.',
+    deliverables: [
+      'YouTube Video Editing',
+    ],
+    verifiedResult: '3.2M+ Channel Views',
+  },
+  {
+    slug: 'krithi-makeover-artistry',
+    client: 'Krithi Makeover Artistry',
+    title: 'Brand & Social Content',
+    category: 'Branding',
+    displayCategory: 'Branding / Content',
+    thumbnail: '/media/generated/social-creator-studio.jpg',
     featured: true,
     year: '2026',
     overview:
@@ -130,9 +116,10 @@ export const projects: Project[] = [
   {
     slug: 'seyon-lab',
     client: 'Seyon Lab',
-    title: 'CRM & Technology',
+    title: 'Digital Presence',
     category: 'Branding',
-    displayCategory: 'CRM & Technology',
+    displayCategory: 'Branding',
+    thumbnail: '/media/generated/web-digital-showcase.jpg',
     featured: true,
     year: '2026',
     overview:
@@ -142,6 +129,24 @@ export const projects: Project[] = [
       'Creative Consultation',
     ],
   },
+  {
+    slug: 'frameless-media',
+    client: 'Frameless Media',
+    title: 'Original Digital Content',
+    category: 'Content',
+    displayCategory: 'Media / Production',
+    thumbnail: '/media/generated/content-production-studio.jpg',
+    featured: true,
+    year: '2026',
+    overview:
+      'A cinema-focused content platform featuring interviews, public interactions and entertainment content.',
+    deliverables: [
+      'Content Production',
+      'Video Editing',
+      'Social Media Management',
+    ],
+    verifiedResult: '2.4M+ Channel Views',
+  },
 ];
 
 export const getFeaturedProjects = (): Project[] => {
@@ -149,28 +154,24 @@ export const getFeaturedProjects = (): Project[] => {
 };
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
-  // Graceful aliases for backward compatibility
-  if (slug === 'aura-home') slug = 'aura-homes';
-  if (slug === 'krithi-makeover-artistry') slug = 'krithi-makeup-artist';
-  if (slug === 'siyan-labs') slug = 'seyon-lab';
+  // Support both canonical and common alias slugs
+  if (slug === 'aura-homes') slug = 'aura-home';
+  if (slug === 'krithi-makeup-artist') slug = 'krithi-makeover-artistry';
   return projects.find((p) => p.slug === slug);
 };
 
 export const getNextProject = (currentSlug: string): Project => {
   const normalized =
-    currentSlug === 'aura-home'
-      ? 'aura-homes'
-      : currentSlug === 'krithi-makeover-artistry'
-      ? 'krithi-makeup-artist'
-      : currentSlug === 'siyan-labs'
-      ? 'seyon-lab'
+    currentSlug === 'aura-homes'
+      ? 'aura-home'
+      : currentSlug === 'krithi-makeup-artist'
+      ? 'krithi-makeover-artistry'
       : currentSlug;
   const currentIndex = projects.findIndex((p) => p.slug === normalized);
   const nextIndex = (currentIndex + 1) % projects.length;
   return projects[nextIndex];
 };
 
-// Aliases for backwards compatibility
 export const portfolioProjects = projects;
 export const getFeaturedProject = (): Project => projects[0];
 export const WORK_CATEGORIES = WORK_FILTERS;

@@ -1,12 +1,10 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
-import EditorialMarquee from '../components/home/EditorialMarquee';
-import EditorialStatement from '../components/home/EditorialStatement';
 import SelectedWork from '../components/home/SelectedWork';
-import CinematicMoment from '../components/home/CinematicMoment';
-import ServicesEditorial from '../components/home/ServicesEditorial';
+import WhatWeDo from '../components/home/WhatWeDo';
 import WorkingWith from '../components/home/WorkingWith';
-import FounderSection from '../components/home/FounderSection';
+import Showreel from '../components/home/Showreel';
+import AboutPreview from '../components/home/AboutPreview';
 import FinalCTA from '../components/home/FinalCTA';
 
 interface HomePageProps {
@@ -19,28 +17,22 @@ export const HomePage: React.FC<HomePageProps> = () => {
       {/* 01 — Hero */}
       <Hero />
 
-      {/* 02 — Editorial Marquee */}
-      <EditorialMarquee />
-
-      {/* 03 — Editorial Philosophy */}
-      <EditorialStatement />
-
-      {/* 04 — Selected Works */}
+      {/* 02 — Selected Work */}
       <SelectedWork />
 
-      {/* 05 — Cinematic Moment */}
-      <CinematicMoment />
+      {/* 03 — What We Do */}
+      <WhatWeDo />
 
-      {/* 06 — Services */}
-      <ServicesEditorial />
-
-      {/* 07 — Working With */}
+      {/* 04 — Working With */}
       <WorkingWith />
 
-      {/* 08 — Founder Section */}
-      <FounderSection />
+      {/* 05 — Showreel */}
+      <Showreel />
 
-      {/* 09 — Final CTA */}
+      {/* 06 — About Preview */}
+      <AboutPreview />
+
+      {/* 07 — Final CTA */}
       <FinalCTA />
     </div>
   );

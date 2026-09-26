@@ -3,7 +3,6 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
-import PageIntro from '@/components/PageIntro';
 import CustomCursor from '@/components/CustomCursor';
 
 export const metadata: Metadata = {
@@ -113,7 +112,6 @@ export default function RootLayout({
         />
       </head>
       <body className="flex flex-col min-h-screen bg-[#080808] text-[#F4F4F5] font-sans antialiased selection:bg-[#00F0FF]/25 selection:text-white">
-        <PageIntro />
         <CustomCursor />
         <SmoothScroll>
           <a

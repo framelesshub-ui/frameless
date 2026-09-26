@@ -8,7 +8,7 @@ import { siteStats } from '@/data/stats';
 
 export default function AboutPageContent() {
   return (
-    <div className="bg-[#080808] text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-24">
+    <div className="bg-[#080808] text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-28">
       <div className="editorial-container">
         
         {/* Hero */}
@@ -27,7 +27,7 @@ export default function AboutPageContent() {
           </p>
         </div>
 
-        {/* 3 Core Stats (SSR-safe) */}
+        {/* 3 Core Stats (Crawler visible + animated) */}
         <div className="py-12 border-t border-b border-white/[0.08] mb-20 sm:mb-28">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {siteStats.map((stat) => (
@@ -60,7 +60,7 @@ export default function AboutPageContent() {
 
         {/* WHAT WE BELIEVE */}
         <div className="mb-24 sm:mb-32">
-          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#A1A1AA] mb-8">
+          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#71717A] mb-8">
             What We Believe
           </div>
 
@@ -99,21 +99,32 @@ export default function AboutPageContent() {
 
         {/* BEHIND THE WORK */}
         <div className="pt-16 border-t border-white/[0.08] mb-24 sm:mb-32">
-          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#A1A1AA] mb-4">
+          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#71717A] mb-4">
             Behind the Work
           </div>
           <p className="text-xl sm:text-2xl text-white font-normal leading-relaxed max-w-3xl mb-12">
             The ideas, shoots, edits, campaigns, and details all come from real people working closely together.
           </p>
 
-
+          {/* Real studio photography */}
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden bg-[#0F0F10] border border-white/[0.08] mb-16 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+            <img
+              src="/media/generated/studio-interior-editorial.jpg"
+              alt="Frameless Hub Studio"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-4 left-6 text-xs font-mono text-[#A1A1AA] uppercase tracking-wider">
+              Frameless Hub Creative Studio — Chennai
+            </div>
+          </div>
 
           {/* Rithik B & About Frameless Hub */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
             {/* Leadership Profile */}
-            <div className="lg:col-span-5 p-8 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
-              <div className="w-20 h-20 rounded-full overflow-hidden bg-[#1f1f23] border border-white/20 mb-6 flex items-center justify-center text-xl font-bold text-white font-mono">
+            <div className="lg:col-span-5 p-8 sm:p-10 rounded-2xl bg-[#0F0F10] border border-white/[0.08]">
+              <div className="w-16 h-16 rounded-full bg-white/[0.05] border border-white/10 mb-6 flex items-center justify-center text-xl font-bold text-white font-mono">
                 RB
               </div>
               <h3 className="text-2xl font-bold text-white mb-1">Rithik B</h3>
@@ -157,7 +168,7 @@ export default function AboutPageContent() {
 
         {/* HAVE A PROJECT IN MIND? */}
         <div className="pt-20 border-t border-white/[0.08] text-center max-w-3xl mx-auto">
-          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#A1A1AA] mb-4">
+          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#71717A] mb-4">
             Have a project in mind?
           </div>
           <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white mb-4">
