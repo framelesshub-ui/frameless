@@ -1,134 +1,81 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, useSpring, useMotionValue, useReducedMotion } from 'framer-motion';
-
-export type CursorMode = 'default' | 'view' | 'play' | 'drag';
+import React, { useEffect, useState } from 'react';
 
 export default function CustomCursor() {
-  const shouldReduceMotion = useReducedMotion();
-  const [hasFinePointer, setHasFinePointer] = useState(false);
-  const [cursorMode, setCursorMode] = useState<CursorMode>('default');
+  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [cursorText, setCursorText] = useState('');
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPointer, setIsPointer] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
-
-  // High performance spring physics
-  const springConfig = { damping: 28, stiffness: 280, mass: 0.18 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
-
   useEffect(() => {
-    // Only activate custom cursor on devices with a fine pointer (mouse / trackpad)
-    const mediaQuery = window.matchMedia('(pointer: fine)');
-    setHasFinePointer(mediaQuery.matches);
+    // Only enable on desktop pointer fine devices and when reduced motion is not preferred
+    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!isFinePointer || prefersReducedMotion) return;
 
-    const handlePointerChange = (e: MediaQueryListEvent) => {
-      setHasFinePointer(e.matches);
-    };
-
-    try {
-      mediaQuery.addEventListener('change', handlePointerChange);
-    } catch {
-      // Safari legacy fallback
-      mediaQuery.addListener(handlePointerChange);
-    }
-
-    if (!mediaQuery.matches || shouldReduceMotion) return;
+    setIsVisible(true);
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      setPosition({ x: e.clientX, y: e.clientY });
 
-      // Check hovered element cursor data
-      const target = (e.target as HTMLElement)?.closest('[data-cursor]');
+      // Check if hovering an interactive target with data-cursor
+      const target = (e.target as HTMLElement).closest('[data-cursor]');
       if (target) {
-        const mode = target.getAttribute('data-cursor') as CursorMode;
-        setCursorMode(mode || 'default');
+        const text = target.getAttribute('data-cursor') || '';
+        setCursorText(text);
+        setIsHovered(true);
       } else {
-        setCursorMode('default');
+        setCursorText('');
+        setIsHovered(false);
       }
+
+      // Check if hovering clickable
+      const clickable = (e.target as HTMLElement).closest('a, button, [role="button"]');
+      setIsPointer(!!clickable);
     };
 
     const handleMouseLeave = () => {
       setIsVisible(false);
     };
 
+    const handleMouseEnter = () => {
+      setIsVisible(true);
+    };
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
-      try {
-        mediaQuery.removeEventListener('change', handlePointerChange);
-      } catch {
-        mediaQuery.removeListener(handlePointerChange);
-      }
+      document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [mouseX, mouseY, isVisible, shouldReduceMotion]);
+  }, []);
 
-  if (!hasFinePointer || shouldReduceMotion || !isVisible) {
-    return null;
-  }
-
-  const isExpanded = cursorMode !== 'default';
+  if (!isVisible) return null;
 
   return (
-    <motion.div
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed top-0 left-0 z-[9999] -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 ease-out"
       style={{
-        x: smoothX,
-        y: smoothY,
-        translateX: '-50%',
-        translateY: '-50%',
+        transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
       }}
-      className="fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center select-none"
     >
-      <motion.div
-        animate={{
-          width: isExpanded ? 76 : 10,
-          height: isExpanded ? 76 : 10,
-          backgroundColor: isExpanded ? 'rgba(0, 217, 245, 0.95)' : 'rgba(0, 217, 245, 0.9)',
-          boxShadow: isExpanded
-            ? '0 0 35px rgba(0, 217, 245, 0.45)'
-            : '0 0 14px rgba(0, 217, 245, 0.6)',
-        }}
-        transition={{ type: 'spring', damping: 20, stiffness: 280 }}
-        className="rounded-full flex items-center justify-center backdrop-blur-md overflow-hidden"
+      <div
+        className={`flex items-center justify-center rounded-full transition-all duration-300 ease-out font-mono font-bold tracking-widest text-[9px] uppercase ${
+          isHovered
+            ? 'w-14 h-14 bg-[#00F0FF] text-black shadow-[0_0_25px_rgba(0,240,255,0.4)]'
+            : isPointer
+            ? 'w-6 h-6 bg-white/20 border border-white/60 backdrop-blur-sm'
+            : 'w-2 h-2 bg-white'
+        }`}
       >
-        {cursorMode === 'view' && (
-          <motion.span
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-[10px] font-mono font-black text-black tracking-widest uppercase"
-          >
-            VIEW
-          </motion.span>
-        )}
-        {cursorMode === 'play' && (
-          <motion.span
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-[10px] font-mono font-black text-black tracking-widest uppercase flex items-center gap-0.5"
-          >
-            <svg className="w-3 h-3 fill-current ml-0.5" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            PLAY
-          </motion.span>
-        )}
-        {cursorMode === 'drag' && (
-          <motion.span
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-[10px] font-mono font-black text-black tracking-widest uppercase"
-          >
-            DRAG
-          </motion.span>
-        )}
-      </motion.div>
-    </motion.div>
+        {isHovered ? cursorText : ''}
+      </div>
+    </div>
   );
 }
