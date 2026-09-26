@@ -128,8 +128,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'siyan-labs',
-    client: 'Siyan Labs',
+    slug: 'seyon-lab',
+    client: 'Seyon Lab',
     title: 'CRM & Technology',
     category: 'Branding',
     displayCategory: 'CRM & Technology',
@@ -152,7 +152,7 @@ export const getProjectBySlug = (slug: string): Project | undefined => {
   // Graceful aliases for backward compatibility
   if (slug === 'aura-home') slug = 'aura-homes';
   if (slug === 'krithi-makeover-artistry') slug = 'krithi-makeup-artist';
-  if (slug === 'seyon-lab') slug = 'siyan-labs';
+  if (slug === 'siyan-labs') slug = 'seyon-lab';
   return projects.find((p) => p.slug === slug);
 };
 
@@ -162,8 +162,8 @@ export const getNextProject = (currentSlug: string): Project => {
       ? 'aura-homes'
       : currentSlug === 'krithi-makeover-artistry'
       ? 'krithi-makeup-artist'
-      : currentSlug === 'seyon-lab'
-      ? 'siyan-labs'
+      : currentSlug === 'siyan-labs'
+      ? 'seyon-lab'
       : currentSlug;
   const currentIndex = projects.findIndex((p) => p.slug === normalized);
   const nextIndex = (currentIndex + 1) % projects.length;

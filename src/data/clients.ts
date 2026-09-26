@@ -60,8 +60,8 @@ export const OUR_CLIENTS: ClientItem[] = [
     services: ['Personal Branding', 'Content Creation', 'Social Media Management'],
   },
   {
-    id: 'siyan-labs',
-    name: 'Siyan Labs',
+    id: 'seyon-lab',
+    name: 'Seyon Lab',
     category: 'CRM & Technology',
     description: 'A CRM-focused technology company building solutions for modern business operations and customer management.',
     services: ['Social Media Support', 'Creative Consultation'],
