@@ -1,5 +1,4 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
 import { CLIENT_GROUPS } from '@/data/clients';
 
 export default function WorkingWith() {
@@ -16,7 +15,7 @@ export default function WorkingWith() {
           </h2>
         </div>
 
-        {/* 2-Column Minimal Layout: YouTube & Branding */}
+        {/* 2-Column Minimal Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
           {CLIENT_GROUPS.map((group) => (
             <div key={group.category} className="space-y-6">
@@ -25,37 +24,18 @@ export default function WorkingWith() {
               </div>
 
               <div className="divide-y divide-white/[0.06]">
-                {group.clients.map((client) => {
-                  const content = (
-                    <div className="py-4 flex items-center justify-between group">
-                      <div>
-                        <div className="text-lg sm:text-xl font-semibold text-white group-hover:text-[#00F0FF] transition-colors">
-                          {client.name}
-                        </div>
-                        <div className="text-xs text-[#A1A1AA] font-mono mt-0.5">
-                          {client.focus}
-                        </div>
+                {group.clients.map((client) => (
+                  <div key={client.name} className="py-4 flex items-center justify-between group">
+                    <div>
+                      <div className="text-lg sm:text-xl font-semibold text-white group-hover:text-[#00F0FF] transition-colors">
+                        {client.name}
                       </div>
-                      {client.url && (
-                        <ArrowUpRight className="w-4 h-4 text-[#A1A1AA] group-hover:text-[#00F0FF] transition-colors shrink-0" />
-                      )}
+                      <div className="text-xs text-[#A1A1AA] font-mono mt-0.5">
+                        {client.focus}
+                      </div>
                     </div>
-                  );
-
-                  return client.url ? (
-                    <a
-                      key={client.name}
-                      href={client.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      {content}
-                    </a>
-                  ) : (
-                    <div key={client.name}>{content}</div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             </div>
           ))}

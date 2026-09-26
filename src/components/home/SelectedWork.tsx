@@ -28,50 +28,73 @@ export default function SelectedWork() {
           </Link>
         </div>
 
-        {/* 2-Column Large Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {featured.map((project, idx) => (
+        {/* 2-Column Clean Editorial Typographic Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {featured.map((project) => (
             <Link
               key={project.slug}
               href={`/work/${project.slug}`}
-              className={`group flex flex-col ${
-                idx % 2 === 1 ? 'md:translate-y-12' : ''
-              }`}
+              className="group p-8 sm:p-10 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-[#00F0FF]/40 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
             >
-              {/* Image Frame */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#141416] border border-white/[0.08] mb-5">
-                <img
-                  src={project.thumbnail}
-                  alt={`${project.client} - ${project.title}`}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />
-                <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white">
-                  <ArrowUpRight className="w-4 h-4" />
+              <div>
+                {/* Meta Top */}
+                <div className="flex items-center justify-between gap-4 pb-6 border-b border-white/[0.08] mb-6">
+                  <span className="text-xs font-mono text-[#00F0FF] uppercase tracking-wider font-semibold">
+                    {project.displayCategory}
+                  </span>
+                  <span className="text-xs font-mono text-[#71717A]">
+                    {project.year}
+                  </span>
+                </div>
+
+                {/* Client & Title */}
+                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white group-hover:text-[#00F0FF] transition-colors duration-200 mb-2">
+                  {project.client}
+                </h3>
+                <p className="text-base text-[#D4D4D8] font-medium mb-4">
+                  {project.title}
+                </p>
+
+                {/* Overview */}
+                <p className="text-sm text-[#A1A1AA] leading-relaxed mb-6">
+                  {project.overview}
+                </p>
+
+                {/* Deliverables */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.deliverables.map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1 rounded-full text-[11px] font-mono text-[#E4E4E7] bg-white/[0.03] border border-white/[0.08]"
+                    >
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              {/* Meta */}
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-[#00F0FF] transition-colors duration-200">
-                    {project.client}
-                  </h3>
-                  <p className="text-sm text-[#A1A1AA] font-mono mt-1">
-                    {project.displayCategory}
-                  </p>
+              {/* Bottom Action */}
+              <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
+                {project.verifiedResult ? (
+                  <span className="text-xs font-mono text-[#00F0FF]">
+                    {project.verifiedResult}
+                  </span>
+                ) : (
+                  <span className="text-xs font-mono text-[#71717A]">
+                    Case Study
+                  </span>
+                )}
+                <div className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-white group-hover:text-[#00F0FF] transition-colors">
+                  <span>View Details</span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </div>
-                <span className="text-xs font-mono text-[#71717A] shrink-0 mt-1">
-                  {project.year}
-                </span>
               </div>
             </Link>
           ))}
         </div>
 
         {/* Bottom CTA to Work */}
-        <div className="mt-20 md:mt-28 pt-8 flex justify-center">
+        <div className="mt-16 sm:mt-24 pt-8 flex justify-center">
           <Link
             href="/work"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-semibold tracking-wider uppercase text-black bg-white hover:bg-[#00F0FF] transition-all duration-200"

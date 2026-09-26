@@ -106,16 +106,7 @@ export default function AboutPageContent() {
             The ideas, shoots, edits, campaigns, and details all come from real people working closely together.
           </p>
 
-          {/* Studio Photography Frame */}
-          <div className="relative aspect-[21/9] rounded-2xl overflow-hidden bg-[#141416] border border-white/[0.08] mb-16">
-            <img
-              src="/media/generated/studio-interior-editorial.jpg"
-              alt="Frameless Hub Studio"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
+
 
           {/* Rithik B & About Frameless Hub */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">

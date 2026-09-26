@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://framelesshub.com'),
   title: 'Frameless Hub | Creative Studio in Chennai',
   description:
-    'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, YouTube and digital marketing.',
+    'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, and digital marketing.',
   alternates: {
     canonical: 'https://framelesshub.com',
   },
@@ -23,14 +23,13 @@ export const metadata: Metadata = {
     'creative studio chennai',
     'branding agency chennai',
     'video production chennai',
-    'youtube management',
     'digital marketing',
     'frameless hub',
   ],
   openGraph: {
     title: 'Frameless Hub | Creative Studio in Chennai',
     description:
-      'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, YouTube and digital marketing.',
+      'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, and digital marketing.',
     url: 'https://framelesshub.com',
     siteName: 'Frameless Hub',
     locale: 'en_IN',
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Frameless Hub | Creative Studio in Chennai',
     description:
-      'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, YouTube and digital marketing.',
+      'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, and digital marketing.',
     images: ['/logo.png'],
   },
 };
@@ -68,11 +67,8 @@ const jsonLd = {
         name: 'Chennai, Tamil Nadu, India',
       },
       description:
-        'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, YouTube and digital marketing. 399+ projects delivered, 10M+ views generated. EST. 2026.',
+        'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, and digital marketing. 399+ projects delivered, 10M+ views generated. EST. 2026.',
       sameAs: [
-        'https://www.youtube.com/@Framelessmediatamil',
-        'https://www.youtube.com/@birlasparvai',
-        'https://www.youtube.com/@SuprathaWellness',
         'https://instagram.com/framelesshub',
       ],
     },

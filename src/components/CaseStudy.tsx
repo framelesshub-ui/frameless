@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Play } from 'lucide-react';
-import VideoModal from './VideoModal';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { getNextProject, type Project } from '@/data/projects';
 
 interface CaseStudyProps {
@@ -11,9 +10,7 @@ interface CaseStudyProps {
 }
 
 export default function CaseStudy({ project }: CaseStudyProps) {
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const nextProject = getNextProject(project.slug);
-  const playableVideo = project.videoEmbedUrl || project.video;
 
   return (
     <article className="bg-[#080808] text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-28">
@@ -31,7 +28,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
         </div>
 
         {/* Project Header Info */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 sm:mb-20 pb-12 border-b border-white/[0.08]">
           <div className="lg:col-span-8">
             <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#A1A1AA] mb-3">
               {project.client} • {project.year}
@@ -48,70 +45,24 @@ export default function CaseStudy({ project }: CaseStudyProps) {
             <span className="text-base font-semibold text-white mt-1">
               {project.displayCategory}
             </span>
-            {project.channelUrl && (
-              <a
-                href={project.channelUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-[#00F0FF] hover:underline mt-2"
-              >
-                <span>Visit YouTube Channel</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Large Hero Video / Image */}
-        <div className="mb-16 sm:mb-24">
-          <div
-            onClick={() => playableVideo && setIsVideoOpen(true)}
-            className={`group relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-[#141416] border border-white/[0.08] ${
-              playableVideo ? 'cursor-pointer' : ''
-            }`}
-          >
-            <img
-              src={project.thumbnail}
-              alt={`${project.client} - ${project.title}`}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-colors duration-300" />
-
-            {/* Play Trigger */}
-            {playableVideo && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#00F0FF] group-hover:text-black group-hover:border-[#00F0FF] transition-all duration-300">
-                  <Play className="w-8 h-8 sm:w-10 sm:h-10 fill-current ml-1" />
-                </div>
-              </div>
-            )}
-
-            <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-xs font-mono text-[#A1A1AA]">
-              <span>{project.client}</span>
-              {playableVideo && (
-                <span className="text-white group-hover:text-[#00F0FF] transition-colors">
-                  Play Project Video →
-                </span>
-              )}
-            </div>
           </div>
         </div>
 
         {/* Overview & What We Did */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 py-12 border-t border-b border-white/[0.08] mb-16 sm:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 py-12 mb-16 sm:mb-24">
           {/* Overview */}
           <div className="lg:col-span-7">
             <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-[#A1A1AA] mb-4">
               Overview
             </h2>
-            <p className="text-lg sm:text-xl text-[#F4F4F5] font-normal leading-relaxed">
+            <p className="text-lg sm:text-2xl text-[#F4F4F5] font-normal leading-relaxed">
               {project.overview}
             </p>
           </div>
 
           {/* What We Did */}
-          <div className="lg:col-span-5">
-            <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-[#A1A1AA] mb-4">
+          <div className="lg:col-span-5 p-8 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
+            <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-[#A1A1AA] mb-6">
               What We Did
             </h2>
             <div className="flex flex-wrap gap-2.5">
@@ -126,30 +77,6 @@ export default function CaseStudy({ project }: CaseStudyProps) {
             </div>
           </div>
         </div>
-
-        {/* Large Project Gallery */}
-        {project.gallery && project.gallery.length > 0 && (
-          <div className="mb-20 sm:mb-28">
-            <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#A1A1AA] mb-6">
-              Gallery
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              {project.gallery.map((imgUrl, i) => (
-                <div
-                  key={i}
-                  className="aspect-[16/10] rounded-xl overflow-hidden bg-[#141416] border border-white/[0.08]"
-                >
-                  <img
-                    src={imgUrl}
-                    alt={`${project.client} visual ${i + 1}`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Optional Verified Result */}
         {project.verifiedResult && (
@@ -190,16 +117,6 @@ export default function CaseStudy({ project }: CaseStudyProps) {
         </div>
 
       </div>
-
-      {/* Video Modal */}
-      {playableVideo && (
-        <VideoModal
-          isOpen={isVideoOpen}
-          onClose={() => setIsVideoOpen(false)}
-          videoSrc={playableVideo}
-          title={`${project.client} — ${project.title}`}
-        />
-      )}
     </article>
   );
 }

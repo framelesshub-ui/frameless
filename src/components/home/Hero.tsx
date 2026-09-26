@@ -1,20 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Play } from 'lucide-react';
-import VideoModal from '../VideoModal';
+import { ArrowUpRight } from 'lucide-react';
 import AnimatedCounter from '../AnimatedCounter';
 import { siteStats } from '@/data/stats';
 
 export default function Hero() {
-  const [isPlayingShowreel, setIsPlayingShowreel] = useState(false);
-
   return (
     <section className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 bg-[#080808] text-[#F4F4F5]">
       <div className="editorial-container">
-        {/* Top Grid: Headline + Visual */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center mb-20 sm:mb-24">
+        {/* Top Grid: Headline + Studio Manifesto */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20 sm:mb-24">
           
           {/* Left Column: Copy */}
           <div className="lg:col-span-7 flex flex-col justify-center">
@@ -56,31 +53,52 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: One Strong Cinematic Visual / Showreel Preview */}
+          {/* Right Column: Clean Typographic Studio Overview */}
           <div className="lg:col-span-5">
-            <div
-              onClick={() => setIsPlayingShowreel(true)}
-              className="group relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden bg-[#141416] border border-white/[0.08] cursor-pointer"
-            >
-              {/* Featured Visual Thumbnail (Birla's Parvai drive documentary) */}
-              <img
-                src="https://i.ytimg.com/vi/Tt-_PByi6KM/hq720.jpg"
-                alt="Frameless Hub Reel Preview"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-300" />
+            <div className="p-8 sm:p-10 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex flex-col justify-between space-y-8">
+              <div className="flex items-center justify-between pb-6 border-b border-white/[0.08]">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-white/[0.06] border border-white/10 flex items-center justify-center text-xs font-mono font-bold text-white">
+                    FH
+                  </div>
+                  <div>
+                    <span className="text-xs font-mono font-bold tracking-wider text-white uppercase block">
+                      FRAMELESS HUB
+                    </span>
+                    <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">
+                      Chennai, India • EST. 2026
+                    </span>
+                  </div>
+                </div>
+                <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[#00F0FF]">
+                  STUDIO
+                </span>
+              </div>
 
-              {/* Play Trigger */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#00F0FF] group-hover:text-black group-hover:border-[#00F0FF] transition-all duration-300">
-                  <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-0.5" />
+              <div className="space-y-4">
+                <div className="text-xs font-mono text-[#A1A1AA] uppercase tracking-wider">
+                  Core Disciplines
+                </div>
+                <div className="divide-y divide-white/[0.06] text-sm font-medium text-white">
+                  <div className="py-2.5 flex items-center justify-between">
+                    <span>Brand Strategy &amp; Identity</span>
+                    <span className="text-xs font-mono text-[#71717A]">01</span>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between">
+                    <span>Editorial &amp; Film Production</span>
+                    <span className="text-xs font-mono text-[#71717A]">02</span>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between">
+                    <span>Digital Distribution &amp; Growth</span>
+                    <span className="text-xs font-mono text-[#71717A]">03</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Minimal caption */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#A1A1AA]">
-                <span>Showreel • In Motion</span>
-                <span className="text-white group-hover:text-[#00F0FF] transition-colors">Play Film →</span>
+              <div className="pt-6 border-t border-white/[0.08]">
+                <p className="text-xs text-[#A1A1AA] leading-relaxed">
+                  We bring together strategy, craft, and execution to create work that is clear, purposeful, and memorable.
+                </p>
               </div>
             </div>
           </div>
@@ -118,14 +136,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Showreel Modal */}
-      <VideoModal
-        isOpen={isPlayingShowreel}
-        onClose={() => setIsPlayingShowreel(false)}
-        videoSrc="https://www.youtube.com/embed/Tt-_PByi6KM?autoplay=1&rel=0"
-        title="Frameless Hub Showreel"
-      />
     </section>
   );
 }

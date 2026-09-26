@@ -2,7 +2,6 @@ import Hero from '@/components/home/Hero';
 import SelectedWork from '@/components/home/SelectedWork';
 import WhatWeDo from '@/components/home/WhatWeDo';
 import WorkingWith from '@/components/home/WorkingWith';
-import ShowreelSection from '@/components/home/ShowreelSection';
 import AboutPreview from '@/components/home/AboutPreview';
 import FinalCTA from '@/components/home/FinalCTA';
 
@@ -21,13 +20,10 @@ export default function Home() {
       {/* 04 — Working With */}
       <WorkingWith />
 
-      {/* 05 — Showreel */}
-      <ShowreelSection />
-
-      {/* 06 — About Preview */}
+      {/* 05 — About Preview */}
       <AboutPreview />
 
-      {/* 07 — Final CTA */}
+      {/* 06 — Final CTA */}
       <FinalCTA />
     </div>
   );

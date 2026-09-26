@@ -26,75 +26,57 @@ export default function ServicesPageContent() {
           </p>
         </div>
 
-        {/* 4 Clean Capability Sections with Real Work Visuals */}
-        <div className="space-y-24 sm:space-y-36">
-          {CAPABILITIES.map((cap, index) => {
-            const isReversed = index % 2 === 1;
+        {/* 4 Clean Editorial Capability Sections (Pure Typography) */}
+        <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
+          {CAPABILITIES.map((cap) => (
+            <div
+              key={cap.id}
+              id={cap.id}
+              className="py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
+            >
+              {/* Number */}
+              <div className="lg:col-span-2">
+                <span className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest block">
+                  {cap.number} / 04
+                </span>
+              </div>
 
-            return (
-              <div
-                key={cap.id}
-                id={cap.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center pt-12 border-t border-white/[0.08]"
-              >
-                {/* Visual Side */}
-                <div
-                  className={`lg:col-span-6 ${
-                    isReversed ? 'lg:order-2' : 'lg:order-1'
-                  }`}
-                >
-                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#141416] border border-white/[0.08]">
-                    <img
-                      src={cap.image}
-                      alt={cap.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/10" />
-                  </div>
+              {/* Title & Description */}
+              <div className="lg:col-span-5">
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+                  {cap.title}
+                </h2>
+                <p className="text-base text-[#A1A1AA] leading-relaxed">
+                  {cap.description}
+                </p>
+              </div>
+
+              {/* Scope Deliverables & Action */}
+              <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
+                <div className="space-y-3">
+                  {cap.services.map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 text-sm text-white font-medium"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Content Side */}
-                <div
-                  className={`lg:col-span-6 flex flex-col justify-center ${
-                    isReversed ? 'lg:order-1' : 'lg:order-2'
-                  }`}
-                >
-                  <div className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest mb-3">
-                    {cap.number}
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-                    {cap.title}
-                  </h2>
-                  <p className="text-base text-[#A1A1AA] leading-relaxed mb-8">
-                    {cap.description}
-                  </p>
-
-                  <div className="space-y-3 pt-6 border-t border-white/[0.08] mb-8">
-                    {cap.services.map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-center gap-3 text-sm text-white font-medium"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div>
-                    <Link
-                      href={`/contact?service=${encodeURIComponent(cap.title)}`}
-                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white hover:text-[#00F0FF] transition-colors"
-                    >
-                      <span>Discuss {cap.title.toLowerCase()}</span>
-                      <ArrowUpRight className="w-4 h-4 text-[#00F0FF]" />
-                    </Link>
-                  </div>
+                <div>
+                  <Link
+                    href={`/contact?service=${encodeURIComponent(cap.title)}`}
+                    className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white hover:text-[#00F0FF] transition-colors"
+                  >
+                    <span>Discuss {cap.title.toLowerCase()}</span>
+                    <ArrowUpRight className="w-4 h-4 text-[#00F0FF]" />
+                  </Link>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* Bottom CTA */}

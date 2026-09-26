@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: `${project.title} | Frameless Hub`,
       description: project.overview,
-      images: [project.thumbnail],
+      images: ['/logo.png'],
     },
   };
 }

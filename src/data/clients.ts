@@ -9,15 +9,15 @@ export interface ClientGroup {
 
 export const CLIENT_GROUPS: ClientGroup[] = [
   {
-    category: 'YOUTUBE',
+    category: 'CONTENT & PRODUCTION',
     clients: [
-      { name: 'Birlas Parvai', focus: 'Automotive & Investigative Journalism', url: 'https://www.youtube.com/@birlasparvai' },
-      { name: 'Supratha Wellness', focus: 'Clinical Healthcare & Medicine', url: 'https://www.youtube.com/@SuprathaWellness' },
-      { name: 'Frameless Media', focus: 'Cinema Interviews & Public Talk', url: 'https://www.youtube.com/@Framelessmediatamil' },
+      { name: 'Birlas Parvai', focus: 'Automotive Journalism & Documentaries' },
+      { name: 'Supratha Wellness', focus: 'Clinical Healthcare & Medicine' },
+      { name: 'Frameless Media', focus: 'Cinema Interviews & Public Talk' },
     ],
   },
   {
-    category: 'BRANDING',
+    category: 'BRANDING & DESIGN',
     clients: [
       { name: 'Ora Kitchen', focus: 'Artisanal Culinary Identity' },
       { name: 'Aura Home', focus: 'Architectural Living & Spaces' },
@@ -31,7 +31,7 @@ export const CLIENTS = [
   ...CLIENT_GROUPS[0].clients.map((c) => ({
     id: c.name.toLowerCase().replace(/\s+/g, '-'),
     name: c.name,
-    category: 'YouTube Channel',
+    category: 'Content Production',
     tagline: c.focus,
     logo: '/logo.png',
     symbol: c.name.slice(0, 2).toUpperCase(),
