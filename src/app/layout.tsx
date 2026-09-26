@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PageTransition from "@/components/PageTransition";
-import AmbientBackground from "@/components/AmbientBackground";
-import CustomCursor from "@/components/CustomCursor";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
-  title: "Frameless Hub — Premium Creative Agency",
+  metadataBase: new URL('https://framelesshub.com'),
+  title: "Frameless Hub — A Creative Media Agency",
+
   description:
-    "We craft cinematic visuals, viral content, and brand stories that break frames. Premium video editing, content creation, and digital branding.",
+    "Strategy, content, design and performance marketing for ambitious brands that want to stand out, grow and stay relevant. Based in Chennai, India.",
+
+
   keywords: [
     "video editing",
     "content creation",
@@ -39,23 +33,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="flex flex-col min-h-screen bg-background text-foreground">
-        {/* Skip to content link for keyboard accessibility */}
+    <html lang="en" className="dark">
+      <body className="flex flex-col min-h-screen bg-[#04060A] text-[#F5F7FA] font-sans selection:bg-[#00F0FF]/25 selection:text-white">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-background focus:rounded-lg focus:text-sm focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#00F0FF] focus:text-black focus:rounded-lg focus:text-sm focus:font-semibold"
         >
           Skip to content
         </a>
-        <Navbar />
-        <CustomCursor />
-        <AmbientBackground />
+        <Header />
         <main id="main-content" className="flex-1 relative z-10">
-          <PageTransition>{children}</PageTransition>
+          {children}
         </main>
         <Footer />
       </body>
     </html>
   );
 }
+

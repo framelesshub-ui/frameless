@@ -1,386 +1,226 @@
 'use client';
 
-import { useRef } from 'react';
-import Image from 'next/image';
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
-import AnimatedButton from './AnimatedButton';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { ArrowUpRight, Play, Eye } from 'lucide-react';
+import { YouTubeIcon } from './icons/SocialIcons';
+import Stats from './Stats';
+
+import VideoModal from './VideoModal';
+import { YOUTUBE_CHANNELS, type YouTubeChannel } from '@/data/youtubeChannels';
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const shouldReduceMotion = useReducedMotion();
-
-  // Mouse parallax motion values (restrained to 2–3° rotation and 4–8px movement)
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 28, stiffness: 90, mass: 0.6 };
-  const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
-
-  // Parallax mappings: subtle 4–8px translation, 2–3 deg rotation
-  const collageX = useTransform(smoothMouseX, [-1, 1], [-8, 8]);
-  const collageY = useTransform(smoothMouseY, [-1, 1], [-8, 8]);
-  const collageRotateX = useTransform(smoothMouseY, [-1, 1], [2.5, -2.5]);
-  const collageRotateY = useTransform(smoothMouseX, [-1, 1], [-2.5, 2.5]);
-
-  // Differential layer shifts
-  const backLayerX = useTransform(smoothMouseX, [-1, 1], [-12, 12]);
-  const backLayerY = useTransform(smoothMouseY, [-1, 1], [-12, 12]);
-  const frontLayerX = useTransform(smoothMouseX, [-1, 1], [10, -10]);
-  const frontLayerY = useTransform(smoothMouseY, [-1, 1], [10, -10]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (shouldReduceMotion) return;
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
+  const [selectedChannel, setSelectedChannel] = useState<YouTubeChannel | null>(null);
 
   return (
-    <section
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative min-h-[95vh] lg:min-h-screen flex items-center justify-center pt-32 pb-20 lg:py-0 overflow-hidden"
-    >
-      {/* Background radial atmosphere */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030405] via-transparent to-[#030405] pointer-events-none z-[1]" />
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.04] rounded-full blur-[150px] pointer-events-none z-[1]" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-accent-blue/[0.03] rounded-full blur-[140px] pointer-events-none z-[1]" />
+    <section className="relative min-h-[92vh] pt-28 sm:pt-36 pb-16 flex flex-col justify-center overflow-hidden bg-[#04060A]">
+      {/* Background Lighting & Fine Grid Texture */}
+      <div className="absolute inset-0 bg-fine-grid opacity-60 pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+      {/* Subtle Ambient Radial Glows */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#00F0FF]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-[550px] h-[550px] bg-[#0284C7]/12 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+        {/* Split Screen Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* ── Left Column: Editorial Hero Typography ── */}
-          <div className="lg:col-span-6 text-left">
-            {/* 1. Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md mb-8"
-            >
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse-glow" />
-              <span className="text-xs font-semibold text-white/70 tracking-widest uppercase">
-                INDEPENDENT CREATIVE & DIGITAL STUDIO
+          {/* ── LEFT SIDE ── */}
+          <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center">
+            {/* Small Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md w-fit mb-6 sm:mb-8">
+              <span className="w-2 h-2 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF] animate-pulse" />
+              <span className="text-[11px] font-mono font-semibold tracking-[0.2em] text-[#F5F7FA] uppercase">
+                A CREATIVE MEDIA AGENCY
               </span>
-            </motion.div>
 
-            {/* 2. Headline: Reveals line-by-line with mask & animated "remember." */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black leading-[1.02] tracking-tight mb-8">
-              <div className="overflow-hidden py-1">
-                <motion.div
-                  initial={{ y: '105%' }}
-                  animate={{ y: '0%' }}
-                  transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-white"
-                >
-                  We build brands
-                </motion.div>
-              </div>
+            </div>
 
-              <div className="overflow-hidden py-1">
-                <motion.div
-                  initial={{ y: '105%' }}
-                  animate={{ y: '0%' }}
-                  transition={{ duration: 0.9, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-white flex flex-wrap items-baseline gap-x-4"
-                >
-                  <span>people</span>
-                  <span className="gradient-remember">remember.</span>
-                </motion.div>
-              </div>
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.06] mb-6 sm:mb-8">
+              We build brands
+              <br />
+              people
+              <br />
+              <span className="gradient-remember">remember.</span>
             </h1>
 
-            {/* 3. Supporting Paragraph */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="text-base sm:text-lg md:text-xl text-white/55 max-w-xl mb-10 leading-relaxed font-normal"
-            >
+            {/* Supporting Text */}
+            <p className="text-base sm:text-lg md:text-xl text-[#94A3B8] max-w-2xl leading-relaxed mb-8 sm:mb-10 font-normal">
               Strategy, content, design and performance marketing for ambitious brands that want to stand out, grow and stay relevant.
-            </motion.p>
+            </p>
 
-            {/* 4. CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
-            >
-              <AnimatedButton href="/work" variant="primary" size="lg">
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-5 mb-10">
+              <Link
+                href="/work"
+                className="group inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase text-black bg-[#00F0FF] hover:bg-[#38BDF8] transition-all duration-300 shadow-[0_0_25px_rgba(0,240,255,0.35)] hover:shadow-[0_0_35px_rgba(0,240,255,0.6)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
                 <span>View Our Work</span>
-                <svg className="w-4 h-4 fill-none stroke-current" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </AnimatedButton>
-              <AnimatedButton href="/contact" variant="secondary" size="lg">
-                <span>Start a Project</span>
-              </AnimatedButton>
-            </motion.div>
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
 
-            {/* Micro proof badges */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="mt-12 pt-8 border-t border-white/[0.08] flex items-center gap-8 text-xs font-mono text-white/40 uppercase tracking-wider"
-            >
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>Chennai, India</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-accent">★</span>
-                <span>Global Clientele</span>
-              </div>
-              <div>
-                <span>Est. 2023</span>
-              </div>
-            </motion.div>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 sm:px-7 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/[0.25] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF]"
+              >
+                Start a Project
+              </Link>
+            </div>
           </div>
 
-          {/* ── Right Column: 6-Panel Interactive Creative Collage ── */}
-          <div className="lg:col-span-6 relative mt-8 lg:mt-0 flex items-center justify-center">
-            <motion.div
-              style={{
-                x: shouldReduceMotion ? 0 : collageX,
-                y: shouldReduceMotion ? 0 : collageY,
-                rotateX: shouldReduceMotion ? 0 : collageRotateX,
-                rotateY: shouldReduceMotion ? 0 : collageRotateY,
-                transformPerspective: 1200,
-              }}
-              className="relative w-full max-w-[500px] h-[520px] sm:h-[580px] flex items-center justify-center"
-            >
-              {/* PANEL 1: Centerpiece Vertical Video Reel (Birla's Parvai) */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.92, y: 30 }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                  y: shouldReduceMotion ? 0 : [-6, 6, -6],
-                }}
-                transition={{
-                  opacity: { duration: 0.8, delay: 0.4 },
-                  scale: { duration: 0.8, delay: 0.4 },
-                  y: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
-                }}
-                data-cursor="play"
-                className="relative z-20 w-[240px] sm:w-[270px] aspect-[9/16] rounded-2xl overflow-hidden bg-black/80 border border-white/20 shadow-2xl shadow-black/90 group cursor-pointer"
+          {/* ── RIGHT HERO PORTFOLIO (Layered floating composition) ── */}
+          <div className="lg:col-span-6 xl:col-span-5 relative flex items-center justify-center lg:justify-end">
+            
+            {/* Soft Blue Glowing Orb Behind Cards */}
+            <div className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full radial-orb pointer-events-none -z-0" />
+            
+            {/* Layered Floating Composition (Overlapping cards with depth and perspective) */}
+            <div className="relative w-full max-w-[460px] h-[460px] sm:h-[500px] perspective-[1000px] z-10 flex items-center justify-center">
+              
+              {/* Card 1: Birlas Parvai (Top Layer, tilted slightly) */}
+              <div
+                onClick={() => setSelectedChannel(YOUTUBE_CHANNELS[0])}
+                className="absolute top-0 right-2 sm:right-6 w-[82%] sm:w-[80%] rounded-2xl p-3 bg-[#080C14]/90 backdrop-blur-xl border border-white/[0.12] hover:border-[#00F0FF]/60 shadow-[0_20px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(0,240,255,0.1)] cursor-pointer transition-all duration-500 hover:scale-[1.03] hover:z-30 animate-float-1 group"
               >
-                <video
-                  src="/videos/video-1.mov"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
-                <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-mono text-accent uppercase">
-                  Live Showreel
-                </div>
-                <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
-                  <span className="text-[10px] font-mono tracking-widest text-accent uppercase block">
-                    Commercial Film
-                  </span>
-                  <p className="text-sm font-bold text-white leading-tight">
-                    Birla’s Parvai Campaign
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* PANEL 2: Top Left — Automotive Campaign Card */}
-              <motion.div
-                style={{
-                  x: shouldReduceMotion ? 0 : backLayerX,
-                  y: shouldReduceMotion ? 0 : backLayerY,
-                }}
-                initial={{ opacity: 0, x: -50, y: -20 }}
-                animate={{
-                  opacity: 1,
-                  x: 0,
-                  y: shouldReduceMotion ? 0 : [5, -5, 5],
-                }}
-                transition={{
-                  opacity: { duration: 0.8, delay: 0.6 },
-                  x: { duration: 0.8, delay: 0.6 },
-                  y: { duration: 8.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 },
-                }}
-                data-cursor="view"
-                className="absolute -left-2 sm:-left-8 top-4 z-10 w-[190px] sm:w-[220px] aspect-[4/3] rounded-xl overflow-hidden bg-[#0A0D12] border border-white/15 shadow-2xl shadow-black/80 group cursor-pointer hidden sm:block backdrop-blur-md"
-              >
-                <Image
-                  src="/campaigns/automotive.jpg"
-                  alt="Automotive Campaign"
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3">
-                  <span className="text-[9px] font-mono tracking-wider text-accent uppercase block">
-                    Automotive
-                  </span>
-                  <p className="text-xs font-semibold text-white">
-                    Cinematic Commercial
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* PANEL 3: Top Right — High-Retention Content Reel */}
-              <motion.div
-                initial={{ opacity: 0, x: 50, y: -30 }}
-                animate={{
-                  opacity: 1,
-                  x: 0,
-                  y: shouldReduceMotion ? 0 : [-5, 7, -5],
-                }}
-                transition={{
-                  opacity: { duration: 0.8, delay: 0.75 },
-                  x: { duration: 0.8, delay: 0.75 },
-                  y: { duration: 7.8, repeat: Infinity, ease: 'easeInOut', delay: 1 },
-                }}
-                data-cursor="play"
-                className="absolute -right-2 sm:-right-8 top-12 z-30 w-[160px] sm:w-[185px] aspect-[9/14] rounded-xl overflow-hidden bg-[#0A0D12] border border-white/15 shadow-2xl shadow-black/80 group cursor-pointer hidden sm:block backdrop-blur-md"
-              >
-                <video
-                  src="/videos/video-2.mov"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover opacity-85 transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3">
-                  <span className="text-[9px] font-mono tracking-wider text-accent-violet uppercase block">
-                    Content Creation
-                  </span>
-                  <p className="text-xs font-semibold text-white">
-                    High-Retention Reel
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* PANEL 4: Bottom Left — Performance Marketing Card */}
-              <motion.div
-                initial={{ opacity: 0, x: -40, y: 40 }}
-                animate={{
-                  opacity: 1,
-                  x: 0,
-                  y: shouldReduceMotion ? 0 : [-4, 6, -4],
-                }}
-                transition={{
-                  opacity: { duration: 0.8, delay: 0.9 },
-                  x: { duration: 0.8, delay: 0.9 },
-                  y: { duration: 8.2, repeat: Infinity, ease: 'easeInOut', delay: 1.5 },
-                }}
-                data-cursor="view"
-                className="absolute -left-4 sm:-left-6 bottom-8 z-30 w-[180px] sm:w-[200px] aspect-[4/3] rounded-xl overflow-hidden bg-[#0A0D12]/90 border border-white/15 shadow-2xl shadow-black/80 group cursor-pointer hidden sm:block backdrop-blur-md"
-              >
-                <Image
-                  src="/services/performance-marketing.png"
-                  alt="Performance Marketing"
-                  fill
-                  className="object-cover opacity-75 transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-mono tracking-wider text-emerald-400 uppercase">
-                      +380% ROAS
-                    </span>
-                    <span className="text-[9px] font-mono text-white/50">Meta / Ads</span>
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-[#0F172A] mb-3">
+                  <img
+                    src={YOUTUBE_CHANNELS[0].thumbnail}
+                    alt={YOUTUBE_CHANNELS[0].name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-[9px] font-mono text-white border border-white/10">
+                    <YouTubeIcon className="w-3.5 h-3.5 text-red-500" />
+                    <span>{YOUTUBE_CHANNELS[0].name}</span>
                   </div>
-                  <p className="text-xs font-semibold text-white mt-0.5">
-                    Performance Marketing
-                  </p>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-[#00F0FF]/90 text-black flex items-center justify-center shadow-[0_0_15px_rgba(0,240,255,0.5)] group-hover:scale-110 transition-transform">
+                      <Play className="w-4 h-4 fill-current ml-0.5" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-2 right-2 flex items-center gap-1 text-[10px] font-mono text-[#00F0FF] font-bold">
+                    <Eye className="w-3 h-3" />
+                    <span>{YOUTUBE_CHANNELS[0].totalViews}</span>
+                  </div>
                 </div>
-              </motion.div>
-
-              {/* PANEL 5: Bottom Right — Brand Identity Card */}
-              <motion.div
-                style={{
-                  x: shouldReduceMotion ? 0 : frontLayerX,
-                  y: shouldReduceMotion ? 0 : frontLayerY,
-                }}
-                initial={{ opacity: 0, x: 40, y: 40 }}
-                animate={{
-                  opacity: 1,
-                  x: 0,
-                  y: shouldReduceMotion ? 0 : [6, -5, 6],
-                }}
-                transition={{
-                  opacity: { duration: 0.8, delay: 1 },
-                  x: { duration: 0.8, delay: 1 },
-                  y: { duration: 7.4, repeat: Infinity, ease: 'easeInOut', delay: 2 },
-                }}
-                data-cursor="view"
-                className="absolute -right-2 sm:-right-6 bottom-6 z-25 w-[170px] sm:w-[195px] aspect-[4/3] rounded-xl overflow-hidden bg-[#0A0D12]/90 border border-white/15 shadow-2xl shadow-black/80 group cursor-pointer hidden sm:block backdrop-blur-md"
-              >
-                <Image
-                  src="/services/branding-design.png"
-                  alt="Branding and Design"
-                  fill
-                  className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3">
-                  <span className="text-[9px] font-mono tracking-wider text-accent uppercase block">
-                    Brand Systems
+                <div className="flex items-center justify-between px-1">
+                  <div>
+                    <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors">
+                      {YOUTUBE_CHANNELS[0].name}
+                    </h4>
+                    <p className="text-[10px] text-[#94A3B8]">
+                      {YOUTUBE_CHANNELS[0].category}
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded-full border border-[#00F0FF]/20">
+                    {YOUTUBE_CHANNELS[0].subscribers}
                   </span>
-                  <p className="text-xs font-semibold text-white">
-                    Identity & Typecraft
-                  </p>
                 </div>
-              </motion.div>
+              </div>
 
-              {/* PANEL 6: Floating Studio Pill Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-                className="absolute top-0 right-1/4 translate-x-1/2 -translate-y-1/2 z-40 px-3.5 py-1 rounded-full bg-[#0C1016]/90 border border-accent/30 shadow-lg backdrop-blur-md hidden sm:flex items-center gap-2"
+              {/* Card 2: Supratha Wellness (Middle Layer, shifted left & down) */}
+              <div
+                onClick={() => setSelectedChannel(YOUTUBE_CHANNELS[1])}
+                className="absolute top-36 sm:top-40 left-0 w-[84%] sm:w-[82%] rounded-2xl p-3 bg-[#080C14]/90 backdrop-blur-xl border border-white/[0.12] hover:border-[#00F0FF]/60 shadow-[0_25px_50px_rgba(0,0,0,0.85),0_0_25px_rgba(0,240,255,0.12)] cursor-pointer transition-all duration-500 hover:scale-[1.03] hover:z-30 animate-float-2 group z-20"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                <span className="text-[10px] font-mono tracking-wider text-white/80 uppercase">
-                  Zero Templates • 100% Bespoke
-                </span>
-              </motion.div>
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-[#0F172A] mb-3">
+                  <img
+                    src={YOUTUBE_CHANNELS[1].thumbnail}
+                    alt={YOUTUBE_CHANNELS[1].name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-[9px] font-mono text-white border border-white/10">
+                    <YouTubeIcon className="w-3.5 h-3.5 text-red-500" />
+                    <span>{YOUTUBE_CHANNELS[1].name}</span>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md text-white group-hover:bg-[#00F0FF] group-hover:text-black flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] group-hover:scale-110 transition-all">
+                      <Play className="w-4 h-4 fill-current ml-0.5" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-2 right-2 flex items-center gap-1 text-[10px] font-mono text-[#00F0FF] font-bold">
+                    <Eye className="w-3 h-3" />
+                    <span>{YOUTUBE_CHANNELS[1].totalViews}</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between px-1">
+                  <div>
+                    <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors">
+                      {YOUTUBE_CHANNELS[1].name}
+                    </h4>
+                    <p className="text-[10px] text-[#94A3B8]">
+                      {YOUTUBE_CHANNELS[1].category}
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded-full border border-[#00F0FF]/20">
+                    {YOUTUBE_CHANNELS[1].subscribers}
+                  </span>
+                </div>
+              </div>
 
-              {/* Ambient radial glow behind the collage */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 via-transparent to-accent-violet/10 rounded-full blur-[90px] pointer-events-none" />
-            </motion.div>
+              {/* Card 3: Frameless Media (Bottom Layer, offset slightly right) */}
+              <div
+                onClick={() => setSelectedChannel(YOUTUBE_CHANNELS[2])}
+                className="absolute bottom-2 right-4 sm:right-8 w-[80%] sm:w-[78%] rounded-2xl p-3 bg-[#080C14]/90 backdrop-blur-xl border border-white/[0.12] hover:border-[#00F0FF]/60 shadow-[0_20px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(0,240,255,0.08)] cursor-pointer transition-all duration-500 hover:scale-[1.03] hover:z-30 animate-float-3 group z-10"
+              >
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-[#0F172A] mb-3">
+                  <img
+                    src={YOUTUBE_CHANNELS[2].thumbnail}
+                    alt={YOUTUBE_CHANNELS[2].name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-[9px] font-mono text-white border border-white/10">
+                    <YouTubeIcon className="w-3.5 h-3.5 text-red-500" />
+                    <span>{YOUTUBE_CHANNELS[2].name}</span>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md text-white group-hover:bg-[#00F0FF] group-hover:text-black flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] group-hover:scale-110 transition-all">
+                      <Play className="w-4 h-4 fill-current ml-0.5" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-2 right-2 flex items-center gap-1 text-[10px] font-mono text-[#00F0FF] font-bold">
+                    <Eye className="w-3 h-3" />
+                    <span>{YOUTUBE_CHANNELS[2].totalViews}</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between px-1">
+                  <div>
+                    <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors">
+                      {YOUTUBE_CHANNELS[2].name}
+                    </h4>
+                    <p className="text-[10px] text-[#94A3B8]">
+                      {YOUTUBE_CHANNELS[2].category}
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded-full border border-[#00F0FF]/20">
+                    {YOUTUBE_CHANNELS[2].subscribers}
+                  </span>
+                </div>
+              </div>
+
+            </div>
           </div>
 
         </div>
+
+        {/* Statistics below split hero */}
+        <Stats />
       </div>
 
-      {/* Subtle Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:block"
-        aria-hidden="true"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5"
-        >
-          <motion.div className="w-1 h-1.5 rounded-full bg-accent/80" />
-        </motion.div>
-      </motion.div>
+      {/* Video Modal if any channel preview is clicked */}
+      {selectedChannel && (
+        <VideoModal
+          isOpen={!!selectedChannel}
+          onClose={() => setSelectedChannel(null)}
+          title={selectedChannel.name}
+          category={selectedChannel.category}
+          videoSrc={selectedChannel.videoUrl}
+          posterSrc={selectedChannel.thumbnail}
+        />
+      )}
     </section>
   );
 }
