@@ -265,6 +265,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
           category={project.category}
           videoSrc={project.video}
           posterSrc={project.thumbnail}
+          channelUrl={project.channelUrl}
         />
       )}
     </article>

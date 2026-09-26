@@ -6,59 +6,67 @@ export interface YouTubeChannel {
   totalViews: string;
   subscribers?: string;
   thumbnail: string;
-  videoUrl?: string; // Replaceable video or embed
+  videoUrl?: string; // YouTube embed or watch link
   channelUrl: string;
   featuredTitle?: string;
   badge?: string;
   description: string;
+  latestVideoId?: string;
+  latestVideoTitle?: string;
 }
 
 /**
  * YouTube Channels managed & scaled by Frameless Hub
- * Media paths are centralized here for simple replacement.
+ * Featuring actual latest channel uploads and live verified links.
  */
 export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
   {
     id: "birlas-parvai",
     name: "Birlas Parvai",
-    handle: "@BirlasParvai",
-    category: "Regional Cinema & Documentary Journalism",
+    handle: "@birlasparvai",
+    category: "Automotive Reviews & Investigative Journalism",
     totalViews: "4.8M+",
     subscribers: "120K+",
-    thumbnail: "/campaigns/automotive.jpg",
-    videoUrl: "/videos/video-1.mov",
-    channelUrl: "https://youtube.com/@BirlasParvai",
-    featuredTitle: "Investigative Vision & Cultural Discourse",
+    thumbnail: "https://i.ytimg.com/vi/Tt-_PByi6KM/hq720.jpg",
+    videoUrl: "https://www.youtube.com/embed/Tt-_PByi6KM?autoplay=1&rel=0",
+    channelUrl: "https://www.youtube.com/@birlasparvai",
+    featuredTitle: "New Mahindra Thar OG 2026 Detailed Drive & Off-Road Tamil Review",
     badge: "Official Channel",
-    description: "High-retention visual documentaries, long-form journalism, and cinematic cultural retrospectives engineered for organic viral distribution."
+    description: "High-retention visual documentaries, long-form journalism, and cinematic automotive retrospectives engineered for organic viral distribution.",
+    latestVideoId: "Tt-_PByi6KM",
+    latestVideoTitle: "New Mahindra Thar OG 2026 Detailed Drive & Off-Road Tamil Review | Birla’s Parvai"
   },
   {
     id: "supratha-wellness",
     name: "Supratha Wellness",
     handle: "@SuprathaWellness",
-    category: "Holistic Health, Clinical Science & Lifestyle",
+    category: "Clinical Healthcare & Holistic Medicine",
     totalViews: "3.2M+",
     subscribers: "85K+",
-    thumbnail: "/media/generated/web-digital-showcase.jpg",
-    videoUrl: "/videos/video-3.mov",
-    channelUrl: "https://youtube.com/@SuprathaWellness",
-    featuredTitle: "Clinical Wisdom & Patient Stories",
+    thumbnail: "https://i.ytimg.com/vi/b_g430s1Jr4/hq720.jpg",
+    videoUrl: "https://www.youtube.com/embed/b_g430s1Jr4?autoplay=1&rel=0",
+    channelUrl: "https://www.youtube.com/@SuprathaWellness",
+    featuredTitle: "6 Common Problems & First Aid Tips | பொதுவான பிரச்சனைகளுக்கு முதலுதவி",
     badge: "Healthcare IP",
-    description: "Approachable clinical wellness breakdowns, physician masterclasses, and kinetic medical animations that establish institutional trust."
+    description: "Approachable clinical wellness breakdowns, physician masterclasses, and kinetic medical animations that establish institutional trust.",
+    latestVideoId: "b_g430s1Jr4",
+    latestVideoTitle: "6 Common Problems & First Aid Tips | 6 பொதுவான பிரச்சனைகளுக்கு முதலுதவி டிப்ஸ்"
   },
   {
     id: "frameless-media",
     name: "Frameless Media",
-    handle: "@FramelessMedia",
-    category: "Original Studio IP & Creative Culture",
+    handle: "@Framelessmediatamil",
+    category: "Cinema Interviews, FDFS & Cultural Public Talk",
     totalViews: "2.4M+",
     subscribers: "60K+",
-    thumbnail: "/media/generated/content-production-studio.jpg",
-    videoUrl: "/videos/video-5.mov",
-    channelUrl: "https://youtube.com/@FramelessMedia",
-    featuredTitle: "Creative Direction & Agency Originals",
+    thumbnail: "https://i.ytimg.com/vi/iZa8A_V4z7Y/hq720.jpg",
+    videoUrl: "https://www.youtube.com/embed/iZa8A_V4z7Y?autoplay=1&rel=0",
+    channelUrl: "https://www.youtube.com/@Framelessmediatamil",
+    featuredTitle: "Santhanam DD Next Level Movie Public Talk – Makkal Reaction",
     badge: "Studio Flagship",
-    description: "Experimental narrative formats, commercial director breakdowns, and digital art explorations produced directly by the studio."
+    description: "High-energy cinema public talk, director and actor interviews, FDFS fan reviews, and pop culture broadcast formats produced by Frameless Hub.",
+    latestVideoId: "iZa8A_V4z7Y",
+    latestVideoTitle: "Santhanam DD Next level Movie Public Talk – Makkal Reaction Vera Level! 🔥😂"
   }
 ];
 

@@ -110,6 +110,7 @@ export default function FeaturedVideo() {
         category={project.category}
         videoSrc={project.video}
         posterSrc={project.thumbnail}
+        channelUrl={project.channelUrl}
       />
     </section>
   );

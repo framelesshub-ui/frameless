@@ -41,6 +41,7 @@ export interface Project {
   posterSrc?: string;
   videoSrc?: string;
   shortDescription?: string;
+  channelUrl?: string;
 }
 
 export const WORK_CATEGORIES: ('All' | ProjectCategory)[] = [
@@ -61,12 +62,12 @@ export const portfolioProjects: Project[] = [
   {
     id: 'mahindra-parvai-campaign',
     slug: 'mahindra-parvai-campaign',
-    title: 'Mahindra Parvai Campaign',
-    client: 'Mahindra',
+    title: 'Mahindra Parvai Campaign — Thar OG 2026 Drive',
+    client: 'Mahindra & Birla’s Parvai',
     category: 'Commercial Film',
     year: '2026',
-    thumbnail: '/campaigns/automotive.jpg',
-    video: '/videos/video-1.mov',
+    thumbnail: 'https://i.ytimg.com/vi/Tt-_PByi6KM/hq720.jpg',
+    video: 'https://www.youtube.com/embed/Tt-_PByi6KM?autoplay=1&rel=0',
     featured: true,
     gridSpan: 'full',
     services: ['Commercial Direction', 'Cinematography', 'Sound Design & Foley', 'Color Grading'],
@@ -85,9 +86,9 @@ export const portfolioProjects: Project[] = [
       { label: 'Lead Inquiries', value: '3.4x' },
     ],
     gallery: [
-      '/campaigns/automotive.jpg',
+      'https://i.ytimg.com/vi/Tt-_PByi6KM/hq720.jpg',
+      'https://i.ytimg.com/vi/7BBlQq772Ks/hq720.jpg',
       '/media/generated/studio-interior-editorial.jpg',
-      '/media/generated/content-production-studio.jpg',
     ],
     nextProjectSlug: 'birlas-parvai-growth',
     clientQuote: {
@@ -95,8 +96,9 @@ export const portfolioProjects: Project[] = [
       author: 'Marketing Leadership',
       role: 'Mahindra Regional Campaigns',
     },
-    posterSrc: '/campaigns/automotive.jpg',
-    videoSrc: '/videos/video-1.mov',
+    posterSrc: 'https://i.ytimg.com/vi/Tt-_PByi6KM/hq720.jpg',
+    videoSrc: 'https://www.youtube.com/embed/Tt-_PByi6KM?autoplay=1&rel=0',
+    channelUrl: 'https://www.youtube.com/@birlasparvai',
     shortDescription: 'Cinematic commercial film combining automotive power with intimate human storytelling.',
   },
   {
@@ -106,11 +108,13 @@ export const portfolioProjects: Project[] = [
     client: 'Birlas Parvai',
     category: 'YouTube',
     year: '2026',
-    thumbnail: '/campaigns/automotive.jpg',
-    video: '/videos/video-1.mov',
+    thumbnail: 'https://i.ytimg.com/vi/7BBlQq772Ks/hq720.jpg',
+    video: 'https://www.youtube.com/embed/7BBlQq772Ks?autoplay=1&rel=0',
+    channelUrl: 'https://www.youtube.com/@birlasparvai',
     featured: false,
     gridSpan: 'large',
     services: ['Channel Management', 'YouTube SEO', 'High-Retention Video Editing', 'Thumbnail Architecture'],
+
     overview:
       'Complete end-to-end channel development and production pipeline for Birlas Parvai, turning long-form investigative journalism into high-velocity digital broadcast content.',
     challenge:
@@ -242,8 +246,8 @@ export const portfolioProjects: Project[] = [
     client: 'Supratha Wellness',
     category: 'Content Production',
     year: '2026',
-    thumbnail: '/media/generated/web-digital-showcase.jpg',
-    video: '/videos/video-3.mov',
+    thumbnail: 'https://i.ytimg.com/vi/b_g430s1Jr4/hq720.jpg',
+    video: 'https://www.youtube.com/embed/b_g430s1Jr4?autoplay=1&rel=0',
     featured: false,
     gridSpan: 'medium',
     services: ['Content Production', 'Kinetic Explainer Animation', 'Omnichannel Strategy'],
@@ -261,12 +265,13 @@ export const portfolioProjects: Project[] = [
       { label: 'Patient Retention', value: '94%' },
     ],
     gallery: [
-      '/media/generated/web-digital-showcase.jpg',
-      '/services/content-creation.png',
+      'https://i.ytimg.com/vi/b_g430s1Jr4/hq720.jpg',
+      'https://i.ytimg.com/vi/JKvAeSwKFWI/hq720.jpg',
     ],
     nextProjectSlug: 'frameless-media-originals',
-    posterSrc: '/media/generated/web-digital-showcase.jpg',
-    videoSrc: '/videos/video-3.mov',
+    posterSrc: 'https://i.ytimg.com/vi/b_g430s1Jr4/hq720.jpg',
+    videoSrc: 'https://www.youtube.com/embed/b_g430s1Jr4?autoplay=1&rel=0',
+    channelUrl: 'https://www.youtube.com/@SuprathaWellness',
     shortDescription: 'Healthcare visual content and clinical explainers driving patient trust.',
   },
   {
@@ -276,8 +281,9 @@ export const portfolioProjects: Project[] = [
     client: 'Frameless Media',
     category: 'YouTube',
     year: '2026',
-    thumbnail: '/media/generated/social-creator-studio.jpg',
-    video: '/videos/video-5.mov',
+    thumbnail: 'https://i.ytimg.com/vi/iZa8A_V4z7Y/hq720.jpg',
+    video: 'https://www.youtube.com/embed/iZa8A_V4z7Y?autoplay=1&rel=0',
+    channelUrl: 'https://www.youtube.com/@Framelessmediatamil',
     featured: false,
     gridSpan: 'large',
     services: ['Original IP Creation', 'Studio Production', 'Distribution Architecture'],
@@ -295,13 +301,14 @@ export const portfolioProjects: Project[] = [
       { label: 'Sponsor Inquiries', value: '45+' },
     ],
     gallery: [
-      '/media/generated/social-creator-studio.jpg',
-      '/media/generated/studio-interior-editorial.jpg',
+      'https://i.ytimg.com/vi/iZa8A_V4z7Y/hq720.jpg',
+      'https://i.ytimg.com/vi/H8XHOkwLju0/hq720.jpg',
     ],
     nextProjectSlug: 'nova-performance-growth',
-    posterSrc: '/media/generated/social-creator-studio.jpg',
-    videoSrc: '/videos/video-5.mov',
+    posterSrc: 'https://i.ytimg.com/vi/iZa8A_V4z7Y/hq720.jpg',
+    videoSrc: 'https://www.youtube.com/embed/iZa8A_V4z7Y?autoplay=1&rel=0',
     shortDescription: 'Original creative studio media series exploring culture and design.',
+
   },
   {
     id: 'nova-performance-growth',

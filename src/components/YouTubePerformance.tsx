@@ -186,7 +186,9 @@ export default function YouTubePerformance() {
           category={activeChannel.category}
           videoSrc={activeChannel.videoUrl}
           posterSrc={activeChannel.thumbnail}
+          channelUrl={activeChannel.channelUrl}
         />
+
       )}
     </section>
   );

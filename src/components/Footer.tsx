@@ -20,8 +20,9 @@ const NAV_LINKS = [
 
 const SOCIAL_LINKS = [
   { name: 'Instagram', href: 'https://instagram.com/framelesshub', icon: InstagramIcon },
-  { name: 'YouTube', href: 'https://youtube.com/@FramelessMedia', icon: YouTubeIcon },
+  { name: 'YouTube', href: 'https://www.youtube.com/@Framelessmediatamil', icon: YouTubeIcon },
   { name: 'LinkedIn', href: 'https://linkedin.com/company/framelesshub', icon: LinkedInIcon },
+
 ];
 
 

@@ -104,18 +104,20 @@ export default function Hero() {
                     <span>{YOUTUBE_CHANNELS[0].totalViews}</span>
                   </div>
                 </div>
-                <div className="flex items-center justify-between px-1">
-                  <div>
-                    <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors">
-                      {YOUTUBE_CHANNELS[0].name}
-                    </h4>
-                    <p className="text-[10px] text-[#94A3B8]">
-                      {YOUTUBE_CHANNELS[0].category}
+                <div className="flex items-center justify-between px-1 gap-2">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors truncate">
+                        {YOUTUBE_CHANNELS[0].name}
+                      </h4>
+                      <span className="text-[9px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-1.5 py-0.5 rounded border border-[#00F0FF]/20 shrink-0">
+                        {YOUTUBE_CHANNELS[0].subscribers}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-[#94A3B8] truncate mt-0.5">
+                      {YOUTUBE_CHANNELS[0].latestVideoTitle || YOUTUBE_CHANNELS[0].category}
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded-full border border-[#00F0FF]/20">
-                    {YOUTUBE_CHANNELS[0].subscribers}
-                  </span>
                 </div>
               </div>
 
@@ -145,18 +147,20 @@ export default function Hero() {
                     <span>{YOUTUBE_CHANNELS[1].totalViews}</span>
                   </div>
                 </div>
-                <div className="flex items-center justify-between px-1">
-                  <div>
-                    <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors">
-                      {YOUTUBE_CHANNELS[1].name}
-                    </h4>
-                    <p className="text-[10px] text-[#94A3B8]">
-                      {YOUTUBE_CHANNELS[1].category}
+                <div className="flex items-center justify-between px-1 gap-2">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors truncate">
+                        {YOUTUBE_CHANNELS[1].name}
+                      </h4>
+                      <span className="text-[9px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-1.5 py-0.5 rounded border border-[#00F0FF]/20 shrink-0">
+                        {YOUTUBE_CHANNELS[1].subscribers}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-[#94A3B8] truncate mt-0.5">
+                      {YOUTUBE_CHANNELS[1].latestVideoTitle || YOUTUBE_CHANNELS[1].category}
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded-full border border-[#00F0FF]/20">
-                    {YOUTUBE_CHANNELS[1].subscribers}
-                  </span>
                 </div>
               </div>
 
@@ -186,18 +190,20 @@ export default function Hero() {
                     <span>{YOUTUBE_CHANNELS[2].totalViews}</span>
                   </div>
                 </div>
-                <div className="flex items-center justify-between px-1">
-                  <div>
-                    <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors">
-                      {YOUTUBE_CHANNELS[2].name}
-                    </h4>
-                    <p className="text-[10px] text-[#94A3B8]">
-                      {YOUTUBE_CHANNELS[2].category}
+                <div className="flex items-center justify-between px-1 gap-2">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-xs font-bold text-white tracking-wide group-hover:text-[#00F0FF] transition-colors truncate">
+                        {YOUTUBE_CHANNELS[2].name}
+                      </h4>
+                      <span className="text-[9px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-1.5 py-0.5 rounded border border-[#00F0FF]/20 shrink-0">
+                        {YOUTUBE_CHANNELS[2].subscribers}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-[#94A3B8] truncate mt-0.5">
+                      {YOUTUBE_CHANNELS[2].latestVideoTitle || YOUTUBE_CHANNELS[2].category}
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded-full border border-[#00F0FF]/20">
-                    {YOUTUBE_CHANNELS[2].subscribers}
-                  </span>
                 </div>
               </div>
 
@@ -215,10 +221,11 @@ export default function Hero() {
         <VideoModal
           isOpen={!!selectedChannel}
           onClose={() => setSelectedChannel(null)}
-          title={selectedChannel.name}
+          title={selectedChannel.latestVideoTitle ? `${selectedChannel.name} — ${selectedChannel.latestVideoTitle}` : selectedChannel.name}
           category={selectedChannel.category}
           videoSrc={selectedChannel.videoUrl}
           posterSrc={selectedChannel.thumbnail}
+          channelUrl={selectedChannel.channelUrl}
         />
       )}
     </section>
