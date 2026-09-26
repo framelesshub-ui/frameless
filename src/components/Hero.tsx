@@ -28,12 +28,16 @@ export default function Hero() {
           {/* ── LEFT SIDE ── */}
           <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center">
             {/* Small Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md w-fit mb-6 sm:mb-8">
-              <span className="w-2 h-2 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF] animate-pulse" />
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.1] backdrop-blur-md w-fit mb-6 sm:mb-8 shadow-[0_0_20px_rgba(0,240,255,0.1)]">
+              <img
+                src="/logo.png"
+                alt="Frameless Hub"
+                className="w-4 h-4 object-contain filter drop-shadow-[0_0_4px_rgba(0,240,255,0.6)]"
+              />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF] animate-pulse" />
               <span className="text-[11px] font-mono font-semibold tracking-[0.2em] text-[#F5F7FA] uppercase">
                 A CREATIVE MEDIA AGENCY
               </span>
-
             </div>
 
             {/* Main Headline */}

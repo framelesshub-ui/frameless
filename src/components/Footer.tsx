@@ -51,14 +51,23 @@ export default function Footer({ onNavigate }: FooterProps) {
               <Link
                 href="/"
                 onClick={(e) => handleLink('/', e)}
-                className="inline-flex items-center gap-3 group mb-6"
+                className="inline-flex items-center gap-3.5 group mb-6"
               >
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0F172A] to-[#080C14] border border-[#00F0FF]/30 flex items-center justify-center font-mono text-xs font-black text-white group-hover:border-[#00F0FF] transition-all">
-                  FH
+                <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#080C14]/90 border border-[#00F0FF]/30 flex items-center justify-center p-1.5 overflow-hidden transition-all duration-300 group-hover:border-[#00F0FF] group-hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] group-hover:scale-105">
+                  <img
+                    src="/logo.png"
+                    alt="Frameless Hub"
+                    className="w-full h-full object-contain filter drop-shadow-[0_0_6px_rgba(0,240,255,0.45)]"
+                  />
                 </div>
-                <span className="font-sans text-lg font-bold tracking-widest text-white uppercase group-hover:text-[#00F0FF] transition-colors">
-                  FRAMELESS HUB
-                </span>
+                <div className="flex flex-col">
+                  <span className="font-sans text-lg font-bold tracking-widest text-white uppercase group-hover:text-[#00F0FF] transition-colors leading-none">
+                    FRAMELESS HUB
+                  </span>
+                  <span className="text-[10px] font-mono tracking-wider text-[#94A3B8] uppercase mt-1">
+                    A CREATIVE MEDIA AGENCY • EST. 2026
+                  </span>
+                </div>
               </Link>
 
               {/* Tagline */}

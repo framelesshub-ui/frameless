@@ -11,19 +11,37 @@ export const metadata: Metadata = {
     "Strategy, content, design and performance marketing for ambitious brands that want to stand out, grow and stay relevant. Based in Chennai, India.",
 
 
+  icons: {
+    icon: [
+      { url: '/logo.png', type: 'image/png' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   keywords: [
     "video editing",
     "content creation",
-    "creative agency",
-    "motion graphics",
+    "creative media agency",
+    "youtube management",
     "branding",
+    "motion graphics",
     "ad creatives",
+    "frameless hub",
   ],
   openGraph: {
-    title: "Frameless Hub — Create Without Limits",
+    title: "Frameless Hub — A Creative Media Agency",
     description:
-      "Premium creative agency for video editing, content creation, and digital branding.",
+      "Strategy, content, design and performance marketing for ambitious brands. Based in Chennai, India.",
     type: "website",
+    images: [
+      {
+        url: '/logo.png',
+        width: 1024,
+        height: 1024,
+        alt: 'Frameless Hub Official Logo',
+      },
+    ],
   },
 };
 

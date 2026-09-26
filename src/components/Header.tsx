@@ -65,20 +65,21 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
             <Link
               href="/"
               onClick={(e) => handleLinkClick('/', e)}
-              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF] rounded-lg"
+              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF] rounded-xl"
             >
-              <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-[#0F172A] to-[#080C14] border border-[#00F0FF]/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-[#00F0FF] group-hover:shadow-[0_0_15px_rgba(0,240,255,0.3)]">
-                <span className="font-mono text-xs font-black tracking-tighter text-white group-hover:text-[#00F0FF] transition-colors">
-                  FH
-                </span>
-                <span className="absolute inset-0 bg-[#00F0FF]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#080C14]/90 border border-[#00F0FF]/30 flex items-center justify-center p-1.5 overflow-hidden transition-all duration-300 group-hover:border-[#00F0FF] group-hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] group-hover:scale-105">
+                <img
+                  src="/logo.png"
+                  alt="Frameless Hub"
+                  className="w-full h-full object-contain filter drop-shadow-[0_0_6px_rgba(0,240,255,0.45)]"
+                />
               </div>
               <div className="flex flex-col">
-                <span className="font-sans text-sm sm:text-base font-bold tracking-widest text-white uppercase group-hover:text-[#00F0FF] transition-colors">
+                <span className="font-sans text-sm sm:text-base font-bold tracking-widest text-white uppercase group-hover:text-[#00F0FF] transition-colors leading-none">
                   FRAMELESS HUB
                 </span>
-                <span className="text-[9px] font-mono tracking-wider text-[#94A3B8] uppercase -mt-0.5">
-                  Studio • Chennai
+                <span className="text-[9px] font-mono tracking-wider text-[#94A3B8] uppercase mt-1">
+                  A CREATIVE MEDIA AGENCY • CHENNAI
                 </span>
               </div>
             </Link>
