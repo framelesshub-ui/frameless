@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowUpRight, CheckCircle2, Loader2 } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqenkryn';
 
 const SERVICE_OPTIONS = [
   'Branding',
@@ -25,26 +27,37 @@ export default function ContactForm() {
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    setErrorMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         setStatus('success');
       } else {
-        // Fallback for mock environments
-        setStatus('success');
+        const data = await response.json().catch(() => null);
+        if (data && data.errors && data.errors.length > 0) {
+          setErrorMessage(data.errors.map((err: { message: string }) => err.message).join(', '));
+        } else {
+          setErrorMessage('Unable to send enquiry. Please try again or email us directly.');
+        }
+        setStatus('error');
       }
     } catch (err) {
-      setStatus('success');
+      setErrorMessage('Network error. Please check your connection or email framelesshub@gmail.com.');
+      setStatus('error');
     }
   };
 
@@ -73,7 +86,7 @@ export default function ContactForm() {
             });
             setStatus('idle');
           }}
-          className="text-xs font-mono uppercase tracking-wider text-white hover:text-[#00F0FF] transition-colors"
+          className="text-xs font-mono uppercase tracking-wider text-white hover:text-[#00F0FF] transition-colors cursor-pointer"
         >
           Send another message →
         </button>
@@ -82,7 +95,20 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form
+      action={FORMSPREE_ENDPOINT}
+      method="POST"
+      onSubmit={handleSubmit}
+      className="space-y-6"
+    >
+      {/* Error notification if submission failed */}
+      {status === 'error' && (
+        <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-xs flex items-center gap-3">
+          <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+          <span>{errorMessage}</span>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Name */}
         <div>
@@ -91,6 +117,7 @@ export default function ContactForm() {
           </label>
           <input
             type="text"
+            name="name"
             required
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -106,6 +133,7 @@ export default function ContactForm() {
           </label>
           <input
             type="email"
+            name="email"
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -123,6 +151,7 @@ export default function ContactForm() {
           </label>
           <input
             type="tel"
+            name="contact"
             value={formData.contact}
             onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
             placeholder="+91 00000 00000"
@@ -137,6 +166,7 @@ export default function ContactForm() {
           </label>
           <input
             type="text"
+            name="company"
             value={formData.company}
             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             placeholder="Brand or Studio name"
@@ -150,6 +180,7 @@ export default function ContactForm() {
         <label className="block text-xs font-mono uppercase tracking-wider text-[#A1A1AA] mb-2">
           What do you need?
         </label>
+        <input type="hidden" name="service" value={formData.service} />
         <div className="flex flex-wrap gap-2">
           {SERVICE_OPTIONS.map((opt) => (
             <button
@@ -174,6 +205,7 @@ export default function ContactForm() {
           Message *
         </label>
         <textarea
+          name="message"
           required
           rows={4}
           value={formData.message}
@@ -191,6 +223,7 @@ export default function ContactForm() {
           </label>
           <input
             type="text"
+            name="budget"
             value={formData.budget}
             onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
             placeholder="e.g. ₹2L - ₹10L"
@@ -204,6 +237,7 @@ export default function ContactForm() {
           </label>
           <input
             type="text"
+            name="timeline"
             value={formData.timeline}
             onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
             placeholder="e.g. Next month, Q3"
