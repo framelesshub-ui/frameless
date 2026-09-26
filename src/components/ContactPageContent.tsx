@@ -45,7 +45,7 @@ export default function ContactPageContent() {
                   <div>
                     <strong className="block text-white font-semibold">Frameless Hub Studio</strong>
                     <p className="text-[#94A3B8] text-xs mt-0.5 leading-relaxed">
-                      Chennai, Tamil Nadu, India
+                      Chennai, Tamil Nadu, India • EST. 2026
                       <br />
                       Serving Global Partners
                     </p>

@@ -164,7 +164,7 @@ export default function Footer({ onNavigate }: FooterProps) {
         {/* Bottom Bar: Copyright & Location */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#94A3B8]/70">
           <p>© 2026 Frameless Hub. All Rights Reserved.</p>
-          <p>Location: Chennai, India</p>
+          <p>Chennai, India • EST. 2026</p>
         </div>
 
       </div>

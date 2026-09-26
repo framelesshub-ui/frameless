@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Frameless Hub — A Creative Media Agency",
     description:
-      "Strategy, content, design and performance marketing for ambitious brands. Based in Chennai, India.",
+      "Strategy, content, design and performance marketing for ambitious brands. Based in Chennai, India. EST. 2026.",
     type: "website",
     images: [
       {
@@ -43,6 +43,58 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Frameless Hub — A Creative Media Agency",
+    description:
+      "Strategy, content, design and performance marketing for ambitious brands. Chennai, India • EST. 2026.",
+    images: ["/logo.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://framelesshub.com/#organization",
+      "name": "Frameless Hub",
+      "url": "https://framelesshub.com",
+      "logo": "https://framelesshub.com/logo.png",
+      "foundingDate": "2026",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Chennai, Tamil Nadu, India"
+      },
+      "description": "A Creative Media Agency specializing in brand strategy, cinematic video production, YouTube management, and performance marketing. Established 2026 in Chennai, India.",
+      "sameAs": [
+        "https://www.youtube.com/@Framelessmediatamil",
+        "https://instagram.com/framelesshub",
+        "https://linkedin.com/company/framelesshub"
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://framelesshub.com/#localbusiness",
+      "name": "Frameless Hub",
+      "image": "https://framelesshub.com/logo.png",
+      "url": "https://framelesshub.com",
+      "telephone": "+919840000000",
+      "priceRange": "$$$",
+      "foundingDate": "2026",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "13.0827",
+        "longitude": "80.2707"
+      }
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -52,6 +104,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="flex flex-col min-h-screen bg-[#04060A] text-[#F5F7FA] font-sans selection:bg-[#00F0FF]/25 selection:text-white">
         <a
           href="#main-content"

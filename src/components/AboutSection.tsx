@@ -85,7 +85,7 @@ export default function AboutSection() {
                     FRAMELESS HUB HQ
                   </div>
                   <div className="text-sm font-bold text-white">
-                    Chennai, India • Est. 2026
+                    Chennai, India • EST. 2026
                   </div>
                   <div className="text-xs text-[#94A3B8] mt-0.5">
                     Producing cinema, identities, and media IP for modern market leaders.

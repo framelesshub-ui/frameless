@@ -168,7 +168,7 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
               <ArrowUpRight className="w-4 h-4" />
             </Link>
             <p className="text-center text-[11px] font-mono text-[#94A3B8]">
-              Frameless Hub • Chennai, India
+              Frameless Hub • Chennai, India • EST. 2026
             </p>
           </div>
         </div>
