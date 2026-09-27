@@ -80,38 +80,66 @@ export default function WorkPageContent() {
           })}
         </div>
 
-        {/* Portfolio Grid: Large visuals dominate, clean typography */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+        {/* Portfolio Grid: Large luxury typographic cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {filteredProjects.map((project) => (
             <Link
               key={project.slug}
               href={`/work/${project.slug}`}
-              className="group block overflow-hidden"
+              className="group p-8 sm:p-10 rounded-2xl bg-[#0F0F10] border border-white/[0.08] hover:border-[#00F0FF]/40 hover:bg-white/[0.02] transition-all duration-300 flex flex-col justify-between"
             >
-              {/* Image Frame */}
-              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#0F0F10] border border-white/[0.08] mb-5">
-                <img
-                  src={project.thumbnail}
-                  alt={project.client}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+              <div>
+                {/* Meta Top: Category & Year */}
+                <div className="flex items-center justify-between gap-4 pb-6 border-b border-white/[0.08] mb-6">
+                  <span className="text-xs font-mono text-[#00F0FF] uppercase tracking-wider font-semibold">
+                    {project.displayCategory}
+                  </span>
+                  <span className="text-xs font-mono text-[#71717A]">
+                    {project.year}
+                  </span>
+                </div>
+
+                {/* Client Name */}
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white group-hover:text-[#00F0FF] transition-colors mb-2">
+                  {project.client}
+                </h2>
+
+                {/* Project Scope / Title */}
+                <p className="text-base text-[#D4D4D8] font-medium mb-4">
+                  {project.title}
+                </p>
+
+                {/* Overview */}
+                <p className="text-sm text-[#A1A1AA] leading-relaxed mb-6 font-normal">
+                  {project.overview}
+                </p>
+
+                {/* Deliverables */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.deliverables.map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1 rounded-full text-[11px] font-mono text-[#E4E4E7] bg-white/[0.03] border border-white/[0.08]"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              {/* Card Meta: Client, Project, Category */}
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white group-hover:text-[#00F0FF] transition-colors">
-                    {project.client}
-                  </h2>
-                  <p className="text-base text-[#D4D4D8] font-medium mt-1">
-                    {project.title}
-                  </p>
-                  <p className="text-xs font-mono text-[#A1A1AA] uppercase tracking-wider mt-1.5">
-                    {project.displayCategory}
-                  </p>
-                </div>
-                <div className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#A1A1AA] group-hover:text-white group-hover:border-white/30 transition-all shrink-0 mt-1">
+              {/* Card Footer: Verified Result & Arrow */}
+              <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
+                {project.verifiedResult ? (
+                  <span className="text-xs font-mono text-[#00F0FF] font-semibold">
+                    {project.verifiedResult}
+                  </span>
+                ) : (
+                  <span className="text-xs font-mono text-[#71717A]">
+                    Case Study
+                  </span>
+                )}
+                <div className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-white group-hover:text-[#00F0FF] transition-colors">
+                  <span>View Details</span>
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>

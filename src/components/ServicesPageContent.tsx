@@ -3,37 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-
-const CAPABILITY_ITEMS = [
-  {
-    number: '01',
-    title: 'STRATEGY',
-    services: ['Brand Planning', 'Campaign Planning', 'Content Planning'],
-    description: 'We clarify your message and plan campaigns that connect with the right audience.',
-    image: '/media/generated/branding-identity-editorial.jpg',
-  },
-  {
-    number: '02',
-    title: 'BRANDING',
-    services: ['Logo & Brand Identity', 'Visual Design', 'Creative Direction'],
-    description: 'Distinctive visual identities, logos, and guidelines crafted to endure.',
-    image: '/services/branding-design.png',
-  },
-  {
-    number: '03',
-    title: 'CONTENT',
-    services: ['Photography', 'Video Production', 'Video Editing', 'YouTube Content'],
-    description: 'Cinematic films, photography, and high-retention video engineered for digital platforms.',
-    image: '/media/generated/content-production-studio.jpg',
-  },
-  {
-    number: '04',
-    title: 'GROWTH',
-    services: ['Social Media Marketing', 'Paid Ads', 'Campaign Improvement'],
-    description: 'Data-driven paid ads, social distribution, and ongoing campaign optimization.',
-    image: '/media/generated/performance-analytics-studio.jpg',
-  },
-];
+import { CAPABILITIES } from '@/data/capabilities';
 
 export default function ServicesPageContent() {
   return (
@@ -56,49 +26,51 @@ export default function ServicesPageContent() {
           </p>
         </div>
 
-        {/* Four Clean Sections with Actual Work Alongside */}
-        <div className="space-y-16 sm:space-y-24">
-          {CAPABILITY_ITEMS.map((cap) => (
+        {/* Four Clean Sections */}
+        <div className="space-y-12 sm:space-y-16">
+          {CAPABILITIES.map((cap) => (
             <div
               key={cap.number}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center p-8 sm:p-12 rounded-2xl bg-[#0F0F10] border border-white/[0.08]"
+              className="p-8 sm:p-12 rounded-2xl bg-[#0F0F10] border border-white/[0.08]"
             >
-              {/* Left Column: Details */}
-              <div className="lg:col-span-6">
-                <span className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest block mb-4">
-                  {cap.number}
-                </span>
-
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-                  {cap.title}
-                </h2>
-
-                <p className="text-base text-[#A1A1AA] leading-relaxed mb-8">
-                  {cap.description}
-                </p>
-
-                <div className="space-y-3 pt-6 border-t border-white/[0.08]">
-                  {cap.services.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-3 text-sm text-white font-medium"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                <div className="lg:col-span-2">
+                  <span className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest block">
+                    {cap.number} / 04
+                  </span>
                 </div>
-              </div>
 
-              {/* Right Column: Actual Work Visual */}
-              <div className="lg:col-span-6">
-                <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-black border border-white/[0.08]">
-                  <img
-                    src={cap.image}
-                    alt={cap.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                <div className="lg:col-span-5">
+                  <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+                    {cap.title}
+                  </h2>
+                  <p className="text-base text-[#A1A1AA] leading-relaxed">
+                    {cap.description}
+                  </p>
+                </div>
+
+                <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+                  <div className="space-y-3">
+                    {cap.services.map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center gap-3 text-sm text-white font-medium"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div>
+                    <Link
+                      href={`/contact?service=${encodeURIComponent(cap.title)}`}
+                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white hover:text-[#00F0FF] transition-colors"
+                    >
+                      <span>Discuss {cap.title.toLowerCase()}</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#00F0FF]" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

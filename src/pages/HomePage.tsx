@@ -3,7 +3,6 @@ import Hero from '../components/home/Hero';
 import EditorialMarquee from '../components/home/EditorialMarquee';
 import SelectedWork from '../components/home/SelectedWork';
 import EditorialStatement from '../components/home/EditorialStatement';
-import Showreel from '../components/home/Showreel';
 import WhatWeDo from '../components/home/WhatWeDo';
 import WorkingWith from '../components/home/WorkingWith';
 import AboutPreview from '../components/home/AboutPreview';
@@ -16,7 +15,7 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = () => {
   return (
     <div className="relative w-full bg-[#080808] text-[#F4F4F5]">
-      {/* 01 — Signature Hero */}
+      {/* 01 — Architectural Hero */}
       <Hero />
 
       {/* 02 — Editorial Marquee */}
@@ -28,19 +27,16 @@ export const HomePage: React.FC<HomePageProps> = () => {
       {/* 04 — Editorial Manifesto */}
       <EditorialStatement />
 
-      {/* 05 — Showreel */}
-      <Showreel />
-
-      {/* 06 — Disciplines */}
+      {/* 05 — Disciplines */}
       <WhatWeDo />
 
-      {/* 07 — Partners */}
+      {/* 06 — Partners */}
       <WorkingWith />
 
-      {/* 08 — Studio Ethos */}
+      {/* 07 — Studio Ethos */}
       <AboutPreview />
 
-      {/* 09 — Final CTA */}
+      {/* 08 — Final CTA */}
       <FinalCTA />
     </div>
   );

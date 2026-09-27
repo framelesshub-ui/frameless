@@ -48,28 +48,6 @@ export default function CaseStudy({ project }: CaseStudyProps) {
           </div>
         </div>
 
-        {/* Large Hero Video or Image */}
-        <div className="relative aspect-[16/10] sm:aspect-[21/9] w-full rounded-2xl overflow-hidden bg-[#0F0F10] border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.7)] mb-16 sm:mb-24">
-          {project.video ? (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster={project.thumbnail}
-              className="w-full h-full object-cover"
-            >
-              <source src={project.video} type="video/mp4" />
-            </video>
-          ) : (
-            <img
-              src={project.thumbnail}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-          )}
-        </div>
-
         {/* Overview & What We Did */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 py-8 mb-16 sm:mb-24 border-b border-white/[0.08]">
           {/* Overview (Max 3-4 lines) */}
@@ -96,29 +74,6 @@ export default function CaseStudy({ project }: CaseStudyProps) {
                   {item}
                 </span>
               ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Large Project Gallery (Visuals dominate) */}
-        <div className="mb-20 sm:mb-28 space-y-8 sm:space-y-12">
-          <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#71717A] mb-6">
-            Project Visuals
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#0F0F10] border border-white/[0.08]">
-              <img
-                src={project.thumbnail}
-                alt={`${project.client} visual`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#0F0F10] border border-white/[0.08]">
-              <img
-                src="/media/generated/studio-interior-editorial.jpg"
-                alt="Production visual"
-                className="w-full h-full object-cover"
-              />
             </div>
           </div>
         </div>

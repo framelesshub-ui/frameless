@@ -5,7 +5,7 @@ export interface BrandingProject {
   tagline: string;
   category: string;
   visualDirection: string;
-  projectImage: string;
+  projectImage?: string;
   videoPreview?: string;
   colorPalette: string[];
   deliverables: string[];
@@ -13,10 +13,6 @@ export interface BrandingProject {
   narrative: string;
 }
 
-/**
- * Featured Branding & Design Projects
- * Media paths are centralized here for easy updates.
- */
 export const BRANDING_PROJECTS: BrandingProject[] = [
   {
     id: "ora-kitchen",
@@ -25,8 +21,6 @@ export const BRANDING_PROJECTS: BrandingProject[] = [
     tagline: "Artisanal Culinary Craft & Gastronomy",
     category: "Culinary & Restaurant Identity",
     visualDirection: "Premium food / restaurant / kitchen branding",
-    projectImage: "/services/branding-design.png",
-    videoPreview: "/videos/video-2.mov",
     colorPalette: ["#1A1612", "#C4A482", "#E8D8C8", "#2E3A23"],
     deliverables: [
       "Custom Wordmark & Monogram",
@@ -35,7 +29,7 @@ export const BRANDING_PROJECTS: BrandingProject[] = [
       "Spatial Signage & Uniform Guidelines"
     ],
     year: "2026",
-    narrative: "Created an earthy, tactile brand language that bridges modern fine dining with ancestral culinary honesty, using textured Japanese paper stocks, warm timber accents, and minimal typography."
+    narrative: "Created an earthy, tactile brand language that bridges modern fine dining with ancestral culinary honesty, using textured paper stocks, warm timber accents, and minimal typography."
   },
   {
     id: "aura-home",
@@ -44,12 +38,10 @@ export const BRANDING_PROJECTS: BrandingProject[] = [
     tagline: "Architectural Living & Spatial Serenity",
     category: "Interior & Lifestyle Architecture",
     visualDirection: "Premium interior / home / lifestyle branding",
-    projectImage: "/media/generated/studio-interior-editorial.jpg",
-    videoPreview: "/videos/video-3.mov",
     colorPalette: ["#0C0E12", "#8C92A4", "#E2E8F0", "#00F0FF"],
     deliverables: [
       "Architectural Brand Identity",
-      "Lookbook & Editorial Editorial Catalog",
+      "Lookbook & Editorial Catalog",
       "Digital Showroom Interface",
       "Exhibition & Spatial Wayfinding"
     ],
@@ -58,21 +50,19 @@ export const BRANDING_PROJECTS: BrandingProject[] = [
   },
   {
     id: "krithi-makeover-artistry",
-    slug: "krithi-makeover-artistry",
+    slug: "krithi-makeover-artistry-identity",
     brandName: "Krithi Makeover Artistry",
-    tagline: "Opulent Bridal Couture & Editorial Makeup",
-    category: "Luxury Bridal & Beauty Identity",
-    visualDirection: "Premium bridal / makeup / beauty branding",
-    projectImage: "/media/generated/content-production-studio.jpg",
-    videoPreview: "/videos/video-4.mov",
-    colorPalette: ["#140E10", "#D4AF37", "#F7ECE1", "#9B2C2C"],
+    tagline: "Haute Aesthetics & Editorial Distinction",
+    category: "Luxury Beauty & Personal Branding",
+    visualDirection: "Premium beauty / fashion / personal branding",
+    colorPalette: ["#100E12", "#E5D0C5", "#A38B7D", "#00F0FF"],
     deliverables: [
-      "Luxury Monogram & Stamp Seal",
-      "High-Fashion Bridal Lookbook",
-      "Private Client Consultation Portal",
-      "Bespoke Gold-Foil Packaging"
+      "Signature Monogram & Foil Typography",
+      "Luxury Editorial Portfolio Design",
+      "VIP Client Consultation Suite",
+      "Certificate of Master Artistry"
     ],
     year: "2026",
-    narrative: "Infused regal heritage with contemporary high-fashion elegance, creating a coveted identity for South India's premier destination bridal artistry studio."
+    narrative: "Positioned the artist as a premier high-fashion bridal and editorial authority through champagne-foil accents, modern luxury typography, and refined monochrome palettes."
   }
 ];

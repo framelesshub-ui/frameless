@@ -5,7 +5,7 @@ export interface Project {
   title: string;
   category: 'Branding' | 'Content' | 'YouTube' | 'Campaigns';
   displayCategory: string;
-  thumbnail: string;
+  thumbnail?: string;
   video?: string;
   videoEmbedUrl?: string;
   channelUrl?: string;
@@ -32,8 +32,6 @@ export const projects: Project[] = [
     title: 'Automotive Content',
     category: 'YouTube',
     displayCategory: 'YouTube / Production',
-    thumbnail: '/campaigns/automotive.jpg',
-    video: '/assets/frameless-hero.mp4',
     featured: true,
     year: '2026',
     overview:
@@ -51,7 +49,6 @@ export const projects: Project[] = [
     title: 'Brand Identity',
     category: 'Branding',
     displayCategory: 'Branding',
-    thumbnail: '/media/generated/branding-identity-editorial.jpg',
     featured: true,
     year: '2026',
     overview:
@@ -69,7 +66,6 @@ export const projects: Project[] = [
     title: 'Brand Identity',
     category: 'Branding',
     displayCategory: 'Branding',
-    thumbnail: '/services/branding-design.png',
     featured: true,
     year: '2026',
     overview:
@@ -86,7 +82,6 @@ export const projects: Project[] = [
     title: 'Digital Content',
     category: 'YouTube',
     displayCategory: 'YouTube / Content',
-    thumbnail: '/media/generated/performance-analytics-studio.jpg',
     featured: true,
     year: '2026',
     overview:
@@ -102,7 +97,6 @@ export const projects: Project[] = [
     title: 'Brand & Social Content',
     category: 'Branding',
     displayCategory: 'Branding / Content',
-    thumbnail: '/media/generated/social-creator-studio.jpg',
     featured: true,
     year: '2026',
     overview:
@@ -119,7 +113,6 @@ export const projects: Project[] = [
     title: 'Digital Presence',
     category: 'Branding',
     displayCategory: 'Branding',
-    thumbnail: '/media/generated/web-digital-showcase.jpg',
     featured: true,
     year: '2026',
     overview:
@@ -135,7 +128,6 @@ export const projects: Project[] = [
     title: 'Original Digital Content',
     category: 'Content',
     displayCategory: 'Media / Production',
-    thumbnail: '/media/generated/content-production-studio.jpg',
     featured: true,
     year: '2026',
     overview:
@@ -154,7 +146,6 @@ export const getFeaturedProjects = (): Project[] => {
 };
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
-  // Support both canonical and common alias slugs
   if (slug === 'aura-homes') slug = 'aura-home';
   if (slug === 'krithi-makeup-artist') slug = 'krithi-makeover-artistry';
   return projects.find((p) => p.slug === slug);

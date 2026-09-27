@@ -106,16 +106,27 @@ export default function AboutPageContent() {
             The ideas, shoots, edits, campaigns, and details all come from real people working closely together.
           </p>
 
-          {/* Real studio photography */}
-          <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden bg-[#0F0F10] border border-white/[0.08] mb-16 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-            <img
-              src="/media/generated/studio-interior-editorial.jpg"
-              alt="Frameless Hub Studio"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-4 left-6 text-xs font-mono text-[#A1A1AA] uppercase tracking-wider">
-              Frameless Hub Creative Studio — Chennai
+          {/* Studio Monogram Card */}
+          <div className="p-8 sm:p-12 rounded-2xl bg-[#0F0F10] border border-white/[0.08] mb-16 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center justify-between flex-wrap gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-white/[0.04] border border-white/10 p-2.5 flex items-center justify-center">
+                <img
+                  src="/logo.png"
+                  alt="Frameless Hub Logo"
+                  className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(0,240,255,0.25)]"
+                />
+              </div>
+              <div>
+                <span className="text-base font-mono font-bold tracking-widest text-white uppercase block">
+                  FRAMELESS HUB STUDIO
+                </span>
+                <span className="text-xs font-mono text-[#A1A1AA] uppercase tracking-wider">
+                  Chennai, Tamil Nadu, India • EST. 2026
+                </span>
+              </div>
+            </div>
+            <div className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08]">
+              INDEPENDENT &bull; CRAFT-LED
             </div>
           </div>
 
