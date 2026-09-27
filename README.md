@@ -1,6 +1,6 @@
 # Frameless Hub — Premium Creative Media & Branding Studio
 
-> **Create Without Limits — We craft cinematic visuals, compelling content, and brand stories designed to stand apart.
+> Create Without Limits — We craft cinematic visuals, compelling content, and brand stories designed to stand apart.
 
 ---
 
