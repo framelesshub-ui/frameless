@@ -1,6 +1,6 @@
-# Frameless Hub — Premium Creative Agency
+# Frameless Hub — Premium Creative Media & Branding Studio
 
-> **Create Without Limits** — We craft cinematic visuals, viral content, and brand stories that break frames.
+> **Create Without Limits — We craft cinematic visuals, compelling content, and brand stories designed to stand apart.
 
 ---
 
