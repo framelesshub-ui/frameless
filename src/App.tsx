@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import AnimatedBackground from './components/AnimatedBackground';
 
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
@@ -85,7 +86,10 @@ export function App() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-[#04060A] text-[#F5F7FA] overflow-x-hidden selection:bg-[#00F0FF]/25 selection:text-white">
+    <div className="relative w-full min-h-screen bg-[#080808] text-[#F5F7FA] overflow-x-hidden selection:bg-[#00F0FF]/25 selection:text-white">
+      {/* 0. Living Cinematic Animated Background */}
+      <AnimatedBackground />
+
       {/* 1. Floating Glass Navigation Header */}
       <Header currentRoute={route} onNavigate={handleNavigate} />
 

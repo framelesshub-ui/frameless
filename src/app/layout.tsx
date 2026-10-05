@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 import CustomCursor from '@/components/CustomCursor';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://framelesshub.com'),
@@ -111,6 +112,7 @@ export default function RootLayout({
         />
       </head>
       <body className="flex flex-col min-h-screen bg-[#080808] text-[#F4F4F5] font-sans antialiased selection:bg-[#00F0FF]/25 selection:text-white">
+        <AnimatedBackground />
         <CustomCursor />
         <SmoothScroll>
           <a

@@ -7,7 +7,7 @@ import Magnetic from '../Magnetic';
 
 export default function FinalCTA() {
   return (
-    <section className="py-24 sm:py-40 bg-[#080808] text-[#F4F4F5] relative overflow-hidden">
+    <section className="py-24 sm:py-40 bg-transparent text-[#F4F4F5] relative overflow-hidden">
       {/* Background ambient light */}
       <div
         aria-hidden="true"

@@ -9,7 +9,7 @@ import Magnetic from '../Magnetic';
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 sm:pt-40 md:pt-48 pb-16 sm:pb-24 bg-[#080808] text-[#F4F4F5] overflow-hidden border-b border-white/[0.08]">
+    <section className="relative pt-32 sm:pt-40 md:pt-48 pb-16 sm:pb-24 bg-transparent text-[#F4F4F5] overflow-hidden border-b border-white/[0.08]">
       {/* Ambient background glow */}
       <div
         aria-hidden="true"

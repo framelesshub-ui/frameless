@@ -13,7 +13,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
   const nextProject = getNextProject(project.slug);
 
   return (
-    <article className="bg-[#080808] text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-28">
+    <article className="bg-transparent text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-28">
       <div className="editorial-container">
         
         {/* Back Link */}

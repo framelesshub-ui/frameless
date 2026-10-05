@@ -71,3 +71,49 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
+
+/* ── Animated Background Orbs ── */
+@keyframes orb-float-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(120px, -80px) scale(1.12);
+  }
+  66% {
+    transform: translate(-70px, 90px) scale(0.92);
+  }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-110px, 70px) scale(1.08);
+  }
+  66% {
+    transform: translate(80px, -90px) scale(0.95);
+  }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(90px, 100px) scale(1.15);
+  }
+}
+
+.animate-orb-1 {
+  animation: orb-float-1 24s ease-in-out infinite;
+}
+
+.animate-orb-2 {
+  animation: orb-float-2 30s ease-in-out infinite;
+}
+
+.animate-orb-3 {
+  animation: orb-float-3 36s ease-in-out infinite;
+}

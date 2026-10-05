@@ -6,7 +6,7 @@ import { ArrowUpRight, ShieldCheck } from 'lucide-react';
 
 export default function AboutPreview() {
   return (
-    <section className="py-24 sm:py-36 bg-[#080808] text-[#F4F4F5] border-b border-white/[0.08]">
+    <section className="py-24 sm:py-36 bg-transparent text-[#F4F4F5] border-b border-white/[0.08]">
       <div className="editorial-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           

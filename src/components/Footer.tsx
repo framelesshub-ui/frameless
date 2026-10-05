@@ -9,7 +9,7 @@ interface FooterProps {
 
 export default function Footer({ onNavigate }: FooterProps = {}) {
   return (
-    <footer className="bg-[#080808] border-t border-white/[0.08] text-[#F4F4F5] pt-16 pb-12">
+    <footer className="bg-[#080808]/85 backdrop-blur-md border-t border-white/[0.08] text-[#F4F4F5] pt-16 pb-12">
       <div className="editorial-container">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-14 border-b border-white/[0.08]">
           {/* Brand info */}

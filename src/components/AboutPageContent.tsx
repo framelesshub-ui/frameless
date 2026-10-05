@@ -8,7 +8,7 @@ import { siteStats } from '@/data/stats';
 
 export default function AboutPageContent() {
   return (
-    <div className="bg-[#080808] text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-28">
+    <div className="bg-transparent text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-28">
       <div className="editorial-container">
         
         {/* Hero */}

@@ -14,7 +14,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = () => {
   return (
-    <div className="relative w-full bg-[#080808] text-[#F4F4F5]">
+    <div className="relative w-full bg-transparent text-[#F4F4F5]">
       {/* 01 — Architectural Hero */}
       <Hero />
 

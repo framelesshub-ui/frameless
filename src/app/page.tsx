@@ -9,7 +9,7 @@ import FinalCTA from '@/components/home/FinalCTA';
 
 export default function Home() {
   return (
-    <div className="bg-[#080808] text-[#F4F4F5] min-h-screen">
+    <div className="relative bg-transparent text-[#F4F4F5] min-h-screen">
       {/* 01 — Architectural Hero with Official Logo & Verified Stats */}
       <Hero />
 

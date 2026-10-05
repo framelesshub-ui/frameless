@@ -48,7 +48,7 @@ export default function EditorialStatement() {
   return (
     <section
       ref={containerRef}
-      className="py-28 sm:py-40 bg-[#080808] text-[#F4F4F5] border-t border-white/[0.08] relative overflow-hidden"
+      className="py-28 sm:py-40 bg-transparent text-[#F4F4F5] border-t border-white/[0.08] relative overflow-hidden"
     >
       <div className="editorial-container">
         <div className="max-w-4xl mx-auto">
