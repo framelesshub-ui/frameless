@@ -62,12 +62,22 @@ export default function Footer({ onNavigate }: FooterProps = {}) {
             </ul>
           </div>
 
-          {/* Social */}
+          {/* Direct & Social */}
           <div className="md:col-span-3">
             <span className="block text-[11px] font-mono uppercase tracking-widest text-[#71717A] mb-4">
-              Social
+              Connect
             </span>
             <ul className="space-y-2.5 text-xs tracking-wider uppercase font-medium">
+              <li>
+                <a
+                  href="https://wa.me/918248628371"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#A1A1AA] hover:text-[#00F0FF] transition-colors"
+                >
+                  WhatsApp : +91 82486 28371
+                </a>
+              </li>
               <li>
                 <a
                   href="https://instagram.com/framelesshub"

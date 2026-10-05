@@ -76,12 +76,14 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
         </a>
 
         <div className="flex items-center justify-between text-xs text-white/50 pt-2 font-mono">
-          <span>Chennai, India • EST. 2026</span>
+          <span>Chennai • EST. 2026</span>
           <a
-            href="mailto:hello@framelesshub.com"
+            href="https://wa.me/918248628371"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-white/80 hover:text-[#00d8f5] underline underline-offset-2 transition-colors"
           >
-            hello@framelesshub.com
+            +91 82486 28371
           </a>
         </div>
       </div>

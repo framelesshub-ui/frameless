@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import ContactForm from './ContactForm';
 
 export default function ContactPageContent() {
@@ -58,10 +58,13 @@ export default function ContactPageContent() {
                     Phone &amp; WhatsApp
                   </span>
                   <a
-                    href="tel:+918248628371"
-                    className="text-lg sm:text-xl font-medium text-white hover:text-[#00F0FF] transition-colors"
+                    href="https://wa.me/918248628371"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-white hover:text-[#00F0FF] transition-colors group"
                   >
-                    +91 82486 28371
+                    <span>+91 82486 28371</span>
+                    <ArrowUpRight className="w-4 h-4 text-[#00F0FF] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </a>
                 </div>
 

@@ -75,13 +75,16 @@ export default function FinalCTA() {
             <div>
               <div className="text-xs font-mono text-[#71717A] uppercase tracking-wider mb-2 flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#00F0FF]" />
-                <span>Direct Contact</span>
+                <span>Phone &amp; WhatsApp</span>
               </div>
               <a
-                href="tel:+918248628371"
-                className="text-sm sm:text-base font-medium text-white hover:text-[#00F0FF] transition-colors"
+                href="https://wa.me/918248628371"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm sm:text-base font-medium text-white hover:text-[#00F0FF] transition-colors inline-flex items-center gap-1.5"
               >
-                +91 82486 28371
+                <span>+91 82486 28371</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#00F0FF]/60" />
               </a>
             </div>
 

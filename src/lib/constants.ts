@@ -81,4 +81,5 @@ export const TESTIMONIALS = [
 // ── Social Links ─────────────────────────────────
 export const SOCIAL_LINKS = [
   { label: 'Instagram', href: 'https://instagram.com/framelesshub' },
+  { label: 'WhatsApp', href: 'https://wa.me/918248628371' },
 ] as const;

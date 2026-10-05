@@ -161,9 +161,17 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
               <span>Start a Project</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
-            <p className="text-xs font-mono text-[#71717A] text-center">
-              Chennai, India • EST. 2026
-            </p>
+            <div className="flex items-center justify-between text-xs font-mono text-[#71717A] pt-1 px-1">
+              <span>Chennai • EST. 2026</span>
+              <a
+                href="https://wa.me/918248628371"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-[#00F0FF] transition-colors"
+              >
+                +91 82486 28371
+              </a>
+            </div>
           </div>
         </div>
       )}
