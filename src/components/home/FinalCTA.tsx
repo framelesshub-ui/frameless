@@ -8,7 +8,18 @@ import Magnetic from '../Magnetic';
 export default function FinalCTA() {
   return (
     <section className="py-24 sm:py-40 bg-transparent text-[#F4F4F5] relative overflow-hidden">
-      {/* Background ambient light */}
+      {/* Background ambient light & Subtle Frameless Hub watermark logo */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-20 right-0 sm:right-12 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] opacity-[0.035] flex items-center justify-center select-none"
+      >
+        <img
+          src="/logo.png"
+          alt="Frameless Hub Watermark"
+          className="w-full h-full object-contain filter grayscale"
+        />
+      </div>
+
       <div
         aria-hidden="true"
         className="pointer-events-none absolute bottom-0 right-0 w-[600px] h-[500px] bg-gradient-to-t from-[#00F0FF]/5 via-transparent to-transparent blur-[140px]"

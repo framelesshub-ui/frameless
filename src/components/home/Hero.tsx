@@ -31,36 +31,40 @@ export default function Hero() {
             </div>
 
             {/* Monumental Headline */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.03] mb-8">
-              We make brands
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.03] mb-6">
+              Made to
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#F4F4F5] to-[#A1A1AA]">
-                hard to forget
+                stand apart
               </span>
               <span className="text-[#00F0FF]">.</span>
             </h1>
 
             {/* Supporting Copy */}
-            <p className="text-base sm:text-lg md:text-xl text-[#A1A1AA] max-w-xl font-normal leading-relaxed mb-10">
-              Branding, content and digital campaigns for brands that want to stand out.
+            <p className="text-lg sm:text-2xl font-medium text-white tracking-wide mb-3">
+              Strategy. Storytelling. Design. Digital.
+            </p>
+            <p className="text-sm sm:text-base text-[#A1A1AA] max-w-xl font-normal leading-relaxed mb-10">
+              Branding, commercial film production and digital acceleration for brands that demand cultural presence.
             </p>
 
             {/* Magnetic CTA Action Buttons */}
             <div className="flex flex-wrap items-center gap-4">
               <Magnetic strength={7}>
-                <Link
-                  href="/work"
-                  data-cursor="VIEW"
+                <a
+                  href="#workspace"
+                  data-cursor="EXPLORE"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-semibold tracking-wider uppercase text-black bg-white hover:bg-[#00F0FF] transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.12)] hover:shadow-[0_0_35px_rgba(0,240,255,0.4)]"
                 >
-                  <span>View Our Work</span>
+                  <span>Studio Workspace</span>
                   <ArrowUpRight className="w-4 h-4" />
-                </Link>
+                </a>
               </Magnetic>
 
               <Magnetic strength={5}>
                 <Link
                   href="/contact"
+                  data-cursor="START"
                   className="inline-flex items-center justify-center px-8 py-4 rounded-full text-xs font-semibold tracking-wider uppercase text-white bg-white/[0.04] border border-white/20 hover:border-white hover:bg-white/[0.08] transition-all duration-300"
                 >
                   Start a Project

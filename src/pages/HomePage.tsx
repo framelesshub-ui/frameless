@@ -1,6 +1,8 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
 import EditorialMarquee from '../components/home/EditorialMarquee';
+import DaVinciWorkspace from '../components/home/DaVinciWorkspace';
+import CreativeFlowPipeline from '../components/home/CreativeFlowPipeline';
 import SelectedWork from '../components/home/SelectedWork';
 import EditorialStatement from '../components/home/EditorialStatement';
 import WhatWeDo from '../components/home/WhatWeDo';
@@ -15,28 +17,34 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = () => {
   return (
     <div className="relative w-full bg-transparent text-[#F4F4F5]">
-      {/* 01 — Architectural Hero */}
+      {/* 01 — INTRO (0–15%): "Made to stand apart." */}
       <Hero />
 
       {/* 02 — Editorial Marquee */}
       <EditorialMarquee />
 
-      {/* 03 — Selected Work */}
+      {/* 03 — DAVINCI RESOLVE–INSPIRED EDIT SUITE (15–55%) */}
+      <DaVinciWorkspace />
+
+      {/* 04 — GOOGLE FLOW–INSPIRED CREATIVE PIPELINE (55–70%) */}
+      <CreativeFlowPipeline />
+
+      {/* 05 — PORTFOLIO SEQUENCE (70–90%) */}
       <SelectedWork />
 
-      {/* 04 — Editorial Manifesto */}
+      {/* 06 — Editorial Manifesto */}
       <EditorialStatement />
 
-      {/* 05 — Disciplines */}
+      {/* 07 — Disciplines & Capabilities */}
       <WhatWeDo />
 
-      {/* 06 — Partners */}
+      {/* 08 — Client Partners */}
       <WorkingWith />
 
-      {/* 07 — Studio Ethos */}
+      {/* 09 — Studio Ethos */}
       <AboutPreview />
 
-      {/* 08 — Final CTA */}
+      {/* 10 — FINAL SCENE (90–100%) */}
       <FinalCTA />
     </div>
   );

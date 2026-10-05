@@ -17,8 +17,8 @@ interface Particle {
 
 export default function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
   const [smoothMouse, setSmoothMouse] = useState({ x: -1000, y: -1000 });
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const [mounted, setMounted] = useState(false);
 
@@ -27,7 +27,13 @@ export default function AnimatedBackground() {
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
-      setMousePos({ x: e.clientX, y: e.clientY });
+
+      // Calculate subtle 3D tilt coordinates (-1 to 1)
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const dx = (e.clientX - cx) / cx;
+      const dy = (e.clientY - cy) / cy;
+      setTilt({ x: dx * 8, y: dy * -8 });
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
@@ -53,7 +59,7 @@ export default function AnimatedBackground() {
     return () => cancelAnimationFrame(animId);
   }, []);
 
-  // Canvas particle simulation
+  // Canvas particle simulation (GPU friendly 2D context)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -82,22 +88,22 @@ export default function AnimatedBackground() {
     handleResize();
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Generate balanced star/stardust motes
-    const particleCount = Math.floor(Math.min(Math.max(width / 32, 28), 55));
+    // Balanced stardust count
+    const particleCount = Math.floor(Math.min(Math.max(width / 36, 24), 45));
     const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22 - 0.08, // Subtle upward atmospheric drift
-        radius: Math.random() * 1.2 + 0.6,
-        baseAlpha: Math.random() * 0.25 + 0.1,
-        alpha: Math.random() * 0.25 + 0.1,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: (Math.random() - 0.5) * 0.18 - 0.06, // Gentle upward drift
+        radius: Math.random() * 1.1 + 0.5,
+        baseAlpha: Math.random() * 0.22 + 0.08,
+        alpha: Math.random() * 0.22 + 0.08,
         pulseSpeed: Math.random() * 0.02 + 0.008,
         phase: Math.random() * Math.PI * 2,
-        isCyan: Math.random() < 0.22, // 22% subtle cyan accent particles
+        isCyan: Math.random() < 0.2,
       });
     }
 
@@ -122,8 +128,8 @@ export default function AnimatedBackground() {
       const my = mouseRef.current.y;
       const isMotionReduced = checkReducedMotion();
 
-      // 1. Draw subtle constellation filaments between nearby particles
-      const maxConnectDist = 85;
+      // 1. Draw micro constellation filaments
+      const maxConnectDist = 75;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const p1 = particles[i];
@@ -133,14 +139,14 @@ export default function AnimatedBackground() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxConnectDist) {
-            const lineAlpha = (1 - dist / maxConnectDist) * 0.07;
+            const lineAlpha = (1 - dist / maxConnectDist) * 0.05;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = p1.isCyan || p2.isCyan
               ? `rgba(0, 240, 255, ${lineAlpha * 1.2})`
               : `rgba(255, 255, 255, ${lineAlpha})`;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -151,52 +157,40 @@ export default function AnimatedBackground() {
         const p = particles[i];
 
         if (!isMotionReduced) {
-          // Normal velocity drift
           p.x += p.vx;
           p.y += p.vy;
+          p.x += Math.sin(time + p.phase) * 0.05;
 
-          // Gentle sine waver
-          p.x += Math.sin(time + p.phase) * 0.06;
-
-          // Interactive subtle mouse repulsion
           if (mx > 0 && my > 0) {
             const dx = p.x - mx;
             const dy = p.y - my;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            const repelRadius = 110;
+            const repelRadius = 90;
 
             if (dist < repelRadius && dist > 0) {
-              const force = (1 - dist / repelRadius) * 0.6;
+              const force = (1 - dist / repelRadius) * 0.5;
               p.x += (dx / dist) * force;
               p.y += (dy / dist) * force;
             }
           }
 
-          // Screen wrapping
           if (p.x < -10) p.x = width + 10;
           if (p.x > width + 10) p.x = -10;
           if (p.y < -10) p.y = height + 10;
           if (p.y > height + 10) p.y = -10;
         }
 
-        // Pulse alpha gently
-        p.alpha = p.baseAlpha + Math.sin(time * 2 + p.phase) * 0.08;
-        const currentAlpha = Math.max(0.04, Math.min(p.alpha, 0.45));
+        p.alpha = p.baseAlpha + Math.sin(time * 2 + p.phase) * 0.07;
+        const currentAlpha = Math.max(0.04, Math.min(p.alpha, 0.4));
 
-        // Draw particle
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         if (p.isCyan) {
           ctx.fillStyle = `rgba(0, 240, 255, ${currentAlpha * 1.3})`;
-          ctx.shadowColor = 'rgba(0, 240, 255, 0.4)';
-          ctx.shadowBlur = 4;
         } else {
           ctx.fillStyle = `rgba(244, 244, 245, ${currentAlpha})`;
-          ctx.shadowColor = 'rgba(255, 255, 255, 0.2)';
-          ctx.shadowBlur = 2;
         }
         ctx.fill();
-        ctx.shadowBlur = 0; // Reset shadow for performance
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -216,11 +210,11 @@ export default function AnimatedBackground() {
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
     >
-      {/* ── 1. Deep Midnight Charcoal Base ── */}
+      {/* ── 1. Deep Charcoal Studio Void ── */}
       <div className="absolute inset-0 bg-[#080808]" />
 
       {/* ── 2. Cinematic Drifting Aurora Orbs (GPU composited) ── */}
-      {/* Orb A: Cyan studio light drift (Top-Left / Center) */}
+      {/* Orb A: Cyan studio light drift */}
       <div
         className="absolute -top-[10%] -left-[10%] w-[650px] sm:w-[850px] h-[650px] sm:h-[850px] rounded-full blur-[140px] opacity-35 mix-blend-screen animate-orb-1 will-change-transform pointer-events-none"
         style={{
@@ -229,7 +223,7 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* Orb B: Deep Midnight Azure Glow (Bottom-Right) */}
+      {/* Orb B: Deep Midnight Azure Glow */}
       <div
         className="absolute -bottom-[15%] -right-[10%] w-[700px] sm:w-[950px] h-[700px] sm:h-[950px] rounded-full blur-[160px] opacity-30 mix-blend-screen animate-orb-2 will-change-transform pointer-events-none"
         style={{
@@ -238,7 +232,7 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* Orb C: Deep Royal Indigo Drift (Center-Left / Mid-Screen) */}
+      {/* Orb C: Deep Royal Indigo Drift */}
       <div
         className="absolute top-[40%] -left-[15%] w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] rounded-full blur-[150px] opacity-25 mix-blend-screen animate-orb-3 will-change-transform pointer-events-none"
         style={{
@@ -247,7 +241,62 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* ── 3. Interactive Cursor Ambient Spotlight (Follows mouse smoothly) ── */}
+      {/* ── 3. Interactive Floating Dark Glass & Film Panels in 3D Depth (Desktop Only) ── */}
+      {mounted && (
+        <div
+          className="hidden lg:block absolute inset-0 pointer-events-none transition-transform duration-300 ease-out will-change-transform"
+          style={{
+            transform: `perspective(1000px) rotateX(${tilt.y * 0.4}deg) rotateY(${tilt.x * 0.4}deg)`,
+          }}
+        >
+          {/* Glass Panel Top Right (Editing Inspector Guide) */}
+          <div
+            className="absolute top-[14%] right-[6%] w-72 h-44 rounded-2xl border border-white/[0.04] bg-white/[0.015] backdrop-blur-[1px] p-4 flex flex-col justify-between opacity-40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-500 will-change-transform"
+            style={{
+              transform: `translate3d(${tilt.x * 1.5}px, ${tilt.y * -1.5}px, 0)`,
+            }}
+          >
+            <div className="flex items-center justify-between text-[9px] font-mono text-white/30">
+              <span>TC_MASTER // 24FPS</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]/60" />
+            </div>
+            <div className="space-y-1">
+              <div className="h-0.5 w-16 bg-white/10 rounded" />
+              <div className="h-0.5 w-24 bg-[#00F0FF]/20 rounded" />
+            </div>
+            <div className="text-[8px] font-mono text-white/20">
+              FRAMELESS_STUDIO_01
+            </div>
+          </div>
+
+          {/* Glass Panel Bottom Left (Cinema Waveform Guide) */}
+          <div
+            className="absolute bottom-[16%] left-[4%] w-80 h-44 rounded-2xl border border-white/[0.03] bg-black/20 backdrop-blur-[1px] p-4 flex flex-col justify-between opacity-35 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-500 will-change-transform"
+            style={{
+              transform: `translate3d(${tilt.x * -1.8}px, ${tilt.y * 1.8}px, 0)`,
+            }}
+          >
+            <div className="flex items-center justify-between text-[9px] font-mono text-white/30">
+              <span>SCOPE // REC.709</span>
+              <span className="text-[8px] text-[#00F0FF]/50">DCI 4K</span>
+            </div>
+            <div className="flex items-end gap-1 h-12 py-2">
+              {[20, 45, 30, 80, 50, 65, 35, 90, 55, 40, 75, 60, 85].map((h, i) => (
+                <span
+                  key={i}
+                  className="flex-1 bg-white/10 rounded-full"
+                  style={{ height: `${h}%` }}
+                />
+              ))}
+            </div>
+            <div className="text-[8px] font-mono text-white/20">
+              FAIRLIGHT_CORE_DSP
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 4. Interactive Cursor Ambient Spotlight (Follows mouse smoothly) ── */}
       {mounted && smoothMouse.x > -500 && (
         <div
           className="absolute w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[110px] opacity-25 mix-blend-screen pointer-events-none transition-opacity duration-500 will-change-transform"
@@ -260,7 +309,7 @@ export default function AnimatedBackground() {
         />
       )}
 
-      {/* ── 4. Precision Architectural Grid Matrix ── */}
+      {/* ── 5. Precision Architectural Grid Matrix ── */}
       <div
         className="absolute inset-0 opacity-[0.4] pointer-events-none"
         style={{
@@ -274,13 +323,13 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* ── 5. Interactive Star / Stardust Canvas ── */}
+      {/* ── 6. Interactive Star / Stardust Canvas ── */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
       />
 
-      {/* ── 6. Ultra-Fine 35mm Film Grain Texture ── */}
+      {/* ── 7. Ultra-Fine 35mm Film Grain Texture ── */}
       <div
         className="absolute inset-0 opacity-[0.025] mix-blend-screen pointer-events-none"
         style={{
@@ -289,7 +338,7 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* ── 7. Soft Vignette Framing ── */}
+      {/* ── 8. Soft Vignette Framing ── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

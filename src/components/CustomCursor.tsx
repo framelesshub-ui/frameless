@@ -66,9 +66,9 @@ export default function CustomCursor() {
       }}
     >
       <div
-        className={`flex items-center justify-center rounded-full transition-all duration-300 ease-out font-mono font-bold tracking-widest text-[9px] uppercase ${
+        className={`flex items-center justify-center rounded-full transition-all duration-200 ease-out font-mono font-bold tracking-widest text-[9px] uppercase select-none ${
           isHovered
-            ? 'w-14 h-14 bg-[#00F0FF] text-black shadow-[0_0_25px_rgba(0,240,255,0.4)]'
+            ? 'px-3.5 py-1.5 h-8 min-w-[50px] bg-[#00F0FF] text-black shadow-[0_0_25px_rgba(0,240,255,0.45)]'
             : isPointer
             ? 'w-6 h-6 bg-white/20 border border-white/60 backdrop-blur-sm'
             : 'w-2 h-2 bg-white'
