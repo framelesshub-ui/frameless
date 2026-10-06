@@ -8,27 +8,27 @@ import { siteStats } from '@/data/stats';
 
 export default function AboutPageContent() {
   return (
-    <div className="bg-transparent text-[#F4F4F5] min-h-screen pt-32 sm:pt-40 pb-28">
+    <div className="bg-white text-black min-h-screen pt-32 sm:pt-40 pb-28">
       <div className="editorial-container">
         
         {/* Hero */}
         <div className="mb-16 sm:mb-24 max-w-4xl">
           <div className="inline-flex items-center gap-2 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
-            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#A1A1AA]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
+            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#5b6170]">
               About Frameless Hub
             </span>
           </div>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
-            Made to stand apart
+          <h1 className="hero-h1 text-black font-heading mb-6">
+            Made to stand apart<span className="text-[#0047ff]">.</span>
           </h1>
-          <p className="text-lg sm:text-2xl text-[#A1A1AA] leading-relaxed font-normal">
+          <p className="body-lead text-lg sm:text-2xl text-[#5b6170] leading-relaxed font-normal">
             We believe better creative starts with better thinking. Frameless Hub brings together ideas, craft, and execution to create work that is clear, purposeful, and memorable.
           </p>
         </div>
 
-        {/* 3 Core Stats (Crawler visible + animated) */}
-        <div className="py-12 border-t border-b border-white/[0.08] mb-20 sm:mb-28">
+        {/* 3 Core Stats */}
+        <div className="py-12 border-t border-b border-[#e6e8ee] mb-20 sm:mb-28">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {siteStats.map((stat) => (
               <div key={stat.id} className="flex flex-col">
@@ -37,7 +37,7 @@ export default function AboutPageContent() {
                 </span>
                 <div
                   aria-hidden="true"
-                  className="text-3xl sm:text-5xl font-bold tracking-tight text-white font-mono"
+                  className="text-3xl sm:text-5xl font-bold font-heading text-black tracking-tight"
                 >
                   {stat.isNumeric ? (
                     <AnimatedCounter
@@ -50,7 +50,7 @@ export default function AboutPageContent() {
                     <span>{stat.displayValue}</span>
                   )}
                 </div>
-                <div aria-hidden="true" className="text-xs sm:text-sm text-[#A1A1AA] mt-2 font-mono uppercase tracking-wider">
+                <div aria-hidden="true" className="text-xs sm:text-sm text-[#5b6170] mt-2 font-mono uppercase tracking-wider">
                   {stat.label}
                 </div>
               </div>
@@ -60,86 +60,60 @@ export default function AboutPageContent() {
 
         {/* WHAT WE BELIEVE */}
         <div className="mb-24 sm:mb-32">
-          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#71717A] mb-8">
+          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#5b6170] mb-8">
             What We Believe
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12">
             <div>
-              <div className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest mb-3">
+              <div className="text-xs font-mono text-[#0047ff] uppercase tracking-widest mb-3 font-semibold">
                 01
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Think clearly.</h2>
-              <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
+              <h2 className="text-2xl font-bold font-heading text-black mb-2">Think clearly.</h2>
+              <p className="text-sm sm:text-base text-[#5b6170] leading-relaxed">
                 Clarity comes before creativity.
               </p>
             </div>
 
             <div>
-              <div className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest mb-3">
+              <div className="text-xs font-mono text-[#0047ff] uppercase tracking-widest mb-3 font-semibold">
                 02
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Create with purpose.</h2>
-              <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
+              <h2 className="text-2xl font-bold font-heading text-black mb-2">Create with purpose.</h2>
+              <p className="text-sm sm:text-base text-[#5b6170] leading-relaxed">
                 Every piece of work should have a reason behind it.
               </p>
             </div>
 
             <div>
-              <div className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest mb-3">
+              <div className="text-xs font-mono text-[#0047ff] uppercase tracking-widest mb-3 font-semibold">
                 03
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Measure what matters.</h2>
-              <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
+              <h2 className="text-2xl font-bold font-heading text-black mb-2">Measure what matters.</h2>
+              <p className="text-sm sm:text-base text-[#5b6170] leading-relaxed">
                 We care about the impact the work creates, not just how it looks.
               </p>
             </div>
           </div>
         </div>
 
-        {/* BEHIND THE WORK */}
-        <div className="pt-16 border-t border-white/[0.08] mb-24 sm:mb-32">
+        {/* BEHIND THE WORK: Black rounded block for studio identity */}
+        <div className="about-black-block p-8 sm:p-14 lg:p-16 mb-24 sm:mb-32">
           <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#71717A] mb-4">
             Behind the Work
           </div>
-          <p className="text-xl sm:text-2xl text-white font-normal leading-relaxed max-w-3xl mb-12">
+          <p className="font-heading text-xl sm:text-2xl text-white font-medium leading-relaxed max-w-3xl mb-12">
             The ideas, shoots, edits, campaigns, and details all come from real people working closely together.
           </p>
 
-          {/* Studio Monogram Card */}
-          <div className="p-8 sm:p-12 rounded-2xl bg-[#0F0F10] border border-white/[0.08] mb-16 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center justify-between flex-wrap gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-white/[0.04] border border-white/10 p-2.5 flex items-center justify-center">
-                <img
-                  src="/logo.png"
-                  alt="Frameless Hub Logo"
-                  className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(0,240,255,0.25)]"
-                />
-              </div>
-              <div>
-                <span className="text-base font-mono font-bold tracking-widest text-white uppercase block">
-                  FRAMELESS HUB STUDIO
-                </span>
-                <span className="text-xs font-mono text-[#A1A1AA] uppercase tracking-wider">
-                  Chennai, Tamil Nadu, India • EST. 2026
-                </span>
-              </div>
-            </div>
-            <div className="text-xs font-mono text-[#00F0FF] uppercase tracking-widest px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08]">
-              INDEPENDENT &bull; CRAFT-LED
-            </div>
-          </div>
-
-          {/* Rithik B & About Frameless Hub */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pt-8 border-t border-white/15">
             {/* Leadership Profile */}
-            <div className="lg:col-span-5 p-8 sm:p-10 rounded-2xl bg-[#0F0F10] border border-white/[0.08]">
-              <div className="w-16 h-16 rounded-full bg-white/[0.05] border border-white/10 mb-6 flex items-center justify-center text-xl font-bold text-white font-mono">
+            <div className="lg:col-span-5 p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 mb-6 flex items-center justify-center text-lg font-bold text-white font-mono">
                 RB
               </div>
-              <h3 className="text-2xl font-bold text-white mb-1">Rithik B</h3>
-              <div className="text-xs font-mono text-[#00F0FF] uppercase tracking-wider mb-6">
+              <h3 className="text-2xl font-bold font-heading text-white mb-1">Rithik B</h3>
+              <div className="text-xs font-mono text-[#0047ff] uppercase tracking-wider mb-6 font-semibold">
                 Founder &amp; Managing Director
               </div>
               <div className="space-y-4 text-sm text-[#A1A1AA] leading-relaxed">
@@ -156,44 +130,43 @@ export default function AboutPageContent() {
             </div>
 
             {/* About Frameless Hub Manifest */}
-            <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white">
+            <div className="lg:col-span-7 flex flex-col justify-center space-y-6 text-[#A1A1AA]">
+              <h3 className="text-2xl sm:text-3xl font-bold font-heading text-white">
                 About Frameless Hub
               </h3>
-              <p className="text-base sm:text-lg text-[#D4D4D8] leading-relaxed">
+              <p className="text-base sm:text-lg text-white font-medium leading-relaxed">
                 Frameless Hub is a premium creative media and branding studio built for brands that want to stand apart.
               </p>
-              <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
+              <p className="text-sm sm:text-base leading-relaxed">
                 We bring together strategy, storytelling, design, and digital execution to create work that is not only visually compelling, but built with purpose.
               </p>
-              <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
+              <p className="text-sm sm:text-base leading-relaxed">
                 From brand identity and content creation to social media, digital experiences, and performance campaigns, we help businesses turn ideas into distinctive brands and meaningful digital presence.
               </p>
-              <p className="text-base sm:text-lg text-white font-medium leading-relaxed pt-4 border-t border-white/[0.08]">
+              <p className="text-base sm:text-lg text-white font-medium leading-relaxed pt-4 border-t border-white/15">
                 We don’t just create content. We build how your brand is seen, remembered, and experienced.
               </p>
             </div>
-
           </div>
         </div>
 
         {/* HAVE A PROJECT IN MIND? */}
-        <div className="pt-20 border-t border-white/[0.08] text-center max-w-3xl mx-auto">
-          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#71717A] mb-4">
+        <div className="pt-16 border-t border-[#e6e8ee] text-center max-w-3xl mx-auto">
+          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#5b6170] mb-4">
             Have a project in mind?
           </div>
-          <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-5xl font-bold font-heading text-black mb-4">
             Got an idea?
           </h2>
-          <p className="text-xl sm:text-2xl text-[#A1A1AA] mb-10">
+          <p className="text-xl sm:text-2xl text-[#5b6170] mb-8 font-medium">
             Let’s make it hard to ignore.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-semibold tracking-wider uppercase text-black bg-white hover:bg-[#00F0FF] transition-all duration-200"
+            className="glass-btn-blue text-xs font-semibold py-3.5 px-8"
           >
             <span>Start a Project</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight className="w-4 h-4 ml-2 inline-block" />
           </Link>
         </div>
 

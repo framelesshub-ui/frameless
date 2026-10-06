@@ -1,141 +1,73 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Film, Sparkles, Filter } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { projects } from '@/data/projects';
 
 export default function SelectedWork() {
-  const [activeFilter, setActiveFilter] = useState<'All' | 'YouTube' | 'Branding' | 'Content'>('All');
-
-  const filteredProjects = projects.filter((project) => {
-    if (activeFilter === 'All') return true;
-    if (activeFilter === 'YouTube') return project.category === 'YouTube';
-    if (activeFilter === 'Branding') return project.category === 'Branding';
-    if (activeFilter === 'Content') return project.category === 'Content' || project.category === 'Campaigns';
-    return true;
-  });
-
   return (
-    <section className="py-24 sm:py-36 bg-transparent text-[#F4F4F5] border-b border-white/[0.08]">
+    <section id="projects" className="py-24 sm:py-32 bg-[#f6f8fc] text-black border-t border-[#e6e8ee] scroll-reveal">
       <div className="editorial-container">
-        
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 sm:mb-20">
-          <div>
-            <div className="flex items-center gap-2.5 text-[10px] font-mono tracking-[0.25em] uppercase text-[#00F0FF] mb-3">
-              <Film className="w-3.5 h-3.5 text-[#00F0FF]" />
-              <span>TIMELINE EXPANSION // VERIFIED CLIENT WORKS</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.08]">
-              Selected Portfolio<span className="text-[#00F0FF]">.</span>
-            </h2>
-          </div>
+        <div className="pb-12 border-b border-[#e6e8ee]">
+          <h2 className="section-h2 text-black font-heading">
+            Selected projects.
+          </h2>
+        </div>
 
-          <div className="flex flex-wrap items-center gap-2 select-none">
-            {(['All', 'YouTube', 'Branding', 'Content'] as const).map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                onClick={() => setActiveFilter(filter)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
-                  activeFilter === filter
-                    ? 'bg-[#00F0FF] text-black font-bold shadow-[0_0_15px_rgba(0,240,255,0.4)]'
-                    : 'bg-white/[0.04] text-[#A1A1AA] hover:text-white border border-white/[0.08]'
-                }`}
+        {/* 7 Projects Clean Full-Width Rows */}
+        <div className="border-b border-[#e6e8ee]">
+          {projects.map((project) => {
+            const metricText = project.verifiedResult
+              ? project.verifiedResult.replace(/Channel Views/i, 'views').trim()
+              : 'Case study';
+            const servicesText = project.deliverables.join(' · ');
+
+            return (
+              <Link
+                key={project.slug}
+                href={`/work/${project.slug}`}
+                className="project-row-item group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0047ff]"
               >
-                {filter === 'All' ? 'ALL WORKS' : filter.toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </div>
+                {/* ScaleY Blue Background Fill Layer */}
+                <div className="project-row-fill" />
 
-        {/* Editorial Typographic Project Grid (Expanded from Timeline) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {filteredProjects.map((project, idx) => (
-            <Link
-              key={project.slug}
-              href={`/work/${project.slug}`}
-              data-cursor="VIEW"
-              className="group p-8 sm:p-10 rounded-2xl bg-[#0E0E11]/85 border border-white/[0.08] hover:border-[#00F0FF]/50 hover:bg-[#121216] transition-all duration-300 flex flex-col justify-between relative overflow-hidden shadow-xl"
-            >
-              {/* Subtle Corner Film Gauge Indicator */}
-              <div className="absolute top-4 right-4 text-[9px] font-mono text-white/30 uppercase tracking-widest pointer-events-none">
-                SEQ_0{idx + 1} // 24FPS
-              </div>
+                {/* Content Layer (z-10 above fill) */}
+                <div className="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 items-center">
+                  {/* Project Name (4 cols on desktop, 1 col on mobile) */}
+                  <div className="sm:col-span-4 lg:col-span-3">
+                    <h3 className="text-xl sm:text-2xl font-bold font-heading text-black group-hover:text-white transition-colors duration-300">
+                      {project.client}
+                    </h3>
+                  </div>
 
-              <div>
-                {/* Meta Top: Category & Year */}
-                <div className="flex items-center justify-between gap-4 pb-6 border-b border-white/[0.08] mb-6">
-                  <span className="text-xs font-mono text-[#00F0FF] uppercase tracking-wider font-semibold">
-                    {project.displayCategory}
-                  </span>
-                  <span className="text-xs font-mono text-[#71717A]">
-                    {project.year}
-                  </span>
-                </div>
-
-                {/* Client Name */}
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white group-hover:text-[#00F0FF] transition-colors mb-2">
-                  {project.client}
-                </h3>
-
-                {/* Project Scope */}
-                <p className="text-base text-[#D4D4D8] font-medium mb-4">
-                  {project.title}
-                </p>
-
-                {/* Overview */}
-                <p className="text-sm text-[#A1A1AA] leading-relaxed mb-6 font-normal">
-                  {project.overview}
-                </p>
-
-                {/* Deliverables */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.deliverables.map((item) => (
-                    <span
-                      key={item}
-                      className="px-3 py-1 rounded-full text-[11px] font-mono text-[#E4E4E7] bg-white/[0.03] border border-white/[0.08]"
-                    >
-                      ✦ {item}
+                  {/* Category (2 cols) */}
+                  <div className="sm:col-span-3 lg:col-span-2">
+                    <span className="text-xs font-mono uppercase tracking-wider text-[#5b6170] group-hover:text-white/80 transition-colors duration-300">
+                      {project.displayCategory}
                     </span>
-                  ))}
+                  </div>
+
+                  {/* Services (4 cols) */}
+                  <div className="sm:col-span-3 lg:col-span-5">
+                    <p className="text-xs sm:text-sm text-[#5b6170] group-hover:text-white/90 transition-colors duration-300 line-clamp-2">
+                      {servicesText}
+                    </p>
+                  </div>
+
+                  {/* Metric & Arrow (2 cols) */}
+                  <div className="sm:col-span-2 lg:col-span-2 flex items-center justify-between sm:justify-end gap-3">
+                    <span className="project-metric-badge text-xs font-mono font-medium px-3 py-1 rounded-full bg-white border border-[#e6e8ee] text-black group-hover:bg-white/20 group-hover:border-transparent group-hover:text-white transition-all duration-300">
+                      {metricText}
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-black group-hover:text-white transition-colors duration-300 flex-shrink-0" />
+                  </div>
                 </div>
-              </div>
-
-              {/* Card Footer: Verified Result & Arrow */}
-              <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
-                {project.verifiedResult ? (
-                  <span className="text-xs font-mono text-[#00F0FF] font-semibold">
-                    {project.verifiedResult}
-                  </span>
-                ) : (
-                  <span className="text-xs font-mono text-[#71717A]">
-                    Verified Case Study
-                  </span>
-                )}
-                
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-white group-hover:text-[#00F0FF] transition-colors">
-                  <span>Examine Project</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
-
-        {/* Bottom CTA to All Work */}
-        <div className="mt-16 sm:mt-24 pt-8 flex justify-center">
-          <Link
-            href="/work"
-            data-cursor="EXPLORE"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-semibold tracking-wider uppercase text-black bg-white hover:bg-[#00F0FF] transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.1)]"
-          >
-            <span>View Complete Studio Archive</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
-        </div>
-
       </div>
     </section>
   );

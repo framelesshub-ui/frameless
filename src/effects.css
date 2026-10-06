@@ -1,302 +1,443 @@
 /* ==========================================================================
-   FRAMELESS HUB — ANIMATION & INTERACTION EFFECTS
-   Palette: white #ffffff, black #000000, electric blue #0047ff
-   Easing: cubic-bezier(.22, 1, .36, 1) everywhere
+   FRAMELESS HUB — BRIGHT, MINIMAL & PREMIUM DESIGN SYSTEM
+   Tokens:
+   - Background: #ffffff
+   - Text & Dark Block: #000000
+   - Accent: #0047ff (Electric Blue)
+   - Muted: #5b6170
+   - Hairline borders: #e6e8ee
+   - Soft tinted background: #f6f8fc
+   - Easing: cubic-bezier(.22, 1, .36, 1) everywhere
+   - Fonts: "Unbounded" (500, 700) for headings, "DM Sans" (400, 500, 700) for body
    ========================================================================== */
 
+
 :root {
-  --fx-white: #ffffff;
-  --fx-black: #000000;
-  --fx-electric-blue: #0047ff;
+  --font-heading: 'Unbounded', system-ui, -apple-system, sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --color-bg: #ffffff;
+  --color-dark: #000000;
+  --color-electric-blue: #0047ff;
+  --color-muted: #5b6170;
+  --color-border: #e6e8ee;
+  --color-tint: #f6f8fc;
+  
   --fx-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --nav-height: 76px;
 }
 
+/* --------------------------------------------------------------------------
+   BASE RESETS & TYPOGRAPHY
+   -------------------------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+  background-color: #ffffff;
+  color: #000000;
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: #000000;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Headings in Unbounded */
+h1, h2, h3, .font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+h1, .hero-h1 {
+  font-size: clamp(2.3rem, 7.4vw, 6.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+h2, .section-h2 {
+  font-size: clamp(1.7rem, 4.2vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.body-lead {
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 80ch;
+  color: var(--color-muted);
+}
+
+/* Accessible visible keyboard focus */
+*:focus-visible {
+  outline: 2px solid var(--color-electric-blue) !important;
+  outline-offset: 2px !important;
+}
+
+::selection {
+  background: rgba(0, 71, 255, 0.15);
+  color: #000000;
 }
 
 /* --------------------------------------------------------------------------
-   1. HERO HEADLINE REVEAL
+   GLASS BUTTONS (Site-Wide)
    -------------------------------------------------------------------------- */
-.fx-headline-mask {
-  overflow: hidden;
-  display: block;
-}
-
-.fx-headline-line {
-  display: inline-block;
-  transform: translateY(105%);
-  transition: transform 1.3s var(--fx-ease);
-  will-change: transform;
-}
-
-.fx-headline-revealed .fx-headline-line {
-  transform: translateY(0);
-}
-
-.fx-headline-revealed .fx-headline-line-1 {
-  transition-delay: 0s;
-}
-
-.fx-headline-revealed .fx-headline-line-2 {
-  transition-delay: 0.12s;
-}
-
-.fx-headline-revealed .fx-headline-line-3 {
-  transition-delay: 0.24s;
-}
-
-/* Subtext fade-in at ~0.7s */
-.fx-hero-subtext {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s var(--fx-ease) 0.7s, transform 0.8s var(--fx-ease) 0.7s;
-  will-change: opacity, transform;
-}
-
-.fx-headline-revealed .fx-hero-subtext {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Buttons fade-in at ~0.85s */
-.fx-hero-buttons {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s var(--fx-ease) 0.85s, transform 0.8s var(--fx-ease) 0.85s;
-  will-change: opacity, transform;
-}
-
-.fx-headline-revealed .fx-hero-buttons {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --------------------------------------------------------------------------
-   2. CURSOR-FOLLOWING ORBS IN THE HERO
-   -------------------------------------------------------------------------- */
-.fx-hero-orbs-container {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.fx-hero-orb-blue {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 480px;
-  height: 480px;
-  margin-top: -240px;
-  margin-left: -240px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(0, 71, 255, 0.42) 0%, rgba(0, 71, 255, 0.15) 45%, transparent 70%);
-  filter: blur(55px);
-  will-change: transform;
-  mix-blend-mode: screen;
-}
-
-.fx-hero-orb-black {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 280px;
-  height: 280px;
-  margin-top: -140px;
-  margin-left: -140px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 45%, transparent 75%);
-  filter: blur(35px);
-  will-change: transform;
-}
-
-@media (max-width: 768px) {
-  .fx-hero-orb-blue {
-    width: 260px;
-    height: 260px;
-    margin-top: -130px;
-    margin-left: -130px;
-    filter: blur(35px);
-  }
-  .fx-hero-orb-black {
-    width: 150px;
-    height: 150px;
-    margin-top: -75px;
-    margin-left: -75px;
-    filter: blur(25px);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   3. GLASS BUTTONS
-   -------------------------------------------------------------------------- */
-.fx-glass-btn,
-a.fx-glass-btn,
-button.fx-glass-btn {
+.glass-btn,
+.glass-btn-light,
+a.glass-btn-light,
+button.glass-btn-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.28) !important;
+  padding: 0.85rem 1.8rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.32) !important;
   color: #000000 !important;
-  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
   -webkit-backdrop-filter: blur(18px) saturate(1.8);
   backdrop-filter: blur(18px) saturate(1.8);
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.6), 0 4px 20px -2px rgba(0, 71, 255, 0.2);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9), 0 4px 16px -2px rgba(0, 71, 255, 0.12);
   transition: background 0.35s var(--fx-ease), border-color 0.35s var(--fx-ease), box-shadow 0.35s var(--fx-ease), transform 0.2s var(--fx-ease);
   will-change: transform;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.fx-glass-btn:hover,
-a.fx-glass-btn:hover,
-button.fx-glass-btn:hover {
-  background: rgba(255, 255, 255, 0.38) !important;
-  border-color: rgba(255, 255, 255, 0.85) !important;
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.8), 0 0 25px rgba(0, 71, 255, 0.5);
+.glass-btn-light:hover,
+a.glass-btn-light:hover,
+button.glass-btn-light:hover {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 1), 0 0 24px rgba(0, 71, 255, 0.28);
 }
 
-.fx-glass-btn:active,
-a.fx-glass-btn:active,
-button.fx-glass-btn:active {
-  transform: scale(0.96);
+.glass-btn-light:active,
+a.glass-btn-light:active,
+button.glass-btn-light:active {
+  transform: scale(0.96) !important;
 }
 
-/* Dark variant: rgba(0,0,0,.55) with white text */
-.fx-glass-btn-dark,
-a.fx-glass-btn-dark,
-button.fx-glass-btn-dark {
+/* Blue glass variant (Primary) */
+.glass-btn-blue,
+a.glass-btn-blue,
+button.glass-btn-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 9999px;
-  background: rgba(0, 0, 0, 0.55) !important;
+  padding: 0.85rem 1.8rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(0, 71, 255, 0.82) !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid rgba(140, 180, 255, 0.5) !important;
   -webkit-backdrop-filter: blur(18px) saturate(1.8);
   backdrop-filter: blur(18px) saturate(1.8);
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.25), 0 4px 20px -2px rgba(0, 71, 255, 0.15);
+  box-shadow: 0 8px 24px -4px rgba(0, 71, 255, 0.4);
   transition: background 0.35s var(--fx-ease), border-color 0.35s var(--fx-ease), box-shadow 0.35s var(--fx-ease), transform 0.2s var(--fx-ease);
   will-change: transform;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.fx-glass-btn-dark:hover,
-a.fx-glass-btn-dark:hover,
-button.fx-glass-btn-dark:hover {
-  background: rgba(0, 0, 0, 0.75) !important;
-  border-color: rgba(255, 255, 255, 0.6) !important;
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.45), 0 0 25px rgba(0, 71, 255, 0.45);
+.glass-btn-blue:hover,
+a.glass-btn-blue:hover,
+button.glass-btn-blue:hover {
+  background: rgba(0, 71, 255, 0.95) !important;
+  border-color: rgba(180, 210, 255, 0.8) !important;
+  box-shadow: 0 0 28px rgba(0, 71, 255, 0.65);
 }
 
-.fx-glass-btn-dark:active,
-a.fx-glass-btn-dark:active,
-button.fx-glass-btn-dark:active {
-  transform: scale(0.96);
+.glass-btn-blue:active,
+a.glass-btn-blue:active,
+button.glass-btn-blue:active {
+  transform: scale(0.96) !important;
 }
 
-/* --------------------------------------------------------------------------
-   4. MAGNETIC HOVER (Button drift toward cursor)
-   -------------------------------------------------------------------------- */
+/* Magnetic Wrapper */
 .fx-magnetic {
   will-change: transform;
   display: inline-block;
 }
 
 /* --------------------------------------------------------------------------
-   5. CARDS (Hover lift & cursor-following blue radial glow)
+   NAVIGATION STYLING
    -------------------------------------------------------------------------- */
-.fx-card {
-  position: relative !important;
-  transition: transform 0.8s var(--fx-ease), border-color 0.4s var(--fx-ease);
-  will-change: transform;
+.nav-frosted {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.8);
+  backdrop-filter: blur(18px) saturate(1.8);
+  border-bottom: 1px solid var(--color-border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
-.fx-card:hover {
-  transform: translateY(-6px);
-}
-
-.fx-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle 260px at var(--x, 50%) var(--y, 50%), rgba(0, 71, 255, 0.22) 0%, rgba(0, 71, 255, 0.05) 50%, transparent 80%);
-  opacity: 0;
-  transition: opacity 0.4s var(--fx-ease);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.fx-card:hover::before {
-  opacity: 1;
-}
-
-/* --------------------------------------------------------------------------
-   6. SCROLL REVEAL (Headings & cards rise from translateY(40px))
-   -------------------------------------------------------------------------- */
-.fx-scroll-reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.85s var(--fx-ease), transform 0.85s var(--fx-ease);
-  will-change: opacity, transform;
-}
-
-.fx-scroll-reveal.fx-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fx-stagger-1 {
-  transition-delay: 0.08s;
-}
-
-.fx-stagger-2 {
-  transition-delay: 0.16s;
-}
-
-.fx-stagger-3 {
-  transition-delay: 0.24s;
-}
-
-/* --------------------------------------------------------------------------
-   7. NAV LINKS (Blue underline scales in from left on hover)
-   -------------------------------------------------------------------------- */
 .fx-nav-link {
   position: relative;
   display: inline-block;
+  padding-bottom: 4px;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
 }
 
 .fx-nav-link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--fx-electric-blue);
+  background-color: var(--color-electric-blue);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.38s var(--fx-ease);
 }
 
-.fx-nav-link:hover::after {
+.fx-nav-link:hover::after,
+.fx-nav-link.active-link::after {
   transform: scaleX(1);
 }
 
 /* --------------------------------------------------------------------------
-   RULES: REDUCED MOTION & ACCESSIBILITY
+   HERO LINE-BY-LINE REVEAL & CURSOR ORB
+   -------------------------------------------------------------------------- */
+.hero-line-wrap {
+  overflow: hidden;
+  display: block;
+  padding-bottom: 0.14em; /* Preserves font descenders */
+}
+
+.hero-line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1.3s var(--fx-ease);
+  will-change: transform;
+}
+
+.hero-revealed .hero-line-inner {
+  transform: translateY(0);
+}
+
+.hero-revealed .hero-line-1 {
+  transition-delay: 0s;
+}
+
+.hero-revealed .hero-line-2 {
+  transition-delay: 0.12s;
+}
+
+.hero-subtext-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--fx-ease) 0.7s, transform 0.8s var(--fx-ease) 0.7s;
+  will-change: opacity, transform;
+}
+
+.hero-revealed .hero-subtext-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-buttons-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--fx-ease) 0.85s, transform 0.8s var(--fx-ease) 0.85s;
+  will-change: opacity, transform;
+}
+
+.hero-revealed .hero-buttons-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-stats-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--fx-ease) 1.0s, transform 0.8s var(--fx-ease) 1.0s;
+  will-change: opacity, transform;
+}
+
+.hero-revealed .hero-stats-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero Electric-Blue Cursor Orb */
+.hero-orb-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-orb-blue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 520px;
+  height: 520px;
+  margin-top: -260px;
+  margin-left: -260px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(0, 71, 255, 0.18) 0%, rgba(0, 71, 255, 0.05) 45%, transparent 70%);
+  filter: blur(50px);
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .hero-orb-blue {
+    width: 280px;
+    height: 280px;
+    margin-top: -140px;
+    margin-left: -140px;
+    filter: blur(35px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES SECTION (What We Do)
+   - 4 columns separated by 1px vertical hairlines
+   - Plain list of sub-services separated by hairlines
+   - Hover tints column with faint blue-to-white gradient
+   -------------------------------------------------------------------------- */
+.services-col {
+  border-right: 1px solid var(--color-border);
+  transition: background 0.4s var(--fx-ease);
+  position: relative;
+}
+
+.services-col:last-child {
+  border-right: none;
+}
+
+.services-col:hover {
+  background: linear-gradient(180deg, rgba(0, 71, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.subservice-row {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.subservice-row:last-child {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
+   PROJECTS SECTION (Selected Projects Full-Width Rows)
+   - Clean full-width rows: name, category, services, metric
+   - Hover: Blue panel fills from bottom (scaleY 0 to 1), text turns white
+   -------------------------------------------------------------------------- */
+.project-row-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid var(--color-border);
+  padding: 2.2rem 1.5rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: #000000;
+  background-color: transparent;
+  transition: color 0.35s var(--fx-ease);
+}
+
+.project-row-fill {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-electric-blue);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.45s var(--fx-ease);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.project-row-item:hover .project-row-fill {
+  transform: scaleY(1);
+}
+
+.project-row-item:hover,
+.project-row-item:hover * {
+  color: #ffffff !important;
+}
+
+.project-row-item:hover .project-metric-badge {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT SECTION (Black Rounded Block)
+   - border-radius 36px, side margins 2.5vw
+   -------------------------------------------------------------------------- */
+.about-black-block {
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 36px;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+}
+
+/* --------------------------------------------------------------------------
+   SCROLL REVEALS (Threshold 0.12, translateY 36px)
+   -------------------------------------------------------------------------- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s var(--fx-ease), transform 0.8s var(--fx-ease);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .fx-headline-line,
-  .fx-hero-subtext,
-  .fx-hero-buttons,
-  .fx-scroll-reveal,
-  .fx-card,
-  .fx-nav-link::after {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-line-inner,
+  .hero-subtext-reveal,
+  .hero-buttons-reveal,
+  .hero-stats-reveal,
+  .scroll-reveal,
+  .project-row-fill {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
   }
 
-  .fx-hero-orb-blue,
-  .fx-hero-orb-black {
+  .hero-orb-blue {
     display: none !important;
+  }
+
+  .fx-magnetic {
+    transform: none !important;
   }
 }

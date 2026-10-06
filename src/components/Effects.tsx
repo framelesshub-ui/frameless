@@ -4,133 +4,77 @@ import React, { useEffect, useRef } from 'react';
 
 export default function Effects() {
   const blueOrbRef = useRef<HTMLDivElement | null>(null);
-  const blackOrbRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     // =========================================================================
-    // 1. HERO HEADLINE REVEAL (Once on load)
+    // 1. HERO HEADLINE & CONTENT REVEAL (Once on load)
     // =========================================================================
-    const heroSection = document.querySelector('section');
-    if (heroSection) {
-      const headline = heroSection.querySelector('h1');
-      if (headline && !headline.classList.contains('fx-processed')) {
-        headline.classList.add('fx-processed');
-
-        if (!prefersReducedMotion) {
-          // Identify text lines or elements
-          // Line 1: "Made to", Line 2: "stand apart."
-          const originalHTML = headline.innerHTML;
-          // Wrap lines cleanly in overflow:hidden mask
-          const lines = originalHTML.split(/<br\s*\/?>/i);
-          if (lines.length > 1) {
-            headline.innerHTML = lines
-              .map(
-                (line, index) =>
-                  `<span class="fx-headline-mask"><span class="fx-headline-line fx-headline-line-${
-                    index + 1
-                  }">${line.trim()}</span></span>`
-              )
-              .join('');
-          } else {
-            headline.innerHTML = `<span class="fx-headline-mask"><span class="fx-headline-line fx-headline-line-1">${originalHTML}</span></span>`;
-          }
-
-          // Target subtext and buttons in hero
-          const paragraphs = heroSection.querySelectorAll('p');
-          paragraphs.forEach((p) => p.classList.add('fx-hero-subtext'));
-
-          const buttonContainers = heroSection.querySelectorAll(
-            '.flex.flex-wrap.items-center.gap-4, .hero-buttons, [class*="gap-4"]'
-          );
-          buttonContainers.forEach((bc) => bc.classList.add('fx-hero-buttons'));
-
-          // Trigger reveal after next paint
-          requestAnimationFrame(() => {
-            setTimeout(() => {
-              headline.classList.add('fx-headline-revealed');
-              paragraphs.forEach((p) => p.classList.add('fx-headline-revealed'));
-              buttonContainers.forEach((bc) => bc.classList.add('fx-headline-revealed'));
-            }, 60);
-          });
-        }
+    const heroEl = document.getElementById('hero');
+    if (heroEl) {
+      if (!prefersReducedMotion) {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            heroEl.classList.add('hero-revealed');
+          }, 80);
+        });
+      } else {
+        heroEl.classList.add('hero-revealed');
       }
     }
 
     // =========================================================================
-    // 2. CURSOR-FOLLOWING ORBS IN THE HERO (Electric Blue & Black with Lerp)
+    // 2. CURSOR-FOLLOWING ELECTRIC BLUE RADIAL ORB IN HERO
+    //    Lerp 0.06 + sine/cosine organic wobble via translate3d
     // =========================================================================
-    let animFrameId: number;
+    let orbRafId: number;
     let targetX = window.innerWidth / 2;
-    let targetY = 320;
-    let blueX = targetX;
-    let blueY = targetY;
-    let blackX = targetX;
-    let blackY = targetY;
+    let targetY = 300;
+    let currentX = targetX;
+    let currentY = targetY;
     let wobbleTime = 0;
 
-    const blueOrb = blueOrbRef.current;
-    const blackOrb = blackOrbRef.current;
+    const orb = blueOrbRef.current;
 
-    const handleHeroMouseMove = (e: MouseEvent) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!heroEl) return;
+      const heroRect = heroEl.getBoundingClientRect();
+      targetX = e.clientX - heroRect.left;
+      targetY = e.clientY - heroRect.top;
     };
 
-    if (!prefersReducedMotion) {
-      window.addEventListener('mousemove', handleHeroMouseMove, { passive: true });
+    if (!prefersReducedMotion && orb && heroEl) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
-      const animateOrbs = () => {
+      const animateOrb = () => {
         wobbleTime += 0.02;
 
-        // Slight sine/cosine organic wobble
-        const wobbleBX = Math.sin(wobbleTime * 1.2) * 14;
-        const wobbleBY = Math.cos(wobbleTime * 0.9) * 14;
-        const wobbleKX = Math.cos(wobbleTime * 1.5) * 8;
-        const wobbleKY = Math.sin(wobbleTime * 1.1) * 8;
+        const wobbleX = Math.sin(wobbleTime * 1.3) * 16;
+        const wobbleY = Math.cos(wobbleTime * 0.9) * 16;
 
-        // Blue lerp: 0.06
-        blueX += (targetX + wobbleBX - blueX) * 0.06;
-        blueY += (targetY + wobbleBY - blueY) * 0.06;
+        // Lerp: 0.06
+        currentX += (targetX + wobbleX - currentX) * 0.06;
+        currentY += (targetY + wobbleY - currentY) * 0.06;
 
-        // Black lerp: 0.025
-        blackX += (targetX + wobbleKX - blackX) * 0.025;
-        blackY += (targetY + wobbleKY - blackY) * 0.025;
-
-        if (blueOrb) {
-          blueOrb.style.transform = `translate3d(${blueX}px, ${blueY}px, 0)`;
-        }
-        if (blackOrb) {
-          blackOrb.style.transform = `translate3d(${blackX}px, ${blackY}px, 0)`;
-        }
-
-        animFrameId = requestAnimationFrame(animateOrbs);
+        orb.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+        orbRafId = requestAnimationFrame(animateOrb);
       };
 
-      animFrameId = requestAnimationFrame(animateOrbs);
+      orbRafId = requestAnimationFrame(animateOrb);
     }
 
     // =========================================================================
-    // 3 & 4. GLASS BUTTONS & MAGNETIC HOVER
+    // 3. MAGNETIC HOVER ON GLASS BUTTONS (Lerp 0.18, disabled on touch)
     // =========================================================================
     const buttons = document.querySelectorAll<HTMLElement>(
-      'a[href="/contact"], a[href="#workspace"], a[href="/work"], button.rounded-full, a.rounded-full'
+      '.glass-btn-blue, .glass-btn-light, .glass-btn, a[href="#contact"], a[href="#projects"]'
     );
-
     const magneticCleanups: Array<() => void> = [];
 
-    buttons.forEach((btn) => {
-      // Apply glass classes
-      if (btn.classList.contains('bg-white') || btn.textContent?.includes('Work') || btn.textContent?.includes('Studio')) {
-        btn.classList.add('fx-glass-btn');
-      } else {
-        btn.classList.add('fx-glass-btn-dark');
-      }
-
-      // Magnetic hover (Only if not touch and motion allowed)
-      if (!isTouchDevice && !prefersReducedMotion) {
+    if (!isTouchDevice && !prefersReducedMotion) {
+      buttons.forEach((btn) => {
         btn.classList.add('fx-magnetic');
 
         let bX = 0;
@@ -138,7 +82,7 @@ export default function Effects() {
         let bTargetX = 0;
         let bTargetY = 0;
         let bRafId: number | null = null;
-        let isHovering = false;
+        let isHovered = false;
 
         const updateMagnetic = () => {
           // Lerp 0.18
@@ -146,7 +90,7 @@ export default function Effects() {
           bY += (bTargetY - bY) * 0.18;
           btn.style.transform = `translate3d(${bX}px, ${bY}px, 0)`;
 
-          if (isHovering || Math.abs(bX) > 0.05 || Math.abs(bY) > 0.05) {
+          if (isHovered || Math.abs(bX) > 0.05 || Math.abs(bY) > 0.05) {
             bRafId = requestAnimationFrame(updateMagnetic);
           } else {
             btn.style.transform = 'translate3d(0, 0, 0)';
@@ -164,7 +108,7 @@ export default function Effects() {
           // 25% horizontal, 35% vertical offset
           bTargetX = offsetX * 0.25;
           bTargetY = offsetY * 0.35;
-          isHovering = true;
+          isHovered = true;
 
           if (!bRafId) {
             bRafId = requestAnimationFrame(updateMagnetic);
@@ -172,7 +116,7 @@ export default function Effects() {
         };
 
         const onPointerLeave = () => {
-          isHovering = false;
+          isHovered = false;
           bTargetX = 0;
           bTargetY = 0;
         };
@@ -185,101 +129,56 @@ export default function Effects() {
           btn.removeEventListener('pointerleave', onPointerLeave);
           if (bRafId) cancelAnimationFrame(bRafId);
         });
-      }
-    });
+      });
+    }
 
     // =========================================================================
-    // 5. CARDS (Hover Lift & Cursor-Following Blue Radial Glow via --x / --y)
-    // =========================================================================
-    const cards = document.querySelectorAll<HTMLElement>(
-      '.editorial-card, [class*="rounded-2xl border"], .fx-card-target'
-    );
-
-    const cardCleanups: Array<() => void> = [];
-
-    cards.forEach((card) => {
-      // Exclude full screen containers or root modals
-      if (card.offsetWidth > 1100 && card.offsetHeight > 800) return;
-
-      card.classList.add('fx-card');
-
-      const onCardPointerMove = (e: PointerEvent) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--x', `${x}px`);
-        card.style.setProperty('--y', `${y}px`);
-      };
-
-      card.addEventListener('pointermove', onCardPointerMove, { passive: true });
-      cardCleanups.push(() => card.removeEventListener('pointermove', onCardPointerMove));
-    });
-
-    // =========================================================================
-    // 6. SCROLL REVEAL (Headings & cards rise from translateY(40px))
+    // 4. SECTION SCROLL REVEAL (Threshold 0.12, translateY 36px)
     // =========================================================================
     const revealTargets = document.querySelectorAll<HTMLElement>(
-      'h2, h3, .fx-card, .editorial-card, [class*="p-8 sm:p-10 rounded-2xl"]'
+      '.scroll-reveal, #services, #projects, #about, #contact'
     );
-
-    let observer: IntersectionObserver | null = null;
+    let revealObserver: IntersectionObserver | null = null;
 
     if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver(
+      revealObserver = new IntersectionObserver(
         (entries, obs) => {
-          entries.forEach((entry, idx) => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const el = entry.target as HTMLElement;
-              const staggerIndex = (idx % 3) + 1;
-              el.classList.add(`fx-stagger-${staggerIndex}`);
-              el.classList.add('fx-revealed');
+              el.classList.add('in-view');
               obs.unobserve(el);
             }
           });
         },
-        { threshold: 0.15 }
+        { threshold: 0.12 }
       );
-      observer = io;
 
       revealTargets.forEach((target) => {
-        if (target.closest('section:first-of-type') || target.closest('h1')) return;
-        target.classList.add('fx-scroll-reveal');
-        io.observe(target);
+        target.classList.add('scroll-reveal');
+        revealObserver?.observe(target);
       });
     } else {
-      revealTargets.forEach((target) => target.classList.add('fx-revealed'));
+      revealTargets.forEach((target) => target.classList.add('in-view'));
     }
 
     // =========================================================================
-    // 7. NAV LINKS (Blue Underline Scales in from Left on Hover)
-    // =========================================================================
-    const navLinks = document.querySelectorAll<HTMLElement>('header nav a, nav[aria-label="Main Navigation"] a');
-    navLinks.forEach((link) => {
-      link.classList.add('fx-nav-link');
-    });
-
-    // =========================================================================
-    // CLEANUP ON UNMOUNT
+    // CLEANUP
     // =========================================================================
     return () => {
-      if (animFrameId) cancelAnimationFrame(animFrameId);
-      window.removeEventListener('mousemove', handleHeroMouseMove);
+      if (orbRafId) cancelAnimationFrame(orbRafId);
+      window.removeEventListener('mousemove', handleMouseMove);
       magneticCleanups.forEach((c) => c());
-      cardCleanups.forEach((c) => c());
-      if (observer) observer.disconnect();
+      if (revealObserver) revealObserver.disconnect();
     };
   }, []);
 
   return (
-    <>
-      {/* 2. Cursor-Following Orbs rendered behind hero text */}
-      <div
-        aria-hidden="true"
-        className="fx-hero-orbs-container"
-      >
-        <div ref={blueOrbRef} className="fx-hero-orb-blue" />
-        <div ref={blackOrbRef} className="fx-hero-orb-black" />
-      </div>
-    </>
+    <div
+      aria-hidden="true"
+      className="hero-orb-wrap"
+    >
+      <div ref={blueOrbRef} className="hero-orb-blue" />
+    </div>
   );
 }

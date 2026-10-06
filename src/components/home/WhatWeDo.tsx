@@ -1,92 +1,62 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { CAPABILITIES } from '@/data/capabilities';
 
 export default function WhatWeDo() {
   return (
-    <section className="py-24 sm:py-36 bg-transparent text-[#F4F4F5] border-b border-white/[0.08]">
+    <section id="services" className="py-24 sm:py-32 bg-white text-black border-t border-[#e6e8ee] scroll-reveal">
       <div className="editorial-container">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 sm:mb-20">
+        {/* Section Header: Heading on left, Intro text on right */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-16 border-b border-[#e6e8ee]">
           <div>
-            <div className="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.25em] uppercase text-[#00F0FF] mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
-              <span>05 / Disciplines</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
+            <h2 className="section-h2 text-black font-heading">
               What we do.
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-[#A1A1AA] max-w-md font-normal leading-relaxed">
+          <p className="body-lead text-base sm:text-lg text-[#5b6170] max-w-lg leading-relaxed">
             Strategy, branding, cinematic film production, and digital growth — engineered around what your brand actually needs.
           </p>
         </div>
 
-        {/* 4 Capabilities List */}
-        <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
-          {CAPABILITIES.map((cap) => (
+        {/* 4 Columns: 1 col on mobile, 2 on tablet, 4 on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-b border-[#e6e8ee]">
+          {CAPABILITIES.map((cap, idx) => (
             <div
               key={cap.id}
-              className="py-12 sm:py-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start group transition-all duration-300 hover:bg-white/[0.015] px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-xl"
+              className={`p-8 sm:p-10 transition-colors duration-400 hover:bg-gradient-to-b hover:from-[#0047ff]/[0.04] hover:to-white flex flex-col justify-between ${
+                idx !== 0 ? 'border-t md:border-t-0 border-[#e6e8ee]' : ''
+              } ${
+                idx % 2 !== 0 ? 'md:border-l md:border-[#e6e8ee]' : ''
+              } ${
+                idx !== 0 ? 'lg:border-l lg:border-[#e6e8ee]' : ''
+              }`}
             >
-              {/* Number */}
-              <div className="lg:col-span-2">
-                <span className="text-xs font-mono text-[#00F0FF] tracking-widest uppercase">
-                  {cap.number} / 04
-                </span>
-              </div>
-
-              {/* Title & Short Description */}
-              <div className="lg:col-span-4 transition-transform duration-300 group-hover:translate-x-1.5">
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2 group-hover:text-[#00F0FF] transition-colors">
-                  {cap.title}
+              <div>
+                {/* Column Title: No numbers, no icons */}
+                <h3 className="text-xl sm:text-2xl font-bold font-heading text-black mb-4">
+                  {cap.title.charAt(0) + cap.title.slice(1).toLowerCase()}
                 </h3>
-                <p className="text-sm text-[#A1A1AA] leading-relaxed">
+
+                {/* Column Description */}
+                <p className="text-sm text-[#5b6170] leading-relaxed mb-8">
                   {cap.description}
                 </p>
               </div>
 
-              {/* Services List */}
-              <div className="lg:col-span-4 flex flex-wrap gap-2">
-                {cap.services.map((item) => (
-                  <span
-                    key={item}
-                    className="inline-block px-3 py-1 rounded-full text-xs font-mono text-[#E4E4E7] bg-white/[0.04] border border-white/[0.08]"
+              {/* Plain list of sub-services separated by hairlines */}
+              <div className="border-t border-[#e6e8ee]">
+                {cap.services.map((service) => (
+                  <div
+                    key={service}
+                    className="py-3 border-b border-[#e6e8ee] text-xs font-medium text-black last:border-b-0"
                   >
-                    {item}
-                  </span>
+                    {service}
+                  </div>
                 ))}
-              </div>
-
-              {/* Link */}
-              <div className="lg:col-span-2 flex lg:justify-end items-center">
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#A1A1AA] group-hover:text-white transition-colors"
-                >
-                  <span>Learn more</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#00F0FF] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-14 pt-8 border-t border-white/[0.08] flex items-center justify-between flex-wrap gap-4">
-          <span className="text-sm font-mono text-[#A1A1AA]">
-            Looking for a customized creative engagement?
-          </span>
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white hover:text-[#00F0FF] transition-colors"
-          >
-            <span>Explore All Capabilities</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
         </div>
       </div>
     </section>

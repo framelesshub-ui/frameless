@@ -9,93 +9,21 @@ interface FooterProps {
 
 export default function Footer({ onNavigate }: FooterProps = {}) {
   return (
-    <footer className="bg-[#080808]/85 backdrop-blur-md border-t border-white/[0.08] text-[#F4F4F5] pt-16 pb-12">
-      <div className="editorial-container">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-14 border-b border-white/[0.08]">
-          {/* Brand info */}
-          <div className="md:col-span-6 flex flex-col justify-between">
-            <div>
-              <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group">
-                <img
-                  src="/logo.png"
-                  alt="Frameless Hub Logo"
-                  className="w-7 h-7 object-contain"
-                />
-                <span className="font-mono text-sm font-bold tracking-widest text-white uppercase">
-                  FRAMELESS HUB
-                </span>
-              </Link>
-              <p className="text-sm text-[#A1A1AA] leading-relaxed">
-                Premium Creative Agency.
-                <br />
-                Chennai, India.
-              </p>
-            </div>
-          </div>
-
-          {/* Links */}
-          <div className="md:col-span-3">
-            <span className="block text-[11px] font-mono uppercase tracking-widest text-[#71717A] mb-4">
-              Links
-            </span>
-            <ul className="space-y-2.5 text-xs tracking-wider uppercase font-medium">
-              <li>
-                <Link href="/work" className="text-[#A1A1AA] hover:text-white transition-colors">
-                  Work
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-[#A1A1AA] hover:text-white transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-[#A1A1AA] hover:text-white transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-[#A1A1AA] hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Direct & Social */}
-          <div className="md:col-span-3">
-            <span className="block text-[11px] font-mono uppercase tracking-widest text-[#71717A] mb-4">
-              Connect
-            </span>
-            <ul className="space-y-2.5 text-xs tracking-wider uppercase font-medium">
-              <li>
-                <a
-                  href="https://wa.me/918248628371"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#A1A1AA] hover:text-[#00F0FF] transition-colors"
-                >
-                  WhatsApp : +91 82486 28371
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://instagram.com/framelesshub"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#A1A1AA] hover:text-[#00F0FF] transition-colors"
-                >
-                  Instagram : @framelesshub
-                </a>
-              </li>
-            </ul>
-          </div>
+    <footer className="bg-white text-black border-t border-[#e6e8ee] py-10 sm:py-12">
+      <div className="editorial-container flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#5b6170]">
+        {/* Left: Copyright */}
+        <div className="flex items-center gap-2.5">
+          <img
+            src="/logo.png"
+            alt="Frameless Hub Logo"
+            className="w-4 h-4 object-contain"
+          />
+          <span>© 2026 Frameless Hub. All rights reserved.</span>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#71717A]">
-          <p>© 2026 Frameless Hub</p>
-          <p>Created by Frameless Hub</p>
+        {/* Right: Studio Location */}
+        <div>
+          <span>Chennai, Tamil Nadu, India</span>
         </div>
       </div>
     </footer>

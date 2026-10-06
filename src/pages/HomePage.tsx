@@ -1,14 +1,16 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
-import EditorialMarquee from '../components/home/EditorialMarquee';
-import DaVinciWorkspace from '../components/home/DaVinciWorkspace';
-import CreativeFlowPipeline from '../components/home/CreativeFlowPipeline';
-import SelectedWork from '../components/home/SelectedWork';
-import EditorialStatement from '../components/home/EditorialStatement';
 import WhatWeDo from '../components/home/WhatWeDo';
-import WorkingWith from '../components/home/WorkingWith';
+import SelectedWork from '../components/home/SelectedWork';
 import AboutPreview from '../components/home/AboutPreview';
 import FinalCTA from '../components/home/FinalCTA';
+
+// Kept in repository for future reference per requirements:
+// import EditorialMarquee from '../components/home/EditorialMarquee';
+// import DaVinciWorkspace from '../components/home/DaVinciWorkspace';
+// import CreativeFlowPipeline from '../components/home/CreativeFlowPipeline';
+// import EditorialStatement from '../components/home/EditorialStatement';
+// import WorkingWith from '../components/home/WorkingWith';
 
 interface HomePageProps {
   onNavigate?: (route: string) => void;
@@ -16,35 +18,20 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = () => {
   return (
-    <div className="relative w-full bg-transparent text-[#F4F4F5]">
-      {/* 01 — INTRO (0–15%): "Made to stand apart." */}
+    <div className="relative w-full bg-white text-black">
+      {/* 01 — Hero: "Made to stand apart." */}
       <Hero />
 
-      {/* 02 — Editorial Marquee */}
-      <EditorialMarquee />
-
-      {/* 03 — DAVINCI RESOLVE–INSPIRED EDIT SUITE (15–55%) */}
-      <DaVinciWorkspace />
-
-      {/* 04 — GOOGLE FLOW–INSPIRED CREATIVE PIPELINE (55–70%) */}
-      <CreativeFlowPipeline />
-
-      {/* 05 — PORTFOLIO SEQUENCE (70–90%) */}
-      <SelectedWork />
-
-      {/* 06 — Editorial Manifesto */}
-      <EditorialStatement />
-
-      {/* 07 — Disciplines & Capabilities */}
+      {/* 02 — Services: "What we do." */}
       <WhatWeDo />
 
-      {/* 08 — Client Partners */}
-      <WorkingWith />
+      {/* 03 — Projects: "Selected projects." */}
+      <SelectedWork />
 
-      {/* 09 — Studio Ethos */}
+      {/* 04 — About: "Small team. Big ideas." */}
       <AboutPreview />
 
-      {/* 10 — FINAL SCENE (90–100%) */}
+      {/* 05 — Contact: "Have something worth creating?" */}
       <FinalCTA />
     </div>
   );

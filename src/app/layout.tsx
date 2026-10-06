@@ -3,8 +3,6 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
-import CustomCursor from '@/components/CustomCursor';
-import AnimatedBackground from '@/components/AnimatedBackground';
 import Effects from '@/components/Effects';
 
 export const metadata: Metadata = {
@@ -105,21 +103,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Unbounded:wght@500;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="flex flex-col min-h-screen bg-[#080808] text-[#F4F4F5] font-sans antialiased selection:bg-[#00F0FF]/25 selection:text-white">
-        <AnimatedBackground />
-        <CustomCursor />
+      <body className="flex flex-col min-h-screen bg-white text-black font-sans antialiased selection:bg-[#0047ff]/15 selection:text-black">
         <Effects />
         <SmoothScroll>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-lg focus:text-sm focus:font-semibold"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#0047ff] focus:text-white focus:rounded-full focus:text-sm focus:font-semibold"
           >
             Skip to content
           </a>
