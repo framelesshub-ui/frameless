@@ -3,29 +3,28 @@
 @import "../effects.css";
 
 @theme inline {
-  --color-background: #ffffff;
-  --color-background-secondary: #f6f8fc;
-  --color-surface: #ffffff;
-  --color-foreground: #000000;
-  --color-muted: #5b6170;
-  --color-subtle: #71717A;
-  --color-border: #e6e8ee;
-  --color-border-hover: #c8cbd4;
-  --color-accent: #0047ff;
+  --color-background: var(--color-bg);
+  --color-background-secondary: var(--color-tint);
+  --color-surface: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-subtle: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-border-hover: var(--color-border);
+  --color-accent: var(--color-electric-blue);
 }
 
 /* ── Base Reset & Editorial Typography ── */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 76px;
-  background-color: #ffffff;
-  color: #000000;
-  color-scheme: light;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 body {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.65;
@@ -36,8 +35,8 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 71, 255, 0.15);
-  color: #000000;
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
 }
 
 ::-webkit-scrollbar {
@@ -45,16 +44,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--color-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d8dbe2;
+  background: var(--color-scrollbar-thumb);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8bcc8;
+  background: var(--color-scrollbar-thumb-hover);
 }
 
 /* ── Editorial Containers & Subtle Cards ── */
@@ -81,24 +80,23 @@ body {
 }
 
 .editorial-card {
-  background-color: #ffffff;
-  border: 1px solid #e6e8ee;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 .editorial-card:hover {
-  border-color: #0047ff;
+  border-color: var(--color-electric-blue);
 }
 
 /* ── Header Blur on Scroll ── */
 .header-scrolled {
-  background-color: rgba(255, 255, 255, 0.72);
+  background-color: var(--color-nav-bg);
   backdrop-filter: blur(18px) saturate(1.8);
   -webkit-backdrop-filter: blur(18px) saturate(1.8);
-  border-bottom: 1px solid #e6e8ee;
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* ── Subtle Reveal Transitions ── */
 .fade-up {
   opacity: 0;
   transform: translateY(24px);
@@ -108,14 +106,4 @@ body {
 .fade-up.in-view {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* ── Reduced Motion ── */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 }

@@ -13,14 +13,14 @@ export default function CaseStudy({ project }: CaseStudyProps) {
   const nextProject = getNextProject(project.slug);
 
   return (
-    <article className="bg-white text-black min-h-screen pt-32 sm:pt-40 pb-28">
+    <article className="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen pt-32 sm:pt-40 pb-28">
       <div className="editorial-container">
         
         {/* Back Link */}
         <div className="mb-10 sm:mb-14">
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#5b6170] hover:text-[#0047ff] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] hover:text-[#0047ff] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Selected Work</span>
@@ -28,40 +28,40 @@ export default function CaseStudy({ project }: CaseStudyProps) {
         </div>
 
         {/* Project Header Info: Project Name, Client, Category, Year */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-12 sm:mb-16 pb-10 border-b border-[#e6e8ee]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-12 sm:mb-16 pb-10 border-b border-[var(--color-border)]">
           <div className="lg:col-span-8">
             <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#0047ff] mb-3 font-semibold">
               {project.client} • {project.year}
             </div>
-            <h1 className="hero-h1 text-black font-heading mb-0">
+            <h1 className="hero-h1 text-[var(--color-text)] font-heading mb-0">
               {project.title}
             </h1>
           </div>
 
           <div className="lg:col-span-4 flex flex-col sm:items-start lg:items-end justify-end">
-            <span className="text-xs font-mono text-[#5b6170] uppercase tracking-wider">
+            <span className="text-xs font-mono text-[var(--color-muted)] uppercase tracking-wider">
               Category
             </span>
-            <span className="text-base sm:text-lg font-semibold text-black mt-1">
+            <span className="text-base sm:text-lg font-semibold text-[var(--color-text)] mt-1">
               {project.displayCategory}
             </span>
           </div>
         </div>
 
         {/* Overview & What We Did */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 py-8 mb-16 sm:mb-24 border-b border-[#e6e8ee]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 py-8 mb-16 sm:mb-24 border-b border-[var(--color-border)]">
           {/* Overview */}
           <div className="lg:col-span-7">
-            <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-[#5b6170] mb-4">
+            <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--color-muted)] mb-4">
               Overview
             </h2>
-            <p className="body-lead text-lg sm:text-2xl text-black font-normal leading-relaxed">
+            <p className="body-lead text-lg sm:text-2xl text-[var(--color-text)] font-normal leading-relaxed">
               {project.overview}
             </p>
           </div>
 
           {/* What We Did */}
-          <div className="lg:col-span-5 p-8 rounded-2xl bg-[#f6f8fc] border border-[#e6e8ee]">
+          <div className="lg:col-span-5 p-8 rounded-2xl bg-[var(--color-tint)] border border-[var(--color-border)]">
             <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-[#0047ff] mb-6 font-semibold">
               What We Did
             </h2>
@@ -69,7 +69,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
               {project.deliverables.map((item) => (
                 <span
                   key={item}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-mono text-black bg-white border border-[#e6e8ee]"
+                  className="px-3.5 py-1.5 rounded-full text-xs font-mono text-[var(--color-text)] bg-[var(--color-bg)] border border-[var(--color-border)]"
                 >
                   {item}
                 </span>
@@ -80,28 +80,28 @@ export default function CaseStudy({ project }: CaseStudyProps) {
 
         {/* Optional Verified Result */}
         {project.verifiedResult && (
-          <div className="mb-20 sm:mb-28 p-8 sm:p-12 rounded-2xl bg-[#f6f8fc] border border-[#e6e8ee]">
+          <div className="mb-20 sm:mb-28 p-8 sm:p-12 rounded-2xl bg-[var(--color-tint)] border border-[var(--color-border)]">
             <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#0047ff] mb-2 font-semibold">
               Verified Result
             </div>
-            <div className="text-3xl sm:text-5xl font-bold font-heading text-black tracking-tight">
+            <div className="text-3xl sm:text-5xl font-bold font-heading text-[var(--color-text)] tracking-tight">
               {project.verifiedResult}
             </div>
           </div>
         )}
 
         {/* Next Project → */}
-        <div className="pt-12 border-t border-[#e6e8ee] flex items-center justify-between">
+        <div className="pt-12 border-t border-[var(--color-border)] flex items-center justify-between">
           <Link
             href="/work"
-            className="text-xs font-mono uppercase tracking-wider text-[#5b6170] hover:text-black transition-colors"
+            className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] hover:text-[var(--color-text)] transition-colors"
           >
             ← All Work
           </Link>
 
           <Link
             href={`/work/${nextProject.slug}`}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono uppercase tracking-wider text-black hover:text-[#0047ff] transition-colors group"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono uppercase tracking-wider text-[var(--color-text)] hover:text-[#0047ff] transition-colors group"
           >
             <span>Next Project: {nextProject.client}</span>
             <ArrowUpRight className="w-4 h-4 text-[#0047ff] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

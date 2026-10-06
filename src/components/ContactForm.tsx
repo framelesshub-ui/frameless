@@ -63,12 +63,12 @@ export default function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="p-8 sm:p-12 rounded-2xl bg-[#f6f8fc] border border-[#e6e8ee] text-center">
+      <div className="p-8 sm:p-12 rounded-2xl bg-[var(--color-tint)] border border-[var(--color-border)] text-center">
         <div className="w-14 h-14 rounded-full bg-[#0047ff]/10 border border-[#0047ff]/20 text-[#0047ff] flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 className="w-7 h-7" />
         </div>
-        <h3 className="text-2xl font-bold font-heading text-black mb-2">Message received.</h3>
-        <p className="text-sm text-[#5b6170] max-w-md mx-auto mb-6">
+        <h3 className="text-2xl font-bold font-heading text-[var(--color-text)] mb-2">Message received.</h3>
+        <p className="text-sm text-[var(--color-muted)] max-w-md mx-auto mb-6">
           Thank you for reaching out. We will review your project details and get back to you shortly.
         </p>
         <button
@@ -86,7 +86,7 @@ export default function ContactForm() {
             });
             setStatus('idle');
           }}
-          className="text-xs font-mono uppercase tracking-wider text-black hover:text-[#0047ff] transition-colors cursor-pointer"
+          className="text-xs font-mono uppercase tracking-wider text-[var(--color-text)] hover:text-[#0047ff] transition-colors cursor-pointer"
         >
           Send another message →
         </button>
@@ -103,8 +103,8 @@ export default function ContactForm() {
     >
       {/* Error notification if submission failed */}
       {status === 'error' && (
-        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs flex items-center gap-3">
-          <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+        <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-xs flex items-center gap-3">
+          <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
           <span>{errorMessage}</span>
         </div>
       )}
@@ -112,7 +112,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Name */}
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
             Name *
           </label>
           <input
@@ -122,13 +122,13 @@ export default function ContactForm() {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="Your name"
-            className="w-full px-4 py-3.5 rounded-xl bg-white border border-[#e6e8ee] text-black text-sm placeholder:text-[#a1a1aa] focus:outline-none focus:border-[#0047ff] transition-colors"
+            className="w-full px-4 py-3.5 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:border-[#0047ff] transition-colors"
           />
         </div>
 
         {/* Email */}
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
             Email *
           </label>
           <input
@@ -138,7 +138,7 @@ export default function ContactForm() {
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             placeholder="you@company.com"
-            className="w-full px-4 py-3.5 rounded-xl bg-white border border-[#e6e8ee] text-black text-sm placeholder:text-[#a1a1aa] focus:outline-none focus:border-[#0047ff] transition-colors"
+            className="w-full px-4 py-3.5 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:border-[#0047ff] transition-colors"
           />
         </div>
       </div>
@@ -146,7 +146,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Contact / Phone */}
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
             Contact
           </label>
           <input
@@ -155,13 +155,13 @@ export default function ContactForm() {
             value={formData.contact}
             onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
             placeholder="+91 00000 00000"
-            className="w-full px-4 py-3.5 rounded-xl bg-white border border-[#e6e8ee] text-black text-sm placeholder:text-[#a1a1aa] focus:outline-none focus:border-[#0047ff] transition-colors"
+            className="w-full px-4 py-3.5 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:border-[#0047ff] transition-colors"
           />
         </div>
 
         {/* Company / Brand */}
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
             Company / Brand
           </label>
           <input
@@ -170,14 +170,14 @@ export default function ContactForm() {
             value={formData.company}
             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             placeholder="Brand or Studio name"
-            className="w-full px-4 py-3.5 rounded-xl bg-white border border-[#e6e8ee] text-black text-sm placeholder:text-[#a1a1aa] focus:outline-none focus:border-[#0047ff] transition-colors"
+            className="w-full px-4 py-3.5 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:border-[#0047ff] transition-colors"
           />
         </div>
       </div>
 
       {/* What do you need? */}
       <div>
-        <label className="block text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+        <label className="block text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
           What do you need?
         </label>
         <input type="hidden" name="service" value={formData.service} />
@@ -190,7 +190,7 @@ export default function ContactForm() {
               className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                 formData.service === opt
                   ? 'bg-[#0047ff] text-white font-semibold'
-                  : 'bg-white text-[#5b6170] hover:text-black border border-[#e6e8ee]'
+                  : 'bg-[var(--color-bg)] text-[var(--color-muted)] hover:text-[var(--color-text)] border border-[var(--color-border)]'
               }`}
             >
               {opt}
@@ -201,7 +201,7 @@ export default function ContactForm() {
 
       {/* Message */}
       <div>
-        <label className="block text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+        <label className="block text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
           Message *
         </label>
         <textarea
@@ -211,14 +211,14 @@ export default function ContactForm() {
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Tell us what you're working on and what you need..."
-          className="w-full px-4 py-3.5 rounded-xl bg-white border border-[#e6e8ee] text-black text-sm placeholder:text-[#a1a1aa] focus:outline-none focus:border-[#0047ff] transition-colors resize-none"
+          className="w-full px-4 py-3.5 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:border-[#0047ff] transition-colors resize-none"
         />
       </div>
 
       {/* Optional: Budget & Timeline */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
             Budget (Optional)
           </label>
           <input
@@ -227,12 +227,12 @@ export default function ContactForm() {
             value={formData.budget}
             onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
             placeholder="e.g. ₹2L - ₹10L"
-            className="w-full px-4 py-3 rounded-xl bg-white border border-[#e6e8ee] text-black text-sm placeholder:text-[#a1a1aa] focus:outline-none focus:border-[#0047ff] transition-colors"
+            className="w-full px-4 py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:border-[#0047ff] transition-colors"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
             Timeline (Optional)
           </label>
           <input
@@ -241,7 +241,7 @@ export default function ContactForm() {
             value={formData.timeline}
             onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
             placeholder="e.g. Next month, Q3"
-            className="w-full px-4 py-3 rounded-xl bg-white border border-[#e6e8ee] text-black text-sm placeholder:text-[#a1a1aa] focus:outline-none focus:border-[#0047ff] transition-colors"
+            className="w-full px-4 py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:border-[#0047ff] transition-colors"
           />
         </div>
       </div>

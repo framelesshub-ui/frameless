@@ -86,7 +86,7 @@ export function App() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-white text-black overflow-x-hidden selection:bg-[#0047ff]/15 selection:text-black">
+    <div className="relative w-full min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] overflow-x-hidden selection:bg-[var(--color-selection-bg)] selection:text-[var(--color-selection-text)]">
       <Effects />
 
       {/* 1. Floating Glass Navigation Header */}

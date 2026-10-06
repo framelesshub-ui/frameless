@@ -40,27 +40,27 @@ export default function WorkPageContent() {
   });
 
   return (
-    <div className="bg-white text-black min-h-screen pt-32 sm:pt-40 pb-28">
+    <div className="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen pt-32 sm:pt-40 pb-28">
       <div className="editorial-container">
         
         {/* Page Hero */}
         <div className="mb-14 sm:mb-20 max-w-3xl">
           <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
-            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#5b6170]">
+            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[var(--color-muted)]">
               Portfolio Archive
             </span>
           </div>
-          <h1 className="hero-h1 text-black font-heading mb-5">
+          <h1 className="hero-h1 text-[var(--color-text)] font-heading mb-5">
             Selected Work<span className="text-[#0047ff]">.</span>
           </h1>
-          <p className="body-lead text-base sm:text-xl text-[#5b6170] leading-relaxed">
+          <p className="body-lead text-base sm:text-xl text-[var(--color-muted)] leading-relaxed">
             A collection of brands, films and digital work created by Frameless Hub.
           </p>
         </div>
 
         {/* Minimal Filters */}
-        <div className="flex flex-wrap gap-2 sm:gap-3 pb-8 mb-12 sm:mb-16 border-b border-[#e6e8ee]">
+        <div className="flex flex-wrap gap-2 sm:gap-3 pb-8 mb-12 sm:mb-16 border-b border-[var(--color-border)]">
           {WORK_FILTERS.map((filter) => {
             const isActive = activeFilter === filter;
             return (
@@ -71,7 +71,7 @@ export default function WorkPageContent() {
                 className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                   isActive
                     ? 'bg-[#0047ff] text-white font-semibold'
-                    : 'bg-white text-[#5b6170] hover:text-black border border-[#e6e8ee]'
+                    : 'bg-[var(--color-bg)] text-[var(--color-muted)] hover:text-[var(--color-text)] border border-[var(--color-border)]'
                 }`}
               >
                 {filter}
@@ -86,31 +86,31 @@ export default function WorkPageContent() {
             <Link
               key={project.slug}
               href={`/work/${project.slug}`}
-              className="group p-8 sm:p-10 rounded-2xl bg-white border border-[#e6e8ee] hover:border-[#0047ff] transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-md"
+              className="group p-8 sm:p-10 rounded-2xl bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[#0047ff] transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-md"
             >
               <div>
                 {/* Meta Top: Category & Year */}
-                <div className="flex items-center justify-between gap-4 pb-6 border-b border-[#e6e8ee] mb-6">
+                <div className="flex items-center justify-between gap-4 pb-6 border-b border-[var(--color-border)] mb-6">
                   <span className="text-xs font-mono text-[#0047ff] uppercase tracking-wider font-semibold">
                     {project.displayCategory}
                   </span>
-                  <span className="text-xs font-mono text-[#5b6170]">
+                  <span className="text-xs font-mono text-[var(--color-muted)]">
                     {project.year}
                   </span>
                 </div>
 
                 {/* Client Name */}
-                <h2 className="text-2xl sm:text-3xl font-bold font-heading text-black group-hover:text-[#0047ff] transition-colors mb-2">
+                <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[var(--color-text)] group-hover:text-[#0047ff] transition-colors mb-2">
                   {project.client}
                 </h2>
 
                 {/* Project Scope / Title */}
-                <p className="text-base text-black font-medium mb-4">
+                <p className="text-base text-[var(--color-text)] font-medium mb-4">
                   {project.title}
                 </p>
 
                 {/* Overview */}
-                <p className="text-sm text-[#5b6170] leading-relaxed mb-6 font-normal">
+                <p className="text-sm text-[var(--color-muted)] leading-relaxed mb-6 font-normal">
                   {project.overview}
                 </p>
 
@@ -119,7 +119,7 @@ export default function WorkPageContent() {
                   {project.deliverables.map((item) => (
                     <span
                       key={item}
-                      className="px-3 py-1 rounded-full text-[11px] font-mono text-black bg-[#f6f8fc] border border-[#e6e8ee]"
+                      className="px-3 py-1 rounded-full text-[11px] font-mono text-[var(--color-text)] bg-[var(--color-tint)] border border-[var(--color-border)]"
                     >
                       {item}
                     </span>
@@ -128,17 +128,17 @@ export default function WorkPageContent() {
               </div>
 
               {/* Card Footer: Verified Result & Arrow */}
-              <div className="pt-6 border-t border-[#e6e8ee] flex items-center justify-between">
+              <div className="pt-6 border-t border-[var(--color-border)] flex items-center justify-between">
                 {project.verifiedResult ? (
                   <span className="text-xs font-mono text-[#0047ff] font-semibold">
                     {project.verifiedResult}
                   </span>
                 ) : (
-                  <span className="text-xs font-mono text-[#5b6170]">
+                  <span className="text-xs font-mono text-[var(--color-muted)]">
                     Case Study
                   </span>
                 )}
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-black group-hover:text-[#0047ff] transition-colors">
+                <div className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[var(--color-text)] group-hover:text-[#0047ff] transition-colors">
                   <span>View Details</span>
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>

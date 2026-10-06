@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 interface HeaderProps {
   currentRoute?: string;
@@ -96,21 +97,11 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'py-3 sm:py-3.5 bg-white/75 backdrop-blur-[18px] border-b border-[#e6e8ee] shadow-[0_4px_20px_rgba(0,0,0,0.02)]'
+          ? 'py-3 sm:py-3.5 nav-frosted'
           : 'py-5 sm:py-6 bg-transparent border-b border-transparent'
       }`}
-      style={
-        isScrolled
-          ? {
-              backgroundColor: 'rgba(255, 255, 255, 0.72)',
-              WebkitBackdropFilter: 'blur(18px) saturate(1.8)',
-              backdropFilter: 'blur(18px) saturate(1.8)',
-              borderBottom: '1px solid #e6e8ee',
-            }
-          : undefined
-      }
     >
-      <div className="editorial-container flex items-center justify-between gap-4">
+      <div className="editorial-container flex items-center justify-between gap-1.5 min-[380px]:gap-2 sm:gap-4">
         {/* Left: Brand Logo + Wordmark */}
         <Link
           href="/#hero"
@@ -120,22 +111,22 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }
           }}
-          className="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0047ff]"
+          className="flex items-center gap-1.5 sm:gap-2.5 group flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0047ff]"
         >
           <img
             src="/logo.png"
             alt="Frameless Hub Logo"
-            className="w-6 h-6 sm:w-7 sm:h-7 object-contain transition-transform duration-300 group-hover:scale-105"
+            className="w-5 h-5 min-[380px]:w-6 min-[380px]:h-6 sm:w-7 sm:h-7 object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <span className="hidden min-[540px]:inline font-heading text-xs sm:text-sm font-bold tracking-tight text-black uppercase">
+          <span className="hidden min-[540px]:inline font-heading text-xs sm:text-sm font-bold tracking-tight text-[var(--color-text)] uppercase">
             FRAMELESS HUB
           </span>
         </Link>
 
-        {/* Center: 5 Nav Links (Under 620px: smaller size, always visible) */}
+        {/* Center: 5 Nav Links (Under 620px: compact size, always visible) */}
         <nav
           aria-label="Main Navigation"
-          className="flex items-center gap-2.5 min-[380px]:gap-3.5 sm:gap-7 md:gap-9"
+          className="flex items-center gap-1.5 min-[360px]:gap-2 min-[420px]:gap-3 sm:gap-7 md:gap-9"
         >
           {navLinks.map((item) => {
             const isActive = activeSection === item.id;
@@ -144,8 +135,8 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
                 key={item.id}
                 href={pathname === '/' || pathname === '' ? `#${item.id === 'home' ? 'hero' : item.id}` : item.pageHref}
                 onClick={(e) => handleLinkClick(e, item)}
-                className={`fx-nav-link text-[11px] min-[400px]:text-xs sm:text-sm font-medium transition-colors ${
-                  isActive ? 'text-black active-link font-semibold' : 'text-[#5b6170] hover:text-black'
+                className={`fx-nav-link text-[10px] min-[360px]:text-[11px] min-[400px]:text-xs sm:text-sm font-medium transition-colors ${
+                  isActive ? 'text-[var(--color-text)] active-link font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
                 }`}
               >
                 {item.label}
@@ -154,24 +145,27 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
           })}
         </nav>
 
-        {/* Right: Blue Glass "Start a project" Button (Hidden under 620px) */}
-        <div className="hidden min-[620px]:flex items-center flex-shrink-0">
-          <Link
-            href="/#contact"
-            onClick={(e) => {
-              if (pathname === '/' || pathname === '') {
-                const el = document.getElementById('contact');
-                if (el) {
-                  e.preventDefault();
-                  el.scrollIntoView({ behavior: 'smooth' });
+        {/* Right: Round Glass Theme Toggle + Blue Glass "Start a project" Button */}
+        <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+          <ThemeToggle />
+          <div className="hidden min-[620px]:block">
+            <Link
+              href="/#contact"
+              onClick={(e) => {
+                if (pathname === '/' || pathname === '') {
+                  const el = document.getElementById('contact');
+                  if (el) {
+                    e.preventDefault();
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  }
                 }
-              }
-            }}
-            className="glass-btn-blue text-xs font-semibold py-2.5 px-5"
-          >
-            <span>Start a project</span>
-            <ArrowUpRight className="w-3.5 h-3.5 ml-1.5 inline-block" />
-          </Link>
+              }}
+              className="glass-btn-blue text-xs font-semibold py-2.5 px-5"
+            >
+              <span>Start a project</span>
+              <ArrowUpRight className="w-3.5 h-3.5 ml-1.5 inline-block" />
+            </Link>
+          </div>
         </div>
       </div>
     </header>

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 
 interface FooterProps {
   onNavigate?: (path: string) => void;
@@ -9,8 +8,8 @@ interface FooterProps {
 
 export default function Footer({ onNavigate }: FooterProps = {}) {
   return (
-    <footer className="bg-white text-black border-t border-[#e6e8ee] py-10 sm:py-12">
-      <div className="editorial-container flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#5b6170]">
+    <footer className="bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] py-10 sm:py-12">
+      <div className="editorial-container flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--color-muted)]">
         {/* Left: Copyright */}
         <div className="flex items-center gap-2.5">
           <img

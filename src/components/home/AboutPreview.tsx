@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function AboutPreview() {
   return (
-    <section id="about" className="py-20 sm:py-28 bg-white scroll-reveal">
+    <section id="about" className="py-20 sm:py-28 bg-[var(--color-bg)] scroll-reveal">
       {/* One Black Rounded Block: border-radius 36px, side margins 2.5vw */}
       <div className="about-black-block p-8 sm:p-14 md:p-16 lg:p-20">
         <div className="max-w-5xl mx-auto">

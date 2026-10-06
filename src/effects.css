@@ -1,30 +1,167 @@
 /* ==========================================================================
-   FRAMELESS HUB — BRIGHT, MINIMAL & PREMIUM DESIGN SYSTEM
-   Tokens:
-   - Background: #ffffff
-   - Text & Dark Block: #000000
-   - Accent: #0047ff (Electric Blue)
-   - Muted: #5b6170
-   - Hairline borders: #e6e8ee
-   - Soft tinted background: #f6f8fc
-   - Easing: cubic-bezier(.22, 1, .36, 1) everywhere
-   - Fonts: "Unbounded" (500, 700) for headings, "DM Sans" (400, 500, 700) for body
+   FRAMELESS HUB — DESIGN SYSTEM & THEME TOKENS
+   --------------------------------------------------------------------------
+   Light Tokens:
+   - background #ffffff
+   - text #000000
+   - muted #5b6170
+   - hairlines #e6e8ee
+   - soft section #f6f8fc
+   - hero gradient end #eef3ff
+   - nav rgba(255,255,255,.72)
+   - glass buttons rgba(255,255,255,.32) with 1px rgba(255,255,255,.8) border
+
+   Dark Tokens:
+   - background #000
+   - text #fff
+   - muted #9aa3b8
+   - hairlines #1c2130
+   - soft section #080b12
+   - hero gradient end #00123f
+   - nav rgba(0,0,0,.6)
+   - glass buttons rgba(255,255,255,.08) with 1px rgba(255,255,255,.24) border
+
+   Accent:
+   - Electric Blue #0047ff (preserved in both modes)
+
+   Typography:
+   - "Unbounded" (500, 700) for headings
+   - "DM Sans" (400, 500, 700) for body and UI
    ========================================================================== */
 
+:root,
+html[data-theme="light"],
+html:not([data-theme="dark"]) {
+  /* Requested tokens */
+  --bg: #ffffff;
+  --text: #000000;
+  --muted: #5b6170;
+  --hairlines: #e6e8ee;
+  --hairline: #e6e8ee;
+  --soft-section: #f6f8fc;
+  --hero-gradient-end: #eef3ff;
+  --hero-grad-end: #eef3ff;
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --glass-button-bg: rgba(255, 255, 255, 0.32);
+  --glass-btn-bg: rgba(255, 255, 255, 0.32);
+  --glass-button-border: rgba(255, 255, 255, 0.8);
+  --glass-btn-border: rgba(255, 255, 255, 0.8);
+  --accent: #0047ff;
+
+  /* Aliased system tokens */
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+  --color-dark: #000000;
+  --color-electric-blue: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--hairline);
+  --color-tint: var(--soft-section);
+  --color-hero-grad-end: var(--hero-gradient-end);
+  --color-nav-bg: var(--nav-bg);
+  --color-glass-btn-bg: var(--glass-btn-bg);
+  --color-glass-btn-border: var(--glass-btn-border);
+  --color-glass-btn-text: #000000;
+  --color-glass-btn-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9), 0 4px 16px -2px rgba(0, 71, 255, 0.12);
+  --color-glass-btn-hover-bg: rgba(255, 255, 255, 0.65);
+  --color-glass-btn-hover-border: rgba(255, 255, 255, 1);
+  --color-about-bg: #000000;
+  --color-about-text: #ffffff;
+  --color-about-border: rgba(255, 255, 255, 0.12);
+  --color-selection-bg: rgba(0, 71, 255, 0.15);
+  --color-selection-text: #000000;
+  --color-scrollbar-track: #ffffff;
+  --color-scrollbar-thumb: #d8dbe2;
+  --color-scrollbar-thumb-hover: #b8bcc8;
+  --color-service-hover-start: rgba(0, 71, 255, 0.04);
+  --color-service-hover-end: rgba(255, 255, 255, 0);
+
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  /* Requested tokens */
+  --bg: #000;
+  --text: #fff;
+  --muted: #9aa3b8;
+  --hairlines: #1c2130;
+  --hairline: #1c2130;
+  --soft-section: #080b12;
+  --hero-gradient-end: #00123f;
+  --hero-grad-end: #00123f;
+  --nav-bg: rgba(0, 0, 0, 0.6);
+  --glass-button-bg: rgba(255, 255, 255, 0.08);
+  --glass-btn-bg: rgba(255, 255, 255, 0.08);
+  --glass-button-border: rgba(255, 255, 255, 0.24);
+  --glass-btn-border: rgba(255, 255, 255, 0.24);
+  --accent: #0047ff;
+
+  /* Aliased system tokens */
+  --color-bg: #000000;
+  --color-text: #ffffff;
+  --color-dark: #ffffff;
+  --color-electric-blue: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--hairline);
+  --color-tint: var(--soft-section);
+  --color-hero-grad-end: var(--hero-gradient-end);
+  --color-nav-bg: var(--nav-bg);
+  --color-glass-btn-bg: var(--glass-btn-bg);
+  --color-glass-btn-border: var(--glass-btn-border);
+  --color-glass-btn-text: #ffffff;
+  --color-glass-btn-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12), 0 4px 16px -2px rgba(0, 71, 255, 0.25);
+  --color-glass-btn-hover-bg: rgba(255, 255, 255, 0.16);
+  --color-glass-btn-hover-border: rgba(255, 255, 255, 0.45);
+  --color-about-bg: #080b12;
+  --color-about-text: #ffffff;
+  --color-about-border: #1c2130;
+  --color-selection-bg: rgba(0, 71, 255, 0.35);
+  --color-selection-text: #ffffff;
+  --color-scrollbar-track: #000000;
+  --color-scrollbar-thumb: #1c2130;
+  --color-scrollbar-thumb-hover: #2e364a;
+  --color-service-hover-start: rgba(0, 71, 255, 0.12);
+  --color-service-hover-end: rgba(8, 11, 18, 0);
+
+  color-scheme: dark;
+}
 
 :root {
   --font-heading: 'Unbounded', system-ui, -apple-system, sans-serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
-  --color-bg: #ffffff;
-  --color-dark: #000000;
-  --color-electric-blue: #0047ff;
-  --color-muted: #5b6170;
-  --color-border: #e6e8ee;
-  --color-tint: #f6f8fc;
-  
   --fx-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --nav-height: 76px;
+}
+
+/* --------------------------------------------------------------------------
+   THEME COLOR TRANSITIONS (0.5s transition on theme switch)
+   -------------------------------------------------------------------------- */
+html,
+body,
+header,
+section,
+footer,
+main,
+nav,
+div.editorial-container,
+div.services-col,
+div.subservice-row,
+div.about-black-block,
+div.editorial-card,
+a.project-row-item,
+span.project-metric-badge,
+button.glass-btn-light,
+a.glass-btn-light,
+button.glass-btn-blue,
+a.glass-btn-blue,
+button.theme-toggle-btn {
+  transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, label, blockquote {
+  transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -33,17 +170,16 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
-  background-color: #ffffff;
-  color: #000000;
-  color-scheme: light;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 body {
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.65;
-  color: #000000;
-  background-color: #ffffff;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -84,8 +220,8 @@ h2, .section-h2 {
 }
 
 ::selection {
-  background: rgba(0, 71, 255, 0.15);
-  color: #000000;
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
 }
 
 /* --------------------------------------------------------------------------
@@ -103,13 +239,13 @@ button.glass-btn-light {
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  background: rgba(255, 255, 255, 0.32) !important;
-  color: #000000 !important;
-  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  background: var(--color-glass-btn-bg) !important;
+  color: var(--color-glass-btn-text) !important;
+  border: 1px solid var(--color-glass-btn-border) !important;
   -webkit-backdrop-filter: blur(18px) saturate(1.8);
   backdrop-filter: blur(18px) saturate(1.8);
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9), 0 4px 16px -2px rgba(0, 71, 255, 0.12);
-  transition: background 0.35s var(--fx-ease), border-color 0.35s var(--fx-ease), box-shadow 0.35s var(--fx-ease), transform 0.2s var(--fx-ease);
+  box-shadow: var(--color-glass-btn-shadow);
+  transition: background 0.35s var(--fx-ease), border-color 0.35s var(--fx-ease), box-shadow 0.35s var(--fx-ease), transform 0.2s var(--fx-ease), color 0.35s var(--fx-ease);
   will-change: transform;
   text-decoration: none;
   cursor: pointer;
@@ -118,9 +254,9 @@ button.glass-btn-light {
 .glass-btn-light:hover,
 a.glass-btn-light:hover,
 button.glass-btn-light:hover {
-  background: rgba(255, 255, 255, 0.65) !important;
-  border-color: rgba(255, 255, 255, 1) !important;
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 1), 0 0 24px rgba(0, 71, 255, 0.28);
+  background: var(--color-glass-btn-hover-bg) !important;
+  border-color: var(--color-glass-btn-hover-border) !important;
+  box-shadow: 0 0 24px rgba(0, 71, 255, 0.28);
 }
 
 .glass-btn-light:active,
@@ -141,7 +277,7 @@ button.glass-btn-blue {
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  background: rgba(0, 71, 255, 0.82) !important;
+  background: rgba(0, 71, 255, 0.85) !important;
   color: #ffffff !important;
   border: 1px solid rgba(140, 180, 255, 0.5) !important;
   -webkit-backdrop-filter: blur(18px) saturate(1.8);
@@ -156,8 +292,8 @@ button.glass-btn-blue {
 .glass-btn-blue:hover,
 a.glass-btn-blue:hover,
 button.glass-btn-blue:hover {
-  background: rgba(0, 71, 255, 0.95) !important;
-  border-color: rgba(180, 210, 255, 0.8) !important;
+  background: rgba(0, 71, 255, 0.98) !important;
+  border-color: rgba(180, 210, 255, 0.85) !important;
   box-shadow: 0 0 28px rgba(0, 71, 255, 0.65);
 }
 
@@ -165,6 +301,92 @@ button.glass-btn-blue:hover {
 a.glass-btn-blue:active,
 button.glass-btn-blue:active {
   transform: scale(0.96) !important;
+}
+
+/* --------------------------------------------------------------------------
+   THEME TOGGLE BUTTON (Round glass icon button in the nav)
+   -------------------------------------------------------------------------- */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  background: var(--color-glass-btn-bg);
+  border: 1px solid var(--color-glass-btn-border);
+  color: var(--color-text);
+  -webkit-backdrop-filter: blur(18px) saturate(1.8);
+  backdrop-filter: blur(18px) saturate(1.8);
+  box-shadow: var(--color-glass-btn-shadow);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  will-change: transform;
+  transition: background-color 0.5s var(--fx-ease),
+              border-color 0.5s var(--fx-ease),
+              box-shadow 0.5s var(--fx-ease),
+              color 0.5s var(--fx-ease),
+              transform 0.2s var(--fx-ease);
+}
+
+@media (min-width: 640px) {
+  .theme-toggle-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.theme-toggle-btn:hover {
+  background: var(--color-glass-btn-hover-bg);
+  border-color: var(--color-electric-blue);
+  box-shadow: 0 0 20px rgba(0, 71, 255, 0.3);
+  transform: scale(1.06);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.94);
+}
+
+/* Sun / Moon icons rotation and fade into each other over 0.5s */
+.theme-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  margin-left: -9px;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+/* Light Mode: Sun is active (0deg, opacity 1); Moon is rotated (-90deg, opacity 0) */
+html[data-theme="light"] .theme-icon-sun,
+html:not([data-theme="dark"]) .theme-icon-sun {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+html[data-theme="light"] .theme-icon-moon,
+html:not([data-theme="dark"]) .theme-icon-moon {
+  transform: rotate(-90deg) scale(0.4);
+  opacity: 0;
+}
+
+/* Dark Mode: Moon is active (0deg, opacity 1); Sun is rotated (90deg, opacity 0) */
+html[data-theme="dark"] .theme-icon-sun {
+  transform: rotate(90deg) scale(0.4);
+  opacity: 0;
+}
+
+html[data-theme="dark"] .theme-icon-moon {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
 }
 
 /* Magnetic Wrapper */
@@ -177,21 +399,22 @@ button.glass-btn-blue:active {
    NAVIGATION STYLING
    -------------------------------------------------------------------------- */
 .nav-frosted {
-  background-color: rgba(255, 255, 255, 0.72) !important;
+  background-color: var(--color-nav-bg) !important;
   -webkit-backdrop-filter: blur(18px) saturate(1.8);
   backdrop-filter: blur(18px) saturate(1.8);
   border-bottom: 1px solid var(--color-border) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .fx-nav-link {
   position: relative;
   display: inline-block;
   padding-bottom: 4px;
-  color: #000000;
+  color: var(--color-muted);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.875rem;
+  transition: color 0.3s var(--fx-ease);
 }
 
 .fx-nav-link::after {
@@ -205,6 +428,11 @@ button.glass-btn-blue:active {
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.38s var(--fx-ease);
+}
+
+.fx-nav-link:hover,
+.fx-nav-link.active-link {
+  color: var(--color-text);
 }
 
 .fx-nav-link:hover::after,
@@ -295,7 +523,7 @@ button.glass-btn-blue:active {
   margin-left: -260px;
   border-radius: 50%;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(0, 71, 255, 0.18) 0%, rgba(0, 71, 255, 0.05) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 71, 255, 0.22) 0%, rgba(0, 71, 255, 0.06) 45%, transparent 70%);
   filter: blur(50px);
   will-change: transform;
 }
@@ -312,9 +540,6 @@ button.glass-btn-blue:active {
 
 /* --------------------------------------------------------------------------
    SERVICES SECTION (What We Do)
-   - 4 columns separated by 1px vertical hairlines
-   - Plain list of sub-services separated by hairlines
-   - Hover tints column with faint blue-to-white gradient
    -------------------------------------------------------------------------- */
 .services-col {
   border-right: 1px solid var(--color-border);
@@ -327,7 +552,7 @@ button.glass-btn-blue:active {
 }
 
 .services-col:hover {
-  background: linear-gradient(180deg, rgba(0, 71, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, var(--color-service-hover-start) 0%, var(--color-service-hover-end) 100%);
 }
 
 .subservice-row {
@@ -343,8 +568,6 @@ button.glass-btn-blue:active {
 
 /* --------------------------------------------------------------------------
    PROJECTS SECTION (Selected Projects Full-Width Rows)
-   - Clean full-width rows: name, category, services, metric
-   - Hover: Blue panel fills from bottom (scaleY 0 to 1), text turns white
    -------------------------------------------------------------------------- */
 .project-row-item {
   position: relative;
@@ -354,7 +577,7 @@ button.glass-btn-blue:active {
   padding: 2.2rem 1.5rem;
   overflow: hidden;
   text-decoration: none;
-  color: #000000;
+  color: var(--color-text);
   background-color: transparent;
   transition: color 0.35s var(--fx-ease);
 }
@@ -382,22 +605,23 @@ button.glass-btn-blue:active {
 .project-row-item:hover .project-metric-badge {
   color: #ffffff !important;
   background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: transparent !important;
 }
 
 /* --------------------------------------------------------------------------
    ABOUT SECTION (Black Rounded Block)
-   - border-radius 36px, side margins 2.5vw
    -------------------------------------------------------------------------- */
 .about-black-block {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--color-about-bg);
+  color: var(--color-about-text);
+  border: 1px solid var(--color-about-border);
   border-radius: 36px;
   margin-left: 2.5vw;
   margin-right: 2.5vw;
 }
 
 /* --------------------------------------------------------------------------
-   SCROLL REVEALS (Threshold 0.12, translateY 36px)
+   SCROLL REVEALS
    -------------------------------------------------------------------------- */
 .scroll-reveal {
   opacity: 0;
@@ -427,7 +651,8 @@ button.glass-btn-blue:active {
   .hero-buttons-reveal,
   .hero-stats-reveal,
   .scroll-reveal,
-  .project-row-fill {
+  .project-row-fill,
+  .theme-icon {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;

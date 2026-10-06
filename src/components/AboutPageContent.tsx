@@ -8,27 +8,27 @@ import { siteStats } from '@/data/stats';
 
 export default function AboutPageContent() {
   return (
-    <div className="bg-white text-black min-h-screen pt-32 sm:pt-40 pb-28">
+    <div className="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen pt-32 sm:pt-40 pb-28">
       <div className="editorial-container">
         
         {/* Hero */}
         <div className="mb-16 sm:mb-24 max-w-4xl">
           <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
-            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#5b6170]">
+            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[var(--color-muted)]">
               About Frameless Hub
             </span>
           </div>
-          <h1 className="hero-h1 text-black font-heading mb-6">
+          <h1 className="hero-h1 text-[var(--color-text)] font-heading mb-6">
             Made to stand apart<span className="text-[#0047ff]">.</span>
           </h1>
-          <p className="body-lead text-lg sm:text-2xl text-[#5b6170] leading-relaxed font-normal">
+          <p className="body-lead text-lg sm:text-2xl text-[var(--color-muted)] leading-relaxed font-normal">
             We believe better creative starts with better thinking. Frameless Hub brings together ideas, craft, and execution to create work that is clear, purposeful, and memorable.
           </p>
         </div>
 
         {/* 3 Core Stats */}
-        <div className="py-12 border-t border-b border-[#e6e8ee] mb-20 sm:mb-28">
+        <div className="py-12 border-t border-b border-[var(--color-border)] mb-20 sm:mb-28">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {siteStats.map((stat) => (
               <div key={stat.id} className="flex flex-col">
@@ -37,7 +37,7 @@ export default function AboutPageContent() {
                 </span>
                 <div
                   aria-hidden="true"
-                  className="text-3xl sm:text-5xl font-bold font-heading text-black tracking-tight"
+                  className="text-3xl sm:text-5xl font-bold font-heading text-[var(--color-text)] tracking-tight"
                 >
                   {stat.isNumeric ? (
                     <AnimatedCounter
@@ -50,7 +50,7 @@ export default function AboutPageContent() {
                     <span>{stat.displayValue}</span>
                   )}
                 </div>
-                <div aria-hidden="true" className="text-xs sm:text-sm text-[#5b6170] mt-2 font-mono uppercase tracking-wider">
+                <div aria-hidden="true" className="text-xs sm:text-sm text-[var(--color-muted)] mt-2 font-mono uppercase tracking-wider">
                   {stat.label}
                 </div>
               </div>
@@ -60,7 +60,7 @@ export default function AboutPageContent() {
 
         {/* WHAT WE BELIEVE */}
         <div className="mb-24 sm:mb-32">
-          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#5b6170] mb-8">
+          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[var(--color-muted)] mb-8">
             What We Believe
           </div>
 
@@ -69,8 +69,8 @@ export default function AboutPageContent() {
               <div className="text-xs font-mono text-[#0047ff] uppercase tracking-widest mb-3 font-semibold">
                 01
               </div>
-              <h2 className="text-2xl font-bold font-heading text-black mb-2">Think clearly.</h2>
-              <p className="text-sm sm:text-base text-[#5b6170] leading-relaxed">
+              <h2 className="text-2xl font-bold font-heading text-[var(--color-text)] mb-2">Think clearly.</h2>
+              <p className="text-sm sm:text-base text-[var(--color-muted)] leading-relaxed">
                 Clarity comes before creativity.
               </p>
             </div>
@@ -79,8 +79,8 @@ export default function AboutPageContent() {
               <div className="text-xs font-mono text-[#0047ff] uppercase tracking-widest mb-3 font-semibold">
                 02
               </div>
-              <h2 className="text-2xl font-bold font-heading text-black mb-2">Create with purpose.</h2>
-              <p className="text-sm sm:text-base text-[#5b6170] leading-relaxed">
+              <h2 className="text-2xl font-bold font-heading text-[var(--color-text)] mb-2">Create with purpose.</h2>
+              <p className="text-sm sm:text-base text-[var(--color-muted)] leading-relaxed">
                 Every piece of work should have a reason behind it.
               </p>
             </div>
@@ -89,8 +89,8 @@ export default function AboutPageContent() {
               <div className="text-xs font-mono text-[#0047ff] uppercase tracking-widest mb-3 font-semibold">
                 03
               </div>
-              <h2 className="text-2xl font-bold font-heading text-black mb-2">Measure what matters.</h2>
-              <p className="text-sm sm:text-base text-[#5b6170] leading-relaxed">
+              <h2 className="text-2xl font-bold font-heading text-[var(--color-text)] mb-2">Measure what matters.</h2>
+              <p className="text-sm sm:text-base text-[var(--color-muted)] leading-relaxed">
                 We care about the impact the work creates, not just how it looks.
               </p>
             </div>
@@ -151,14 +151,14 @@ export default function AboutPageContent() {
         </div>
 
         {/* HAVE A PROJECT IN MIND? */}
-        <div className="pt-16 border-t border-[#e6e8ee] text-center max-w-3xl mx-auto">
-          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#5b6170] mb-4">
+        <div className="pt-16 border-t border-[var(--color-border)] text-center max-w-3xl mx-auto">
+          <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[var(--color-muted)] mb-4">
             Have a project in mind?
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold font-heading text-black mb-4">
+          <h2 className="text-3xl sm:text-5xl font-bold font-heading text-[var(--color-text)] mb-4">
             Got an idea?
           </h2>
-          <p className="text-xl sm:text-2xl text-[#5b6170] mb-8 font-medium">
+          <p className="text-xl sm:text-2xl text-[var(--color-muted)] mb-8 font-medium">
             Let’s make it hard to ignore.
           </p>
           <Link

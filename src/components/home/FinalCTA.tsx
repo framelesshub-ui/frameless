@@ -5,15 +5,15 @@ import { InstagramIcon } from '@/components/icons/SocialIcons';
 
 export default function FinalCTA() {
   return (
-    <section id="contact" className="py-24 sm:py-36 bg-white text-black border-t border-[#e6e8ee] scroll-reveal">
+    <section id="contact" className="py-24 sm:py-36 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] scroll-reveal">
       <div className="editorial-container">
         <div className="max-w-4xl">
           {/* Section Heading */}
-          <h2 className="section-h2 text-black font-heading mb-8">
+          <h2 className="section-h2 text-[var(--color-text)] font-heading mb-8">
             Have something worth creating?
           </h2>
 
-          <p className="body-lead text-base sm:text-lg text-[#5b6170] max-w-2xl leading-relaxed mb-12">
+          <p className="body-lead text-base sm:text-lg text-[var(--color-muted)] max-w-2xl leading-relaxed mb-12">
             Let’s talk about your next brand milestone, video campaign, or complete digital transformation.
           </p>
 
@@ -40,15 +40,15 @@ export default function FinalCTA() {
           </div>
 
           {/* 3-Column Row separated by a hairline above */}
-          <div className="pt-12 border-t border-[#e6e8ee] grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+          <div className="pt-12 border-t border-[var(--color-border)] grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
             {/* Col 1: Email */}
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+              <div className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
                 Email
               </div>
               <a
                 href="mailto:framelesshub@gmail.com"
-                className="text-base sm:text-lg font-medium text-black hover:text-[#0047ff] transition-colors"
+                className="text-base sm:text-lg font-medium text-[var(--color-text)] hover:text-[#0047ff] transition-colors"
               >
                 framelesshub@gmail.com
               </a>
@@ -56,14 +56,14 @@ export default function FinalCTA() {
 
             {/* Col 2: Phone and WhatsApp */}
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+              <div className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
                 Phone &amp; WhatsApp
               </div>
               <a
                 href="https://wa.me/918248628371"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base sm:text-lg font-medium text-black hover:text-[#0047ff] transition-colors inline-flex items-center gap-1.5"
+                className="text-base sm:text-lg font-medium text-[var(--color-text)] hover:text-[#0047ff] transition-colors inline-flex items-center gap-1.5"
               >
                 <span>+91 82486 28371</span>
                 <ArrowUpRight className="w-4 h-4 text-[#0047ff]" />
@@ -72,19 +72,19 @@ export default function FinalCTA() {
 
             {/* Col 3: Instagram & Location */}
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[#5b6170] mb-2">
+              <div className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">
                 Instagram
               </div>
               <a
                 href="https://instagram.com/framelesshub"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base sm:text-lg font-medium text-black hover:text-[#0047ff] transition-colors inline-flex items-center gap-1.5 mb-1"
+                className="text-base sm:text-lg font-medium text-[var(--color-text)] hover:text-[#0047ff] transition-colors inline-flex items-center gap-1.5 mb-1"
               >
                 <span>@framelesshub</span>
                 <ArrowUpRight className="w-4 h-4 text-[#0047ff]" />
               </a>
-              <div className="text-xs text-[#5b6170] font-mono">
+              <div className="text-xs text-[var(--color-muted)] font-mono">
                 Chennai, Tamil Nadu, India
               </div>
             </div>
