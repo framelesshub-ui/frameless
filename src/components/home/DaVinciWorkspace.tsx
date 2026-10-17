@@ -665,7 +665,7 @@ export default function DaVinciWorkspace() {
                     <span className="px-2 py-0.5 rounded bg-black/60 border border-white/10 text-[#00F0FF]">
                       TC: {activeClip.timecode}
                     </span>
-                    <span className="text-white/60">FPS: 24.00</span>
+                    <span className="text-white/70">24.00 FPS · PRORES 4444 XQ</span>
                   </div>
 
                   <span className="px-2 py-0.5 rounded bg-black/60 border border-white/10 uppercase tracking-widest text-xs font-bold text-white">
@@ -792,12 +792,12 @@ export default function DaVinciWorkspace() {
               </div>
             </div>
 
-            {/* Timeline Ruler & Tracks Frame */}
+            {/* Desktop Horizontal Multi-Track Timeline (Hidden below 768px) */}
             <div
               ref={timelineRef}
               onClick={handleTimelineScrub}
               data-cursor="SCRUB"
-              className="relative rounded-xl bg-[#0E0E12] border border-white/[0.1] p-3 cursor-ew-resize overflow-x-auto"
+              className="hidden md:block relative rounded-xl bg-[#0E0E12] border border-white/[0.1] p-3 cursor-ew-resize overflow-x-auto"
             >
               {/* Dynamic Animated Playhead (Red Needle with Flag) */}
               <div
@@ -963,6 +963,109 @@ export default function DaVinciWorkspace() {
                   </div>
                 </div>
 
+              </div>
+            </div>
+
+            {/* Mobile Thumb-Friendly Vertical Deck (Active below 768px per Workspace Rules) */}
+            <div className="block md:hidden space-y-3">
+              {/* Mobile Timecode Scrubber Bar */}
+              <div className="p-3.5 rounded-xl bg-[#0E0E12] border border-white/[0.1] space-y-2.5">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
+                    <span className="text-white font-bold">TC: {formattedTimecode}</span>
+                  </div>
+                  <span className="text-[#00F0FF] text-[10px]">24.00 FPS · PRORES 4444 XQ</span>
+                </div>
+                
+                {/* Touch-Friendly Range Scrubber */}
+                <input
+                  type="range"
+                  min={0}
+                  max={TOTAL_TIMELINE_SEC}
+                  step={1}
+                  value={Math.floor(currentTimeSec)}
+                  onChange={(e) => setCurrentTimeSec(Number(e.target.value))}
+                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[#00F0FF]"
+                  aria-label="Timeline Scrubber"
+                />
+                
+                <div className="flex justify-between text-[9px] font-mono text-[#71717A]">
+                  <span>01:00:00:00</span>
+                  <span className="text-[#A1A1AA]">SCRUB TIMELINE WITH THUMB</span>
+                  <span>01:02:40:00</span>
+                </div>
+              </div>
+
+              {/* Vertical Card Deck */}
+              <div className="space-y-2">
+                {PROJECT_CLIPS.map((clip, i) => {
+                  const isActive = i === activeClipIndex;
+                  return (
+                    <button
+                      type="button"
+                      key={`mob-deck-${clip.id}`}
+                      onClick={() => {
+                        setActiveClipIndex(i);
+                        setCurrentTimeSec(clip.startSec + 2);
+                      }}
+                      className={`w-full text-left p-3.5 rounded-xl border transition-all flex flex-col gap-2.5 ${
+                        isActive
+                          ? 'bg-gradient-to-r from-white/[0.12] to-white/[0.04] border-[#00F0FF] shadow-[0_0_20px_rgba(0,240,255,0.15)] ring-1 ring-[#00F0FF]/30'
+                          : 'bg-[#0E0E12] border-white/[0.08] hover:border-white/20'
+                      }`}
+                      style={{
+                        borderLeftWidth: '4px',
+                        borderLeftColor: clip.colorAccent,
+                      }}
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-mono font-bold text-[#00F0FF]">
+                            0{i + 1}
+                          </span>
+                          <span className="text-sm font-bold text-white tracking-wide">
+                            {clip.title}
+                          </span>
+                        </div>
+                        {isActive ? (
+                          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#00F0FF]/20 text-[#00F0FF] text-[10px] font-mono font-semibold">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse" />
+                            ACTIVE
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-mono text-[#71717A]">
+                            TAP TO AUDITION
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Monospaced Cinema Telemetry Row */}
+                      <div className="grid grid-cols-2 min-[420px]:grid-cols-4 gap-1.5 py-1 px-2 rounded-lg bg-black/50 border border-white/[0.04] text-[10px] font-mono text-[#A1A1AA]">
+                        <div><span className="text-[#71717A]">TC:</span> <span className="text-white">{clip.timecode}</span></div>
+                        <div><span className="text-[#71717A]">FPS:</span> <span className="text-white">24.00 FPS</span></div>
+                        <div><span className="text-[#71717A]">CODEC:</span> <span className="text-white">PRORES 4444 XQ</span></div>
+                        <div className="truncate"><span className="text-[#71717A]">LUT:</span> <span className="text-[#00F0FF]">{clip.lutName}</span></div>
+                      </div>
+
+                      {/* Discipline & Waveform */}
+                      <div className="flex items-center justify-between text-[11px] text-[#A1A1AA] pt-1">
+                        <span className="truncate">{clip.discipline}</span>
+                        <div className="flex items-center gap-0.5 w-16 h-3 flex-shrink-0 ml-2">
+                          {[40, 75, 30, 90, 60, 45, 85, 50].map((h, wi) => (
+                            <span
+                              key={wi}
+                              className={`flex-1 rounded-full ${
+                                isActive ? 'bg-emerald-400' : 'bg-white/20'
+                              }`}
+                              style={{ height: `${h}%` }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 

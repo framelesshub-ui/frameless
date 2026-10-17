@@ -48,6 +48,7 @@ export default function Hero() {
                 Made to
               </span>
             </span>
+            {' '}
             <span className="hero-line-wrap">
               <span className="hero-line-inner hero-line-2">
                 stand apart<span className="text-[#0047ff]">.</span>
