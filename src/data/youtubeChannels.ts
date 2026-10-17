@@ -25,7 +25,7 @@ export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
     name: "Birlas Parvai",
     handle: "@birlasparvai",
     category: "Automotive Reviews & Investigative Journalism",
-    totalViews: "4.8M+",
+    totalViews: "5.2M+",
     subscribers: "120K+",
     thumbnail: "https://i.ytimg.com/vi/Tt-_PByi6KM/hq720.jpg",
     videoUrl: "https://www.youtube.com/embed/Tt-_PByi6KM?autoplay=1&rel=0",

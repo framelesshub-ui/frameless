@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Effects from './components/Effects';
+import { ScopingModalProvider } from './context/ScopingModalContext';
+import ProjectScopingModal from './components/ProjectScopingModal';
 
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
@@ -59,7 +61,6 @@ export function App() {
         default:
           document.title = 'Frameless Hub — A Creative Media Agency';
           break;
-
       }
     }
   }, [route]);
@@ -86,20 +87,25 @@ export function App() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] overflow-x-hidden selection:bg-[var(--color-selection-bg)] selection:text-[var(--color-selection-text)]">
-      <Effects />
+    <ScopingModalProvider>
+      <div className="relative w-full min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] overflow-x-hidden selection:bg-[var(--color-selection-bg)] selection:text-[var(--color-selection-text)]">
+        <Effects />
 
-      {/* 1. Floating Glass Navigation Header */}
-      <Header currentRoute={route} onNavigate={handleNavigate} />
+        {/* 1. Floating Glass Navigation Header */}
+        <Header currentRoute={route} onNavigate={handleNavigate} />
 
-      {/* 2. Main Page View */}
-      <main id="main-content" className="relative z-10 w-full min-h-screen">
-        {renderCurrentPage()}
-      </main>
+        {/* 2. Main Page View */}
+        <main id="main-content" className="relative z-10 w-full min-h-screen">
+          {renderCurrentPage()}
+        </main>
 
-      {/* 3. Luxury Editorial Studio Footer */}
-      <Footer onNavigate={handleNavigate} />
-    </div>
+        {/* 3. Luxury Editorial Studio Footer */}
+        <Footer onNavigate={handleNavigate} />
+
+        {/* 4. Global HUD Project Scoping Wizard */}
+        <ProjectScopingModal />
+      </div>
+    </ScopingModalProvider>
   );
 }
 

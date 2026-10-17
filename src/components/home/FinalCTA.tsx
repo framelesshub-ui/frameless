@@ -1,13 +1,22 @@
 'use client';
 
-import { ArrowUpRight, Mail, Phone } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone, Sparkles } from 'lucide-react';
 import { InstagramIcon } from '@/components/icons/SocialIcons';
+import { useScopingModal } from '@/context/ScopingModalContext';
 
 export default function FinalCTA() {
+  const { openScopingModal } = useScopingModal();
+
   return (
     <section id="contact" className="py-24 sm:py-36 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] scroll-reveal">
       <div className="editorial-container">
         <div className="max-w-4xl">
+          {/* Eyebrow Label */}
+          <div className="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.25em] uppercase text-[#0047ff] mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
+            <span>09 / Get in Touch</span>
+          </div>
+
           {/* Section Heading */}
           <h2 className="section-h2 text-[var(--color-text)] font-heading mb-8">
             Have something worth creating?
@@ -17,11 +26,21 @@ export default function FinalCTA() {
             Let’s talk about your next brand milestone, video campaign, or complete digital transformation.
           </p>
 
-          {/* Action Buttons: Blue Glass "Email us" & Glass "WhatsApp" */}
+          {/* Action Buttons: Blue Glass "Build Project Brief", "Email us" & Glass "WhatsApp" */}
           <div className="flex flex-wrap items-center gap-4 mb-20">
+            <button
+              type="button"
+              onClick={() => openScopingModal()}
+              className="glass-btn-blue text-sm font-semibold py-3.5 px-8 cursor-pointer flex items-center"
+            >
+              <Sparkles className="w-4 h-4 mr-2 inline-block text-[#00F0FF]" />
+              <span>Build Project Brief</span>
+              <ArrowUpRight className="w-4 h-4 ml-2 inline-block" />
+            </button>
+
             <a
-              href="mailto:framelesshub@gmail.com"
-              className="glass-btn-blue text-sm font-semibold py-3.5 px-8"
+              href="mailto:hello@framelesshub.com"
+              className="glass-btn-light text-sm font-semibold py-3.5 px-8"
             >
               <Mail className="w-4 h-4 mr-2 inline-block" />
               <span>Email us</span>
@@ -47,10 +66,10 @@ export default function FinalCTA() {
                 Email
               </div>
               <a
-                href="mailto:framelesshub@gmail.com"
+                href="mailto:hello@framelesshub.com"
                 className="text-base sm:text-lg font-medium text-[var(--color-text)] hover:text-[#0047ff] transition-colors"
               >
-                framelesshub@gmail.com
+                hello@framelesshub.com
               </a>
             </div>
 

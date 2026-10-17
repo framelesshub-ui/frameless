@@ -22,7 +22,14 @@ import {
   Monitor,
   Share2,
   Download,
+  VolumeX,
+  TrendingUp,
+  Copy,
+  Check,
 } from 'lucide-react';
+import ProjectInspectorDrawer from '@/components/ProjectInspectorDrawer';
+import { projects, getProjectBySlug, Project } from '@/data/projects';
+import { useScopingModal } from '@/context/ScopingModalContext';
 
 interface ProjectClip {
   id: string;
@@ -159,6 +166,22 @@ export default function DaVinciWorkspace() {
   const [isScrubbing, setIsScrubbing] = useState(false);
   const [vuLevel, setVuLevel] = useState({ l: 78, r: 82 });
 
+  // Interactive COLOR workspace state
+  const [lutBypassed, setLutBypassed] = useState(false);
+  const [splitWipeActive, setSplitWipeActive] = useState(true);
+  const [splitWipePos, setSplitWipePos] = useState(50); // 0 to 100%
+
+  // Interactive FAIRLIGHT audio track state
+  const [a1Muted, setA1Muted] = useState(false);
+  const [a1Solo, setA1Solo] = useState(false);
+  const [a2Muted, setA2Muted] = useState(false);
+  const [a2Solo, setA2Solo] = useState(false);
+
+  // Inspector Drawer & Scoping modal trigger state
+  const [inspectorProject, setInspectorProject] = useState<Project | null>(null);
+  const [copiedPreset, setCopiedPreset] = useState<string | null>(null);
+  const { openScopingModal } = useScopingModal();
+
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const activeClip = PROJECT_CLIPS[activeClipIndex];
 
@@ -187,24 +210,28 @@ export default function DaVinciWorkspace() {
     }
   }, [currentTimeSec, activeClipIndex]);
 
-  // Audio VU Meter gentle flicker
+  // Audio VU Meter gentle flicker with Mute/Solo calculations
   useEffect(() => {
     if (!isPlaying) {
-      setVuLevel({ l: 20, r: 20 });
+      setVuLevel({ l: 15, r: 15 });
       return;
     }
     const interval = setInterval(() => {
       const base = activeClip.audioPeak;
       const variationL = Math.floor(Math.random() * 12) - 6;
       const variationR = Math.floor(Math.random() * 12) - 6;
+
+      const isChannel1Active = !a1Muted && (!a2Solo || a1Solo);
+      const isChannel2Active = !a2Muted && (!a1Solo || a2Solo);
+
       setVuLevel({
-        l: Math.min(Math.max(base + variationL, 30), 96),
-        r: Math.min(Math.max(base + variationR, 30), 96),
+        l: isChannel1Active ? Math.min(Math.max(base + variationL, 30), 96) : 0,
+        r: isChannel2Active ? Math.min(Math.max(base + variationR, 30), 96) : 0,
       });
     }, 180);
 
     return () => clearInterval(interval);
-  }, [isPlaying, activeClip]);
+  }, [isPlaying, activeClip, a1Muted, a1Solo, a2Muted, a2Solo]);
 
   // Formatted SMPTE timecode (HH:MM:SS:FF)
   const formattedTimecode = useMemo(() => {
@@ -232,7 +259,7 @@ export default function DaVinciWorkspace() {
   return (
     <section
       id="workspace"
-      className="relative py-20 sm:py-32 bg-transparent text-[#F4F4F5] border-b border-white/[0.08] overflow-hidden"
+      className="relative py-20 sm:py-32 bg-[var(--color-bg)] text-[#F4F4F5] border-t border-[var(--color-border)] overflow-hidden"
     >
       {/* Editorial Container */}
       <div className="editorial-container">
@@ -240,16 +267,16 @@ export default function DaVinciWorkspace() {
         {/* Section Header with Pro Audio/Video Badge */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div>
-            <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-[10px] font-mono tracking-[0.25em] uppercase text-[#00F0FF] mb-4">
-              <Film className="w-3.5 h-3.5 text-[#00F0FF]" />
-              <span>CREATIVE PRODUCTION WORKSPACE // EST. 2026</span>
+            <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.04] border border-[var(--color-border)] text-[10px] font-mono tracking-[0.25em] uppercase text-[#0047ff] mb-4">
+              <Film className="w-3.5 h-3.5 text-[#0047ff]" />
+              <span>03 / The Edit Suite — Master Timeline // EST. 2026</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.08]">
-              The Edit Suite<span className="text-[#00F0FF]">.</span>
+            <h2 className="section-h2 text-[var(--color-text)] font-heading">
+              The Edit Suite<span className="text-[#0047ff]">.</span>
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-[#A1A1AA] max-w-md font-normal leading-relaxed">
+          <p className="body-lead text-xs sm:text-sm text-[var(--color-muted)] max-w-md font-normal leading-relaxed">
             Inspired by professional post-production suites. Live multi-track timeline, color science, and dynamic project monitoring.
           </p>
         </div>
@@ -258,19 +285,20 @@ export default function DaVinciWorkspace() {
         <div className="rounded-2xl border border-white/[0.12] bg-[#0A0A0C]/90 backdrop-blur-xl shadow-[0_30px_90px_rgba(0,0,0,0.8)] overflow-hidden">
           
           {/* 1. Software Top Navigation Bar */}
-          <div className="px-4 py-3 bg-[#111114] border-b border-white/[0.08] flex items-center justify-between flex-wrap gap-4 select-none">
+          <div className="px-3 sm:px-4 py-2.5 sm:py-3 bg-[#111114] border-b border-white/[0.08] flex items-center justify-between flex-wrap gap-3 sm:gap-4 select-none">
             {/* Left: Project & Format Info */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]/80" />
               </div>
-              <div className="h-4 w-px bg-white/10 mx-1 hidden sm:block" />
-              <div className="text-xs font-mono font-semibold text-white tracking-wider flex items-center gap-2">
-                <span>FRAMELESS_HUB_MASTER_2026.dvr</span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] text-[#00F0FF] font-mono">
-                  4K DCI · 24.00 FPS
+              <div className="h-4 w-px bg-white/10 mx-0.5 sm:mx-1 hidden sm:block" />
+              <div className="text-[11px] sm:text-xs font-mono font-semibold text-white tracking-wider flex items-center gap-1.5 sm:gap-2">
+                <span className="hidden min-[480px]:inline">FRAMELESS_HUB_MASTER_2026.dvr</span>
+                <span className="inline min-[480px]:hidden">FH_MASTER.dvr</span>
+                <span className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded bg-white/[0.06] text-[#00F0FF] font-mono whitespace-nowrap">
+                  4K DCI · 24FPS
                 </span>
               </div>
             </div>
@@ -427,8 +455,58 @@ export default function DaVinciWorkspace() {
                       <span>COLOR GRADING SUITE</span>
                     </div>
                     <span className="text-[10px] font-mono text-[#00F0FF]">
-                      REC.709 MASTER LUT
+                      {lutBypassed ? 'LOG C CAMERA RAW' : activeClip.lutName}
                     </span>
+                  </div>
+
+                  {/* Interactive LUT Bypass & Split Wipe Controls */}
+                  <div className="p-3.5 rounded-xl bg-black/50 border border-white/[0.08] space-y-3">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-[#A1A1AA]">Program Monitor LUT</span>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setLutBypassed(!lutBypassed)}
+                          className={`px-2.5 py-1 rounded text-[10px] font-mono uppercase transition-all ${
+                            lutBypassed
+                              ? 'bg-amber-500 text-black font-bold shadow-[0_0_12px_rgba(245,158,11,0.4)]'
+                              : 'bg-white/[0.08] text-[#D4D4D8] hover:text-white'
+                          }`}
+                        >
+                          {lutBypassed ? 'LUT Bypassed (Log Raw)' : 'LUT Applied'}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setSplitWipeActive(!splitWipeActive)}
+                          className={`px-2.5 py-1 rounded text-[10px] font-mono uppercase transition-all ${
+                            splitWipeActive
+                              ? 'bg-[#00F0FF] text-black font-bold shadow-[0_0_12px_rgba(0,240,255,0.4)]'
+                              : 'bg-white/[0.08] text-[#D4D4D8] hover:text-white'
+                          }`}
+                        >
+                          Split Wipe: {splitWipeActive ? 'ON' : 'OFF'}
+                        </button>
+                      </div>
+                    </div>
+
+                    {splitWipeActive && (
+                      <div className="pt-1">
+                        <div className="flex justify-between text-[10px] font-mono text-[#71717A] mb-1">
+                          <span>LOG C FLAT (LEFT)</span>
+                          <span className="text-[#00F0FF] font-bold">WIPE: {splitWipePos}%</span>
+                          <span>REC.709 GRADE (RIGHT)</span>
+                        </div>
+                        <input
+                          type="range"
+                          min={0}
+                          max={100}
+                          value={splitWipePos}
+                          onChange={(e) => setSplitWipePos(Number(e.target.value))}
+                          className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[#00F0FF]"
+                          aria-label="Color Wipe Position"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {/* 3 Color Wheels Simulation */}
@@ -499,42 +577,104 @@ export default function DaVinciWorkspace() {
                       <Volume2 className="w-3.5 h-3.5 text-[#00F0FF]" />
                       <span>FAIRLIGHT AUDIO ENGINE</span>
                     </div>
-                    <span className="text-[10px] font-mono text-[#00F0FF]">
-                      DYNAMIC COMPRESSION ON
+                    <span className="text-[10px] font-mono text-emerald-400">
+                      ITU-R BS.1770-4 SAFE
                     </span>
                   </div>
 
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex justify-between text-xs font-mono text-[#A1A1AA] mb-1">
-                        <span>A1 Dialogue Peak</span>
-                        <span>{vuLevel.l} dB</span>
+                  {/* Interactive A1 Dialogue Strip */}
+                  <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.08] space-y-2">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <div className="flex items-center gap-2">
+                        <span className="text-white font-bold">A1 Dialogue</span>
+                        <span className="text-[10px] text-[#71717A]">24-Bit / 48kHz</span>
                       </div>
-                      <div className="w-full h-2 rounded bg-black/60 overflow-hidden border border-white/10">
-                        <div
-                          className="h-full bg-gradient-to-r from-emerald-500 via-yellow-400 to-red-500 transition-all duration-150"
-                          style={{ width: `${vuLevel.l}%` }}
-                        />
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setA1Muted(!a1Muted)}
+                          className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                            a1Muted ? 'bg-red-500 text-white font-bold' : 'bg-white/10 text-[#A1A1AA] hover:text-white'
+                          }`}
+                        >
+                          MUTE
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setA1Solo(!a1Solo)}
+                          className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                            a1Solo ? 'bg-amber-400 text-black font-bold' : 'bg-white/10 text-[#A1A1AA] hover:text-white'
+                          }`}
+                        >
+                          SOLO
+                        </button>
+                        <span className="text-[#00F0FF] text-[11px] w-12 text-right">
+                          {a1Muted ? '-∞ dB' : `${vuLevel.l} dB`}
+                        </span>
                       </div>
                     </div>
-
-                    <div>
-                      <div className="flex justify-between text-xs font-mono text-[#A1A1AA] mb-1">
-                        <span>A2 Cinematic Score &amp; SFX</span>
-                        <span>{vuLevel.r} dB</span>
-                      </div>
-                      <div className="w-full h-2 rounded bg-black/60 overflow-hidden border border-white/10">
-                        <div
-                          className="h-full bg-gradient-to-r from-emerald-500 via-yellow-400 to-red-500 transition-all duration-150"
-                          style={{ width: `${vuLevel.r}%` }}
-                        />
-                      </div>
+                    <div className="w-full h-2 rounded bg-black/60 overflow-hidden border border-white/10">
+                      <div
+                        className="h-full bg-gradient-to-r from-emerald-500 via-yellow-400 to-red-500 transition-all duration-150"
+                        style={{ width: `${a1Muted ? 0 : vuLevel.l}%` }}
+                      />
                     </div>
                   </div>
 
-                  <p className="text-xs text-[#A1A1AA] leading-relaxed">
-                    Bespoke spatial sound design, noise suppression, and mastered loudnesses tailored for YouTube, OTT platforms, and commercial theater sound.
-                  </p>
+                  {/* Interactive A2 Score & SFX Strip */}
+                  <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.08] space-y-2">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <div className="flex items-center gap-2">
+                        <span className="text-white font-bold">A2 Cinematic Score &amp; SFX</span>
+                        <span className="text-[10px] text-[#71717A]">Surround Stereo</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setA2Muted(!a2Muted)}
+                          className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                            a2Muted ? 'bg-red-500 text-white font-bold' : 'bg-white/10 text-[#A1A1AA] hover:text-white'
+                          }`}
+                        >
+                          MUTE
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setA2Solo(!a2Solo)}
+                          className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                            a2Solo ? 'bg-amber-400 text-black font-bold' : 'bg-white/10 text-[#A1A1AA] hover:text-white'
+                          }`}
+                        >
+                          SOLO
+                        </button>
+                        <span className="text-[#00F0FF] text-[11px] w-12 text-right">
+                          {a2Muted ? '-∞ dB' : `${vuLevel.r} dB`}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-full h-2 rounded bg-black/60 overflow-hidden border border-white/10">
+                      <div
+                        className="h-full bg-gradient-to-r from-emerald-500 via-yellow-400 to-red-500 transition-all duration-150"
+                        style={{ width: `${a2Muted ? 0 : vuLevel.r}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Broadcast Loudness Telemetry Card */}
+                  <div className="p-3 rounded-xl bg-black/30 border border-white/[0.06] grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                    <div>
+                      <div className="text-[10px] text-[#71717A] uppercase">INTEGRATED</div>
+                      <div className="text-white font-bold mt-0.5">-14.0 LUFS</div>
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#71717A] uppercase">TRUE PEAK</div>
+                      <div className="text-emerald-400 font-bold mt-0.5">-1.0 dBTP</div>
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#71717A] uppercase">LRA DYNAMICS</div>
+                      <div className="text-white font-bold mt-0.5">14.2 LU</div>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -544,62 +684,141 @@ export default function DaVinciWorkspace() {
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
                     <div className="text-xs font-mono uppercase tracking-widest text-[#71717A] flex items-center gap-2">
                       <Download className="w-3.5 h-3.5 text-[#00F0FF]" />
-                      <span>EXPORT &amp; DELIVER PRESETS</span>
+                      <span>PERFORMANCE &amp; DELIVER SUITE</span>
                     </div>
-                    <span className="text-[10px] font-mono text-emerald-400">
-                      ALL PASSES VERIFIED
+                    <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3" />
+                      MASTER PASS 100%
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 text-xs font-mono">
-                    <div className="p-3 rounded-xl bg-white/[0.03] border border-[#00F0FF]/30 text-white">
-                      <div className="font-bold text-[#00F0FF]">ProRes 4444 XQ</div>
-                      <div className="text-[10px] text-[#A1A1AA] mt-1">Archival Film Master · 12-Bit</div>
+                  {/* Audience Retention Curve SVG Visualization */}
+                  <div className="p-3.5 rounded-xl bg-black/50 border border-white/[0.08] space-y-2">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-white font-bold flex items-center gap-1.5">
+                        <TrendingUp className="w-3.5 h-3.5 text-[#00F0FF]" />
+                        <span>Audience Retention Curve</span>
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+                        +45% OVER BASELINE
+                      </span>
                     </div>
-                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-white">
-                      <div className="font-bold">YouTube 4K HDR</div>
-                      <div className="text-[10px] text-[#A1A1AA] mt-1">Rec.2020 · 60Mbps Target</div>
+
+                    <div className="h-20 w-full relative pt-1">
+                      <svg className="w-full h-full overflow-visible" viewBox="0 0 300 70" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="retentionGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.35" />
+                            <stop offset="100%" stopColor="#00F0FF" stopOpacity="0.0" />
+                          </linearGradient>
+                        </defs>
+                        {/* Industry baseline dotted line */}
+                        <path
+                          d="M 0,20 Q 75,50 150,56 T 300,62"
+                          fill="none"
+                          stroke="#52525B"
+                          strokeWidth="1.5"
+                          strokeDasharray="3 3"
+                        />
+                        {/* Frameless Hub Performance Area & Curve */}
+                        <path
+                          d="M 0,10 Q 75,18 150,24 T 300,30 L 300,70 L 0,70 Z"
+                          fill="url(#retentionGrad)"
+                        />
+                        <path
+                          d="M 0,10 Q 75,18 150,24 T 300,30"
+                          fill="none"
+                          stroke="#00F0FF"
+                          strokeWidth="2.5"
+                        />
+                      </svg>
                     </div>
-                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-white">
-                      <div className="font-bold">Cinema DCI Package</div>
-                      <div className="text-[10px] text-[#A1A1AA] mt-1">2.39:1 Scope · 5.1 Surround</div>
-                    </div>
-                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-white">
-                      <div className="font-bold">Social Vertical 9:16</div>
-                      <div className="text-[10px] text-[#A1A1AA] mt-1">1080×1920 · High Bitrate</div>
+
+                    <div className="flex justify-between text-[9px] font-mono text-[#71717A] pt-1 border-t border-white/[0.04]">
+                      <span>0:00 (100%)</span>
+                      <span className="text-[#00F0FF]">0:30 (84%)</span>
+                      <span className="text-white">1:00 (78%)</span>
+                      <span>2:00 (72%)</span>
+                      <span className="text-emerald-400 font-bold">3:00 (68%)</span>
                     </div>
                   </div>
 
-                  <div className="pt-2">
-                    <Link
-                      href={`/work/${activeClip.slug}`}
-                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#00F0FF] hover:underline"
+                  {/* CTR Lift & Presets Grid */}
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    {[
+                      { name: 'ProRes 4444 XQ', spec: 'Archival Master · 12-Bit 4K DCI' },
+                      { name: 'YouTube 4K HDR', spec: 'Rec.2020 · 60Mbps Target' },
+                      { name: 'Cinema Scope DCI', spec: '2.39:1 Scope · 5.1 Audio' },
+                      { name: 'Social 9:16 Vert', spec: '1080×1920 · High Bitrate' },
+                    ].map((preset) => (
+                      <button
+                        key={preset.name}
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard.writeText(`${preset.name}: ${preset.spec}`);
+                          setCopiedPreset(preset.name);
+                          setTimeout(() => setCopiedPreset(null), 2000);
+                        }}
+                        className="p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-left transition-all group"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-white group-hover:text-[#00F0FF] transition-colors">
+                            {preset.name}
+                          </span>
+                          {copiedPreset === preset.name ? (
+                            <Check className="w-3 h-3 text-emerald-400" />
+                          ) : (
+                            <Copy className="w-3 h-3 text-[#71717A] group-hover:text-white" />
+                          )}
+                        </div>
+                        <div className="text-[9px] text-[#A1A1AA] mt-0.5 truncate">
+                          {copiedPreset === preset.name ? 'Spec Copied!' : preset.spec}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="pt-1 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const proj = getProjectBySlug(activeClip.slug) || projects[0];
+                        setInspectorProject(proj);
+                      }}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#00F0FF] hover:underline"
                     >
-                      <span>Inspect {activeClip.title} Full Case Study</span>
+                      <span>Inspect {activeClip.title} Full Telemetry</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Link>
+                    </button>
+
+                    <div className="text-[10px] font-mono text-[#71717A]">
+                      CTR Lift: <span className="text-emerald-400 font-bold">+38.4%</span>
+                    </div>
                   </div>
                 </div>
               )}
 
               {/* Bottom Project Launch CTA */}
               <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
-                <Link
-                  href={`/work/${activeClip.slug}`}
-                  data-cursor="VIEW"
+                <button
+                  type="button"
+                  onClick={() => {
+                    const proj = getProjectBySlug(activeClip.slug) || projects[0];
+                    setInspectorProject(proj);
+                  }}
                   className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-white hover:text-[#00F0FF] transition-colors"
                 >
-                  <span>Open Full Project</span>
+                  <span>Examine Project Drawer</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
-                </Link>
+                </button>
 
-                <Link
-                  href="/contact"
-                  data-cursor="START"
-                  className="px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase text-black bg-[#00F0FF] hover:bg-white transition-colors"
+                <button
+                  type="button"
+                  onClick={() => openScopingModal(activeClip.discipline)}
+                  className="px-4 py-2 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase text-black bg-[#00F0FF] hover:bg-white transition-all shadow-[0_0_15px_rgba(0,240,255,0.3)]"
                 >
                   Start Scoping
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -607,11 +826,20 @@ export default function DaVinciWorkspace() {
             <div className="lg:col-span-7 p-5 sm:p-6 flex flex-col justify-between bg-black/60">
               
               {/* Monitor Top Status */}
-              <div className="flex items-center justify-between text-xs font-mono text-[#71717A] mb-3">
+              <div className="flex items-center justify-between text-xs font-mono text-[#71717A] mb-3 select-none">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                   <span className="text-white font-bold tracking-wider">REC LIVE</span>
                   <span className="text-[#A1A1AA]">PROGRAM MONITOR</span>
+                  {activeTab === 'color' && (
+                    <span className="hidden sm:inline-block text-[10px] px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 font-mono text-[#00F0FF]">
+                      {splitWipeActive
+                        ? `WIPE: ${splitWipePos}% LOG vs GRADE`
+                        : lutBypassed
+                        ? 'LOG C FLAT RAW'
+                        : 'REC.709 GRADE'}
+                    </span>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -631,11 +859,52 @@ export default function DaVinciWorkspace() {
               </div>
 
               {/* Monitor Screen Frame */}
-              <div className="relative aspect-video rounded-xl bg-[#050507] border border-white/10 overflow-hidden shadow-2xl flex flex-col justify-between p-6 group">
-                
+              <div
+                className="relative aspect-video rounded-xl bg-[#050507] border border-white/10 overflow-hidden shadow-2xl flex flex-col justify-between p-6 group select-none transition-all duration-300"
+                style={{
+                  filter:
+                    activeTab === 'color' && !splitWipeActive
+                      ? lutBypassed
+                        ? 'contrast(0.82) brightness(1.14) saturate(0.32)'
+                        : 'contrast(1.22) saturate(1.25)'
+                      : undefined,
+                }}
+              >
                 {/* 2.39:1 Cinematic Letterbox Bars */}
-                <div className="absolute top-0 left-0 right-0 h-[8%] bg-black z-20 pointer-events-none border-b border-white/[0.04]" />
-                <div className="absolute bottom-0 left-0 right-0 h-[8%] bg-black z-20 pointer-events-none border-t border-white/[0.04]" />
+                <div className="absolute top-0 left-0 right-0 h-[8%] bg-black z-30 pointer-events-none border-b border-white/[0.04]" />
+                <div className="absolute bottom-0 left-0 right-0 h-[8%] bg-black z-30 pointer-events-none border-t border-white/[0.04]" />
+
+                {/* Interactive COLOR Split Screen Wipe Divider */}
+                {activeTab === 'color' && splitWipeActive && (
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 z-25 pointer-events-none"
+                  >
+                    {/* Log C Simulation Underlay on Left Half */}
+                    <div
+                      className="absolute inset-0 pointer-events-none bg-amber-950/10 mix-blend-color"
+                      style={{
+                        clipPath: `polygon(0 0, ${splitWipePos}% 0, ${splitWipePos}% 100%, 0 100%)`,
+                        filter: 'contrast(0.82) brightness(1.14) saturate(0.32)',
+                      }}
+                    />
+                    {/* Vertical Dividing Line */}
+                    <div
+                      className="absolute top-0 bottom-0 w-0.5 bg-[#00F0FF] shadow-[0_0_12px_#00F0FF] z-30"
+                      style={{ left: `${splitWipePos}%` }}
+                    >
+                      <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#00F0FF] text-black font-bold text-[8px] flex items-center justify-center shadow-lg">
+                        ⇄
+                      </div>
+                      <span className="absolute top-10 right-2 px-1.5 py-0.5 rounded bg-black/80 border border-amber-500/40 text-[9px] font-mono text-amber-400 whitespace-nowrap">
+                        LOG C RAW
+                      </span>
+                      <span className="absolute top-10 left-2 px-1.5 py-0.5 rounded bg-black/80 border border-[#00F0FF]/40 text-[9px] font-mono text-[#00F0FF] whitespace-nowrap">
+                        REC.709 GRADE
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Safe Title & Action Wireframe Guides */}
                 {safeGuidesEnabled && (
@@ -906,60 +1175,134 @@ export default function DaVinciWorkspace() {
 
                 {/* Track A1 (Dialog / VO Audio Waveforms) */}
                 <div className="flex items-center gap-2 pt-1 border-t border-white/[0.06]">
-                  <div className="w-14 text-[10px] text-[#71717A] font-bold">A1 [Dialogue]</div>
-                  <div className="flex-1 grid grid-cols-5 gap-1.5 h-7">
-                    {PROJECT_CLIPS.map((clip, i) => (
-                      <div
-                        key={`a1-${clip.id}`}
-                        className={`h-full rounded px-2 flex items-center justify-between border bg-black/40 ${
-                          i === activeClipIndex ? 'border-emerald-500/40' : 'border-white/[0.04]'
+                  <div className="w-16 flex items-center justify-between text-[10px] text-[#71717A] font-bold pr-1 select-none">
+                    <span>A1</span>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setA1Muted(!a1Muted);
+                        }}
+                        className={`px-1 py-0.5 rounded text-[8px] font-mono transition-colors ${
+                          a1Muted ? 'bg-red-500 text-white font-bold' : 'bg-white/10 text-[#A1A1AA] hover:text-white'
                         }`}
+                        title="Mute Track A1"
                       >
-                        {/* Audio Waveform Graphic Simulation */}
-                        <div className="flex items-center gap-0.5 w-full h-full py-1">
-                          {[40, 70, 30, 90, 60, 45, 80, 50, 65, 35, 95, 55, 75, 40, 85, 60].map((h, wi) => (
-                            <span
-                              key={wi}
-                              className={`flex-1 rounded-full transition-all ${
-                                i === activeClipIndex
-                                  ? 'bg-emerald-400'
-                                  : 'bg-white/20'
-                              }`}
-                              style={{ height: `${h}%` }}
-                            />
-                          ))}
+                        M
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setA1Solo(!a1Solo);
+                        }}
+                        className={`px-1 py-0.5 rounded text-[8px] font-mono transition-colors ${
+                          a1Solo ? 'bg-amber-400 text-black font-bold' : 'bg-white/10 text-[#A1A1AA] hover:text-white'
+                        }`}
+                        title="Solo Track A1"
+                      >
+                        S
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex-1 grid grid-cols-5 gap-1.5 h-7">
+                    {PROJECT_CLIPS.map((clip, i) => {
+                      const isChannelActive = !a1Muted && (!a2Solo || a1Solo);
+                      return (
+                        <div
+                          key={`a1-${clip.id}`}
+                          className={`h-full rounded px-2 flex items-center justify-between border bg-black/40 ${
+                            i === activeClipIndex && isChannelActive ? 'border-emerald-500/40' : 'border-white/[0.04]'
+                          }`}
+                        >
+                          {/* Audio Waveform Graphic Simulation */}
+                          <div
+                            className={`flex items-center gap-0.5 w-full h-full py-1 transition-opacity ${
+                              !isChannelActive ? 'opacity-20' : 'opacity-100'
+                            }`}
+                          >
+                            {[40, 70, 30, 90, 60, 45, 80, 50, 65, 35, 95, 55, 75, 40, 85, 60].map((h, wi) => (
+                              <span
+                                key={wi}
+                                className={`flex-1 rounded-full transition-all ${
+                                  i === activeClipIndex && isPlaying && isChannelActive
+                                    ? 'bg-emerald-400 animate-pulse'
+                                    : 'bg-white/20'
+                                }`}
+                                style={{ height: `${h}%` }}
+                              />
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
                 {/* Track A2 (Score / SFX Audio Waveforms) */}
                 <div className="flex items-center gap-2">
-                  <div className="w-14 text-[10px] text-[#71717A] font-bold">A2 [Score/SFX]</div>
-                  <div className="flex-1 grid grid-cols-5 gap-1.5 h-7">
-                    {PROJECT_CLIPS.map((clip, i) => (
-                      <div
-                        key={`a2-${clip.id}`}
-                        className={`h-full rounded px-2 flex items-center justify-between border bg-black/40 ${
-                          i === activeClipIndex ? 'border-[#00F0FF]/40' : 'border-white/[0.04]'
+                  <div className="w-16 flex items-center justify-between text-[10px] text-[#71717A] font-bold pr-1 select-none">
+                    <span>A2</span>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setA2Muted(!a2Muted);
+                        }}
+                        className={`px-1 py-0.5 rounded text-[8px] font-mono transition-colors ${
+                          a2Muted ? 'bg-red-500 text-white font-bold' : 'bg-white/10 text-[#A1A1AA] hover:text-white'
                         }`}
+                        title="Mute Track A2"
                       >
-                        <div className="flex items-center gap-0.5 w-full h-full py-1">
-                          {[30, 50, 80, 60, 40, 95, 70, 50, 85, 65, 45, 75, 55, 90, 35, 60].map((h, wi) => (
-                            <span
-                              key={wi}
-                              className={`flex-1 rounded-full transition-all ${
-                                i === activeClipIndex
-                                  ? 'bg-[#00F0FF]'
-                                  : 'bg-white/15'
-                              }`}
-                              style={{ height: `${h}%` }}
-                            />
-                          ))}
+                        M
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setA2Solo(!a2Solo);
+                        }}
+                        className={`px-1 py-0.5 rounded text-[8px] font-mono transition-colors ${
+                          a2Solo ? 'bg-amber-400 text-black font-bold' : 'bg-white/10 text-[#A1A1AA] hover:text-white'
+                        }`}
+                        title="Solo Track A2"
+                      >
+                        S
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex-1 grid grid-cols-5 gap-1.5 h-7">
+                    {PROJECT_CLIPS.map((clip, i) => {
+                      const isChannelActive = !a2Muted && (!a1Solo || a2Solo);
+                      return (
+                        <div
+                          key={`a2-${clip.id}`}
+                          className={`h-full rounded px-2 flex items-center justify-between border bg-black/40 ${
+                            i === activeClipIndex && isChannelActive ? 'border-[#00F0FF]/40' : 'border-white/[0.04]'
+                          }`}
+                        >
+                          <div
+                            className={`flex items-center gap-0.5 w-full h-full py-1 transition-opacity ${
+                              !isChannelActive ? 'opacity-20' : 'opacity-100'
+                            }`}
+                          >
+                            {[30, 50, 80, 60, 40, 95, 70, 50, 85, 65, 45, 75, 55, 90, 35, 60].map((h, wi) => (
+                              <span
+                                key={wi}
+                                className={`flex-1 rounded-full transition-all ${
+                                  i === activeClipIndex && isPlaying && isChannelActive
+                                    ? 'bg-[#00F0FF] animate-pulse'
+                                    : 'bg-white/15'
+                                }`}
+                                style={{ height: `${h}%` }}
+                              />
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -968,6 +1311,31 @@ export default function DaVinciWorkspace() {
 
             {/* Mobile Thumb-Friendly Vertical Deck (Active below 768px per Workspace Rules) */}
             <div className="block md:hidden space-y-3">
+              {/* Mobile Quick Clip Selector Pills */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none select-none">
+                {PROJECT_CLIPS.map((clip, i) => {
+                  const isActive = i === activeClipIndex;
+                  return (
+                    <button
+                      key={`mob-pill-${clip.id}`}
+                      type="button"
+                      onClick={() => {
+                        setActiveClipIndex(i);
+                        setCurrentTimeSec(clip.startSec + 2);
+                      }}
+                      className={`px-3 py-1.5 rounded-full text-[10px] font-mono whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                        isActive
+                          ? 'bg-[#00F0FF] text-black font-bold shadow-[0_0_12px_rgba(0,240,255,0.4)]'
+                          : 'bg-white/[0.05] text-[#A1A1AA] hover:text-white border border-white/10'
+                      }`}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: clip.colorAccent }} />
+                      <span>{clip.title}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
               {/* Mobile Timecode Scrubber Bar */}
               <div className="p-3.5 rounded-xl bg-[#0E0E12] border border-white/[0.1] space-y-2.5">
                 <div className="flex items-center justify-between text-xs font-mono">
@@ -1089,6 +1457,18 @@ export default function DaVinciWorkspace() {
         </div>
 
       </div>
+
+      {/* Case Study Inspector Drawer */}
+      <ProjectInspectorDrawer
+        isOpen={!!inspectorProject}
+        onClose={() => setInspectorProject(null)}
+        project={inspectorProject}
+        onOpenScoping={() => {
+          if (inspectorProject) openScopingModal(inspectorProject.category);
+          else openScopingModal();
+        }}
+      />
     </section>
   );
 }
+

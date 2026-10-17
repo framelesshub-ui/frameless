@@ -10,6 +10,10 @@ export default function WhatWeDo() {
         {/* Section Header: Heading on left, Intro text on right */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-16 border-b border-[var(--color-border)]">
           <div>
+            <div className="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.25em] uppercase text-[#0047ff] mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
+              <span>05 / Disciplines &amp; Capabilities</span>
+            </div>
             <h2 className="section-h2 text-[var(--color-text)] font-heading">
               What we do.
             </h2>

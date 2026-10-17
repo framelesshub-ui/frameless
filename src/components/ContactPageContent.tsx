@@ -1,10 +1,12 @@
 'use client';
 
 import React from 'react';
-import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight, Sparkles } from 'lucide-react';
 import ContactForm from './ContactForm';
+import { useScopingModal } from '@/context/ScopingModalContext';
 
 export default function ContactPageContent() {
+  const { openScopingModal } = useScopingModal();
   return (
     <div className="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen pt-32 sm:pt-40 pb-28">
       <div className="editorial-container">
@@ -46,10 +48,10 @@ export default function ContactPageContent() {
                     Email
                   </span>
                   <a
-                    href="mailto:framelesshub@gmail.com"
+                    href="mailto:hello@framelesshub.com"
                     className="text-lg sm:text-xl font-medium text-[var(--color-text)] hover:text-[#0047ff] transition-colors"
                   >
-                    framelesshub@gmail.com
+                    hello@framelesshub.com
                   </a>
                 </div>
 
@@ -94,8 +96,29 @@ export default function ContactPageContent() {
               </div>
             </div>
 
+            {/* Interactive Scoping Wizard Card */}
+            <div className="pt-6 border-t border-[var(--color-border)]">
+              <div className="p-5 rounded-2xl bg-[var(--color-tint)] border border-[var(--color-border)]">
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#0047ff] mb-2">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Interactive HUD Scoping</span>
+                </div>
+                <p className="text-xs text-[var(--color-muted)] mb-4 leading-relaxed">
+                  Prefer a guided wizard? Configure deliverables, timeline, and generate an instant WhatsApp or Email brief in 60 seconds.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => openScopingModal()}
+                  className="glass-btn-blue w-full text-xs font-semibold py-2.5 px-4 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Launch Scoping Wizard</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
             {/* Note */}
-            <div className="pt-8 border-t border-[var(--color-border)]">
+            <div className="pt-6 border-t border-[var(--color-border)]">
               <p className="text-xs text-[var(--color-muted)] leading-relaxed">
                 We review every inquiry directly. You will hear back from our core team within 24 to 48 hours.
               </p>

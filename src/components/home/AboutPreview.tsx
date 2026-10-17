@@ -8,6 +8,12 @@ export default function AboutPreview() {
       {/* One Black Rounded Block: border-radius 36px, side margins 2.5vw */}
       <div className="about-black-block p-8 sm:p-14 md:p-16 lg:p-20">
         <div className="max-w-5xl mx-auto">
+          {/* Eyebrow Label */}
+          <div className="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.25em] uppercase text-[#0047ff] mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
+            <span>08 / Studio Ethos</span>
+          </div>
+
           {/* Section Heading */}
           <h2 className="section-h2 text-white font-heading mb-10 sm:mb-12">
             Small team. Big ideas.

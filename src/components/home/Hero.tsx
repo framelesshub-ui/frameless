@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import AnimatedCounter from '../AnimatedCounter';
 import { siteStats } from '@/data/stats';
+import { useScopingModal } from '@/context/ScopingModalContext';
 
 export default function Hero() {
+  const { openScopingModal } = useScopingModal();
+
   const scrollToContact = (e: React.MouseEvent) => {
-    const el = document.getElementById('contact');
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    e.preventDefault();
+    openScopingModal();
   };
 
   const scrollToProjects = (e: React.MouseEvent) => {

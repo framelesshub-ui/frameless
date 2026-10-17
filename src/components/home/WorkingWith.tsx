@@ -19,20 +19,20 @@ const BRANDING_CLIENTS = [
 
 export default function WorkingWith() {
   return (
-    <section className="py-24 sm:py-36 bg-transparent text-[#F4F4F5] border-b border-white/[0.08]">
+    <section className="py-24 sm:py-36 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)]">
       <div className="editorial-container">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 sm:mb-20">
           <div>
-            <div className="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.25em] uppercase text-[#00F0FF] mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
-              <span>06 / Client Partners</span>
+            <div className="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.25em] uppercase text-[#0047ff] mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
+              <span>07 / Client Partners</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
+            <h2 className="section-h2 text-[var(--color-text)] font-heading">
               Working with.
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-[#A1A1AA] max-w-md font-normal leading-relaxed">
+          <p className="body-lead text-base sm:text-lg text-[var(--color-muted)] max-w-md font-normal leading-relaxed">
             Collaborating with ambitious creators, media platforms, and high-growth commercial ventures.
           </p>
         </div>

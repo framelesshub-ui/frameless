@@ -154,22 +154,22 @@ export default function CreativeFlowPipeline() {
   const activeStage = PIPELINE_STAGES[activeStageIndex];
 
   return (
-    <section className="relative py-24 sm:py-36 bg-transparent text-[#F4F4F5] border-b border-white/[0.08] overflow-hidden">
+    <section className="relative py-24 sm:py-36 bg-[var(--color-bg)] text-[#F4F4F5] border-t border-[var(--color-border)] overflow-hidden">
       <div className="editorial-container">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 sm:mb-20">
           <div>
-            <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-[10px] font-mono tracking-[0.25em] uppercase text-[#00F0FF] mb-4">
-              <Zap className="w-3.5 h-3.5 text-[#00F0FF]" />
-              <span>THE CREATIVE FLOW PIPELINE</span>
+            <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.04] border border-[var(--color-border)] text-[10px] font-mono tracking-[0.25em] uppercase text-[#0047ff] mb-4">
+              <Zap className="w-3.5 h-3.5 text-[#0047ff]" />
+              <span>04 / The Creative Flow Pipeline</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.08]">
-              Idea to Master Output<span className="text-[#00F0FF]">.</span>
+            <h2 className="section-h2 text-[var(--color-text)] font-heading">
+              Idea to Master Output<span className="text-[#0047ff]">.</span>
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-[#A1A1AA] max-w-md font-normal leading-relaxed">
+          <p className="body-lead text-xs sm:text-sm text-[var(--color-muted)] max-w-md font-normal leading-relaxed">
             Inspired by modern generative creative workflows. A connected production pipeline where strategy seamlessly transforms into finished cinema.
           </p>
         </div>

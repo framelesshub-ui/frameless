@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { useScopingModal } from '@/context/ScopingModalContext';
 
 interface HeaderProps {
   currentRoute?: string;
@@ -15,6 +16,7 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<'home' | 'services' | 'projects' | 'about' | 'contact'>('home');
   const pathname = usePathname() || currentRoute || '/';
+  const { openScopingModal } = useScopingModal();
 
   // 1. Scroll listener for frosted header transition
   useEffect(() => {
@@ -149,22 +151,14 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
         <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
           <ThemeToggle />
           <div className="hidden min-[620px]:block">
-            <Link
-              href="/#contact"
-              onClick={(e) => {
-                if (pathname === '/' || pathname === '') {
-                  const el = document.getElementById('contact');
-                  if (el) {
-                    e.preventDefault();
-                    el.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
-              }}
-              className="glass-btn-blue text-xs font-semibold py-2.5 px-5"
+            <button
+              type="button"
+              onClick={() => openScopingModal()}
+              className="glass-btn-blue text-xs font-semibold py-2.5 px-5 cursor-pointer flex items-center"
             >
               <span>Start a project</span>
               <ArrowUpRight className="w-3.5 h-3.5 ml-1.5 inline-block" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>

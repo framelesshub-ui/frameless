@@ -1,16 +1,13 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
+import EditorialStatement from '../components/home/EditorialStatement';
+import DaVinciWorkspace from '../components/home/DaVinciWorkspace';
+import CreativeFlowPipeline from '../components/home/CreativeFlowPipeline';
 import WhatWeDo from '../components/home/WhatWeDo';
 import SelectedWork from '../components/home/SelectedWork';
+import WorkingWith from '../components/home/WorkingWith';
 import AboutPreview from '../components/home/AboutPreview';
 import FinalCTA from '../components/home/FinalCTA';
-
-// Kept in repository for future reference per requirements:
-// import EditorialMarquee from '../components/home/EditorialMarquee';
-// import DaVinciWorkspace from '../components/home/DaVinciWorkspace';
-// import CreativeFlowPipeline from '../components/home/CreativeFlowPipeline';
-// import EditorialStatement from '../components/home/EditorialStatement';
-// import WorkingWith from '../components/home/WorkingWith';
 
 interface HomePageProps {
   onNavigate?: (route: string) => void;
@@ -18,20 +15,32 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = () => {
   return (
-    <div className="relative w-full bg-white text-black">
+    <div className="relative w-full bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* 01 — Hero: "Made to stand apart." */}
       <Hero />
 
-      {/* 02 — Services: "What we do." */}
+      {/* 02 — The Philosophy */}
+      <EditorialStatement />
+
+      {/* 03 — The Edit Suite */}
+      <DaVinciWorkspace />
+
+      {/* 04 — The Creative Flow Pipeline */}
+      <CreativeFlowPipeline />
+
+      {/* 05 — Disciplines: "What we do." */}
       <WhatWeDo />
 
-      {/* 03 — Projects: "Selected projects." */}
+      {/* 06 — Projects: "Selected projects." */}
       <SelectedWork />
 
-      {/* 04 — About: "Small team. Big ideas." */}
+      {/* 07 — Client Partners: "Working with." */}
+      <WorkingWith />
+
+      {/* 08 — About: "Small team. Big ideas." */}
       <AboutPreview />
 
-      {/* 05 — Contact: "Have something worth creating?" */}
+      {/* 09 — Contact: "Have something worth creating?" */}
       <FinalCTA />
     </div>
   );
