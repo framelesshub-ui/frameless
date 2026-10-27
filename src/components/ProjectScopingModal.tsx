@@ -37,7 +37,7 @@ const DELIVERABLE_OPTIONS = [
   'Commercial Hero Brand Film (4K DCI)',
   'Episodic YouTube Series Production',
   'High-Retention Shorts & Reels (30+ assets)',
-  'Bespoke Filmic Color Grading & Titles',
+  'Cinematic Video Finishing & Titles',
   'Spatial Sound Design & Acoustic Mix',
   'Packaging & Tactile Print Collateral',
   'Monthly Creative Growth Retainer',

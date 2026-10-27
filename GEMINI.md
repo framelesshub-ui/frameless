@@ -1,8 +1,8 @@
 # Frameless Hub — Workspace Rules & Design System
 
 ## Aesthetic & UI Invariants
-- **Theme:** Professional Non-Linear Editing (NLE) post-production suite (DaVinci Resolve / Cinema HUD aesthetic).
-- **Color Palette:** Deep studio matte blacks/charcoals, high-contrast typography, subtle technical grid borders, and cinema telemetry accents (cyan/tungsten/amber status indicators).
-- **Typography & Telemetry:** Preserve monospaced metadata formatting for timecodes (`TC: 01:00:14:12`), frame rates (`24.00 FPS`), codecs (`PRORES 4444 XQ`), and color science tags (`FH_Cyan_Tungsten_Film_v4`).
+- **Theme:** Clean, modern, high-end creative agency experience with smooth page animations and signature button micro-interactions.
+- **Color Palette:** Minimalist high-contrast palette — pure white `#ffffff` / deep black `#000000`, electric blue `#0047ff` accent, muted slate `#5b6170`, and hairline borders `#e6e8ee` (dark mode tokens via CSS variables).
+- **Typography & Interaction:** Expressive modern typography ("Unbounded" headings, "DM Sans" body), magnetic cursor-pull CTAs, smooth directional sweeps, and subtle glass elevation.
 - **Animations:** Ensure any text-splitting or scroll-reveal animations preserve native whitespace (` `) in the DOM so screen readers and search engines do not concatenate words.
-- **Responsiveness:** Complex desktop horizontal timelines must degrade gracefully into thumb-friendly vertical decks or swipeable cards below `768px`.
+- **Responsiveness:** Fluid responsive grid architecture supporting mobile (`390px`), tablet (`768px`), and desktop (`1440px+`) viewports with zero horizontal overflow.

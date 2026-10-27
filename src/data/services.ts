@@ -87,9 +87,9 @@ export const SERVICES: Service[] = [
     id: "post-production",
     number: "09",
     title: "Post Production",
-    shortDescription: "Precision 35mm cinema color grading, original sound foley and spatial audio mixing, visual effects, and kinetic motion title systems.",
+    shortDescription: "Signature visual finishing, bespoke sound design and audio mixing, visual effects compositing, and kinetic motion title systems.",
     iconName: "Film",
-    deliverables: ["Precision Cinematic Color Grading", "Custom Sound Design & Foley", "VFX & Clean-Up Compositing", "Kinetic Motion Graphics"],
+    deliverables: ["Cinematic Visual Finishing", "Custom Sound Design & Foley", "VFX & Clean-Up Compositing", "Kinetic Motion Graphics"],
     tag: "Craft"
   }
 ];

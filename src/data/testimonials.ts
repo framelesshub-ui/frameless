@@ -17,7 +17,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Verified Client Partner',
     client: "Birla's Parvai",
     initials: 'BP',
-    deliverable: 'Commercial Narrative Film & Color Grade',
+    deliverable: 'Commercial Narrative Film & Visual Production',
   },
   {
     id: 'supratha-wellness',

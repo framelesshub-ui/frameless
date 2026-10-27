@@ -57,7 +57,7 @@ const PROCESS_STEPS: ProcessStep[] = [
       'Comprehensive Scene-by-Scene Boards',
       'Cinematic Color & Lighting Palettes',
       'Talent, Location & Wardrobe Direction',
-      'Pacing & Duration Telemetry',
+      'Scene Pacing & Narrative Rhythm',
     ],
     metrics: [
       { label: 'Pre-Viz Coverage', value: 'Frame-by-Frame' },
@@ -77,7 +77,7 @@ const PROCESS_STEPS: ProcessStep[] = [
       '4K DCI Multi-Camera Production',
       'High-Speed Dynamic B-Roll & Macro Rigs',
       '32-Bit Multi-Track Acoustic Recording',
-      'On-Set DIT & Color Monitoring',
+      'On-Set Lighting & Direction Oversight',
     ],
     metrics: [
       { label: 'Camera Dynamic Range', value: '16+ Stops' },
@@ -89,18 +89,18 @@ const PROCESS_STEPS: ProcessStep[] = [
   {
     step: '04',
     title: 'Craft',
-    subtitle: 'Precision Assembly, Color Science & Sound Design',
-    tagline: 'Sculpting scene rhythm, bespoke filmic color grades, and rich acoustic mixes.',
+    subtitle: 'Precision Assembly, Visual Grading & Sound Design',
+    tagline: 'Sculpting scene rhythm, bespoke visual grading, and rich acoustic mixes.',
     insight:
       'Where raw footage transforms into finished cinema. We pace cuts to heartbeat rhythms, calibrate nuanced color tones, and design immersive audio textures that hold viewer attention.',
     deliverables: [
       'Rhythmic Editorial Assembly',
-      'Bespoke Film Color Science',
+      'Bespoke Visual Color Palette',
       'Surround Sound Design & Foley Mixing',
       'Kinetic Motion Design & Clean Titles',
     ],
     metrics: [
-      { label: 'Audio Compliance', value: 'ITU-R BS.1770-4' },
+      { label: 'Audio Standard', value: 'Mastered Studio Audio' },
       { label: 'Finishing Standard', value: 'Master 4K' },
       { label: 'Deliverable', value: 'Fine-Cut Master' },
     ],

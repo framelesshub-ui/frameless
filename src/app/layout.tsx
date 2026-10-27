@@ -91,7 +91,7 @@ const jsonLd = {
       ],
       knowsAbout: [
         'Commercial Film Production',
-        'Cinematic Color Science',
+        'Cinematic Visual Direction',
         'Brand Identity & Strategy',
         'YouTube Growth & Retainer Direction',
         'Spatial Sound Design & Acoustic Mix',
