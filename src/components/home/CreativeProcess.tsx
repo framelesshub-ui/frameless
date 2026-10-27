@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Lightbulb,
   Compass,
@@ -131,22 +133,70 @@ const PROCESS_STEPS: ProcessStep[] = [
 export default function CreativeProcess() {
   const [activeStep, setActiveStep] = useState(0);
   const { openScopingModal } = useScopingModal();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const isManualRef = useRef<boolean>(false);
+  const manualTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Interactive Scroll-Linked Stage Transition
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top 60%',
+        end: 'bottom 40%',
+        onUpdate: (self) => {
+          if (isManualRef.current) return;
+          const targetIndex = Math.min(
+            PROCESS_STEPS.length - 1,
+            Math.max(0, Math.floor(self.progress * PROCESS_STEPS.length))
+          );
+          setActiveStep(targetIndex);
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleStepClick = (idx: number) => {
+    isManualRef.current = true;
+    setActiveStep(idx);
+    if (manualTimerRef.current) clearTimeout(manualTimerRef.current);
+    manualTimerRef.current = setTimeout(() => {
+      isManualRef.current = false;
+    }, 2500);
+  };
 
   const current = PROCESS_STEPS[activeStep];
   const IconComponent = current.icon;
 
   const nextStep = () => {
+    isManualRef.current = true;
     setActiveStep((prev) => (prev < PROCESS_STEPS.length - 1 ? prev + 1 : 0));
+    if (manualTimerRef.current) clearTimeout(manualTimerRef.current);
+    manualTimerRef.current = setTimeout(() => {
+      isManualRef.current = false;
+    }, 2500);
   };
 
   const prevStep = () => {
+    isManualRef.current = true;
     setActiveStep((prev) => (prev > 0 ? prev - 1 : PROCESS_STEPS.length - 1));
+    if (manualTimerRef.current) clearTimeout(manualTimerRef.current);
+    manualTimerRef.current = setTimeout(() => {
+      isManualRef.current = false;
+    }, 2500);
   };
 
   return (
     <section
       id="process"
-      className="py-24 sm:py-36 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] relative overflow-hidden"
+      ref={sectionRef}
+      className="py-24 sm:py-36 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] relative overflow-hidden scroll-mt-20"
     >
       <div className="editorial-container">
         {/* Section Header */}
@@ -181,7 +231,7 @@ export default function CreativeProcess() {
                   role="tab"
                   aria-selected={isActive}
                   aria-current={isActive ? 'step' : undefined}
-                  onClick={() => setActiveStep(idx)}
+                  onClick={() => handleStepClick(idx)}
                   className={`text-left p-3 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0047ff] ${
                     isActive
                       ? 'bg-[var(--color-tint)] border-[#0047ff]/60 shadow-[0_8px_30px_rgba(0,71,255,0.12)]'

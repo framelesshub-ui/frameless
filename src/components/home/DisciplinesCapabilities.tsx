@@ -1,6 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { ArrowUpRight, TrendingUp, Sparkles, CheckCircle2 } from 'lucide-react';
 import { CAPABILITIES } from '@/data/capabilities';
@@ -20,10 +22,43 @@ const BRANDING_CLIENTS = [
 ];
 
 export default function DisciplinesCapabilities() {
+  const gridRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !gridRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const cards = gridRef.current?.querySelectorAll('.capability-column');
+      if (cards && cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0.15, y: 32 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            stagger: 0.12,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 82%',
+              end: 'top 45%',
+              scrub: 0.5,
+            },
+          }
+        );
+      }
+    }, gridRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="services"
-      className="py-24 sm:py-36 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] relative overflow-hidden"
+      className="py-24 sm:py-36 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] relative overflow-hidden scroll-mt-20"
     >
       <div className="editorial-container space-y-24 sm:space-y-32">
         {/* ── PART 1: 4 Core Disciplines ── */}
@@ -45,11 +80,14 @@ export default function DisciplinesCapabilities() {
           </div>
 
           {/* 4 Capability Columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-b border-[var(--color-border)]">
+          <div
+            ref={gridRef}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-b border-[var(--color-border)]"
+          >
             {CAPABILITIES.map((cap, idx) => (
               <div
                 key={cap.id}
-                className={`p-8 sm:p-10 transition-colors duration-400 hover:bg-gradient-to-b hover:from-[var(--color-service-hover-start)] hover:to-transparent flex flex-col justify-between ${
+                className={`capability-column p-8 sm:p-10 transition-colors duration-400 hover:bg-gradient-to-b hover:from-[var(--color-service-hover-start)] hover:to-transparent flex flex-col justify-between ${
                   idx !== 0 ? 'border-t md:border-t-0 border-[var(--color-border)]' : ''
                 } ${
                   idx % 2 !== 0 ? 'md:border-l md:border-[var(--color-border)]' : ''

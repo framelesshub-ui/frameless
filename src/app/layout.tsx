@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 import Effects from '@/components/Effects';
 import CinematicIntro from '@/components/CinematicIntro';
+import InteractiveScrollRail from '@/components/InteractiveScrollRail';
 import { ScopingModalProvider } from '@/context/ScopingModalContext';
 import ProjectScopingModal from '@/components/ProjectScopingModal';
 
@@ -259,6 +260,7 @@ export default function RootLayout({
         <CinematicIntro />
         <ScopingModalProvider>
           <Effects />
+          <InteractiveScrollRail />
           <SmoothScroll>
             <a
               href="#main-content"
