@@ -34,9 +34,18 @@ export default function CaseStudy({ project }: CaseStudyProps) {
             <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#0047ff] mb-3 font-semibold">
               {project.client} • {project.year}
             </div>
-            <h1 className="hero-h1 text-[var(--color-text)] font-heading mb-0">
-              {project.title}
-            </h1>
+            <div className="flex items-center gap-4">
+              {project.logo && (
+                <img
+                  src={project.logo}
+                  alt={`${project.client} logo`}
+                  className="w-14 h-14 object-contain rounded-2xl bg-[var(--color-tint)] p-2.5 border border-[var(--color-border)] flex-shrink-0"
+                />
+              )}
+              <h1 className="hero-h1 text-[var(--color-text)] font-heading mb-0">
+                {project.title}
+              </h1>
+            </div>
           </div>
 
           <div className="lg:col-span-4 flex flex-col sm:items-start lg:items-end justify-end space-y-2">

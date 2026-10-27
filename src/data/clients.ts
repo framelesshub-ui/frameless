@@ -4,6 +4,7 @@ export interface ClientItem {
   category: string;
   description: string;
   services: string[];
+  logo?: string;
   youtubeUrl?: string;
   instagramUrl?: string;
 }

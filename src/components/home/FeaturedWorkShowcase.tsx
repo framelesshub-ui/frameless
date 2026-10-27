@@ -209,9 +209,18 @@ export default function FeaturedWorkShowcase() {
                       {project.title}
                     </div>
 
-                    <h3 className="font-heading text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
-                      {project.client}
-                    </h3>
+                    <div className="flex items-center gap-3">
+                      {project.logo && (
+                        <img
+                          src={project.logo}
+                          alt={`${project.client} logo`}
+                          className="w-10 h-10 object-contain rounded-xl bg-white/10 p-1.5 border border-white/15 flex-shrink-0"
+                        />
+                      )}
+                      <h3 className="font-heading text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                        {project.client}
+                      </h3>
+                    </div>
 
                     <p className="text-sm text-white/80 font-normal leading-relaxed line-clamp-3">
                       {project.overview}
@@ -334,9 +343,18 @@ export default function FeaturedWorkShowcase() {
                   <span className="text-[10px] font-mono text-white/50">{project.year}</span>
                 </div>
 
-                <h3 className="font-heading text-2xl font-bold text-white mb-2">
-                  {project.client}
-                </h3>
+                <div className="flex items-center gap-2.5 mb-2">
+                  {project.logo && (
+                    <img
+                      src={project.logo}
+                      alt={`${project.client} logo`}
+                      className="w-8 h-8 object-contain rounded-lg bg-white/10 p-1 border border-white/15 flex-shrink-0"
+                    />
+                  )}
+                  <h3 className="font-heading text-2xl font-bold text-white">
+                    {project.client}
+                  </h3>
+                </div>
                 <p className="text-xs text-white/80 leading-relaxed mb-4 line-clamp-2">
                   {project.overview}
                 </p>

@@ -5,6 +5,7 @@ export interface Project {
   title: string;
   category: 'Branding' | 'Content' | 'YouTube' | 'Campaigns';
   displayCategory: string;
+  logo?: string;
   thumbnail?: string;
   video?: string;
   videoEmbedUrl?: string;

@@ -89,12 +89,23 @@ export default function ProjectInspectorDrawer({
               <span>•</span>
               <span className="text-white/40">{project.year}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-heading font-black text-white tracking-tight">
-              {project.client}
-            </h2>
-            <p className="text-base text-white/70 mt-2 font-normal leading-relaxed">
-              {project.title}
-            </p>
+            <div className="flex items-center gap-4">
+              {project.logo && (
+                <img
+                  src={project.logo}
+                  alt={`${project.client} logo`}
+                  className="w-12 h-12 object-contain rounded-xl bg-white/10 p-1.5 border border-white/15 flex-shrink-0"
+                />
+              )}
+              <div>
+                <h2 className="text-3xl sm:text-4xl font-heading font-black text-white tracking-tight">
+                  {project.client}
+                </h2>
+                <p className="text-base text-white/70 mt-1 font-normal leading-relaxed">
+                  {project.title}
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Section 1: Overview & Strategic Challenge */}
