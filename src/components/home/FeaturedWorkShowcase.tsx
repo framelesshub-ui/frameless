@@ -79,8 +79,8 @@ export default function FeaturedWorkShowcase() {
 
   return (
     <section
-      id="featured-work"
-      className="py-24 sm:py-32 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] relative overflow-hidden"
+      id="projects"
+      className="py-24 sm:py-32 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] relative overflow-hidden scroll-mt-20"
     >
       <div className="editorial-container">
         {/* Section Header */}
@@ -109,9 +109,19 @@ export default function FeaturedWorkShowcase() {
             return (
               <div
                 key={project.slug}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isActive}
+                aria-label={`Featured client: ${project.client}`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveIndex(idx);
+                  }
+                }}
                 onMouseEnter={() => setActiveIndex(idx)}
                 onClick={() => setActiveIndex(idx)}
-                className={`relative rounded-2xl overflow-hidden transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer flex flex-col justify-between p-7 select-none ${
+                className={`relative rounded-2xl overflow-hidden transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer flex flex-col justify-between p-7 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0047ff] ${
                   isActive
                     ? 'flex-[3.5] bg-gradient-to-br ' + theme.bgGradient + ' border border-white/20'
                     : 'flex-[1] bg-black/40 hover:bg-black/60 border border-white/[0.04]'
@@ -244,8 +254,17 @@ export default function FeaturedWorkShowcase() {
             return (
               <div
                 key={project.slug}
+                role="button"
+                tabIndex={0}
+                aria-label={`Examine case study: ${project.client}`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setInspectorProject(project);
+                  }
+                }}
                 onClick={() => setInspectorProject(project)}
-                className={`rounded-2xl p-6 border transition-all active:scale-[0.99] cursor-pointer bg-gradient-to-br ${theme.bgGradient} border-white/15 shadow-lg`}
+                className={`rounded-2xl p-6 border transition-all active:scale-[0.99] cursor-pointer bg-gradient-to-br ${theme.bgGradient} border-white/15 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0047ff]`}
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">

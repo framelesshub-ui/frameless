@@ -57,6 +57,7 @@ export default function ProjectInspectorDrawer({
       <aside
         className="relative z-10 w-full max-w-xl h-full bg-[#08090d] border-l border-white/10 text-[#F4F4F5] flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.9)] overflow-hidden select-text animate-in slide-in-from-right duration-300"
         role="dialog"
+        aria-modal="true"
         aria-label={`${project.client} Case Study`}
       >
         {/* Top Header Bar */}
@@ -144,7 +145,7 @@ export default function ProjectInspectorDrawer({
               {project.verifiedResult || 'Verified High-Retention Production'}
             </div>
             <p className="text-xs text-white/60 font-normal leading-relaxed">
-              Performance verified through organic channel telemetry, platform analytics, and measurable client revenue lift.
+              Performance verified through organic channel performance metrics, platform analytics, and measurable client revenue lift.
             </p>
           </div>
         </div>

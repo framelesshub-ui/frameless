@@ -135,15 +135,10 @@ export default function AnimatedButton({
   };
 
   const innerContent = (
-    <div
-      ref={buttonRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative z-10 flex items-center justify-center gap-1.5"
-    >
+    <span className="relative z-10 inline-flex items-center justify-center gap-1.5 pointer-events-none">
       {renderLabel()}
       {renderArrow()}
-    </div>
+    </span>
   );
 
   if (href) {
@@ -153,8 +148,11 @@ export default function AnimatedButton({
         className="inline-block"
       >
         <Link
+          ref={buttonRef as unknown as React.Ref<HTMLAnchorElement>}
           href={href}
           onClick={onClick}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
           className={combinedStyles}
           target={target}
           rel={rel}
@@ -174,7 +172,10 @@ export default function AnimatedButton({
       className="inline-block"
     >
       <button
+        ref={buttonRef as unknown as React.Ref<HTMLButtonElement>}
         onClick={onClick}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         type={type}
         className={combinedStyles}
         title={title}

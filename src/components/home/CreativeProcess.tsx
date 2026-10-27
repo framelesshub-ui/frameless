@@ -178,8 +178,11 @@ export default function CreativeProcess() {
                 <button
                   key={s.step}
                   type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-current={isActive ? 'step' : undefined}
                   onClick={() => setActiveStep(idx)}
-                  className={`text-left p-3 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+                  className={`text-left p-3 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0047ff] ${
                     isActive
                       ? 'bg-[var(--color-tint)] border-[#0047ff]/60 shadow-[0_8px_30px_rgba(0,71,255,0.12)]'
                       : isPast

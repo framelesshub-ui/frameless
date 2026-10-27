@@ -121,9 +121,18 @@ ${additionalNotes.trim() ? `✦ STRATEGIC CONTEXT & NOTES:\n  "${additionalNotes
 Generated via framelesshub.com Studio`;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(generatedBrief);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+      navigator.clipboard
+        .writeText(generatedBrief)
+        .then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2500);
+        })
+        .catch(() => {
+          // Fallback if clipboard permission is denied
+          setCopied(false);
+        });
+    }
   };
 
   const whatsappUrl = `https://wa.me/918248628371?text=${encodeURIComponent(generatedBrief)}`;
@@ -144,6 +153,7 @@ Generated via framelesshub.com Studio`;
       <div
         className="relative z-10 w-full max-w-2xl bg-[#090a0f] border border-white/10 text-[#F4F4F5] rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.9)] overflow-hidden select-text animate-in zoom-in-95 duration-200"
         role="dialog"
+        aria-modal="true"
         aria-label="Project Scoping Wizard"
       >
         {/* Top Header Bar */}

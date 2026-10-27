@@ -178,7 +178,7 @@ export default function DisciplinesCapabilities() {
         </div>
 
         {/* ── PART 3: Studio Ethos & Leadership Card ── */}
-        <div className="about-black-block p-8 sm:p-14 md:p-16 lg:p-20 rounded-3xl bg-black text-white border border-white/10 shadow-2xl relative overflow-hidden">
+        <div id="about" className="scroll-mt-24 about-black-block p-8 sm:p-14 md:p-16 lg:p-20 rounded-3xl bg-black text-white border border-white/10 shadow-2xl relative overflow-hidden">
           {/* Subtle Ambient Radial Lighting */}
           <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#0047ff]/15 blur-3xl pointer-events-none" />
 
