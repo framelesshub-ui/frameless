@@ -118,10 +118,10 @@ export default function AboutPageContent() {
               </div>
               <div className="space-y-4 text-sm text-[#A1A1AA] leading-relaxed">
                 <p>
-                  Rithik B is the founder of Frameless Hub, a premium creative media and branding studio built at the intersection of storytelling, design, and strategy.
+                  Rithik B is the founder of Frameless Hub, a premium creative media agency built at the intersection of storytelling, design, and strategy.
                 </p>
                 <p>
-                  What began with a passion for visual storytelling evolved into a studio helping brands communicate with greater clarity, character, and impact.
+                  What began with a passion for visual storytelling evolved into an agency helping brands communicate with greater clarity, character, and impact.
                 </p>
                 <p>
                   Today, Rithik leads Frameless Hub with a focus on creative excellence, strategic thinking, and building work that moves brands forward.
@@ -135,7 +135,7 @@ export default function AboutPageContent() {
                 About Frameless Hub
               </h3>
               <p className="text-base sm:text-lg text-white font-medium leading-relaxed">
-                Frameless Hub is a premium creative media and branding studio built for brands that want to stand apart.
+                Frameless Hub is a premium creative media agency built for brands that want to stand apart.
               </p>
               <p className="text-sm sm:text-base leading-relaxed">
                 We bring together strategy, storytelling, design, and digital execution to create work that is not only visually compelling, but built with purpose.

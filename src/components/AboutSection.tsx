@@ -45,7 +45,7 @@ export default function AboutSection() {
             </p>
 
             <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed mb-8">
-              Frameless Hub unites <strong className="text-white font-semibold">Strategy, Creative, Branding, Content, Production, Marketing, and Performance</strong> under one unified creative studio. No friction. No lost intent. Just cohesive, high-retention brand worlds engineered to stand out and endure.
+              Frameless Hub unites <strong className="text-white font-semibold">Strategy, Creative, Branding, Content, Production, Marketing, and Performance</strong> under one unified premium creative media agency. No friction. No lost intent. Just cohesive, high-retention brand worlds engineered to stand out and endure.
             </p>
 
             {/* Disciplines Chips */}

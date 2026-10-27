@@ -38,7 +38,7 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--glass-btn-bg)] border border-[var(--color-border)] mb-8 shadow-sm backdrop-blur-sm hero-subtext-reveal max-w-full">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff] flex-shrink-0" />
             <span className="text-[10px] min-[400px]:text-[11px] font-mono tracking-wider sm:tracking-widest uppercase text-[var(--color-muted)] truncate">
-              01 / Premium Creative Agency — Chennai • EST. 2026
+              01 / A Premium Creative Media Agency — Chennai • EST. 2026
             </span>
           </div>
 
@@ -60,10 +60,10 @@ export default function Hero() {
           {/* Existing Subtext: Fades up at ~0.7s */}
           <div className="hero-subtext-reveal space-y-3 mb-10">
             <p className="text-xl sm:text-2xl font-semibold text-[var(--color-text)] tracking-tight">
-              Strategy. Storytelling. Design. Digital.
+              A Premium Creative Media Agency<span className="text-[#0047ff]">.</span>
             </p>
             <p className="body-lead text-base sm:text-lg text-[var(--color-muted)] max-w-2xl leading-relaxed">
-              Branding, commercial film production and digital acceleration for brands that demand cultural presence.
+              Strategy, commercial film production, and digital acceleration for brands that demand cultural presence.
             </p>
           </div>
 

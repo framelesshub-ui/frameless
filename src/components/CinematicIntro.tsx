@@ -237,7 +237,7 @@ export default function CinematicIntro() {
                 transition={{ duration: 0.8, delay: 0.75, ease: 'easeOut' }}
                 className="text-[10px] sm:text-[11px] font-mono tracking-[0.25em] text-[#0047ff] uppercase font-semibold"
               >
-                CREATIVE STUDIO // CHENNAI • EST. 2026
+                A PREMIUM CREATIVE MEDIA AGENCY // CHENNAI • EST. 2026
               </motion.div>
             </div>
           </motion.div>

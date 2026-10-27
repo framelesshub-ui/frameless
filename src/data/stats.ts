@@ -41,7 +41,7 @@ export const siteStats: SiteStat[] = [
     suffix: '',
     displayValue: 'EST. 2026',
     label: 'Chennai, India',
-    description: 'Independent creative studio built to endure',
+    description: 'A premium creative media agency built to endure',
     isNumeric: false,
   },
 ];

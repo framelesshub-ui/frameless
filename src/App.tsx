@@ -61,7 +61,7 @@ export function App() {
           break;
         case '/':
         default:
-          document.title = 'Frameless Hub — A Creative Media Agency';
+          document.title = 'Frameless Hub — A Premium Creative Media Agency';
           break;
       }
     }

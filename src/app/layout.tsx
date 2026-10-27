@@ -11,9 +11,9 @@ import ProjectScopingModal from '@/components/ProjectScopingModal';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://framelesshub.com'),
-  title: 'Frameless Hub | Creative Studio in Chennai',
+  title: 'Frameless Hub — A Premium Creative Media Agency in Chennai',
   description:
-    'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, and digital marketing.',
+    'Frameless Hub is a premium creative media agency in Chennai specialising in branding, commercial film production, and digital marketing.',
   alternates: {
     canonical: 'https://framelesshub.com',
   },
@@ -25,16 +25,17 @@ export const metadata: Metadata = {
     apple: '/logo.png',
   },
   keywords: [
-    'creative studio chennai',
+    'premium creative media agency',
+    'creative media agency chennai',
     'branding agency chennai',
-    'video production chennai',
+    'commercial film production chennai',
     'digital marketing',
     'frameless hub',
   ],
   openGraph: {
-    title: 'Frameless Hub | Creative Studio in Chennai',
+    title: 'Frameless Hub — A Premium Creative Media Agency in Chennai',
     description:
-      'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, and digital marketing.',
+      'Frameless Hub is a premium creative media agency in Chennai specialising in branding, commercial film production, and digital marketing.',
     url: 'https://framelesshub.com',
     siteName: 'Frameless Hub',
     locale: 'en_IN',
@@ -50,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Frameless Hub | Creative Studio in Chennai',
+    title: 'Frameless Hub — A Premium Creative Media Agency in Chennai',
     description:
-      'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, and digital marketing.',
+      'Frameless Hub is a premium creative media agency in Chennai specialising in branding, commercial film production, and digital marketing.',
     images: ['/logo.png'],
   },
 };
@@ -87,7 +88,7 @@ const jsonLd = {
         longitude: '80.2707',
       },
       description:
-        'Frameless Hub is an independent creative studio in Chennai specialising in branding, commercial film production, YouTube retention growth, and digital acceleration. 399+ projects delivered, 10M+ views generated. EST. 2026.',
+        'Frameless Hub is a premium creative media agency in Chennai specialising in branding, commercial film production, YouTube retention growth, and digital acceleration. 399+ projects delivered, 10M+ views generated. EST. 2026.',
       sameAs: [
         'https://www.instagram.com/framelesshub',
       ],
@@ -111,7 +112,7 @@ const jsonLd = {
         name: 'Chennai, Tamil Nadu, India',
       },
       description:
-        'Frameless Hub is an independent creative studio in Chennai specialising in branding, content production, and digital marketing. 399+ projects delivered, 10M+ views generated. EST. 2026.',
+        'Frameless Hub is a premium creative media agency in Chennai specialising in branding, content production, and digital marketing. 399+ projects delivered, 10M+ views generated. EST. 2026.',
       sameAs: [
         'https://www.instagram.com/framelesshub',
       ],
