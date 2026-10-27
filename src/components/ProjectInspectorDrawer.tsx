@@ -2,7 +2,8 @@
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { X, ArrowUpRight, TrendingUp, CheckCircle2, Sparkles } from 'lucide-react';
+import { X, ArrowUpRight, TrendingUp, CheckCircle2, Sparkles, ExternalLink } from 'lucide-react';
+import { YouTubeIcon, InstagramIcon } from '@/components/icons/SocialIcons';
 import { Project } from '@/data/projects';
 import AnimatedButton from '@/components/AnimatedButton';
 
@@ -134,6 +135,45 @@ export default function ProjectInspectorDrawer({
               </div>
             </div>
           </div>
+
+          {/* Live Verified Client Platforms */}
+          {(project.youtubeUrl || project.instagramUrl) && (
+            <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] space-y-3">
+              <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#0047ff] font-semibold flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-[#0047ff]" />
+                <span>Live Client Channels &amp; Platforms</span>
+              </div>
+              <p className="text-xs text-white/70 leading-relaxed font-normal">
+                Direct links to live audience-facing platforms developed, scaled, or managed by Frameless Hub:
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                {project.youtubeUrl && (
+                  <a
+                    href={project.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium bg-red-600/20 hover:bg-red-600/30 text-white border border-red-500/40 transition-all hover:scale-[1.02]"
+                  >
+                    <YouTubeIcon className="w-4 h-4 text-red-500" />
+                    <span>Official YouTube {project.socialHandle || ''}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-white/70" />
+                  </a>
+                )}
+                {project.instagramUrl && (
+                  <a
+                    href={project.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-white border border-pink-500/40 transition-all hover:scale-[1.02]"
+                  >
+                    <InstagramIcon className="w-4 h-4 text-pink-400" />
+                    <span>Official Instagram {project.socialHandle || ''}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-white/70" />
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Section 3: Verified Audience & Business Impact */}
           <div className="p-6 rounded-2xl bg-gradient-to-br from-[#0047ff]/15 via-black/40 to-black/20 border border-[#0047ff]/40 space-y-3">

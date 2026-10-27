@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
+import { YouTubeIcon } from '@/components/icons/SocialIcons';
 
 interface VideoModalProps {
   isOpen: boolean;
@@ -60,27 +61,50 @@ export default function VideoModal({
         <X className="w-5 h-5" />
       </button>
 
-      {/* Video Container */}
+      {/* Video Container & Platform Bar */}
       <div
-        className="relative w-full max-w-5xl aspect-video rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl"
+        className="relative w-full max-w-5xl flex flex-col rounded-2xl overflow-hidden bg-[#080b12] border border-white/15 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        {isYouTube ? (
-          <iframe
-            src={videoSrc}
-            title={title || 'Frameless Hub Video'}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full border-0"
-          />
-        ) : (
-          <video
-            src={videoSrc}
-            controls
-            autoPlay
-            playsInline
-            className="w-full h-full object-cover"
-          />
+        <div className="relative aspect-video w-full bg-black">
+          {isYouTube ? (
+            <iframe
+              src={videoSrc}
+              title={title || 'Frameless Hub Video'}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full border-0"
+            />
+          ) : (
+            <video
+              src={videoSrc}
+              controls
+              autoPlay
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
+
+        {channelUrl && (
+          <div className="px-5 py-3.5 bg-[#0a0e18] border-t border-white/10 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
+              <span className="text-xs font-mono text-white/70">
+                Official Platform: <strong className="text-white">{title}</strong>
+              </span>
+            </div>
+            <a
+              href={channelUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold bg-red-600/20 hover:bg-red-600 text-white border border-red-500/40 transition-all hover:scale-105"
+            >
+              <YouTubeIcon className="w-3.5 h-3.5" />
+              <span>Visit Official Channel</span>
+              <ArrowUpRight className="w-3 h-3 text-white/80" />
+            </a>
+          </div>
         )}
       </div>
     </div>

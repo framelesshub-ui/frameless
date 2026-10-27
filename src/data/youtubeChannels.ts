@@ -8,6 +8,7 @@ export interface YouTubeChannel {
   thumbnail: string;
   videoUrl?: string; // YouTube embed or watch link
   channelUrl: string;
+  instagramUrl?: string;
   featuredTitle?: string;
   badge?: string;
   description: string;
@@ -62,6 +63,7 @@ export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
     thumbnail: "https://i.ytimg.com/vi/iZa8A_V4z7Y/hq720.jpg",
     videoUrl: "https://www.youtube.com/embed/iZa8A_V4z7Y?autoplay=1&rel=0",
     channelUrl: "https://www.youtube.com/@Framelessmediatamil",
+    instagramUrl: "https://www.instagram.com/frameless._/",
     featuredTitle: "Santhanam DD Next Level Movie Public Talk – Makkal Reaction",
     badge: "Studio Flagship",
     description: "High-energy cinema public talk, director and actor interviews, FDFS fan reviews, and pop culture broadcast formats produced by Frameless Hub.",

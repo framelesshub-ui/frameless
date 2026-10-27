@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Sparkles, ArrowUpRight, TrendingUp, Layers, CheckCircle2 } from 'lucide-react';
+import { YouTubeIcon, InstagramIcon } from '@/components/icons/SocialIcons';
 import { projects, Project } from '@/data/projects';
 import AnimatedButton from '@/components/AnimatedButton';
 import ProjectInspectorDrawer from '@/components/ProjectInspectorDrawer';
@@ -246,7 +247,37 @@ export default function FeaturedWorkShowcase() {
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {project.youtubeUrl && (
+                          <a
+                            href={project.youtubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-red-600/20 hover:bg-red-600/30 text-white border border-red-500/40 transition-all hover:scale-105"
+                            title="Visit Official YouTube Channel"
+                          >
+                            <YouTubeIcon className="w-3.5 h-3.5 text-red-500" />
+                            <span>YouTube</span>
+                            <ArrowUpRight className="w-3 h-3 text-white/70" />
+                          </a>
+                        )}
+
+                        {project.instagramUrl && (
+                          <a
+                            href={project.instagramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-white border border-pink-500/40 transition-all hover:scale-105"
+                            title="Visit Official Instagram Profile"
+                          >
+                            <InstagramIcon className="w-3.5 h-3.5 text-pink-400" />
+                            <span>Instagram</span>
+                            <ArrowUpRight className="w-3 h-3 text-white/70" />
+                          </a>
+                        )}
+
                         <AnimatedButton
                           text="Examine Case Study"
                           showArrow
@@ -310,17 +341,43 @@ export default function FeaturedWorkShowcase() {
                   {project.overview}
                 </p>
 
-                {/* Result & Examine */}
+                {/* Result, Social & Examine */}
                 <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-white">
                     <TrendingUp className="w-3.5 h-3.5 text-[#0047ff]" />
                     <span>{project.verifiedResult}</span>
                   </div>
 
-                  <span className="inline-flex items-center gap-1 text-[11px] font-mono text-white/90 uppercase font-semibold">
-                    <span>Examine</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {project.youtubeUrl && (
+                      <a
+                        href={project.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-1.5 rounded-full bg-red-600/20 border border-red-500/40 text-red-400 hover:text-white"
+                        title="Official YouTube Channel"
+                      >
+                        <YouTubeIcon className="w-3.5 h-3.5 text-red-400" />
+                      </a>
+                    )}
+                    {project.instagramUrl && (
+                      <a
+                        href={project.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-1.5 rounded-full bg-pink-600/20 border border-pink-500/40 text-pink-400 hover:text-white"
+                        title="Official Instagram Profile"
+                      >
+                        <InstagramIcon className="w-3.5 h-3.5 text-pink-400" />
+                      </a>
+                    )}
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-white/90 uppercase font-semibold">
+                      <span>Examine</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
                 </div>
               </div>
             );

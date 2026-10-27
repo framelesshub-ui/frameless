@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Play, BarChart3 } from 'lucide-react';
+import { Play, BarChart3, ArrowUpRight } from 'lucide-react';
 
-import { YouTubeIcon } from './icons/SocialIcons';
+import { YouTubeIcon, InstagramIcon } from './icons/SocialIcons';
 import VideoModal from './VideoModal';
 import AnimatedCounter from './AnimatedCounter';
 import { YOUTUBE_CHANNELS, type YouTubeChannel } from '@/data/youtubeChannels';
@@ -178,10 +178,33 @@ export default function YouTubePerformance() {
                 </div>
               </div>
 
-              {/* Card Footer: Verified stats */}
+              {/* Card Footer: Verified stats & Direct Links */}
               <div className="px-6 py-4 bg-[#080C14]/60 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
-                <span className="text-[#94A3B8]">Audience Scale</span>
-                <span className="text-white font-bold">{channel.subscribers} Subscribers</span>
+                <span className="text-[#94A3B8]">{channel.subscribers} Subscribers</span>
+                <div className="flex items-center gap-3">
+                  {channel.instagramUrl && (
+                    <a
+                      href={channel.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-1 rounded-full bg-pink-500/10 text-pink-400 hover:text-white transition-colors"
+                      title="Visit Instagram Profile"
+                    >
+                      <InstagramIcon className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                  <a
+                    href={channel.channelUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1 text-[#00F0FF] hover:underline font-semibold"
+                  >
+                    <span>Channel</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
             </div>
           ))}

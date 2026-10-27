@@ -11,6 +11,7 @@ export interface BrandingProject {
   deliverables: string[];
   year: string;
   narrative: string;
+  instagramUrl?: string;
 }
 
 export const BRANDING_PROJECTS: BrandingProject[] = [
@@ -21,6 +22,7 @@ export const BRANDING_PROJECTS: BrandingProject[] = [
     tagline: "Artisanal Culinary Craft & Gastronomy",
     category: "Culinary & Restaurant Identity",
     visualDirection: "Premium food / restaurant / kitchen branding",
+    instagramUrl: "https://www.instagram.com/orakitchen.official/",
     colorPalette: ["#1A1612", "#C4A482", "#E8D8C8", "#2E3A23"],
     deliverables: [
       "Custom Wordmark & Monogram",

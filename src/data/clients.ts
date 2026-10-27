@@ -4,6 +4,8 @@ export interface ClientItem {
   category: string;
   description: string;
   services: string[];
+  youtubeUrl?: string;
+  instagramUrl?: string;
 }
 
 export interface ClientGroup {
@@ -13,6 +15,8 @@ export interface ClientGroup {
     focus: string;
     description?: string;
     services?: string[];
+    youtubeUrl?: string;
+    instagramUrl?: string;
   }[];
 }
 
@@ -23,6 +27,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Automotive Media & YouTube',
     description: 'Tamil Nadu’s leading automotive content platform covering cars, bikes, reviews and automotive stories.',
     services: ['YouTube Editing', 'Shorts & Reels', 'Social Media Management'],
+    youtubeUrl: 'https://www.youtube.com/@birlasparvai',
   },
   {
     id: 'supratha-wellness',
@@ -30,6 +35,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Medical & Wellness Media',
     description: 'A health-focused content platform covering Ayurveda, Allopathy, Homeopathy, Acupuncture and wellness.',
     services: ['YouTube Video Editing'],
+    youtubeUrl: 'https://www.youtube.com/@SuprathaWellness',
   },
   {
     id: 'ora-kitchen',
@@ -37,6 +43,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Catering & Food Brand',
     description: 'A professional catering brand serving corporate events, weddings, parties and special occasions.',
     services: ['Branding', 'Social Media Marketing', 'Content Creation', 'Social Media Management'],
+    instagramUrl: 'https://www.instagram.com/orakitchen.official/',
   },
   {
     id: 'frameless-media',
@@ -44,6 +51,8 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Cinema & Entertainment Media',
     description: 'A cinema-focused content platform featuring interviews, public interactions and entertainment content.',
     services: ['Content Production', 'Video Editing', 'Social Media Management'],
+    instagramUrl: 'https://www.instagram.com/frameless._/',
+    youtubeUrl: 'https://www.youtube.com/@Framelessmediatamil',
   },
   {
     id: 'aura-homes',

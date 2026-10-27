@@ -92,11 +92,18 @@ export default function WorkPageContent() {
               <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#0047ff]/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               <div className="relative z-10">
-                {/* Meta Top: Category & Year */}
+                {/* Meta Top: Category, Social Handle & Year */}
                 <div className="flex items-center justify-between gap-4 pb-6 border-b border-[var(--color-border)] mb-6">
-                  <span className="text-xs font-mono text-[#0047ff] uppercase tracking-wider font-semibold">
-                    {project.displayCategory}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono text-[#0047ff] uppercase tracking-wider font-semibold">
+                      {project.displayCategory}
+                    </span>
+                    {project.socialHandle && (
+                      <span className="text-[11px] font-mono text-[var(--color-muted)] bg-[var(--color-tint)] px-2 py-0.5 rounded-md border border-[var(--color-border)]">
+                        {project.socialHandle}
+                      </span>
+                    )}
+                  </div>
                   <span className="text-xs font-mono text-[var(--color-muted)]">
                     {project.year}
                   </span>

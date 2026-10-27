@@ -9,6 +9,9 @@ export interface Project {
   video?: string;
   videoEmbedUrl?: string;
   channelUrl?: string;
+  youtubeUrl?: string;
+  instagramUrl?: string;
+  socialHandle?: string;
   featured: boolean;
   year: string;
   overview: string;
@@ -34,6 +37,9 @@ export const projects: Project[] = [
     title: 'Automotive Content',
     category: 'YouTube',
     displayCategory: 'YouTube / Production',
+    youtubeUrl: 'https://www.youtube.com/@birlasparvai',
+    channelUrl: 'https://www.youtube.com/@birlasparvai',
+    socialHandle: '@birlasparvai',
     featured: true,
     year: '2026',
     overview:
@@ -55,6 +61,8 @@ export const projects: Project[] = [
     title: 'Brand Identity',
     category: 'Branding',
     displayCategory: 'Branding',
+    instagramUrl: 'https://www.instagram.com/orakitchen.official/',
+    socialHandle: '@orakitchen.official',
     featured: true,
     year: '2026',
     overview:
@@ -158,6 +166,9 @@ export const projects: Project[] = [
     title: 'Original Digital Content',
     category: 'Content',
     displayCategory: 'Media / Production',
+    instagramUrl: 'https://www.instagram.com/frameless._/',
+    youtubeUrl: 'https://www.youtube.com/@Framelessmediatamil',
+    socialHandle: '@frameless._',
     featured: true,
     year: '2026',
     overview:

@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { YouTubeIcon, InstagramIcon } from '@/components/icons/SocialIcons';
 import { getNextProject, type Project } from '@/data/projects';
 
 interface CaseStudyProps {
@@ -38,13 +39,43 @@ export default function CaseStudy({ project }: CaseStudyProps) {
             </h1>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col sm:items-start lg:items-end justify-end">
+          <div className="lg:col-span-4 flex flex-col sm:items-start lg:items-end justify-end space-y-2">
             <span className="text-xs font-mono text-[var(--color-muted)] uppercase tracking-wider">
               Category
             </span>
-            <span className="text-base sm:text-lg font-semibold text-[var(--color-text)] mt-1">
+            <span className="text-base sm:text-lg font-semibold text-[var(--color-text)]">
               {project.displayCategory}
             </span>
+
+            {/* Direct Channel / Profile Links */}
+            {(project.youtubeUrl || project.instagramUrl) && (
+              <div className="flex flex-wrap gap-2 pt-2">
+                {project.youtubeUrl && (
+                  <a
+                    href={project.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-red-600/15 hover:bg-red-600/25 text-red-500 border border-red-500/30 transition-all hover:scale-105"
+                  >
+                    <YouTubeIcon className="w-3.5 h-3.5" />
+                    <span>YouTube Channel</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                )}
+                {project.instagramUrl && (
+                  <a
+                    href={project.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-pink-600/15 hover:bg-pink-600/25 text-pink-500 border border-pink-500/30 transition-all hover:scale-105"
+                  >
+                    <InstagramIcon className="w-3.5 h-3.5" />
+                    <span>Instagram Profile</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
