@@ -81,7 +81,7 @@ export default function Hero() {
               text="See our work"
               variant="secondary"
               size="md"
-              href="#featured-work"
+              href="#projects"
               onClick={scrollToProjects}
             />
           </div>

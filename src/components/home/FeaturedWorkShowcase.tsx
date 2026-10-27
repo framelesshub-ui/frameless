@@ -100,6 +100,32 @@ export default function FeaturedWorkShowcase() {
           </p>
         </div>
 
+        {/* ── Interactive Client Selector Pill Bar ── */}
+        <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-8">
+          {featuredProjects.map((project, idx) => {
+            const isActive = idx === activeIndex;
+            return (
+              <button
+                key={project.slug}
+                type="button"
+                onClick={() => setActiveIndex(idx)}
+                className={`px-3.5 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-mono uppercase tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                  isActive
+                    ? 'bg-[#0047ff] text-white font-bold shadow-[0_0_20px_rgba(0,71,255,0.4)]'
+                    : 'bg-[var(--color-tint)] text-[var(--color-muted)] hover:text-[var(--color-text)] border border-[var(--color-border)]'
+                }`}
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    isActive ? 'bg-white' : 'bg-[#0047ff]'
+                  }`}
+                />
+                <span>{project.client}</span>
+              </button>
+            );
+          })}
+        </div>
+
         {/* ── Desktop Expandable Horizontal Accordion (Hidden on mobile < md) ── */}
         <div className="hidden md:flex gap-3 h-[560px] rounded-3xl overflow-hidden p-2 bg-[var(--color-tint)] border border-[var(--color-border)] shadow-2xl">
           {featuredProjects.map((project, idx) => {
@@ -299,6 +325,20 @@ export default function FeaturedWorkShowcase() {
               </div>
             );
           })}
+        </div>
+
+        {/* ── Bottom Link to Full Portfolio Archive ── */}
+        <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-8 border-t border-[var(--color-border)]">
+          <div className="text-xs font-mono text-[var(--color-muted)]">
+            Explore 7 full case studies across branding, commercial film, and digital platforms.
+          </div>
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono uppercase tracking-wider text-[var(--color-text)] hover:text-[#0047ff] transition-colors group font-semibold"
+          >
+            <span>View Complete Portfolio Archive</span>
+            <ArrowUpRight className="w-4 h-4 text-[#0047ff] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
 
