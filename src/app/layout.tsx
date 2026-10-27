@@ -91,10 +91,10 @@ const jsonLd = {
       ],
       knowsAbout: [
         'Commercial Film Production',
-        'DaVinci Resolve Color Grading',
+        'Cinematic Color Science',
         'Brand Identity & Strategy',
-        'YouTube Growth & Content Strategy',
-        'Spatial Audio & Fairlight Mastering',
+        'YouTube Growth & Retainer Direction',
+        'Spatial Sound Design & Acoustic Mix',
       ],
     },
     {

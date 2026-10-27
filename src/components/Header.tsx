@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { useScopingModal } from '@/context/ScopingModalContext';
+import AnimatedButton from '@/components/AnimatedButton';
 
 interface HeaderProps {
   currentRoute?: string;
@@ -151,14 +152,13 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
         <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
           <ThemeToggle />
           <div className="hidden min-[620px]:block">
-            <button
-              type="button"
+            <AnimatedButton
+              text="Start a project"
+              showArrow
+              variant="primary"
+              size="sm"
               onClick={() => openScopingModal()}
-              className="glass-btn-blue text-xs font-semibold py-2.5 px-5 cursor-pointer flex items-center"
-            >
-              <span>Start a project</span>
-              <ArrowUpRight className="w-3.5 h-3.5 ml-1.5 inline-block" />
-            </button>
+            />
           </div>
         </div>
       </div>

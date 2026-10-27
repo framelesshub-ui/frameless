@@ -1,44 +1,45 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, Check, ArrowRight, ArrowLeft, Copy, Send, Sparkles, Film, Compass, Layers, CheckCircle2 } from 'lucide-react';
+import { X, Check, ArrowRight, ArrowLeft, Copy, Send, Sparkles, CheckCircle2 } from 'lucide-react';
 import { useScopingModal } from '@/context/ScopingModalContext';
+import AnimatedButton from '@/components/AnimatedButton';
 
-const DISCIPLINES = [
+const SERVICES = [
   {
-    id: 'brand-strategy',
-    title: 'Brand Strategy & Identity',
+    id: 'branding',
+    title: 'Branding & Identity System',
     desc: 'Visual systems, typography, tactile packaging, and brand positioning.',
     tag: 'BRANDING',
   },
   {
-    id: 'commercial-film',
+    id: 'video-production',
     title: 'Commercial Film & Production',
-    desc: 'Cinematic brand films, high-speed camera direction, and DaVinci color grading.',
+    desc: 'Cinematic brand films, high-speed camera direction, and commercial post-production.',
     tag: 'CINEMA',
   },
   {
     id: 'youtube-growth',
-    title: 'YouTube & Retainer Growth',
+    title: 'YouTube Growth & Retainer',
     desc: 'Episodic series editing, viral shorts, narrative hooks, and channel direction.',
     tag: 'YOUTUBE',
   },
   {
-    id: 'full-transformation',
-    title: 'Full Studio Transformation',
-    desc: 'Integrated strategy, cinematic video production, brand identity, and growth.',
-    tag: 'STUDIO 360',
+    id: 'social-media',
+    title: 'Social Media Acceleration',
+    desc: 'Content creation, vertical reel production, community growth, and digital acceleration.',
+    tag: 'GROWTH',
   },
 ];
 
 const DELIVERABLE_OPTIONS = [
   'Brand Identity System & Guidelines',
-  'Commercial Hero Film (4K DCI)',
-  'Episodic YouTube Series (10+ episodes)',
+  'Commercial Hero Brand Film (4K DCI)',
+  'Episodic YouTube Series Production',
   'High-Retention Shorts & Reels (30+ assets)',
-  'Custom DaVinci Resolve Color Grading',
-  'Spatial Sound Design & Fairlight Mastering',
-  'Packaging & Print Collateral',
+  'Bespoke Filmic Color Grading & Titles',
+  'Spatial Sound Design & Acoustic Mix',
+  'Packaging & Tactile Print Collateral',
   'Monthly Creative Growth Retainer',
 ];
 
@@ -59,7 +60,7 @@ export default function ProjectScopingModal() {
   const { isOpen, closeScopingModal, preselectedDiscipline } = useScopingModal();
 
   const [step, setStep] = useState<1 | 2 | 3>(1);
-  const [selectedDiscipline, setSelectedDiscipline] = useState<string>('brand-strategy');
+  const [selectedService, setSelectedService] = useState<string>('branding');
   const [selectedDeliverables, setSelectedDeliverables] = useState<string[]>([]);
   const [selectedTimeline, setSelectedTimeline] = useState<string>('standard');
   const [selectedBudget, setSelectedBudget] = useState<string>('₹2L — ₹5L (Growth Brand)');
@@ -70,10 +71,13 @@ export default function ProjectScopingModal() {
   // Sync preselected discipline
   useEffect(() => {
     if (preselectedDiscipline) {
-      const match = DISCIPLINES.find(
-        (d) => d.title.toLowerCase().includes(preselectedDiscipline.toLowerCase()) || d.id === preselectedDiscipline
+      const match = SERVICES.find(
+        (s) =>
+          s.title.toLowerCase().includes(preselectedDiscipline.toLowerCase()) ||
+          s.id === preselectedDiscipline.toLowerCase() ||
+          s.tag.toLowerCase() === preselectedDiscipline.toLowerCase()
       );
-      if (match) setSelectedDiscipline(match.id);
+      if (match) setSelectedService(match.id);
     }
   }, [preselectedDiscipline]);
 
@@ -93,7 +97,7 @@ export default function ProjectScopingModal() {
 
   if (!isOpen) return null;
 
-  const currentDisciplineObj = DISCIPLINES.find((d) => d.id === selectedDiscipline) || DISCIPLINES[0];
+  const currentServiceObj = SERVICES.find((s) => s.id === selectedService) || SERVICES[0];
   const currentTimelineObj = TIMELINE_OPTIONS.find((t) => t.id === selectedTimeline) || TIMELINE_OPTIONS[1];
 
   const toggleDeliverable = (item: string) => {
@@ -106,7 +110,7 @@ export default function ProjectScopingModal() {
   const generatedBrief = `*FRAMELESS HUB // PROJECT SCOPE BRIEF*
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✦ CLIENT / BRAND: ${brandName.trim() || 'Undisclosed Brand'}
-✦ DISCIPLINE: ${currentDisciplineObj.title}
+✦ REQUIRED SERVICE: ${currentServiceObj.title}
 ✦ PRODUCTION TIMELINE: ${currentTimelineObj.label} (${currentTimelineObj.time})
 ✦ TARGET SCALE: ${selectedBudget}
 
@@ -114,7 +118,7 @@ export default function ProjectScopingModal() {
 ${selectedDeliverables.length > 0 ? selectedDeliverables.map((d) => `  • ${d}`).join('\n') : '  • Full Studio Scoping Required'}
 
 ${additionalNotes.trim() ? `✦ STRATEGIC CONTEXT & NOTES:\n  "${additionalNotes.trim()}"\n` : ''}━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Generated via framelesshub.com Studio HUD`;
+Generated via framelesshub.com Studio`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(generatedBrief);
@@ -124,143 +128,139 @@ Generated via framelesshub.com Studio HUD`;
 
   const whatsappUrl = `https://wa.me/918248628371?text=${encodeURIComponent(generatedBrief)}`;
   const emailUrl = `mailto:hello@framelesshub.com?subject=${encodeURIComponent(
-    `Project Brief: ${brandName || currentDisciplineObj.title} — Frameless Hub`
+    `Project Inquiry: ${brandName.trim() || 'New Brand'} — Frameless Hub`
   )}&body=${encodeURIComponent(generatedBrief)}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 select-none animate-in fade-in duration-200">
-      {/* Dark Studio Backdrop */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto select-none">
+      {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-300"
         onClick={closeScopingModal}
         aria-hidden="true"
       />
 
-      {/* Main Wizard Modal Frame */}
+      {/* Modal Surface */}
       <div
-        className="relative z-10 w-full max-w-2xl bg-[#0C0D12] border border-white/10 rounded-2xl text-[#F4F4F5] shadow-[0_20px_80px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative z-10 w-full max-w-2xl bg-[#090a0f] border border-white/10 text-[#F4F4F5] rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.9)] overflow-hidden select-text animate-in zoom-in-95 duration-200"
         role="dialog"
-        aria-modal="true"
-        aria-label="Interactive Project Scoping HUD"
+        aria-label="Project Scoping Wizard"
       >
         {/* Top Header Bar */}
-        <div className="px-6 py-4 bg-[#111218] border-b border-white/[0.08] flex items-center justify-between">
+        <div className="px-6 sm:px-8 py-5 bg-black/40 border-b border-white/[0.08] flex items-center justify-between select-none">
           <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#00F0FF] animate-pulse" />
-            <div className="text-xs font-mono font-bold tracking-wider text-white">
-              PROJECT SCOPING // STEP 0{step} OF 03
+            <div className="w-2.5 h-2.5 rounded-full bg-[#0047ff]" />
+            <div className="text-xs font-mono font-bold tracking-wider text-white uppercase">
+              Start a Project — Step 0{step} of 03
             </div>
-          </div>
-
-          {/* Stepper Dots */}
-          <div className="flex items-center gap-2">
-            {[1, 2, 3].map((s) => (
-              <span
-                key={s}
-                className={`w-6 h-1 rounded-full transition-all ${
-                  s === step ? 'bg-[#00F0FF] w-8' : s < step ? 'bg-white/40' : 'bg-white/10'
-                }`}
-              />
-            ))}
           </div>
 
           <button
             type="button"
             onClick={closeScopingModal}
-            className="p-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] text-[#A1A1AA] hover:text-white transition-colors"
-            aria-label="Close scoping wizard"
+            className="p-2 rounded-full bg-white/[0.05] hover:bg-white/[0.12] text-white/70 hover:text-white transition-colors cursor-pointer"
+            aria-label="Close Wizard"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Wizard Scrollable Body */}
-        <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 select-text">
-          
-          {/* STEP 1: SELECT DISCIPLINE */}
+        {/* Step Progress Bar */}
+        <div className="w-full h-1 bg-white/[0.06] overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-[#0047ff] to-[#38bdf8] transition-all duration-300"
+            style={{ width: `${(step / 3) * 100}%` }}
+          />
+        </div>
+
+        {/* Modal Scrollable Content */}
+        <div className="p-6 sm:p-8 max-h-[75vh] overflow-y-auto space-y-6">
+          {/* STEP 1: Select Service */}
           {step === 1 && (
             <div className="space-y-6">
               <div>
-                <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#00F0FF] block mb-1">
-                  01 // PRIMARY FOCUS
-                </span>
-                <h3 className="text-2xl font-black text-white tracking-tight">
-                  What are we creating together?
+                <h3 className="text-2xl font-heading font-black text-white tracking-tight">
+                  What discipline best describes your project?
                 </h3>
-                <p className="text-xs text-[#A1A1AA] mt-1">
-                  Select the primary discipline driving your project.
+                <p className="text-xs sm:text-sm text-[var(--color-muted)] mt-1.5 leading-relaxed">
+                  Choose the core service you need. You can refine deliverables and timeline in the next step.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {DISCIPLINES.map((discipline) => {
-                  const isSelected = selectedDiscipline === discipline.id;
+              <div className="grid grid-cols-1 gap-3">
+                {SERVICES.map((s) => {
+                  const isSelected = selectedService === s.id;
                   return (
                     <button
-                      key={discipline.id}
+                      key={s.id}
                       type="button"
-                      onClick={() => setSelectedDiscipline(discipline.id)}
-                      className={`text-left p-4 rounded-xl border transition-all flex flex-col justify-between gap-3 ${
+                      onClick={() => setSelectedService(s.id)}
+                      className={`text-left p-5 rounded-2xl border transition-all duration-200 cursor-pointer flex items-start justify-between gap-4 ${
                         isSelected
-                          ? 'bg-[#00F0FF]/10 border-[#00F0FF] ring-1 ring-[#00F0FF]/30 shadow-[0_0_20px_rgba(0,240,255,0.12)]'
-                          : 'bg-white/[0.02] border-white/[0.08] hover:border-white/20'
+                          ? 'bg-[#0047ff]/15 border-[#0047ff] shadow-[0_0_30px_rgba(0,71,255,0.25)]'
+                          : 'bg-white/[0.02] hover:bg-white/[0.05] border-white/[0.08]'
                       }`}
                     >
-                      <div className="flex items-center justify-between w-full">
-                        <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-[#00F0FF]">
-                          {discipline.tag}
-                        </span>
-                        {isSelected && <Check className="w-4 h-4 text-[#00F0FF]" />}
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2.5">
+                          <span className="font-heading text-base font-bold text-white tracking-tight">
+                            {s.title}
+                          </span>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-white/80">
+                            {s.tag}
+                          </span>
+                        </div>
+                        <p className="text-xs text-[var(--color-muted)] leading-relaxed">
+                          {s.desc}
+                        </p>
                       </div>
 
-                      <div>
-                        <div className="text-sm font-bold text-white mb-1">
-                          {discipline.title}
-                        </div>
-                        <div className="text-xs text-[#A1A1AA] leading-relaxed">
-                          {discipline.desc}
-                        </div>
+                      <div
+                        className={`w-5 h-5 rounded-full border flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                          isSelected
+                            ? 'bg-[#0047ff] border-[#0047ff] text-white'
+                            : 'border-white/20'
+                        }`}
+                      >
+                        {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
                       </div>
                     </button>
                   );
                 })}
               </div>
+            </div>
+          )}
 
-              {/* Client / Brand Name input */}
-              <div className="pt-2">
-                <label className="block text-xs font-mono uppercase tracking-wider text-[#A1A1AA] mb-2">
-                  Brand or Company Name (Optional)
+          {/* STEP 2: Deliverables, Timeline & Budget */}
+          {step === 2 && (
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-heading font-black text-white tracking-tight">
+                  Scope, timeline &amp; brand details
+                </h3>
+                <p className="text-xs sm:text-sm text-[var(--color-muted)] mt-1.5 leading-relaxed">
+                  Configure specific assets, target turnaround time, and anticipated scale.
+                </p>
+              </div>
+
+              {/* Brand Name Input */}
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-wider text-white/70 block">
+                  Brand or Company Name
                 </label>
                 <input
                   type="text"
                   value={brandName}
                   onChange={(e) => setBrandName(e.target.value)}
-                  placeholder="e.g. Acme Studio, Nexa Auto, Personal Brand"
-                  className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#00F0FF] transition-colors"
+                  placeholder="e.g. Acme Studio / Personal Brand"
+                  className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[#0047ff] transition-colors"
                 />
               </div>
-            </div>
-          )}
 
-          {/* STEP 2: DELIVERABLES, TIMELINE & SCALE */}
-          {step === 2 && (
-            <div className="space-y-6">
-              <div>
-                <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#00F0FF] block mb-1">
-                  02 // SCOPE &amp; TIMELINE
-                </span>
-                <h3 className="text-2xl font-black text-white tracking-tight">
-                  Deliverables &amp; Timeline Architecture
-                </h3>
-                <p className="text-xs text-[#A1A1AA] mt-1">
-                  Check all deliverables relevant to your scope.
-                </p>
-              </div>
-
-              {/* Deliverable Checkboxes */}
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[#A1A1AA] mb-3">
-                  Scope Checklist (Select all that apply)
+              {/* Deliverables Checklist */}
+              <div className="space-y-2.5">
+                <label className="text-xs font-mono uppercase tracking-wider text-white/70 block">
+                  Select Required Deliverables
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {DELIVERABLE_OPTIONS.map((item) => {
@@ -270,148 +270,92 @@ Generated via framelesshub.com Studio HUD`;
                         key={item}
                         type="button"
                         onClick={() => toggleDeliverable(item)}
-                        className={`text-left px-3.5 py-2.5 rounded-xl border text-xs font-mono transition-all flex items-center justify-between gap-2 ${
+                        className={`text-left px-3.5 py-2.5 rounded-xl border text-xs font-mono transition-colors flex items-center justify-between cursor-pointer ${
                           isChecked
-                            ? 'bg-white/[0.08] text-white border-[#00F0FF]/50 font-semibold'
-                            : 'bg-white/[0.02] text-[#A1A1AA] border-white/[0.06] hover:text-white hover:border-white/15'
+                            ? 'bg-[#0047ff]/20 border-[#0047ff] text-white'
+                            : 'bg-white/[0.02] border-white/[0.08] text-white/70 hover:bg-white/[0.05]'
                         }`}
                       >
-                        <span className="truncate">{item}</span>
-                        <div
-                          className={`w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 ${
-                            isChecked ? 'bg-[#00F0FF] border-[#00F0FF]' : 'border-white/20'
-                          }`}
-                        >
-                          {isChecked && <Check className="w-3 h-3 text-black stroke-[3]" />}
-                        </div>
+                        <span className="truncate pr-2">{item}</span>
+                        {isChecked ? (
+                          <Check className="w-3.5 h-3.5 text-[#0047ff] flex-shrink-0" />
+                        ) : (
+                          <span className="w-3.5 h-3.5 rounded border border-white/20 flex-shrink-0" />
+                        )}
                       </button>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Timeline Selection */}
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[#A1A1AA] mb-3">
-                  Target Launch Schedule
+              {/* Timeline Options */}
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-wider text-white/70 block">
+                  Turnaround Timeline
                 </label>
-                <div className="grid grid-cols-3 gap-2.5">
-                  {TIMELINE_OPTIONS.map((timeline) => {
-                    const isSelected = selectedTimeline === timeline.id;
-                    return (
-                      <button
-                        key={timeline.id}
-                        type="button"
-                        onClick={() => setSelectedTimeline(timeline.id)}
-                        className={`p-3 rounded-xl border text-center transition-all ${
-                          isSelected
-                            ? 'bg-[#00F0FF]/10 text-white border-[#00F0FF] font-bold'
-                            : 'bg-white/[0.02] text-[#A1A1AA] border-white/[0.06] hover:text-white'
-                        }`}
-                      >
-                        <div className="text-xs font-mono">{timeline.label}</div>
-                        <div className="text-[10px] text-[#00F0FF] mt-1 font-mono">{timeline.time}</div>
-                      </button>
-                    );
-                  })}
+                <div className="grid grid-cols-3 gap-2">
+                  {TIMELINE_OPTIONS.map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => setSelectedTimeline(t.id)}
+                      className={`p-3 rounded-xl border text-center transition-all cursor-pointer ${
+                        selectedTimeline === t.id
+                          ? 'bg-[#0047ff]/20 border-[#0047ff] text-white'
+                          : 'bg-white/[0.02] border-white/[0.08] text-white/70 hover:bg-white/[0.05]'
+                      }`}
+                    >
+                      <div className="text-xs font-bold font-mono text-white">{t.label}</div>
+                      <div className="text-[10px] text-[var(--color-muted)] mt-0.5">{t.time}</div>
+                    </button>
+                  ))}
                 </div>
               </div>
 
-              {/* Scale / Budget Tier */}
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[#A1A1AA] mb-2">
-                  Estimated Investment Scale
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {BUDGET_OPTIONS.map((budget) => {
-                    const isSelected = selectedBudget === budget;
-                    return (
-                      <button
-                        key={budget}
-                        type="button"
-                        onClick={() => setSelectedBudget(budget)}
-                        className={`p-2.5 rounded-xl border text-center text-[11px] font-mono transition-all ${
-                          isSelected
-                            ? 'bg-white/[0.1] text-white border-[#00F0FF] font-bold'
-                            : 'bg-white/[0.02] text-[#A1A1AA] border-white/[0.06] hover:text-white'
-                        }`}
-                      >
-                        {budget}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Strategic context notes */}
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[#A1A1AA] mb-2">
-                  Core Objective or Inspiration (Optional)
+              {/* Additional Context */}
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-wider text-white/70 block">
+                  Strategic Context / Project Link (Optional)
                 </label>
                 <textarea
                   rows={2}
                   value={additionalNotes}
                   onChange={(e) => setAdditionalNotes(e.target.value)}
-                  placeholder="Share any key references, competitors to beat, or high-level milestones..."
-                  className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white text-xs placeholder:text-white/30 focus:outline-none focus:border-[#00F0FF] transition-colors resize-none"
+                  placeholder="Tell us about your audience, current hurdles, or reference inspirations..."
+                  className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/30 text-xs focus:outline-none focus:border-[#0047ff] transition-colors resize-none"
                 />
               </div>
             </div>
           )}
 
-          {/* STEP 3: FORMATTED BRIEF & 1-CLICK DISPATCH */}
+          {/* STEP 3: Review Brief & Instant Dispatch */}
           {step === 3 && (
             <div className="space-y-6">
               <div>
-                <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#00F0FF] block mb-1">
-                  03 // VERIFY &amp; DISPATCH
-                </span>
-                <h3 className="text-2xl font-black text-white tracking-tight">
-                  Ready to Transmit Your Brief
+                <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-wider mb-1">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Brief Generated Successfully</span>
+                </div>
+                <h3 className="text-2xl font-heading font-black text-white tracking-tight">
+                  Ready for direct studio review
                 </h3>
-                <p className="text-xs text-[#A1A1AA] mt-1">
-                  We review incoming briefs within 24 hours. Send directly via WhatsApp or Email.
+                <p className="text-xs sm:text-sm text-[var(--color-muted)] mt-1.5 leading-relaxed">
+                  Send your pre-formatted brief with 1-click via WhatsApp or Email. We reply directly within 24 hours.
                 </p>
               </div>
 
-              {/* Formatted Code Terminal Box */}
-              <div className="relative rounded-xl bg-black/80 border border-white/10 p-4 font-mono text-xs text-[#D4D4D8] space-y-1">
-                <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-2 select-none">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                    <span className="text-[10px] text-[#A1A1AA] uppercase">AUTO-GENERATED SCOPE BRIEF</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleCopy}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/[0.08] hover:bg-white/[0.15] text-[10px] text-white transition-colors"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-3 h-3 text-emerald-400" />
-                        <span>Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3 h-3" />
-                        <span>Copy Brief</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-
-                <pre className="whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-[#00F0FF]/90 max-h-48 overflow-y-auto">
-                  {generatedBrief}
-                </pre>
+              {/* Formatted Plaintext Brief Preview */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-black/60 border border-white/10 font-mono text-xs text-white/90 space-y-2 overflow-x-auto whitespace-pre-wrap leading-relaxed shadow-inner">
+                {generatedBrief}
               </div>
 
-              {/* Primary Dual Dispatch Actions */}
+              {/* Dispatch Action Buttons */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] text-black font-bold font-mono text-xs uppercase flex items-center justify-center gap-2.5 transition-all shadow-[0_0_25px_rgba(37,211,102,0.3)]"
+                  className="p-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold flex items-center justify-center gap-2 text-sm transition-all shadow-[0_8px_24px_-4px_rgba(16,185,129,0.4)]"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send via WhatsApp</span>
@@ -419,28 +363,43 @@ Generated via framelesshub.com Studio HUD`;
 
                 <a
                   href={emailUrl}
-                  className="p-4 rounded-xl bg-white text-black hover:bg-[#00F0FF] font-bold font-mono text-xs uppercase flex items-center justify-center gap-2.5 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                  className="p-4 rounded-2xl bg-[#0047ff] hover:bg-[#0038cc] text-white font-semibold flex items-center justify-center gap-2 text-sm transition-all shadow-[0_8px_24px_-4px_rgba(0,71,255,0.4)]"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Email to Studio</span>
+                  <span>Send via Official Email</span>
                 </a>
               </div>
 
-              <div className="text-center text-[11px] font-mono text-[#71717A]">
-                Direct Line: +91 82486 28371 • hello@framelesshub.com • Chennai, India
+              <div className="flex items-center justify-center pt-2">
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="text-xs font-mono text-white/60 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-400">Brief copied to clipboard!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy brief to clipboard</span>
+                    </>
+                  )}
+                </button>
               </div>
             </div>
           )}
-
         </div>
 
-        {/* Footer Navigation Bar */}
-        <div className="px-6 py-4 bg-[#111218] border-t border-white/[0.08] flex items-center justify-between">
+        {/* Modal Footer Controls */}
+        <div className="px-6 sm:px-8 py-5 bg-black/40 border-t border-white/[0.08] flex items-center justify-between select-none">
           {step > 1 ? (
             <button
               type="button"
-              onClick={() => setStep((s) => (s - 1) as 1 | 2 | 3)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
+              onClick={() => setStep((prev) => (prev > 1 ? ((prev - 1) as 1 | 2 | 3) : 1))}
+              className="inline-flex items-center gap-1.5 text-xs font-mono uppercase text-white/60 hover:text-white transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
@@ -450,21 +409,20 @@ Generated via framelesshub.com Studio HUD`;
           )}
 
           {step < 3 ? (
-            <button
-              type="button"
-              onClick={() => setStep((s) => (s + 1) as 1 | 2 | 3)}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#00F0FF] hover:bg-white transition-all shadow-[0_0_20px_rgba(0,240,255,0.3)]"
-            >
-              <span>Continue</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            <AnimatedButton
+              text="Continue"
+              showArrow
+              variant="primary"
+              size="sm"
+              onClick={() => setStep((prev) => (prev < 3 ? ((prev + 1) as 1 | 2 | 3) : 3))}
+            />
           ) : (
             <button
               type="button"
               onClick={closeScopingModal}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider text-[#71717A] hover:text-white transition-colors"
+              className="text-xs font-mono uppercase text-white/60 hover:text-white transition-colors cursor-pointer"
             >
-              <span>Done</span>
+              Close
             </button>
           )}
         </div>

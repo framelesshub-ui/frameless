@@ -86,9 +86,12 @@ export default function WorkPageContent() {
             <Link
               key={project.slug}
               href={`/work/${project.slug}`}
-              className="group p-8 sm:p-10 rounded-2xl bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[#0047ff] transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-md"
+              className="group p-8 sm:p-10 rounded-3xl bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[#0047ff]/60 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between shadow-sm hover:shadow-[0_16px_40px_rgba(0,71,255,0.12)] hover:-translate-y-1 relative overflow-hidden"
             >
-              <div>
+              {/* Subtle Ambient Hover Glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#0047ff]/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="relative z-10">
                 {/* Meta Top: Category & Year */}
                 <div className="flex items-center justify-between gap-4 pb-6 border-b border-[var(--color-border)] mb-6">
                   <span className="text-xs font-mono text-[#0047ff] uppercase tracking-wider font-semibold">
@@ -127,8 +130,8 @@ export default function WorkPageContent() {
                 </div>
               </div>
 
-              {/* Card Footer: Verified Result & Arrow */}
-              <div className="pt-6 border-t border-[var(--color-border)] flex items-center justify-between">
+              {/* Card Footer: Verified Result & Animated Pill */}
+              <div className="relative z-10 pt-6 border-t border-[var(--color-border)] flex items-center justify-between">
                 {project.verifiedResult ? (
                   <span className="text-xs font-mono text-[#0047ff] font-semibold">
                     {project.verifiedResult}
@@ -138,9 +141,10 @@ export default function WorkPageContent() {
                     Case Study
                   </span>
                 )}
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[var(--color-text)] group-hover:text-[#0047ff] transition-colors">
-                  <span>View Details</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+
+                <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-white/[0.08] group-hover:bg-[#0047ff] text-[var(--color-text)] group-hover:text-white transition-all duration-300">
+                  <span>View Case Study</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
             </Link>

@@ -3,6 +3,7 @@
 import { ArrowUpRight, Mail, Phone, Sparkles } from 'lucide-react';
 import { InstagramIcon } from '@/components/icons/SocialIcons';
 import { useScopingModal } from '@/context/ScopingModalContext';
+import AnimatedButton from '@/components/AnimatedButton';
 
 export default function FinalCTA() {
   const { openScopingModal } = useScopingModal();
@@ -14,7 +15,7 @@ export default function FinalCTA() {
           {/* Eyebrow Label */}
           <div className="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.25em] uppercase text-[#0047ff] mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
-            <span>09 / Get in Touch</span>
+            <span>06 / Get in Touch</span>
           </div>
 
           {/* Section Heading */}
@@ -26,36 +27,32 @@ export default function FinalCTA() {
             Let’s talk about your next brand milestone, video campaign, or complete digital transformation.
           </p>
 
-          {/* Action Buttons: Blue Glass "Build Project Brief", "Email us" & Glass "WhatsApp" */}
+          {/* Action Buttons: AnimatedButton components */}
           <div className="flex flex-wrap items-center gap-4 mb-20">
-            <button
-              type="button"
+            <AnimatedButton
+              text="Build Project Brief"
+              showArrow
+              variant="primary"
+              size="md"
               onClick={() => openScopingModal()}
-              className="glass-btn-blue text-sm font-semibold py-3.5 px-8 cursor-pointer flex items-center"
-            >
-              <Sparkles className="w-4 h-4 mr-2 inline-block text-[#00F0FF]" />
-              <span>Build Project Brief</span>
-              <ArrowUpRight className="w-4 h-4 ml-2 inline-block" />
-            </button>
+            />
 
-            <a
+            <AnimatedButton
+              text="Email us"
+              variant="secondary"
+              size="md"
               href="mailto:hello@framelesshub.com"
-              className="glass-btn-light text-sm font-semibold py-3.5 px-8"
-            >
-              <Mail className="w-4 h-4 mr-2 inline-block" />
-              <span>Email us</span>
-            </a>
+            />
 
-            <a
+            <AnimatedButton
+              text="WhatsApp"
+              showArrow
+              variant="secondary"
+              size="md"
               href="https://wa.me/918248628371"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-btn-light text-sm font-semibold py-3.5 px-8"
-            >
-              <Phone className="w-4 h-4 mr-2 inline-block text-[#0047ff]" />
-              <span>WhatsApp</span>
-              <ArrowUpRight className="w-3.5 h-3.5 ml-1.5 inline-block opacity-60" />
-            </a>
+            />
           </div>
 
           {/* 3-Column Row separated by a hairline above */}

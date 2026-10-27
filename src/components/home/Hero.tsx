@@ -6,6 +6,7 @@ import { ArrowUpRight } from 'lucide-react';
 import AnimatedCounter from '../AnimatedCounter';
 import { siteStats } from '@/data/stats';
 import { useScopingModal } from '@/context/ScopingModalContext';
+import AnimatedButton from '@/components/AnimatedButton';
 
 export default function Hero() {
   const { openScopingModal } = useScopingModal();
@@ -37,7 +38,7 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--glass-btn-bg)] border border-[var(--color-border)] mb-8 shadow-sm backdrop-blur-sm hero-subtext-reveal max-w-full">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff] flex-shrink-0" />
             <span className="text-[10px] min-[400px]:text-[11px] font-mono tracking-wider sm:tracking-widest uppercase text-[var(--color-muted)] truncate">
-              Premium Creative Agency — Chennai • EST. 2026
+              01 / Premium Creative Agency — Chennai • EST. 2026
             </span>
           </div>
 
@@ -68,22 +69,21 @@ export default function Hero() {
 
           {/* Buttons: Fade up at ~0.85s */}
           <div className="hero-buttons-reveal flex flex-wrap items-center gap-4 mb-16">
-            <a
-              href="#contact"
+            <AnimatedButton
+              text="Start a project"
+              showArrow
+              variant="primary"
+              size="md"
               onClick={scrollToContact}
-              className="glass-btn-blue text-sm font-semibold py-3.5 px-7"
-            >
-              <span>Start a project</span>
-              <ArrowUpRight className="w-4 h-4 ml-2 inline-block" />
-            </a>
+            />
 
-            <a
-              href="#projects"
+            <AnimatedButton
+              text="See our work"
+              variant="secondary"
+              size="md"
+              href="#featured-work"
               onClick={scrollToProjects}
-              className="glass-btn-light text-sm font-semibold py-3.5 px-7"
-            >
-              <span>See our work</span>
-            </a>
+            />
           </div>
         </div>
       </div>

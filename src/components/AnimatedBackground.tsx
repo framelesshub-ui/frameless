@@ -242,56 +242,43 @@ export default function AnimatedBackground() {
       />
 
       {/* ── 3. Interactive Floating Dark Glass & Film Panels in 3D Depth (Desktop Only) ── */}
+      {/* ── 3. Subtle Floating Spatial Geometry (Clean Agency Minimalist Panels) ── */}
       {mounted && (
         <div
           className="hidden lg:block absolute inset-0 pointer-events-none transition-transform duration-300 ease-out will-change-transform"
           style={{
-            transform: `perspective(1000px) rotateX(${tilt.y * 0.4}deg) rotateY(${tilt.x * 0.4}deg)`,
+            transform: `perspective(1000px) rotateX(${tilt.y * 0.3}deg) rotateY(${tilt.x * 0.3}deg)`,
           }}
         >
-          {/* Glass Panel Top Right (Editing Inspector Guide) */}
+          {/* Spatial Glass Card Top Right */}
           <div
-            className="absolute top-[14%] right-[6%] w-72 h-44 rounded-2xl border border-white/[0.04] bg-white/[0.015] backdrop-blur-[1px] p-4 flex flex-col justify-between opacity-40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-500 will-change-transform"
+            className="absolute top-[14%] right-[6%] w-64 h-36 rounded-2xl border border-white/[0.04] bg-white/[0.015] backdrop-blur-[2px] p-5 flex flex-col justify-between opacity-30 shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-transform duration-500 will-change-transform"
             style={{
-              transform: `translate3d(${tilt.x * 1.5}px, ${tilt.y * -1.5}px, 0)`,
+              transform: `translate3d(${tilt.x * 1.2}px, ${tilt.y * -1.2}px, 0)`,
             }}
           >
-            <div className="flex items-center justify-between text-[9px] font-mono text-white/30">
-              <span>TC_MASTER // 24FPS</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]/60" />
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-white/30">FRAMELESS</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]/60" />
             </div>
-            <div className="space-y-1">
-              <div className="h-0.5 w-16 bg-white/10 rounded" />
-              <div className="h-0.5 w-24 bg-[#00F0FF]/20 rounded" />
-            </div>
-            <div className="text-[8px] font-mono text-white/20">
-              FRAMELESS_STUDIO_01
+            <div className="space-y-1.5">
+              <div className="h-0.5 w-12 bg-white/10 rounded-full" />
+              <div className="h-0.5 w-20 bg-[#0047ff]/30 rounded-full" />
             </div>
           </div>
 
-          {/* Glass Panel Bottom Left (Cinema Waveform Guide) */}
+          {/* Spatial Glass Card Bottom Left */}
           <div
-            className="absolute bottom-[16%] left-[4%] w-80 h-44 rounded-2xl border border-white/[0.03] bg-black/20 backdrop-blur-[1px] p-4 flex flex-col justify-between opacity-35 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-500 will-change-transform"
+            className="absolute bottom-[16%] left-[4%] w-60 h-32 rounded-2xl border border-white/[0.03] bg-black/20 backdrop-blur-[2px] p-5 flex flex-col justify-between opacity-25 shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-transform duration-500 will-change-transform"
             style={{
-              transform: `translate3d(${tilt.x * -1.8}px, ${tilt.y * 1.8}px, 0)`,
+              transform: `translate3d(${tilt.x * -1.4}px, ${tilt.y * 1.4}px, 0)`,
             }}
           >
-            <div className="flex items-center justify-between text-[9px] font-mono text-white/30">
-              <span>SCOPE // REC.709</span>
-              <span className="text-[8px] text-[#00F0FF]/50">DCI 4K</span>
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-white/30">STUDIO</span>
+              <span className="text-[9px] tracking-wider font-mono text-white/20">CHENNAI</span>
             </div>
-            <div className="flex items-end gap-1 h-12 py-2">
-              {[20, 45, 30, 80, 50, 65, 35, 90, 55, 40, 75, 60, 85].map((h, i) => (
-                <span
-                  key={i}
-                  className="flex-1 bg-white/10 rounded-full"
-                  style={{ height: `${h}%` }}
-                />
-              ))}
-            </div>
-            <div className="text-[8px] font-mono text-white/20">
-              FAIRLIGHT_CORE_DSP
-            </div>
+            <div className="h-0.5 w-16 bg-white/10 rounded-full" />
           </div>
         </div>
       )}
