@@ -10,19 +10,25 @@ export default function Effects() {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     // =========================================================================
-    // 1. HERO HEADLINE & CONTENT REVEAL (Once on load)
+    // 1. HERO HEADLINE & CONTENT REVEAL (Once on load or after intro)
     // =========================================================================
     const heroEl = document.getElementById('hero');
     if (heroEl) {
-      if (!prefersReducedMotion) {
+      let hasSeenIntro = false;
+      try {
+        hasSeenIntro = sessionStorage.getItem('fh_intro_seen') === 'true';
+      } catch {
+        hasSeenIntro = false;
+      }
+
+      if (hasSeenIntro || prefersReducedMotion) {
         requestAnimationFrame(() => {
           setTimeout(() => {
             heroEl.classList.add('hero-revealed');
           }, 80);
         });
-      } else {
-        heroEl.classList.add('hero-revealed');
       }
+      // If intro has not yet been seen, CinematicIntro triggers hero-revealed when opening
     }
 
     // =========================================================================

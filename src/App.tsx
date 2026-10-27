@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Effects from './components/Effects';
+import CinematicIntro from './components/CinematicIntro';
 import { ScopingModalProvider } from './context/ScopingModalContext';
 import ProjectScopingModal from './components/ProjectScopingModal';
 
@@ -88,6 +89,7 @@ export function App() {
 
   return (
     <ScopingModalProvider>
+      <CinematicIntro />
       <div className="relative w-full min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] overflow-x-hidden selection:bg-[var(--color-selection-bg)] selection:text-[var(--color-selection-text)]">
         <Effects />
 

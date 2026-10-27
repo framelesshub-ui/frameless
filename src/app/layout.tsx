@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 import Effects from '@/components/Effects';
+import CinematicIntro from '@/components/CinematicIntro';
 import { ScopingModalProvider } from '@/context/ScopingModalContext';
 import ProjectScopingModal from '@/components/ProjectScopingModal';
 
@@ -255,6 +256,7 @@ export default function RootLayout({
         />
       </head>
       <body className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-sans antialiased selection:bg-[var(--color-selection-bg)] selection:text-[var(--color-selection-text)]">
+        <CinematicIntro />
         <ScopingModalProvider>
           <Effects />
           <SmoothScroll>
