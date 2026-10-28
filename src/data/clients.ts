@@ -37,6 +37,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Medical & Wellness Media',
     description: 'A health-focused content platform covering Ayurveda, Allopathy, Homeopathy, Acupuncture and wellness.',
     services: ['YouTube Video Editing'],
+    logo: '/media/clients/supratha-wellness.png',
     youtubeUrl: 'https://www.youtube.com/@SuprathaWellness',
   },
   {

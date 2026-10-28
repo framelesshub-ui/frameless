@@ -108,9 +108,15 @@ export const projects: Project[] = [
   {
     slug: 'supratha-wellness',
     client: 'Supratha Wellness',
+    logo: '/media/clients/supratha-wellness.png',
     title: 'Digital Content',
     category: 'YouTube',
     displayCategory: 'YouTube / Content',
+    thumbnail: 'https://i.ytimg.com/vi/b_g430s1Jr4/hq720.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/b_g430s1Jr4',
+    youtubeUrl: 'https://www.youtube.com/@SuprathaWellness',
+    channelUrl: 'https://www.youtube.com/@SuprathaWellness',
+    socialHandle: '@SuprathaWellness',
     featured: true,
     year: '2026',
     overview:

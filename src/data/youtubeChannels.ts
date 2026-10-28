@@ -47,6 +47,7 @@ export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
     totalViews: "3.2M+",
     subscribers: "85K+",
     thumbnail: "https://i.ytimg.com/vi/b_g430s1Jr4/hq720.jpg",
+    logo: "/media/clients/supratha-wellness.png",
     videoUrl: "https://www.youtube.com/embed/b_g430s1Jr4?autoplay=1&rel=0",
     channelUrl: "https://www.youtube.com/@SuprathaWellness",
     featuredTitle: "6 Common Problems & First Aid Tips | பொதுவான பிரச்சனைகளுக்கு முதலுதவி",
