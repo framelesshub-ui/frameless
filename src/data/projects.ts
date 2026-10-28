@@ -87,6 +87,7 @@ export const projects: Project[] = [
   {
     slug: 'aura-home',
     client: 'Aura Home',
+    logo: '/media/clients/aura-home.svg',
     title: 'Brand Identity',
     category: 'Branding',
     displayCategory: 'Branding',
@@ -133,6 +134,7 @@ export const projects: Project[] = [
   {
     slug: 'krithi-makeover-artistry',
     client: 'Krithi Makeover Artistry',
+    logo: '/media/clients/krithi-artistry.svg',
     title: 'Brand & Social Content',
     category: 'Branding',
     displayCategory: 'Branding / Content',
@@ -174,6 +176,7 @@ export const projects: Project[] = [
   {
     slug: 'frameless-media',
     client: 'Frameless Media',
+    logo: '/logo.png',
     title: 'Original Digital Content',
     category: 'Content',
     displayCategory: 'Media / Production',

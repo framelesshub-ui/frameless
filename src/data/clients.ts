@@ -55,6 +55,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Cinema & Entertainment Media',
     description: 'A cinema-focused content platform featuring interviews, public interactions and entertainment content.',
     services: ['Content Production', 'Video Editing', 'Social Media Management'],
+    logo: '/logo.png',
     instagramUrl: 'https://www.instagram.com/frameless._/',
     youtubeUrl: 'https://www.youtube.com/@Framelessmediatamil',
   },
@@ -64,6 +65,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Home & Lifestyle Brand',
     description: 'A home-focused brand offering essentials and products designed to elevate modern living spaces.',
     services: ['Social Media Marketing', 'Content Creation', 'Social Media Management'],
+    logo: '/media/clients/aura-home.svg',
   },
   {
     id: 'krithi-makeup-artist',
@@ -71,6 +73,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Luxury Makeup & Personal Brand',
     description: 'A premium makeup artist brand focused on luxury beauty, professional portfolios and personal branding.',
     services: ['Personal Branding', 'Content Creation', 'Social Media Management'],
+    logo: '/media/clients/krithi-artistry.svg',
   },
   {
     id: 'seyon-lab',

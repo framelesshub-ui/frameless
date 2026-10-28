@@ -14,6 +14,7 @@ import { useScopingModal } from '@/context/ScopingModalContext';
 const FEATURED_SLUGS = [
   'birlas-parvai',
   'ora-kitchen',
+  'supratha-wellness',
   'aura-home',
   'krithi-makeover-artistry',
   'frameless-media',
@@ -35,6 +36,11 @@ const CLIENT_THEMES: Record<string, ShowcaseTheme> = {
     accentColor: '#f59e0b',
     bgGradient: 'from-[#2e1c03] via-[#0d0903] to-[#040301]',
     glowColor: 'rgba(245, 158, 11, 0.22)',
+  },
+  'supratha-wellness': {
+    accentColor: '#00F0FF',
+    bgGradient: 'from-[#03242c] via-[#041014] to-[#010508]',
+    glowColor: 'rgba(0, 240, 255, 0.25)',
   },
   'aura-home': {
     accentColor: '#10b981',
@@ -103,8 +109,8 @@ export default function FeaturedWorkShowcase() {
           </p>
         </div>
 
-        {/* ── Interactive Client Selector Pill Bar ── */}
-        <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-8">
+        {/* ── Interactive Client Selector Pill Bar (Every Client Logo Visible) ── */}
+        <div className="flex flex-wrap gap-2.5 sm:gap-3 mb-8">
           {featuredProjects.map((project, idx) => {
             const isActive = idx === activeIndex;
             return (
@@ -112,17 +118,27 @@ export default function FeaturedWorkShowcase() {
                 key={project.slug}
                 type="button"
                 onClick={() => setActiveIndex(idx)}
-                className={`px-3.5 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-mono uppercase tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                className={`pl-2.5 pr-4 py-2 rounded-full text-[11px] sm:text-xs font-mono uppercase tracking-wider transition-all duration-300 flex items-center gap-2.5 cursor-pointer ${
                   isActive
-                    ? 'bg-[#0047ff] text-white font-bold shadow-[0_0_20px_rgba(0,71,255,0.4)]'
-                    : 'bg-[var(--color-tint)] text-[var(--color-muted)] hover:text-[var(--color-text)] border border-[var(--color-border)]'
+                    ? 'bg-[#0047ff] text-white font-bold shadow-[0_0_24px_rgba(0,71,255,0.45)] scale-105'
+                    : 'bg-[var(--color-tint)] text-[var(--color-muted)] hover:text-[var(--color-text)] border border-[var(--color-border)] hover:border-[#0047ff]/40'
                 }`}
               >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    isActive ? 'bg-white' : 'bg-[#0047ff]'
-                  }`}
-                />
+                {project.logo ? (
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 p-0.5 border border-white/20 flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img
+                      src={project.logo}
+                      alt={project.client}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      isActive ? 'bg-white' : 'bg-[#0047ff]'
+                    }`}
+                  />
+                )}
                 <span>{project.client}</span>
               </button>
             );
@@ -195,9 +211,18 @@ export default function FeaturedWorkShowcase() {
 
                 {/* Center / Body: Collapsed view vs Expanded Active view */}
                 {!isActive ? (
-                  /* Collapsed Vertical Title */
-                  <div className="relative z-10 flex flex-col items-center justify-center my-auto">
-                    <span className="font-heading text-lg font-bold text-white/70 tracking-tight [writing-mode:vertical-rl] rotate-180 py-4 transition-colors group-hover:text-white">
+                  /* Collapsed View: Prominent Large Logo + Vertical Title */
+                  <div className="relative z-10 flex flex-col items-center justify-center my-auto py-2">
+                    {project.logo && (
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.08] p-2.5 border border-white/20 shadow-lg flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/[0.14] group-hover:border-white/40 flex-shrink-0">
+                        <img
+                          src={project.logo}
+                          alt={`${project.client} logo`}
+                          className="w-full h-full object-contain filter drop-shadow"
+                        />
+                      </div>
+                    )}
+                    <span className="font-heading text-base sm:text-lg font-bold text-white/80 tracking-tight [writing-mode:vertical-rl] rotate-180 py-2 transition-colors group-hover:text-white">
                       {project.client}
                     </span>
                     <span className="text-[10px] font-mono text-[var(--color-muted)] mt-2">
@@ -205,23 +230,30 @@ export default function FeaturedWorkShowcase() {
                     </span>
                   </div>
                 ) : (
-                  /* Expanded Active Card Content */
-                  <div className="relative z-10 my-auto max-w-lg space-y-4 animate-in fade-in duration-500">
+                  /* Expanded Active Card Content: Extra Large Hero Logo */
+                  <div className="relative z-10 my-auto max-w-lg space-y-5 animate-in fade-in duration-500">
                     <div className="text-xs font-mono uppercase tracking-wider text-white/60">
                       {project.title}
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-4 sm:gap-5">
                       {project.logo && (
-                        <img
-                          src={project.logo}
-                          alt={`${project.client} logo`}
-                          className="w-10 h-10 object-contain rounded-xl bg-white/10 p-1.5 border border-white/15 flex-shrink-0"
-                        />
+                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/[0.08] p-3 border border-white/20 shadow-2xl backdrop-blur-md flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
+                          <img
+                            src={project.logo}
+                            alt={`${project.client} logo`}
+                            className="w-full h-full object-contain filter drop-shadow-md"
+                          />
+                        </div>
                       )}
-                      <h3 className="font-heading text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
-                        {project.client}
-                      </h3>
+                      <div>
+                        <h3 className="font-heading text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                          {project.client}
+                        </h3>
+                        <p className="text-xs font-mono text-white/70 mt-1 uppercase tracking-wider">
+                          {project.title}
+                        </p>
+                      </div>
                     </div>
 
                     <p className="text-sm text-white/80 font-normal leading-relaxed line-clamp-3">
@@ -364,17 +396,24 @@ export default function FeaturedWorkShowcase() {
                   <span className="text-[10px] font-mono text-white/50">{project.year}</span>
                 </div>
 
-                <div className="flex items-center gap-2.5 mb-2">
+                <div className="flex items-center gap-4 mb-3">
                   {project.logo && (
-                    <img
-                      src={project.logo}
-                      alt={`${project.client} logo`}
-                      className="w-8 h-8 object-contain rounded-lg bg-white/10 p-1 border border-white/15 flex-shrink-0"
-                    />
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/[0.08] p-2.5 border border-white/20 shadow-md flex items-center justify-center flex-shrink-0">
+                      <img
+                        src={project.logo}
+                        alt={`${project.client} logo`}
+                        className="w-full h-full object-contain filter drop-shadow"
+                      />
+                    </div>
                   )}
-                  <h3 className="font-heading text-2xl font-bold text-white">
-                    {project.client}
-                  </h3>
+                  <div>
+                    <h3 className="font-heading text-2xl font-bold text-white">
+                      {project.client}
+                    </h3>
+                    <p className="text-[11px] font-mono text-white/60 uppercase mt-0.5">
+                      {project.title}
+                    </p>
+                  </div>
                 </div>
                 <p className="text-xs text-white/80 leading-relaxed mb-4 line-clamp-2">
                   {project.overview}

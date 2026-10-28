@@ -109,18 +109,25 @@ export default function WorkPageContent() {
                   </span>
                 </div>
 
-                {/* Client Name & Logo */}
-                <div className="flex items-center gap-3 mb-2">
+                {/* Client Name & Large Logo */}
+                <div className="flex items-center gap-4 mb-3">
                   {project.logo && (
-                    <img
-                      src={project.logo}
-                      alt={`${project.client} logo`}
-                      className="w-9 h-9 object-contain rounded-xl bg-[var(--color-tint)] p-1.5 border border-[var(--color-border)] flex-shrink-0"
-                    />
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[var(--color-tint)] p-2.5 border border-[var(--color-border)] shadow-md flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                      <img
+                        src={project.logo}
+                        alt={`${project.client} logo`}
+                        className="w-full h-full object-contain filter drop-shadow"
+                      />
+                    </div>
                   )}
-                  <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[var(--color-text)] group-hover:text-[#0047ff] transition-colors">
-                    {project.client}
-                  </h2>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[var(--color-text)] group-hover:text-[#0047ff] transition-colors">
+                      {project.client}
+                    </h2>
+                    <p className="text-sm text-[var(--color-text)] font-medium">
+                      {project.title}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Project Scope / Title */}

@@ -89,13 +89,15 @@ export default function ProjectInspectorDrawer({
               <span>•</span>
               <span className="text-white/40">{project.year}</span>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 sm:gap-5">
               {project.logo && (
-                <img
-                  src={project.logo}
-                  alt={`${project.client} logo`}
-                  className="w-12 h-12 object-contain rounded-xl bg-white/10 p-1.5 border border-white/15 flex-shrink-0"
-                />
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/[0.08] p-3 border border-white/20 shadow-xl backdrop-blur-md flex items-center justify-center flex-shrink-0">
+                  <img
+                    src={project.logo}
+                    alt={`${project.client} logo`}
+                    className="w-full h-full object-contain filter drop-shadow"
+                  />
+                </div>
               )}
               <div>
                 <h2 className="text-3xl sm:text-4xl font-heading font-black text-white tracking-tight">
