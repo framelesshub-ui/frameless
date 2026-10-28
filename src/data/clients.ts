@@ -52,7 +52,7 @@ export const OUR_CLIENTS: ClientItem[] = [
   },
   {
     id: 'krithi-makeup-artist',
-    name: 'Krithik Makeover Artistry',
+    name: 'Krithi Makeover Artistry',
     category: 'Luxury Makeup & Personal Brand',
     description: 'A premium makeup artist brand focused on luxury beauty, professional portfolios and personal branding.',
     services: ['Personal Branding', 'Content Creation', 'Social Media Management'],

@@ -185,8 +185,8 @@ const jsonLd = {
           position: 4,
           item: {
             '@type': 'CreativeWork',
-            name: 'Krithik Makeover Artistry — Luxury Beauty & Personal Brand',
-            headline: 'Krithik Makeover Artistry — Editorial Beauty & Personal Branding',
+            name: 'Krithi Makeover Artistry — Luxury Beauty & Personal Brand',
+            headline: 'Krithi Makeover Artistry — Editorial Beauty & Personal Branding',
             creator: { '@id': 'https://framelesshub.com/#professionalservice' },
             genre: 'Personal Branding & Visual Content',
             url: 'https://framelesshub.com/work/krithi-makeover-artistry',

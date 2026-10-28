@@ -113,7 +113,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'krithi-makeover-artistry',
-    client: 'Krithik Makeover Artistry',
+    client: 'Krithi Makeover Artistry',
     logo: '/media/clients/krithi-artistry.svg',
     title: 'Brand & Social Content',
     category: 'Branding',

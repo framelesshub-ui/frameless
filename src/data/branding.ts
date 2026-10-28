@@ -18,7 +18,7 @@ export const BRANDING_PROJECTS: BrandingProject[] = [
   {
     id: "krithi-makeover-artistry",
     slug: "krithi-makeover-artistry-identity",
-    brandName: "Krithik Makeover Artistry",
+    brandName: "Krithi Makeover Artistry",
     tagline: "Haute Aesthetics & Editorial Distinction",
     category: "Luxury Beauty & Personal Branding",
     visualDirection: "Premium beauty / fashion / personal branding",
