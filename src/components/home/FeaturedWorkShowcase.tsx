@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, ArrowUpRight, TrendingUp, Layers, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowUpRight, TrendingUp, Layers, CheckCircle2, Play } from 'lucide-react';
 import { YouTubeIcon, InstagramIcon } from '@/components/icons/SocialIcons';
 import { projects, Project } from '@/data/projects';
 import AnimatedButton from '@/components/AnimatedButton';
 import ProjectInspectorDrawer from '@/components/ProjectInspectorDrawer';
+import VideoModal from '@/components/VideoModal';
 import { useScopingModal } from '@/context/ScopingModalContext';
 
 // Flagship featured clients
@@ -55,6 +56,7 @@ const CLIENT_THEMES: Record<string, ShowcaseTheme> = {
 export default function FeaturedWorkShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [inspectorProject, setInspectorProject] = useState<Project | null>(null);
+  const [videoToPlay, setVideoToPlay] = useState<{ url: string; title: string; channelUrl?: string } | null>(null);
   const { openScopingModal } = useScopingModal();
 
   // Filter projects to match the 5 flagship clients in order
@@ -257,6 +259,25 @@ export default function FeaturedWorkShowcase() {
 
                       {/* Action Buttons */}
                       <div className="flex flex-wrap items-center gap-2">
+                        {(project.videoEmbedUrl || project.video) && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setVideoToPlay({
+                                url: project.videoEmbedUrl || project.video || '',
+                                title: `${project.client} — ${project.title}`,
+                                channelUrl: project.youtubeUrl,
+                              });
+                            }}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-[#0047ff]/20 hover:bg-[#0047ff] text-white border border-[#0047ff]/40 transition-all hover:scale-105 cursor-pointer"
+                            title="Watch Featured Film"
+                          >
+                            <Play className="w-3.5 h-3.5 fill-current text-[#00F0FF]" />
+                            <span>Watch Film</span>
+                          </button>
+                        )}
+
                         {project.youtubeUrl && (
                           <a
                             href={project.youtubeUrl}
@@ -367,6 +388,23 @@ export default function FeaturedWorkShowcase() {
                   </div>
 
                   <div className="flex items-center gap-2">
+                    {(project.videoEmbedUrl || project.video) && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setVideoToPlay({
+                            url: project.videoEmbedUrl || project.video || '',
+                            title: `${project.client} — ${project.title}`,
+                            channelUrl: project.youtubeUrl,
+                          });
+                        }}
+                        className="p-1.5 rounded-full bg-[#0047ff]/20 border border-[#0047ff]/40 text-[#00F0FF] hover:text-white cursor-pointer"
+                        title="Watch Film"
+                      >
+                        <Play className="w-3.5 h-3.5 fill-current" />
+                      </button>
+                    )}
                     {project.youtubeUrl && (
                       <a
                         href={project.youtubeUrl}
@@ -428,6 +466,17 @@ export default function FeaturedWorkShowcase() {
           openScopingModal(cat);
         }}
       />
+
+      {/* Featured Video Player Modal */}
+      {videoToPlay && (
+        <VideoModal
+          isOpen={!!videoToPlay}
+          onClose={() => setVideoToPlay(null)}
+          title={videoToPlay.title}
+          videoSrc={videoToPlay.url}
+          channelUrl={videoToPlay.channelUrl}
+        />
+      )}
     </section>
   );
 }

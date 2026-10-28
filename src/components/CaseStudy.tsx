@@ -88,6 +88,38 @@ export default function CaseStudy({ project }: CaseStudyProps) {
           </div>
         </div>
 
+        {/* Featured Video Player Showcase */}
+        {(project.videoEmbedUrl || project.video) && (
+          <div className="mb-16 sm:mb-20 rounded-3xl overflow-hidden bg-black border border-[var(--color-border)] shadow-2xl">
+            <div className="relative aspect-video w-full bg-black">
+              {project.videoEmbedUrl ? (
+                <iframe
+                  src={project.videoEmbedUrl}
+                  title={`${project.client} Featured Film`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                />
+              ) : (
+                <video
+                  src={project.video}
+                  poster={project.thumbnail}
+                  controls
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+            <div className="px-6 py-4 bg-[var(--color-tint)] border-t border-[var(--color-border)] flex items-center justify-between text-xs font-mono">
+              <span className="flex items-center gap-2 text-[var(--color-text)]">
+                <span className="w-2 h-2 rounded-full bg-[#0047ff]" />
+                <strong className="font-semibold">Featured Film &amp; Production Master</strong>
+              </span>
+              <span className="text-[var(--color-muted)]">Cinema Grade • 4K Mastering</span>
+            </div>
+          </div>
+        )}
+
         {/* Overview & What We Did */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 py-8 mb-16 sm:mb-24 border-b border-[var(--color-border)]">
           {/* Overview */}

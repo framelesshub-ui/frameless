@@ -108,6 +108,38 @@ export default function ProjectInspectorDrawer({
             </div>
           </div>
 
+          {/* Cinema Video Preview Player */}
+          {(project.videoEmbedUrl || project.video) && (
+            <div className="relative rounded-2xl overflow-hidden bg-black border border-white/15 shadow-2xl">
+              <div className="relative aspect-video w-full">
+                {project.videoEmbedUrl ? (
+                  <iframe
+                    src={project.videoEmbedUrl}
+                    title={`${project.client} Featured Film`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                ) : (
+                  <video
+                    src={project.video}
+                    poster={project.thumbnail}
+                    controls
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+              <div className="px-4 py-2.5 bg-black/60 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/70">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0047ff]" />
+                  <span>Cinematic Production Preview</span>
+                </span>
+                <span className="text-white/40">1080p • 24FPS</span>
+              </div>
+            </div>
+          )}
+
           {/* Section 1: Overview & Strategic Challenge */}
           <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] space-y-3">
             <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#0047ff] font-semibold">
