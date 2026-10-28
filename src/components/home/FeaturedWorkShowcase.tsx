@@ -13,11 +13,11 @@ import { useScopingModal } from '@/context/ScopingModalContext';
 // Flagship featured clients
 const FEATURED_SLUGS = [
   'birlas-parvai',
-  'ora-kitchen',
   'supratha-wellness',
-  'aura-home',
-  'krithi-makeover-artistry',
   'frameless-media',
+  'krithi-makeover-artistry',
+  'ora-kitchen',
+  'aura-home',
 ];
 
 interface ShowcaseTheme {

@@ -60,8 +60,82 @@ export const projects: Project[] = [
       'Re-engineered opening hooks, introduced dynamic multi-camera roller cuts, calibrated bespoke cinematic color tones, and paced episodic beats with sound-design impacts.',
   },
   {
+    slug: 'supratha-wellness',
+    client: 'Supratha Wellness',
+    logo: '/media/clients/supratha-wellness.png',
+    title: 'Digital Content',
+    category: 'YouTube',
+    displayCategory: 'YouTube / Content',
+    thumbnail: 'https://i.ytimg.com/vi/b_g430s1Jr4/hq720.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/b_g430s1Jr4',
+    youtubeUrl: 'https://www.youtube.com/@SuprathaWellness',
+    channelUrl: 'https://www.youtube.com/@SuprathaWellness',
+    socialHandle: '@SuprathaWellness',
+    featured: true,
+    year: '2026',
+    overview:
+      'A health-focused content platform covering Ayurveda, Allopathy, Homeopathy, Acupuncture and wellness.',
+    deliverables: [
+      'YouTube Video Editing',
+    ],
+    verifiedResult: '3.2M+ Views',
+    challenge:
+      'Translate complex medical consultations, integrative wellness protocols, and clinical interviews into engaging, easily understood visual lessons.',
+    strategy:
+      'Introduced clean diagnostic lower-thirds, animated medical diagrams, balanced acoustic voice cleanup, and high-contrast thumbnail design.',
+  },
+  {
+    slug: 'frameless-media',
+    client: 'Frameless Media',
+    logo: '/logo.png',
+    title: 'Original Digital Content',
+    category: 'Content',
+    displayCategory: 'Media / Production',
+    thumbnail: 'https://i.ytimg.com/vi/iZa8A_V4z7Y/hq720.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/iZa8A_V4z7Y',
+    instagramUrl: 'https://www.instagram.com/frameless._/',
+    youtubeUrl: 'https://www.youtube.com/@Framelessmediatamil',
+    socialHandle: '@frameless._',
+    featured: true,
+    year: '2026',
+    overview:
+      'A cinema-focused content platform featuring interviews, public interactions and entertainment content.',
+    deliverables: [
+      'Content Production',
+      'Video Editing',
+      'Social Media Management',
+    ],
+    verifiedResult: '2.4M+ Views',
+    challenge:
+      'Produce high-turnaround cinema interview formats that compete with large television networks while preserving indie authentic character.',
+    strategy:
+      'Two-camera documentary setup, rapid 24-hour turnaround editing pipeline, micro-hook social shorts, and branded sound-bite cards.',
+  },
+  {
+    slug: 'krithi-makeover-artistry',
+    client: 'Krithik Makeover Artistry',
+    logo: '/media/clients/krithi-artistry.svg',
+    title: 'Brand & Social Content',
+    category: 'Branding',
+    displayCategory: 'Branding / Content',
+    featured: true,
+    year: '2026',
+    overview:
+      'A premium makeup artist brand focused on luxury beauty, professional portfolios and personal branding.',
+    deliverables: [
+      'Personal Branding',
+      'Content Creation',
+      'Social Media Management',
+    ],
+    verifiedResult: '280% Bridal Booking Inquiries',
+    challenge:
+      'Elevate a personal bridal artistry profile into an authoritative luxury brand commanding premium booking rates across South India.',
+    strategy:
+      'Cinematic close-up macro cinematography of beauty transformations, disciplined gold/rose color balance, and client testimonial story integration.',
+  },
+  {
     slug: 'ora-kitchen',
-    client: 'Ora Kitchen',
+    client: 'ORA Kitchen',
     logo: '/media/clients/ora-kitchen.png',
     title: 'Brand Identity',
     category: 'Branding',
@@ -107,53 +181,6 @@ export const projects: Project[] = [
       'Engineered an architectural brand language emphasizing natural daylight, negative space, and Scandinavian-meets-contemporary interior vignettes.',
   },
   {
-    slug: 'supratha-wellness',
-    client: 'Supratha Wellness',
-    logo: '/media/clients/supratha-wellness.png',
-    title: 'Digital Content',
-    category: 'YouTube',
-    displayCategory: 'YouTube / Content',
-    thumbnail: 'https://i.ytimg.com/vi/b_g430s1Jr4/hq720.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/b_g430s1Jr4',
-    youtubeUrl: 'https://www.youtube.com/@SuprathaWellness',
-    channelUrl: 'https://www.youtube.com/@SuprathaWellness',
-    socialHandle: '@SuprathaWellness',
-    featured: true,
-    year: '2026',
-    overview:
-      'A health-focused content platform covering Ayurveda, Allopathy, Homeopathy, Acupuncture and wellness.',
-    deliverables: [
-      'YouTube Video Editing',
-    ],
-    verifiedResult: '3.2M+ Views',
-    challenge:
-      'Translate complex medical consultations, integrative wellness protocols, and clinical interviews into engaging, easily understood visual lessons.',
-    strategy:
-      'Introduced clean diagnostic lower-thirds, animated medical diagrams, balanced acoustic voice cleanup, and high-contrast thumbnail design.',
-  },
-  {
-    slug: 'krithi-makeover-artistry',
-    client: 'Krithi Makeover Artistry',
-    logo: '/media/clients/krithi-artistry.svg',
-    title: 'Brand & Social Content',
-    category: 'Branding',
-    displayCategory: 'Branding / Content',
-    featured: true,
-    year: '2026',
-    overview:
-      'A premium makeup artist brand focused on luxury beauty, professional portfolios and personal branding.',
-    deliverables: [
-      'Personal Branding',
-      'Content Creation',
-      'Social Media Management',
-    ],
-    verifiedResult: '280% Bridal Booking Inquiries',
-    challenge:
-      'Elevate a personal bridal artistry profile into an authoritative luxury brand commanding premium booking rates across South India.',
-    strategy:
-      'Cinematic close-up macro cinematography of beauty transformations, disciplined gold/rose color balance, and client testimonial story integration.',
-  },
-  {
     slug: 'seyon-lab',
     client: 'Seyon Lab',
     title: 'Digital Presence',
@@ -172,33 +199,6 @@ export const projects: Project[] = [
       'Clarify complex CRM multi-channel features into accessible value propositions for modern enterprise founders and growth leaders.',
     strategy:
       'Developed high-fidelity UI motion graphics, product workflow visualizations, and high-velocity social explainers showcasing business efficiency.',
-  },
-  {
-    slug: 'frameless-media',
-    client: 'Frameless Media',
-    logo: '/logo.png',
-    title: 'Original Digital Content',
-    category: 'Content',
-    displayCategory: 'Media / Production',
-    thumbnail: 'https://i.ytimg.com/vi/iZa8A_V4z7Y/hq720.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/iZa8A_V4z7Y',
-    instagramUrl: 'https://www.instagram.com/frameless._/',
-    youtubeUrl: 'https://www.youtube.com/@Framelessmediatamil',
-    socialHandle: '@frameless._',
-    featured: true,
-    year: '2026',
-    overview:
-      'A cinema-focused content platform featuring interviews, public interactions and entertainment content.',
-    deliverables: [
-      'Content Production',
-      'Video Editing',
-      'Social Media Management',
-    ],
-    verifiedResult: '2.4M+ Views',
-    challenge:
-      'Produce high-turnaround cinema interview formats that compete with large television networks while preserving indie authentic character.',
-    strategy:
-      'Two-camera documentary setup, rapid 24-hour turnaround editing pipeline, micro-hook social shorts, and branded sound-bite cards.',
   },
 ];
 
