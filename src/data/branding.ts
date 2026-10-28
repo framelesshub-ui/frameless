@@ -22,6 +22,7 @@ export const BRANDING_PROJECTS: BrandingProject[] = [
     tagline: "Artisanal Culinary Craft & Gastronomy",
     category: "Culinary & Restaurant Identity",
     visualDirection: "Premium food / restaurant / kitchen branding",
+    projectImage: "/media/clients/ora-kitchen.png",
     instagramUrl: "https://www.instagram.com/orakitchen.official/",
     colorPalette: ["#1A1612", "#C4A482", "#E8D8C8", "#2E3A23"],
     deliverables: [

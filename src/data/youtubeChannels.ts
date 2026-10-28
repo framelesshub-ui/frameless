@@ -6,6 +6,7 @@ export interface YouTubeChannel {
   totalViews: string;
   subscribers?: string;
   thumbnail: string;
+  logo?: string;
   videoUrl?: string; // YouTube embed or watch link
   channelUrl: string;
   instagramUrl?: string;
@@ -29,6 +30,7 @@ export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
     totalViews: "5.2M+",
     subscribers: "120K+",
     thumbnail: "https://i.ytimg.com/vi/Tt-_PByi6KM/hq720.jpg",
+    logo: "/media/clients/birlas-parvai.png",
     videoUrl: "https://www.youtube.com/embed/Tt-_PByi6KM?autoplay=1&rel=0",
     channelUrl: "https://www.youtube.com/@birlasparvai",
     featuredTitle: "New Mahindra Thar OG 2026 Detailed Drive & Off-Road Tamil Review",

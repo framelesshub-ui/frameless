@@ -161,10 +161,19 @@ export default function YouTubePerformance() {
 
                 {/* Content */}
                 <div className="p-6">
-                  <div className="flex items-baseline justify-between mb-1">
-                    <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-[#00F0FF] transition-colors">
-                      {channel.name}
-                    </h3>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      {channel.logo && (
+                        <img
+                          src={channel.logo}
+                          alt={`${channel.name} avatar`}
+                          className="w-7 h-7 object-contain rounded-full bg-white/10 p-0.5 border border-white/15"
+                        />
+                      )}
+                      <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-[#00F0FF] transition-colors">
+                        {channel.name}
+                      </h3>
+                    </div>
                     <span className="text-xs font-mono text-[#00F0FF]">
                       {channel.handle}
                     </span>

@@ -28,6 +28,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Automotive Media & YouTube',
     description: 'Tamil Nadu’s leading automotive content platform covering cars, bikes, reviews and automotive stories.',
     services: ['YouTube Editing', 'Shorts & Reels', 'Social Media Management'],
+    logo: '/media/clients/birlas-parvai.png',
     youtubeUrl: 'https://www.youtube.com/@birlasparvai',
   },
   {
@@ -44,6 +45,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Catering & Food Brand',
     description: 'A professional catering brand serving corporate events, weddings, parties and special occasions.',
     services: ['Branding', 'Social Media Marketing', 'Content Creation', 'Social Media Management'],
+    logo: '/media/clients/ora-kitchen.png',
     instagramUrl: 'https://www.instagram.com/orakitchen.official/',
   },
   {

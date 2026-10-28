@@ -35,6 +35,7 @@ export const projects: Project[] = [
   {
     slug: 'birlas-parvai',
     client: 'Birlas Parvai',
+    logo: '/media/clients/birlas-parvai.png',
     title: 'Automotive Content',
     category: 'YouTube',
     displayCategory: 'YouTube / Production',
@@ -59,6 +60,7 @@ export const projects: Project[] = [
   {
     slug: 'ora-kitchen',
     client: 'Ora Kitchen',
+    logo: '/media/clients/ora-kitchen.png',
     title: 'Brand Identity',
     category: 'Branding',
     displayCategory: 'Branding',
