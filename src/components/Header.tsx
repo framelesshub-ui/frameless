@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ArrowUpRight } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { useScopingModal } from '@/context/ScopingModalContext';
 import AnimatedButton from '@/components/AnimatedButton';
@@ -15,9 +14,22 @@ interface HeaderProps {
 
 export default function Header({ currentRoute, onNavigate }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState<'home' | 'services' | 'projects' | 'about' | 'contact'>('home');
+  const [homeActiveSection, setHomeActiveSection] = useState<'home' | 'services' | 'projects' | 'about' | 'contact'>('home');
   const pathname = usePathname() || currentRoute || '/';
   const { openScopingModal } = useScopingModal();
+
+  const isHome = pathname === '/' || pathname === '';
+  const activeSection = isHome
+    ? homeActiveSection
+    : pathname.startsWith('/services')
+    ? 'services'
+    : pathname.startsWith('/work')
+    ? 'projects'
+    : pathname.startsWith('/about')
+    ? 'about'
+    : pathname.startsWith('/contact')
+    ? 'contact'
+    : 'home';
 
   // 1. Scroll listener for frosted header transition
   useEffect(() => {
@@ -31,14 +43,7 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
 
   // 2. IntersectionObserver for active section link on Home page
   useEffect(() => {
-    if (pathname !== '/' && pathname !== '') {
-      if (pathname.startsWith('/services')) setActiveSection('services');
-      else if (pathname.startsWith('/work')) setActiveSection('projects');
-      else if (pathname.startsWith('/about')) setActiveSection('about');
-      else if (pathname.startsWith('/contact')) setActiveSection('contact');
-      else setActiveSection('home');
-      return;
-    }
+    if (!isHome) return;
 
     const sectionIds: Array<'hero' | 'services' | 'projects' | 'about' | 'contact'> = [
       'hero',
@@ -53,11 +58,11 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.id;
-            if (id === 'hero') setActiveSection('home');
-            else if (id === 'services') setActiveSection('services');
-            else if (id === 'projects') setActiveSection('projects');
-            else if (id === 'about') setActiveSection('about');
-            else if (id === 'contact') setActiveSection('contact');
+            if (id === 'hero') setHomeActiveSection('home');
+            else if (id === 'services') setHomeActiveSection('services');
+            else if (id === 'projects') setHomeActiveSection('projects');
+            else if (id === 'about') setHomeActiveSection('about');
+            else if (id === 'contact') setHomeActiveSection('contact');
           }
         });
       },
@@ -73,7 +78,7 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
     });
 
     return () => observer.disconnect();
-  }, [pathname]);
+  }, [isHome]);
 
   const navLinks = [
     { label: 'Home', id: 'home', href: '/#hero', pageHref: '/' },
@@ -84,12 +89,12 @@ export default function Header({ currentRoute, onNavigate }: HeaderProps) {
   ] as const;
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navLinks[number]) => {
-    if (pathname === '/' || pathname === '') {
+    if (isHome) {
       const targetEl = document.getElementById(item.id === 'home' ? 'hero' : item.id);
       if (targetEl) {
         e.preventDefault();
         targetEl.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(item.id);
+        setHomeActiveSection(item.id);
       }
     } else if (onNavigate) {
       onNavigate(item.pageHref);

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import AnimatedButton from '@/components/AnimatedButton';
 
 export default function GlobalError({
   error,

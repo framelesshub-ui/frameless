@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import { motion, useSpring, useMotionValue, useReducedMotion } from 'framer-motion';
+
+const emptySubscribe = () => () => {};
 
 export default function AmbientBackground() {
   const shouldReduceMotion = useReducedMotion();
@@ -13,10 +15,9 @@ export default function AmbientBackground() {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   useEffect(() => {
-    setIsClient(true);
     if (shouldReduceMotion) return;
 
     let hasMoved = false;

@@ -29,7 +29,7 @@ export default function PortfolioCard({ title, category, description, color, yea
 
   const modalVideoRef = useRef<HTMLVideoElement>(null);
   const playerContainerRef = useRef<HTMLDivElement>(null);
-  const controlsTimeoutRef = useRef<any>(null);
+  const controlsTimeoutRef = useRef<NodeJS.Timeout | number | null>(null);
 
   // Prevent scroll when modal is open
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function PortfolioCard({ title, category, description, color, yea
     };
   }, [isModalOpen]);
 
-  // Controls visibility timeout
+  // Controls visibility timeout on hover/interaction
   const resetControlsTimeout = () => {
     setShowControls(true);
     if (controlsTimeoutRef.current) {
@@ -57,10 +57,11 @@ export default function PortfolioCard({ title, category, description, color, yea
   };
 
   useEffect(() => {
-    resetControlsTimeout();
-    return () => {
-      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    };
+    if (!isPlaying) return;
+    const timer = setTimeout(() => {
+      setShowControls(false);
+    }, 2500);
+    return () => clearTimeout(timer);
   }, [isPlaying]);
 
   // Listen to fullscreen changes

@@ -58,7 +58,7 @@ export default function TestimonialCard({ name, role, text, avatar, index }: Tes
               {name}
             </p>
             <p className="text-xs text-[#92969F] font-mono mt-0.5">
-              Verified Client Partner
+              {role || 'Verified Client Partner'}
             </p>
           </div>
         </div>

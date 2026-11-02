@@ -77,15 +77,21 @@ export default function ProjectScopingModal() {
           s.id === preselectedDiscipline.toLowerCase() ||
           s.tag.toLowerCase() === preselectedDiscipline.toLowerCase()
       );
-      if (match) setSelectedService(match.id);
+      if (match) {
+        requestAnimationFrame(() => {
+          setSelectedService(match.id);
+        });
+      }
     }
   }, [preselectedDiscipline]);
 
   // Reset step on reopen
   useEffect(() => {
     if (isOpen) {
-      setStep(1);
-      setCopied(false);
+      requestAnimationFrame(() => {
+        setStep(1);
+        setCopied(false);
+      });
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';

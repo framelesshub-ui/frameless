@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useSyncExternalStore } from 'react';
 import { ArrowUp } from 'lucide-react';
+
+const emptySubscribe = () => () => {};
 
 interface SectionTarget {
   id: string;
@@ -24,12 +26,10 @@ export default function InteractiveScrollRail() {
   const [activeSection, setActiveSection] = useState('hero');
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    setIsMounted(true);
-
     const updateScrollMetrics = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
       const totalScroll =

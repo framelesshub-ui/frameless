@@ -1,6 +1,6 @@
 export interface SiteStat {
   id: string;
-  value: any;
+  value: number | string;
   numericValue?: number;
   suffix: string;
   displayValue: string;

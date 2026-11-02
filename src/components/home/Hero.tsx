@@ -1,10 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import AnimatedCounter from '../AnimatedCounter';
-import { siteStats } from '@/data/stats';
 import { useScopingModal } from '@/context/ScopingModalContext';
 import AnimatedButton from '@/components/AnimatedButton';
 

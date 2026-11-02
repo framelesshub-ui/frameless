@@ -6,7 +6,7 @@ interface FooterProps {
   onNavigate?: (path: string) => void;
 }
 
-export default function Footer({ onNavigate }: FooterProps = {}) {
+export default function Footer(_props: FooterProps = {}) {
   return (
     <footer className="bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] py-10 sm:py-12">
       <div className="editorial-container flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--color-muted)]">

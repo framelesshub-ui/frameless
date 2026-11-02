@@ -20,16 +20,16 @@ export function useTypewriter({
   const prefersReducedMotion = usePrefersReducedMotion();
   const [displayed, setDisplayed] = useState('');
   const [done, setDone] = useState(false);
+  const [prevText, setPrevText] = useState(text);
 
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      setDisplayed(text);
-      setDone(true);
-      return;
-    }
-
+  if (text !== prevText) {
+    setPrevText(text);
     setDisplayed('');
     setDone(false);
+  }
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
 
     let currentIndex = 0;
     let timer: NodeJS.Timeout | null = null;
@@ -51,6 +51,10 @@ export function useTypewriter({
       if (timer) clearInterval(timer);
     };
   }, [text, speed, startDelay, prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return { displayed: text, done: true };
+  }
 
   return { displayed, done };
 }

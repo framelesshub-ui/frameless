@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Mail, Phone, MapPin, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Sparkles } from 'lucide-react';
 import ContactForm from './ContactForm';
 import { useScopingModal } from '@/context/ScopingModalContext';
 
@@ -23,7 +23,7 @@ export default function ContactPageContent() {
             Let’s make something great<span className="text-[#0047ff]">.</span>
           </h1>
           <p className="body-lead text-base sm:text-xl text-[var(--color-muted)] leading-relaxed">
-            Tell us what you're working on and what you need.
+            Tell us what you’re working on and what you need.
           </p>
         </div>
 

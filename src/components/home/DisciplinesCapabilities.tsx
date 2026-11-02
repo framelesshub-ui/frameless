@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight, Sparkles, ShieldCheck, Zap, Compass, Layers } from 'lucide-react';
+import { Sparkles, ShieldCheck, Zap, Compass } from 'lucide-react';
 import { CAPABILITIES } from '@/data/capabilities';
 import { useScopingModal } from '@/context/ScopingModalContext';
 import AnimatedButton from '@/components/AnimatedButton';

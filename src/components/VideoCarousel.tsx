@@ -38,20 +38,10 @@ export default function VideoCarousel({ items }: VideoCarouselProps) {
   const activeVideoRef = useRef<HTMLVideoElement>(null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
   const playerContainerRef = useRef<HTMLDivElement>(null);
-  const controlsTimeoutRef = useRef<any>(null);
+  const controlsTimeoutRef = useRef<NodeJS.Timeout | number | null>(null);
 
-  const activeItem = items[currentIndex];
-
-  // Reset index if items list changes
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [items.length]);
-
-  // Reset progress tracker on index change
-  useEffect(() => {
-    setActiveTime(0);
-    setActiveDuration(1);
-  }, [currentIndex]);
+  const safeIndex = items.length > 0 ? Math.min(currentIndex, items.length - 1) : 0;
+  const activeItem = items[safeIndex];
 
   // Handle Play/Pause on Hover, Modal Open, or Slide Change
   useEffect(() => {
@@ -67,7 +57,7 @@ export default function VideoCarousel({ items }: VideoCarouselProps) {
         console.log('Carousel autoplay prevented:', err);
       });
     }
-  }, [currentIndex, isHovered, isModalOpen, items]);
+  }, [safeIndex, isHovered, isModalOpen, items]);
 
   // Prevent background scroll when fullscreen modal is active
   useEffect(() => {
@@ -95,10 +85,11 @@ export default function VideoCarousel({ items }: VideoCarouselProps) {
   };
 
   useEffect(() => {
-    resetControlsTimeout();
-    return () => {
-      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    };
+    if (!isPlaying) return;
+    const timer = setTimeout(() => {
+      setShowControls(false);
+    }, 2500);
+    return () => clearTimeout(timer);
   }, [isPlaying]);
 
   // Fullscreen change listener
@@ -123,11 +114,15 @@ export default function VideoCarousel({ items }: VideoCarouselProps) {
   const handlePrev = () => {
     if (items.length <= 1) return;
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+    setActiveTime(0);
+    setActiveDuration(1);
   };
 
   const handleNext = () => {
     if (items.length <= 1) return;
     setCurrentIndex((prev) => (prev + 1) % items.length);
+    setActiveTime(0);
+    setActiveDuration(1);
   };
 
   // Time progress handlers for the carousel video
@@ -446,7 +441,7 @@ export default function VideoCarousel({ items }: VideoCarouselProps) {
 
               {/* Media controls */}
               <AnimatePresence>
-                {showControls && (
+                {(!isPlaying || showControls) && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

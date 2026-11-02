@@ -15,9 +15,13 @@ export default function CustomCursor() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!isFinePointer || prefersReducedMotion) return;
 
-    setIsVisible(true);
+    let hasShown = false;
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (!hasShown) {
+        hasShown = true;
+        setIsVisible(true);
+      }
       setPosition({ x: e.clientX, y: e.clientY });
 
       // Check if hovering an interactive target with data-cursor

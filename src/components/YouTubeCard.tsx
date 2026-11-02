@@ -12,7 +12,6 @@ interface YouTubeCardProps {
 
 export default function YouTubeCard({
   channel,
-  index = 0,
   onPlay,
   className = '',
 }: YouTubeCardProps) {

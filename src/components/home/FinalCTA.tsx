@@ -1,7 +1,6 @@
 'use client';
 
-import { ArrowUpRight, Mail, Phone, Sparkles } from 'lucide-react';
-import { InstagramIcon } from '@/components/icons/SocialIcons';
+import { ArrowUpRight } from 'lucide-react';
 import { useScopingModal } from '@/context/ScopingModalContext';
 import AnimatedButton from '@/components/AnimatedButton';
 

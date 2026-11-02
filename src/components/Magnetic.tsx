@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useSyncExternalStore } from 'react';
+
+const emptySubscribe = () => () => {};
 
 interface MagneticProps {
   children: React.ReactElement;
@@ -10,13 +12,11 @@ interface MagneticProps {
 export default function Magnetic({ children, strength = 6 }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [isFinePointer, setIsFinePointer] = useState(false);
-
-  useEffect(() => {
-    const fine = window.matchMedia('(pointer: fine)').matches;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setIsFinePointer(fine && !reducedMotion);
-  }, []);
+  const isFinePointer = useSyncExternalStore(
+    emptySubscribe,
+    () => window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    () => false
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isFinePointer || !ref.current) return;

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Compass, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
 import { ABOUT_HIGHLIGHTS } from '@/data/stats';
 
@@ -73,22 +73,46 @@ export default function AboutSection() {
           {/* Right Editorial Studio Imagery */}
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-3xl overflow-hidden glass-card border border-white/[0.1] shadow-[0_25px_60px_rgba(0,0,0,0.85)]">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#0D111A]">
-                <img
-                  src="/media/generated/studio-interior-editorial.jpg"
-                  alt="Frameless Hub Studio Interior"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#04060A] via-transparent to-transparent opacity-80" />
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-gradient-to-br from-[#0c101c] via-[#05070d] to-[#020306] flex flex-col justify-between p-6 sm:p-8">
+                {/* Background Ambient Glow & Grid Lines */}
+                <div className="absolute top-0 right-0 w-80 h-80 bg-[#0047ff]/15 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,71,255,0.12),transparent_70%)] pointer-events-none" />
 
-                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-[#080C14]/85 backdrop-blur-md border border-white/10">
-                  <div className="text-[10px] font-mono text-[#00F0FF] uppercase tracking-widest mb-1">
-                    FRAMELESS HUB HQ
+                {/* Top Blueprint Coordinates & Brand Mark */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-white/[0.08] border border-white/15 p-1.5 flex items-center justify-center">
+                      <img src="/logo.png" alt="Frameless Hub Mark" className="w-full h-full object-contain filter drop-shadow" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-mono font-bold text-white tracking-widest uppercase block">FRAMELESS</span>
+                      <span className="text-[9px] font-mono text-[#00F0FF] tracking-wider uppercase block">STUDIO PRODUCTION</span>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono text-white/40 tracking-wider">13.0827° N, 80.2707° E</span>
+                </div>
+
+                {/* Center Editorial Visual Graphic */}
+                <div className="relative z-10 my-auto text-center py-6">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-4 rounded-3xl bg-white/[0.04] border border-white/10 flex items-center justify-center shadow-2xl backdrop-blur-md">
+                    <img src="/logo.png" alt="Frameless Hub Hallmark" className="w-14 h-14 object-contain filter drop-shadow-lg opacity-90" />
+                  </div>
+                  <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#00F0FF] block mb-1">CRAFTED WITHOUT COMPROMISE</span>
+                  <span className="text-sm font-heading font-medium text-white/70">Cinematic Film • Visual Identity • Media Scaling</span>
+                </div>
+
+                {/* Bottom Studio Location Card */}
+                <div className="relative z-10 p-5 rounded-2xl bg-[#080C14]/85 backdrop-blur-md border border-white/10 shadow-lg">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="text-[10px] font-mono text-[#00F0FF] uppercase tracking-widest">
+                      FRAMELESS HUB HQ
+                    </div>
+                    <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" title="Active Studio" />
                   </div>
                   <div className="text-sm font-bold text-white">
                     Chennai, India • EST. 2026
                   </div>
-                  <div className="text-xs text-[#94A3B8] mt-0.5">
+                  <div className="text-xs text-[#94A3B8] mt-1 leading-relaxed">
                     Producing cinema, identities, and media IP for modern market leaders.
                   </div>
                 </div>

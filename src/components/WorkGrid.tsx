@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import ProjectCard from './ProjectCard';
-import { portfolioProjects, WORK_CATEGORIES, type ProjectCategory } from '@/data/projects';
+import { portfolioProjects, WORK_CATEGORIES } from '@/data/projects';
 
 interface WorkGridProps {
   initialCategory?: string;

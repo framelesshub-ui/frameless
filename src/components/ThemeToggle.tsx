@@ -4,29 +4,29 @@ import React, { useState, useEffect } from 'react';
 import { Sun, Moon } from 'lucide-react';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof document !== 'undefined') {
+      const current = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' | null;
+      if (current === 'light' || current === 'dark') return current;
+      try {
+        const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
+        if (stored === 'light' || stored === 'dark') return stored;
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return prefersDark ? 'dark' : 'light';
+      } catch {
+        // Fallback safe handling
+      }
+    }
+    return 'light';
+  });
 
   useEffect(() => {
-    setMounted(true);
-    // Read current theme from html[data-theme] initialized by the inline script in <head>
+    // Ensure document element has data-theme attribute in sync
     try {
-      const current = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' | null;
-      if (current === 'light' || current === 'dark') {
-        setTheme(current);
-      } else {
-        const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
-        if (stored === 'light' || stored === 'dark') {
-          setTheme(stored);
-          document.documentElement.setAttribute('data-theme', stored);
-        } else {
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const initial = prefersDark ? 'dark' : 'light';
-          setTheme(initial);
-          document.documentElement.setAttribute('data-theme', initial);
-        }
+      if (!document.documentElement.getAttribute('data-theme')) {
+        document.documentElement.setAttribute('data-theme', theme);
       }
-    } catch (e) {
+    } catch {
       // Fallback safe handling
     }
 
@@ -39,12 +39,12 @@ export default function ThemeToggle() {
           setTheme(sysTheme);
           document.documentElement.setAttribute('data-theme', sysTheme);
         }
-      } catch (err) {}
+      } catch {}
     };
 
     mediaQuery.addEventListener('change', handleMediaChange);
     return () => mediaQuery.removeEventListener('change', handleMediaChange);
-  }, []);
+  }, [theme]);
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -52,7 +52,7 @@ export default function ThemeToggle() {
     document.documentElement.setAttribute('data-theme', nextTheme);
     try {
       localStorage.setItem('theme', nextTheme);
-    } catch (e) {
+    } catch {
       // Silently handle safari private browsing or restricted quota
     }
   };

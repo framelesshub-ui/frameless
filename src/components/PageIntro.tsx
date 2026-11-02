@@ -3,17 +3,17 @@
 import React, { useEffect, useState } from 'react';
 
 export default function PageIntro() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return true;
+  });
   const [animatingOut, setAnimatingOut] = useState(false);
 
   useEffect(() => {
-    // Check if reduced motion or already shown in this session
-    if (typeof window !== 'undefined') {
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) {
-        setVisible(false);
-        return;
-      }
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
     }
 
     const timer = setTimeout(() => {

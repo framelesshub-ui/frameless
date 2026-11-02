@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, ArrowUpRight, TrendingUp, Layers, CheckCircle2, Play } from 'lucide-react';
+import { ArrowUpRight, TrendingUp, Play } from 'lucide-react';
 import { YouTubeIcon, InstagramIcon } from '@/components/icons/SocialIcons';
 import { projects, Project } from '@/data/projects';
 import AnimatedButton from '@/components/AnimatedButton';
@@ -70,9 +70,6 @@ export default function FeaturedWorkShowcase() {
       verifiedResult: 'Verified Impact',
     };
   });
-
-  const activeProject = featuredProjects[activeIndex] || featuredProjects[0];
-  const activeTheme = CLIENT_THEMES[activeProject.slug] || CLIENT_THEMES['birlas-parvai'];
 
   return (
     <section

@@ -5,23 +5,24 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 // ── Particle System ──────────────────────────────
+function pseudoRandom(seed: number) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
 function Particles({ count = 500, mouse }: { count?: number; mouse: { x: number; y: number } }) {
   const mesh = useRef<THREE.Points>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
-
-  // Update mouse ref for smooth tracking
-  mouseRef.current = mouse;
 
   const [positions, velocities] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const vel = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
-      vel[i * 3] = (Math.random() - 0.5) * 0.005;
-      vel[i * 3 + 1] = (Math.random() - 0.5) * 0.005;
-      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.002;
+      pos[i * 3] = (pseudoRandom(i * 3 + 1) - 0.5) * 20;
+      pos[i * 3 + 1] = (pseudoRandom(i * 3 + 2) - 0.5) * 20;
+      pos[i * 3 + 2] = (pseudoRandom(i * 3 + 3) - 0.5) * 10;
+      vel[i * 3] = (pseudoRandom(i * 3 + 4) - 0.5) * 0.005;
+      vel[i * 3 + 1] = (pseudoRandom(i * 3 + 5) - 0.5) * 0.005;
+      vel[i * 3 + 2] = (pseudoRandom(i * 3 + 6) - 0.5) * 0.002;
     }
     return [pos, vel];
   }, [count]);
@@ -29,7 +30,7 @@ function Particles({ count = 500, mouse }: { count?: number; mouse: { x: number;
   const sizes = useMemo(() => {
     const s = new Float32Array(count);
     for (let i = 0; i < count; i++) {
-      s[i] = Math.random() * 2 + 0.5;
+      s[i] = pseudoRandom(i + 7) * 2 + 0.5;
     }
     return s;
   }, [count]);
@@ -41,8 +42,8 @@ function Particles({ count = 500, mouse }: { count?: number; mouse: { x: number;
     const posArray = posAttr.array as Float32Array;
 
     const time = state.clock.elapsedTime;
-    const mx = mouseRef.current.x * 0.5;
-    const my = mouseRef.current.y * 0.5;
+    const mx = mouse.x * 0.5;
+    const my = mouse.y * 0.5;
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
@@ -151,13 +152,7 @@ function Scene({ mouse, particleCount }: { mouse: { x: number; y: number }; part
 
 // ── Exported Canvas ──────────────────────────────
 export default function ParticleCanvas({ mouse }: { mouse: { x: number; y: number } }) {
-  const [particleCount, setParticleCount] = useState(400);
-
-  useEffect(() => {
-    // Reduce particles on mobile for better performance
-    const isMobile = window.innerWidth < 768;
-    setParticleCount(isMobile ? 150 : 400);
-  }, []);
+  const [particleCount] = useState(() => (typeof window !== 'undefined' && window.innerWidth < 768 ? 150 : 400));
 
   return (
     <div className="absolute inset-0 z-0">

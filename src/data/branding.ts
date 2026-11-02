@@ -17,7 +17,7 @@ export interface BrandingProject {
 export const BRANDING_PROJECTS: BrandingProject[] = [
   {
     id: "ora-kitchen",
-    slug: "ora-kitchen-branding",
+    slug: "ora-kitchen",
     brandName: "ORA Kitchen",
     tagline: "Artisanal Culinary Craft & Gastronomy",
     category: "Culinary & Restaurant Identity",

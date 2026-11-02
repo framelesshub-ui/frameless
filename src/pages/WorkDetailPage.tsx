@@ -7,7 +7,7 @@ interface WorkDetailPageProps {
   onNavigate?: (route: string) => void;
 }
 
-export const WorkDetailPage: React.FC<WorkDetailPageProps> = ({ slug, onNavigate }) => {
+export const WorkDetailPage: React.FC<WorkDetailPageProps> = ({ slug }) => {
   const project = getProjectBySlug(slug) || portfolioProjects[0];
 
   return <CaseStudy project={project} />;

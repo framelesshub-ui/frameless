@@ -55,7 +55,7 @@ export default function ContactForm() {
         }
         setStatus('error');
       }
-    } catch (err) {
+    } catch {
       setErrorMessage('Network error. Please check your connection or email hello@framelesshub.com.');
       setStatus('error');
     }

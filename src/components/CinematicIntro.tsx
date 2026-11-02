@@ -56,7 +56,9 @@ export default function CinematicIntro() {
     }
 
     // First visit in session: mount intro and lock scroll
-    setIsVisible(true);
+    requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
     document.body.style.overflow = 'hidden';
 
     // Cinematic Stage Timing Sequence (~2.4s total)

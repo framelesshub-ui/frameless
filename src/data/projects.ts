@@ -163,6 +163,7 @@ export const getFeaturedProjects = (): Project[] => {
 };
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
+  if (slug === 'ora-kitchen-branding') slug = 'ora-kitchen';
   return projects.find((p) => p.slug === slug);
 };
 
