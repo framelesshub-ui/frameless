@@ -112,28 +112,6 @@ export const projects: Project[] = [
       'Two-camera documentary setup, rapid 24-hour turnaround editing pipeline, micro-hook social shorts, and branded sound-bite cards.',
   },
   {
-    slug: 'krithi-makeover-artistry',
-    client: 'Krithi Makeover Artistry',
-    logo: '/media/clients/krithi-artistry.svg',
-    title: 'Brand & Social Content',
-    category: 'Branding',
-    displayCategory: 'Branding / Content',
-    featured: true,
-    year: '2026',
-    overview:
-      'A premium makeup artist brand focused on luxury beauty, professional portfolios and personal branding.',
-    deliverables: [
-      'Personal Branding',
-      'Content Creation',
-      'Social Media Management',
-    ],
-    verifiedResult: '280% Bridal Booking Inquiries',
-    challenge:
-      'Elevate a personal bridal artistry profile into an authoritative luxury brand commanding premium booking rates across South India.',
-    strategy:
-      'Cinematic close-up macro cinematography of beauty transformations, disciplined gold/rose color balance, and client testimonial story integration.',
-  },
-  {
     slug: 'ora-kitchen',
     client: 'ORA Kitchen',
     logo: '/media/clients/ora-kitchen.png',
@@ -157,28 +135,6 @@ export const projects: Project[] = [
       'Differentiate an artisanal culinary group from generic commercial caterers with an evocative visual identity rooted in culinary tradition and modern elegance.',
     strategy:
       'Created tactile packaging guidelines, warm timber photographic direction, embossed monogram iconography, and a disciplined social aesthetic highlighting ingredient craft.',
-  },
-  {
-    slug: 'aura-home',
-    client: 'Aura Home',
-    logo: '/media/clients/aura-home.svg',
-    title: 'Brand Identity',
-    category: 'Branding',
-    displayCategory: 'Branding',
-    featured: true,
-    year: '2026',
-    overview:
-      'A home-focused brand offering essentials and products designed to elevate modern living spaces.',
-    deliverables: [
-      'Social Media Marketing',
-      'Content Creation',
-      'Social Media Management',
-    ],
-    verifiedResult: '3.4x Social Engagement Lift',
-    challenge:
-      'Build brand equity in a competitive interior decor space where consumers demand architectural purity and thoughtful minimalist home living aesthetics.',
-    strategy:
-      'Engineered an architectural brand language emphasizing natural daylight, negative space, and Scandinavian-meets-contemporary interior vignettes.',
   },
   {
     slug: 'seyon-lab',
@@ -207,19 +163,11 @@ export const getFeaturedProjects = (): Project[] => {
 };
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
-  if (slug === 'aura-homes') slug = 'aura-home';
-  if (slug === 'krithi-makeup-artist') slug = 'krithi-makeover-artistry';
   return projects.find((p) => p.slug === slug);
 };
 
 export const getNextProject = (currentSlug: string): Project => {
-  const normalized =
-    currentSlug === 'aura-homes'
-      ? 'aura-home'
-      : currentSlug === 'krithi-makeup-artist'
-      ? 'krithi-makeover-artistry'
-      : currentSlug;
-  const currentIndex = projects.findIndex((p) => p.slug === normalized);
+  const currentIndex = projects.findIndex((p) => p.slug === currentSlug);
   const nextIndex = (currentIndex + 1) % projects.length;
   return projects[nextIndex];
 };

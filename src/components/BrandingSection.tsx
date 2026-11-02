@@ -37,8 +37,8 @@ export default function BrandingSection() {
           </Link>
         </div>
 
-        {/* 3 Branding Project Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {/* Branding Project Cards */}
+        <div className={BRANDING_PROJECTS.length === 1 ? 'max-w-2xl mx-auto' : 'grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8'}>
           {BRANDING_PROJECTS.map((brand, index) => (
             <BrandCard key={brand.id} brand={brand} index={index} />
           ))}

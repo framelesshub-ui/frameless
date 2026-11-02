@@ -15,9 +15,7 @@ const FEATURED_SLUGS = [
   'birlas-parvai',
   'supratha-wellness',
   'frameless-media',
-  'krithi-makeover-artistry',
   'ora-kitchen',
-  'aura-home',
 ];
 
 interface ShowcaseTheme {
@@ -32,30 +30,20 @@ const CLIENT_THEMES: Record<string, ShowcaseTheme> = {
     bgGradient: 'from-[#001844] via-[#080d1a] to-[#04060b]',
     glowColor: 'rgba(0, 71, 255, 0.25)',
   },
-  'ora-kitchen': {
-    accentColor: '#f59e0b',
-    bgGradient: 'from-[#2e1c03] via-[#0d0903] to-[#040301]',
-    glowColor: 'rgba(245, 158, 11, 0.22)',
-  },
   'supratha-wellness': {
     accentColor: '#00F0FF',
     bgGradient: 'from-[#03242c] via-[#041014] to-[#010508]',
     glowColor: 'rgba(0, 240, 255, 0.25)',
   },
-  'aura-home': {
-    accentColor: '#10b981',
-    bgGradient: 'from-[#03261a] via-[#040f0b] to-[#010604]',
-    glowColor: 'rgba(16, 185, 129, 0.22)',
-  },
-  'krithi-makeover-artistry': {
-    accentColor: '#ec4899',
-    bgGradient: 'from-[#2b081b] via-[#0f040a] to-[#060204]',
-    glowColor: 'rgba(236, 72, 153, 0.22)',
-  },
   'frameless-media': {
     accentColor: '#eab308',
     bgGradient: 'from-[#2e090f] via-[#100305] to-[#050102]',
     glowColor: 'rgba(234, 179, 8, 0.25)',
+  },
+  'ora-kitchen': {
+    accentColor: '#f59e0b',
+    bgGradient: 'from-[#2e1c03] via-[#0d0903] to-[#040301]',
+    glowColor: 'rgba(245, 158, 11, 0.22)',
   },
 };
 

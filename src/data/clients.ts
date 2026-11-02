@@ -51,14 +51,6 @@ export const OUR_CLIENTS: ClientItem[] = [
     youtubeUrl: 'https://www.youtube.com/@Framelessmediatamil',
   },
   {
-    id: 'krithi-makeup-artist',
-    name: 'Krithi Makeover Artistry',
-    category: 'Luxury Makeup & Personal Brand',
-    description: 'A premium makeup artist brand focused on luxury beauty, professional portfolios and personal branding.',
-    services: ['Personal Branding', 'Content Creation', 'Social Media Management'],
-    logo: '/media/clients/krithi-artistry.svg',
-  },
-  {
     id: 'ora-kitchen',
     name: 'ORA Kitchen',
     category: 'Catering & Food Brand',
@@ -66,14 +58,6 @@ export const OUR_CLIENTS: ClientItem[] = [
     services: ['Branding', 'Social Media Marketing', 'Content Creation', 'Social Media Management'],
     logo: '/media/clients/ora-kitchen.png',
     instagramUrl: 'https://www.instagram.com/orakitchen.official/',
-  },
-  {
-    id: 'aura-homes',
-    name: 'Aura Home',
-    category: 'Home & Lifestyle Brand',
-    description: 'A home-focused brand offering essentials and products designed to elevate modern living spaces.',
-    services: ['Social Media Marketing', 'Content Creation', 'Social Media Management'],
-    logo: '/media/clients/aura-home.svg',
   },
   {
     id: 'seyon-lab',

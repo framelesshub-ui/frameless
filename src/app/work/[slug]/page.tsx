@@ -14,8 +14,6 @@ export async function generateStaticParams() {
     slug: project.slug,
   }));
   const aliases = [
-    { slug: 'aura-home' },
-    { slug: 'krithi-makeover-artistry' },
     { slug: 'seyon-lab' },
   ];
   return [...current, ...aliases];

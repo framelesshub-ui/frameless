@@ -4,6 +4,8 @@ Upload client brand logos (`.png`, `.svg`, `.webp`) here.
 
 ### Existing Client Logos:
 - `birlas-parvai.png` — Official Birlas Parvai Logo
+- `supratha-wellness.png` — Official Supratha Wellness Logo
+- `frameless-media.png` — Official Frameless Media Logo
 - `ora-kitchen.png` — Official ORA Kitchen Logo
 
 ### How to Upload on GitHub:
@@ -12,10 +14,7 @@ Upload client brand logos (`.png`, `.svg`, `.webp`) here.
 3. Commit changes.
 
 ### Recommended File Naming:
-- `aura-home.png`
-- `krithi-makeover-artistry.png`
-- `frameless-media.png`
-- `client-name.png`
+- `client-name.png` (e.g. `brand-name.png`)
 
 ### Automatic URL Path:
 Any logo uploaded here will automatically be available at:
