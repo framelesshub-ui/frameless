@@ -36,11 +36,11 @@ export default function CaseStudy({ project }: CaseStudyProps) {
             </div>
             <div className="flex items-center gap-5 sm:gap-6">
               {project.logo && (
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-[var(--color-tint)] p-3.5 border border-[var(--color-border)] shadow-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-[var(--color-tint)] p-3.5 border border-[var(--color-border)] shadow-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
                   <img
                     src={project.logo}
                     alt={`${project.client} logo`}
-                    className="w-full h-full object-contain filter drop-shadow"
+                    className="w-full h-full object-contain filter drop-shadow rounded-2xl"
                   />
                 </div>
               )}

@@ -53,9 +53,9 @@ const CLIENT_THEMES: Record<string, ShowcaseTheme> = {
     glowColor: 'rgba(236, 72, 153, 0.22)',
   },
   'frameless-media': {
-    accentColor: '#38bdf8',
-    bgGradient: 'from-[#032035] via-[#040d16] to-[#010508]',
-    glowColor: 'rgba(56, 189, 248, 0.25)',
+    accentColor: '#eab308',
+    bgGradient: 'from-[#2e090f] via-[#100305] to-[#050102]',
+    glowColor: 'rgba(234, 179, 8, 0.25)',
   },
 };
 
@@ -214,11 +214,11 @@ export default function FeaturedWorkShowcase() {
                   /* Collapsed View: Prominent Large Logo + Vertical Title */
                   <div className="relative z-10 flex flex-col items-center justify-center my-auto py-2">
                     {project.logo && (
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.08] p-2.5 border border-white/20 shadow-lg flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/[0.14] group-hover:border-white/40 flex-shrink-0">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.08] p-2.5 border border-white/20 shadow-lg flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/[0.14] group-hover:border-white/40 flex-shrink-0 overflow-hidden">
                         <img
                           src={project.logo}
                           alt={`${project.client} logo`}
-                          className="w-full h-full object-contain filter drop-shadow"
+                          className="w-full h-full object-contain filter drop-shadow rounded-lg"
                         />
                       </div>
                     )}
@@ -238,11 +238,11 @@ export default function FeaturedWorkShowcase() {
 
                     <div className="flex items-center gap-4 sm:gap-5">
                       {project.logo && (
-                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/[0.08] p-3 border border-white/20 shadow-2xl backdrop-blur-md flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
+                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/[0.08] p-3 border border-white/20 shadow-2xl backdrop-blur-md flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105 overflow-hidden">
                           <img
                             src={project.logo}
                             alt={`${project.client} logo`}
-                            className="w-full h-full object-contain filter drop-shadow-md"
+                            className="w-full h-full object-contain filter drop-shadow-md rounded-xl"
                           />
                         </div>
                       )}
@@ -398,11 +398,11 @@ export default function FeaturedWorkShowcase() {
 
                 <div className="flex items-center gap-4 mb-3">
                   {project.logo && (
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/[0.08] p-2.5 border border-white/20 shadow-md flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/[0.08] p-2.5 border border-white/20 shadow-md flex items-center justify-center flex-shrink-0 overflow-hidden">
                       <img
                         src={project.logo}
                         alt={`${project.client} logo`}
-                        className="w-full h-full object-contain filter drop-shadow"
+                        className="w-full h-full object-contain filter drop-shadow rounded-lg"
                       />
                     </div>
                   )}

@@ -46,7 +46,7 @@ export const OUR_CLIENTS: ClientItem[] = [
     category: 'Cinema & Entertainment Media',
     description: 'A cinema-focused content platform featuring interviews, public interactions and entertainment content.',
     services: ['Content Production', 'Video Editing', 'Social Media Management'],
-    logo: '/logo.png',
+    logo: '/media/clients/frameless-media.png',
     instagramUrl: 'https://www.instagram.com/frameless._/',
     youtubeUrl: 'https://www.youtube.com/@Framelessmediatamil',
   },

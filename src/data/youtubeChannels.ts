@@ -64,6 +64,7 @@ export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
     totalViews: "2.4M+",
     subscribers: "60K+",
     thumbnail: "https://i.ytimg.com/vi/iZa8A_V4z7Y/hq720.jpg",
+    logo: "/media/clients/frameless-media.png",
     videoUrl: "https://www.youtube.com/embed/iZa8A_V4z7Y?autoplay=1&rel=0",
     channelUrl: "https://www.youtube.com/@Framelessmediatamil",
     instagramUrl: "https://www.instagram.com/frameless._/",

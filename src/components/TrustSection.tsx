@@ -26,7 +26,7 @@ export default function TrustSection() {
                     <img
                       src={client.logo}
                       alt={`${client.name} logo`}
-                      className="w-full h-full object-contain filter drop-shadow brightness-95 group-hover:brightness-110"
+                      className="w-full h-full object-contain filter drop-shadow brightness-95 group-hover:brightness-110 rounded-lg"
                     />
                   </div>
                 ) : (

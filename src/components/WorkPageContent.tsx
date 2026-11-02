@@ -112,11 +112,11 @@ export default function WorkPageContent() {
                 {/* Client Name & Large Logo */}
                 <div className="flex items-center gap-4 mb-3">
                   {project.logo && (
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[var(--color-tint)] p-2.5 border border-[var(--color-border)] shadow-md flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[var(--color-tint)] p-2.5 border border-[var(--color-border)] shadow-md flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
                       <img
                         src={project.logo}
                         alt={`${project.client} logo`}
-                        className="w-full h-full object-contain filter drop-shadow"
+                        className="w-full h-full object-contain filter drop-shadow rounded-lg"
                       />
                     </div>
                   )}

@@ -87,7 +87,7 @@ export const projects: Project[] = [
   {
     slug: 'frameless-media',
     client: 'Frameless Media',
-    logo: '/logo.png',
+    logo: '/media/clients/frameless-media.png',
     title: 'Original Digital Content',
     category: 'Content',
     displayCategory: 'Media / Production',
